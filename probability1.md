@@ -1,7 +1,7 @@
-===
+---
 layout: post
 mathjax: true
-===
+---
 
 
 ## Probability 1
