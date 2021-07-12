@@ -1,4 +1,7 @@
-{% include mathjax.html %}
+===
+layout: post
+mathjax: true
+===
 
 
 ## Probability 1
