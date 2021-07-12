@@ -4,14 +4,14 @@ This blog is for reviews of some Ph.D core cores for the future.
 
 Contents are below
 
-[Probability 1](./probability1.html).
+[Probability 1](./probability1.html)
 
-[Probability 2](./probability2.html).
+[Probability 2](./probability2.html)
 
-[Decision Theory](./dec.html).
+[Decision Theory](./dec.html)
 
-[Generalized Linear Models](./glm.html).
+[Generalized Linear Models](./glm.html)
 
-[Linear Models](./lm.html).
+[Linear Models](./lm.html)
 
 
