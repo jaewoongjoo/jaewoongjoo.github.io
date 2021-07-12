@@ -6,7 +6,7 @@ layout: default
 
 Index
 
-[1. Fields and $\sigma$-fields]./prob1/field.md
+[1. Fields and $\sigma$-fields](./prob1/field.md)
 
 
 [back](./)
