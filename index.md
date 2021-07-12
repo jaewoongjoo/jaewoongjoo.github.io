@@ -1,6 +1,6 @@
 Hello, I am a Ph.D student in Department of Statistics.
 
-This blog is for reviews of some Ph.D core courses for the future.
+This blog is for reviews of some Ph.D core courses.
 
 Contents are below
 
