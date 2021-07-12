@@ -1,6 +1,5 @@
 ---
-layout: post
-mathjax: true
+layout: html_document
 ---
 
 
