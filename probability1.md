@@ -8,7 +8,7 @@ mathjax: true
 
 Index
 
-[1. Fields and $\sigma$-fields](./prob1/1.1.html)
+[1. Fields and $$\sigma$$-fields](./prob1/1_1.html)
 
 
 [back](./)
