@@ -2,11 +2,14 @@
 layout: html_document
 ---
 
-Hello, I am a Ph.D student in Department of Statistics.
+
+### Jaewoong Joo
+
+Hello, and welcome to my blog. I am a Ph.D student in Department of Statistics.
 
 This blog is for reviews of some Ph.D core courses.
 
-Contents are below
+Contents are below;
 
 [Probability 1](./probability1.html)
 
