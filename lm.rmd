@@ -1,6 +1,18 @@
 ---
-layout: pdf_document
-output: pdf_document
+title: "Linear Models"
+output: html_document
 ---
 
-aaa
+
+### Index
+
+
+
+##### 1. TBD
+
+[1.1 TBD](./lm/1_1.html)
+
+[1.2. TBD](./lm/1_2.html)
+
+
+[back](./)

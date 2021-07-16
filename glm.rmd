@@ -1,4 +1,18 @@
 ---
-layout: html_document
+title: "Generalized Linear Models"
+output: html_document
 ---
 
+
+### Index
+
+
+
+##### 1. Introduction to Generalized Linear Models
+
+[1.1 Generalized Linear Model](./glm/1_1.html)
+
+[1.2. Maximum Likelihood Estimation](./glm/1_2.html)
+
+
+[back](./)

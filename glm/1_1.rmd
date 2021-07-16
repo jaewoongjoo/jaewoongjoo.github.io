@@ -1,0 +1,32 @@
+---
+title: "1.1 Generalized Linear Models"
+output: html_document
+---
+
+&nbsp;
+
+#### Components of GLM
+
+1. Random component: it specifies $Y$ and its probability distributions.
+
+2. Systematic component : it specifies explanatory variables.
+
+3. Link function : it specifies function of $E(Y)$ to be a model.
+
+
+&nbsp;&nbsp;
+
+##### Random Component
+
+Let $Y=(Y_1,\ldots,Y_n)$ where $Y_i$ is a response for the subject $i$. Then,
+
+1. $Y_i$'s are independent.
+
+2. Probability distribution function for $Y_i$ has the form of exponential dispersion family,
+$$\begin{equation*}
+f(y_i|\theta_i, \phi)= \exp[\{y_i\theta_i-b(\theta_i)\}/a(\phi)+c(y_i;\phi)],
+\end{equation*}$$
+where $\theta_i$ and $\phi$ are a natural parameter and a dispersion parameter, respectively.
+
+
+* Examples: 
