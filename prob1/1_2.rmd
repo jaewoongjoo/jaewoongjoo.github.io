@@ -62,7 +62,7 @@ For any measure $\mu$ on a field $\mathcal{F}$ and sets $A,B,A_1,A_2,\ldots \in 
 &nbsp;&nbsp;
 
 
-* 여기서부터는 Caratheodory Extension Theorem을 위한 내용들이다. Caratheodory Extension Theorem는 field에서 정의된 measure $\mu$가 $\sigma$-field까지 확장될 수 있고, 그 measure $\mu$가 field에서 unique하다면, $\sigma$-field에서도 unique할 수 있음을 보여준다. 그를 위해 Dynkin의 파이 람다 시스템에 대해 먼저 알아보자.
+* 아래의 Theorem들은 대부분 Caratheodory Extension Theorem을 위한 내용들이다. Caratheodory Extension Theorem는 field에서 정의된 measure $\mu$가 $\sigma$-field까지 확장될 수 있고, 그 measure $\mu$가 field에서 unique하다면, $\sigma$-field에서도 unique할 수 있음을 보여준다. 그를 위해 Dynkin의 파이 람다 시스템에 대해 먼저 알아보자.
 
 &nbsp;&nbsp;
 
@@ -97,7 +97,7 @@ A class that is both a $\pi$-system and $\lambda$-system is a $\sigma$-field.
 
 ##### Theorem(Dynkin's $\pi-\lambda$ theorem)
 
-If $\mathcal{P}$ is a $\pi$-system and $\mathcal{L}$ is a $\lambda$-system, then  $\mathcal{P}\in  \mathcal{L}$ implies  $\sigma(\mathcal{P}) \subset  \mathcal{L}$.
+If $\mathcal{P}$ is a $\pi$-system and $\mathcal{L}$ is a $\lambda$-system, then  $\mathcal{P}\subset \mathcal{L}$ implies  $\sigma(\mathcal{P}) \subset  \mathcal{L}$.
 
 * $\mathcal{P}\subset\mathcal{L}$ 이라면 $\mathcal{L}$은 $\pi$-system 임과 동시에 $\lambda$-system의 성질을 가지게 되고, 때문에 $\sigma$-field이다.
 
@@ -106,80 +106,6 @@ If $\mathcal{P}$ is a $\pi$-system and $\mathcal{L}$ is a $\lambda$-system, then
 
 
 
-### Uniqueness of Measure
-
-##### Lemma
-If $\mu_1$ and $\mu_2$ are finite measures on a measurable space $(\Omega, \mathcal{F})$ with $\mu_1(\Omega)=\mu_2(\Omega)$, then the class $\mathcal{L}:= \{A\in\mathcal{F}: \mu_1(A)=\mu_2(A)\}$ is a $\lambda$-system.
-
-&nbsp;&nbsp;
-
-* 증명은 간단하다. 
-
-  주어진 조건 $\mu_1(\Omega)=\mu_2(\Omega)$로 인하여 $\Omega \in \mathcal{L}$은 trivial하다. 
-
-  또한 $A\in \mathcal{F}$에 대하여 $\mu_1(A^c)=\mu_1(\Omega)-\mu_1(A)=\mu_2(\Omega)-\mu_2(A)=\mu_2(A^c)$를 얻을 수 있다. 
-
-  그리고 $A_1,A_2,\ldots\in\mathcal{F}$, $A_m\cap A_n =\phi, m\ne n$에 대해
-
-  $\mu_1(\uplus_nA_n)=\sum_n \mu_1(A_n)=\sum_n \mu_2(A_n)=\mu_2(\uplus_nA_n)$이다.
-
-  때문에 $\uplus_nA_n \in \mathcal{F}$ 이다.
-
-&nbsp;&nbsp;
 
 
-
-##### Lemma(First Uniqueness Theorem for Finite Measure)
-Suppose $\mu_1$ and $\mu_2$ are finite measures on $\sigma(\mathcal{P})$, where $\mathcal{P}$ is a $\pi$-system with $\Omega\in \mathcal{P}$. If $\mu_1$ and $\mu_2$ agree on $\mathcal{P}$, then they agree on $\sigma(\mathcal{P})$.
-
-  (만약 두 measure가 finite measure일 때 주어진 field에서 agree하다면, $\sigma$-field에서도 agree한다. 즉 Unique함을 의미한다.)
-
-&nbsp;&nbsp;
-
-
-##### Lemma(Second Uniqueness Theorem for Finite Measure)
-Suppose $\mu_1$ and $\mu_2$ are finite measures on $\sigma(\mathcal{P})$, where $\mathcal{P}$ is a $\pi$-system and $\Omega$ can be written as a finite or countably infinite union of sets in $\mathcal{P}$. If $\mu_1$ and $\mu_2$ agree on $\mathcal{P}$, then they agree on $\sigma(\mathcal{P})$.
-
-&nbsp;&nbsp;
-
-
-##### Definition(Outer Measures)
-An outer measure is a set function $\mu^*$ defined on $2^\Omega$ and satisfying
-
-1. $0\le \mu^*(A)\le \infty$ for all $A\subset\Omega$;
-
-2. $\mu^*(\phi)=0$ ;
-
-3. Monotonicity: $A\subset B$ implies $\mu^*(A)\le \mu^*(B)$.
-
-3. Countable subadditivity: for all $A_1, A_2, \ldots \subset \Omega$, $\mu^*(\cup_n A_n)\le \sum_n \mu^*(A_n)$.
-
-
-&nbsp;&nbsp;
-
-##### Lemma
-
-Let $\mu$ be a set function on a class $\mathcal{A}$ of subsets of $\Omega$, where
-
-1. $\phi\in \mathcal{A}$;  (field의 조건.)
-
-2. $\mu(\phi)=0$;  (measure의 조건)
-
-3. $0 \le \mu(A) \le \infty$ for all $A\in \mathcal{A}$.   (measure의 조건)
-
-If $\mu^*$ is defined by 
-$$\begin{equation*}
-\mu^*(A)=\inf\left\{ \sum_n \mu(A_n): A_1,A_2,\ldots\in \mathcal{A}, A\subset \cup_n A_n  \right\}, A\subset \Omega,
-\end{equation*}$$
-then $\mu^*$ is an outer measure.
-
-
-* Outer measure는 주어진 set A를 cover하는 sequence of sets 중에서, 그 set들의 sum of measure들의 가장 작은 값으로 생각할 수 있다.
-
-
-
-&nbsp;&nbsp;W
-
-
-
-
+[back](./)

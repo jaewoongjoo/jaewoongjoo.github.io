@@ -1,4 +1,0 @@
----
-title: 1_1
-output: html_document 
----

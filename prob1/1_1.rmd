@@ -1,4 +1,4 @@
-$)C---
+$)C---
 layout: html_document
 ---
 
@@ -85,6 +85,4 @@ The \texttt{Borel $\sigma$-field} on $\mathbb{R}=(-\infty, \infty)$, denoted by 
 
 e.g. $\sigma(\mathcal{I}_0)= \mathcal{R}.$
 
-(In Korean: =10T Real line?!<-@G interval A}GU@87N @L7g>nAx class@G smallest $\sigma$-field0! Borel $\sigma$-field 6s0m ;}0"GO@Z. $\mathbb{R}$@: =G<v?!<-@G Entire set@L1b 6'9.?!, $\Omega$?! $\mathbb{R}$@; 3u0m ;}0"GO8i =10T @LGX5I 0M@L4Y.)
-
-
+*실수에서의 Entire set $\Omega$는 $\mathbb{R}$이라고 생각하고 $\Omega$의 Subset들을 any interval in the real line $\mathbb{R}$ 이라고 생각하자. 그렇다면 그 subset들의 class(1번부터 8번까지의 class 중 하나)의 the smallest $\sigma$-field를 우리는 Borel $\sigma$-field 라고 생각하자.

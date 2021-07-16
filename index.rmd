@@ -15,7 +15,7 @@ Contents are below;
 
 [Probability 2](./probability2.html)
 
-[Decision Theory](./dec.html)
+[Decision Theory](./decision.html)
 
 [Generalized Linear Models](./glm.html)
 

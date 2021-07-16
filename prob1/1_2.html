@@ -393,7 +393,7 @@ pre code {
 </ol>
 <p>  </p>
 <ul>
-<li>여기서부터는 Caratheodory Extension Theorem을 위한 내용들이다. Caratheodory Extension Theorem는 field에서 정의된 measure <span class="math inline">\(\mu\)</span>가 <span class="math inline">\(\sigma\)</span>-field까지 확장될 수 있고, 그 measure <span class="math inline">\(\mu\)</span>가 field에서 unique하다면, <span class="math inline">\(\sigma\)</span>-field에서도 unique할 수 있음을 보여준다. 그를 위해 Dynkin의 파이 람다 시스템에 대해 먼저 알아보자.</li>
+<li>아래의 Theorem들은 대부분 Caratheodory Extension Theorem을 위한 내용들이다. Caratheodory Extension Theorem는 field에서 정의된 measure <span class="math inline">\(\mu\)</span>가 <span class="math inline">\(\sigma\)</span>-field까지 확장될 수 있고, 그 measure <span class="math inline">\(\mu\)</span>가 field에서 unique하다면, <span class="math inline">\(\sigma\)</span>-field에서도 unique할 수 있음을 보여준다. 그를 위해 Dynkin의 파이 람다 시스템에 대해 먼저 알아보자.</li>
 </ul>
 <p>  </p>
 </div>
@@ -421,66 +421,12 @@ pre code {
 </div>
 <div id="theoremdynkins-pi-lambda-theorem" class="section level5">
 <h5>Theorem(Dynkin’s <span class="math inline">\(\pi-\lambda\)</span> theorem)</h5>
-<p>If <span class="math inline">\(\mathcal{P}\)</span> is a <span class="math inline">\(\pi\)</span>-system and <span class="math inline">\(\mathcal{L}\)</span> is a <span class="math inline">\(\lambda\)</span>-system, then <span class="math inline">\(\mathcal{P}\in \mathcal{L}\)</span> implies <span class="math inline">\(\sigma(\mathcal{P}) \subset \mathcal{L}\)</span>.</p>
+<p>If <span class="math inline">\(\mathcal{P}\)</span> is a <span class="math inline">\(\pi\)</span>-system and <span class="math inline">\(\mathcal{L}\)</span> is a <span class="math inline">\(\lambda\)</span>-system, then <span class="math inline">\(\mathcal{P}\subset \mathcal{L}\)</span> implies <span class="math inline">\(\sigma(\mathcal{P}) \subset \mathcal{L}\)</span>.</p>
 <ul>
 <li><span class="math inline">\(\mathcal{P}\subset\mathcal{L}\)</span> 이라면 <span class="math inline">\(\mathcal{L}\)</span>은 <span class="math inline">\(\pi\)</span>-system 임과 동시에 <span class="math inline">\(\lambda\)</span>-system의 성질을 가지게 되고, 때문에 <span class="math inline">\(\sigma\)</span>-field이다.</li>
 </ul>
 <p>     </p>
-</div>
-<div id="uniqueness-of-measure" class="section level3">
-<h3>Uniqueness of Measure</h3>
-<div id="lemma-1" class="section level5">
-<h5>Lemma</h5>
-<p>If <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> are finite measures on a measurable space <span class="math inline">\((\Omega, \mathcal{F})\)</span> with <span class="math inline">\(\mu_1(\Omega)=\mu_2(\Omega)\)</span>, then the class <span class="math inline">\(\mathcal{L}:= \{A\in\mathcal{F}: \mu_1(A)=\mu_2(A)\}\)</span> is a <span class="math inline">\(\lambda\)</span>-system.</p>
-<p>  </p>
-<ul>
-<li><p>증명은 간단하다.</p>
-<p>주어진 조건 <span class="math inline">\(\mu_1(\Omega)=\mu_2(\Omega)\)</span>로 인하여 <span class="math inline">\(\Omega \in \mathcal{L}\)</span>은 trivial하다.</p>
-<p>또한 <span class="math inline">\(A\in \mathcal{F}\)</span>에 대하여 <span class="math inline">\(\mu_1(A^c)=\mu_1(\Omega)-\mu_1(A)=\mu_2(\Omega)-\mu_2(A)=\mu_2(A^c)\)</span>를 얻을 수 있다.</p>
-<p>그리고 <span class="math inline">\(A_1,A_2,\ldots\in\mathcal{F}\)</span>, <span class="math inline">\(A_m\cap A_n =\phi, m\ne n\)</span>에 대해</p>
-<p><span class="math inline">\(\mu_1(\uplus_nA_n)=\sum_n \mu_1(A_n)=\sum_n \mu_2(A_n)=\mu_2(\uplus_nA_n)\)</span>이다.</p>
-<p>때문에 <span class="math inline">\(\uplus_nA_n \in \mathcal{F}\)</span> 이다.</p></li>
-</ul>
-<p>  </p>
-</div>
-<div id="lemmafirst-uniqueness-theorem-for-finite-measure" class="section level5">
-<h5>Lemma(First Uniqueness Theorem for Finite Measure)</h5>
-<p>Suppose <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> are finite measures on <span class="math inline">\(\sigma(\mathcal{P})\)</span>, where <span class="math inline">\(\mathcal{P}\)</span> is a <span class="math inline">\(\pi\)</span>-system with <span class="math inline">\(\Omega\in \mathcal{P}\)</span>. If <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> agree on <span class="math inline">\(\mathcal{P}\)</span>, then they agree on <span class="math inline">\(\sigma(\mathcal{P})\)</span>.</p>
-<p>(만약 두 measure가 finite measure일 때 주어진 field에서 agree하다면, <span class="math inline">\(\sigma\)</span>-field에서도 agree한다. 즉 Unique함을 의미한다.)</p>
-<p>  </p>
-</div>
-<div id="lemmasecond-uniqueness-theorem-for-finite-measure" class="section level5">
-<h5>Lemma(Second Uniqueness Theorem for Finite Measure)</h5>
-<p>Suppose <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> are finite measures on <span class="math inline">\(\sigma(\mathcal{P})\)</span>, where <span class="math inline">\(\mathcal{P}\)</span> is a <span class="math inline">\(\pi\)</span>-system and <span class="math inline">\(\Omega\)</span> can be written as a finite or countably infinite union of sets in <span class="math inline">\(\mathcal{P}\)</span>. If <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> agree on <span class="math inline">\(\mathcal{P}\)</span>, then they agree on <span class="math inline">\(\sigma(\mathcal{P})\)</span>.</p>
-<p>  </p>
-</div>
-<div id="definitionouter-measures" class="section level5">
-<h5>Definition(Outer Measures)</h5>
-<p>An outer measure is a set function <span class="math inline">\(\mu^*\)</span> defined on <span class="math inline">\(2^\Omega\)</span> and satisfying</p>
-<ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(0\le \mu^*(A)\le \infty\)</span> for all <span class="math inline">\(A\subset\Omega\)</span>;</p></li>
-<li><p><span class="math inline">\(\mu^*(\phi)=0\)</span> ;</p></li>
-<li><p>Monotonicity: <span class="math inline">\(A\subset B\)</span> implies <span class="math inline">\(\mu^*(A)\le \mu^*(B)\)</span>.</p></li>
-<li><p>Countable subadditivity: for all <span class="math inline">\(A_1, A_2, \ldots \subset \Omega\)</span>, <span class="math inline">\(\mu^*(\cup_n A_n)\le \sum_n \mu^*(A_n)\)</span>.</p></li>
-</ol>
-<p>  </p>
-</div>
-<div id="lemma-2" class="section level5">
-<h5>Lemma</h5>
-<p>Let <span class="math inline">\(\mu\)</span> be a set function on a class <span class="math inline">\(\mathcal{A}\)</span> of subsets of <span class="math inline">\(\Omega\)</span>, where</p>
-<ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(\phi\in \mathcal{A}\)</span>; (field의 조건.)</p></li>
-<li><p><span class="math inline">\(\mu(\phi)=0\)</span>; (measure의 조건)</p></li>
-<li><p><span class="math inline">\(0 \le \mu(A) \le \infty\)</span> for all <span class="math inline">\(A\in \mathcal{A}\)</span>. (measure의 조건)</p></li>
-</ol>
-<p>If <span class="math inline">\(\mu^*\)</span> is defined by <span class="math display">\[\begin{equation*}
-\mu^*(A)=\inf\left\{ \sum_n \mu(A_n): A_1,A_2,\ldots\in \mathcal{A}, A\subset \cup_n A_n  \right\}, A\subset \Omega,
-\end{equation*}\]</span> then <span class="math inline">\(\mu^*\)</span> is an outer measure.</p>
-<ul>
-<li>Outer measure는 주어진 set A를 cover하는 sequence of sets 중에서, 그 set들의 sum of measure들의 가장 작은 값으로 생각할 수 있다.</li>
-</ul>
-<p>  W</p>
-</div>
+<p><a href="./">back</a></p>
 </div>
 </div>
 
