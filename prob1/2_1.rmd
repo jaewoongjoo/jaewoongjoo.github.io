@@ -1,0 +1,124 @@
+---
+output: html_document
+---
+
+## 2.1 Measurable Functions
+
+##### Definition
+If $(\Omega, \mathcal{F})$ and  $(\Omega', \mathcal{F}')$ are measurable spaces, then the mapping $T:\Omega \rightarrow \Omega'$ is said to be *measurable-*$\mathcal{F}/\mathcal{F}'$(or $\mathcal{F}/\mathcal{F}'$-measurable) if
+$$
+T^{-1}(A')\in \mathcal{F} \mbox{ for all } A' \in \mathcal{F}'. 
+$$
+
+
+* 참고: Topology의 definition에 따라, for any $A\in \mathcal{F}$ and $A'\in \mathcal{F'}$, $A$와 $A'$는 open set이다.
+        그렇다면 이는 Continuity의 Definition과 같은 개념이다.
+        
+&nbsp;&nbsp;
+
+##### Definition(Random Variables)
+If $(\Omega, \mathcal{F}, P)$ is a probability space, then function $X:\Omega\rightarrow \mathbb{R}$ is called a *random variable* if $X$ is $\mathcal{F}/\mathcal{R}$-measurable.
+
+* 즉, function $X:\Omega\rightarrow \mathbb{R}$에 대해 $X^{-1}(A')\in \mathcal{F}$ for any $A'\in \mathcal{R}$이면 $X$를 Random Variable이라 한다. 
+
+* 여기서 Random variable은 반드시 measurable해야 한다는게 중요하다.
+
+&nbsp;&nbsp;
+
+##### Theorem
+A composition of measurable maps is measurable, i.e., if $(\Omega, \mathcal{F})$, $(\Omega', \mathcal{F}')$, $(\Omega'', \mathcal{F}'')$ are measurable spaces and the mapping $T:\Omega\rightarrow \Omega'$ and $T':\Omega'\rightarrow \Omega''$ are measurable (in the obvious senses), then the mapping $T'\circ T:\Omega\rightarrow \Omega''$ is measurable.
+
+* 증명 : $A'' \in \mathcal{F}''$에 대해 $T'^{-1}(A'') \in \mathcal{F}'$이다. 즉 $B'=T'^{-1}(A'') \in \mathcal{F}'$라 한다면, $A'' \in \mathcal{F}''$에 대해 $(T'\circ T)^{-1}(A'')=T^{-1}(T'^{-1}(A''))=T^{-1}(B')$는 pre-image under $T$ of a $\mathcal{F}$ set이다. 때문에 $(T'\circ T)^{-1}(A'') \in \mathcal{F}$이다.
+  
+
+&nbsp;&nbsp;
+
+##### Theorem
+If $(\Omega, \mathcal{F})$ and $(\Omega', \mathcal{F}')$ are measurable spaces and if $\mathcal{F}'=\sigma(\mathcal{A})$, then a mapping $T:\Omega \rightarrow \Omega'$ is measurable if and only if
+$$
+T^{-1}(A')\in \mathcal{F} \mbox{ for all  } A' \in \mathcal{A}.
+$$
+
+*만약 $\mathcal{A}$가 $\sigma$-field $\mathcal{F}$를 generate하는 class of set이라면, ($\mathcal{F}'=\sigma(\mathcal{A})$), mapping $T$의 measurability를 확인하기 위해서는 $\mathcal{A}$에 대해서만 다루면 된다. (basis의 개념과 비슷하다.)
+
+&nbsp;&nbsp;
+
+##### Corollary
+Let $(\Omega, \mathcal{F})$  be a measurable space and let $f:\Omega \rightarrow \mathbb{R}$. Then, $f$ is measurable-$\mathcal{F}/\mathcal{R}$ if and only if
+$$
+\{\omega: f(\omega)\le x\}= f^{-1}((-\infty,x])\in \mathcal{F},\mbox{ } \forall -\infty<x<\infty.
+$$
+
+* 먼저 $\mathcal{I}_1 =\{(-\infty,x]:-\infty<x<\infty\}$라 하자. 이는 우리가 전에 Borel $\sigma$-field를 설명할 때 다루었던 class이다. 즉 우리는 이미 real line 위에서의 interval들로 주어진 class의 smallest sigma field는 Borel $\sigma$-field 임을 알고있다. 이젠 위의 Theorem에서 다뤘던 $\mathcal{F}=\sigma(\mathcal{A})$이 $\mathcal{R}=\sigma(\mathcal{I_1})$으로만 바꾸면 된다.
+
+&nbsp;&nbsp;
+
+##### Theorem
+If $f_j:\Omega\rightarrow \mathbb{R}$, $j=1,2,\ldots,k$ are $\mathcal{F}$-measurable, then so are each of;
+
+1. $\sum_{i=1}^k f_i$;
+
+2. $\prod_{i=1}^k f_i$;
+
+3. $\max_{1\le i\le k} f_i$;
+
+4. $\min_{1\le i\le k} f_i$;
+
+Similarly, if $f:\Omega\rightarrow \mathbb{R}$ is $\mathcal{F}$-measurable, then so are $e^f$, $\sin(f)$, and $f^2$. The function $1/f$ is also $\mathcal{F}$-measurable as long as $f(\omega)\ne 0$ for all $\omega \in \Omega$.
+
+
+
+&nbsp;&nbsp;
+
+##### Theorem
+
+
+&nbsp;&nbsp;
+
+##### Theorem 
+Suppose that $f,g:\Omega\rightarrow \mathbb{R}$ are measurable-$\mathcal{F}/\mathcal{R}$. Then, each of the following functions is measurable-$\mathcal{F}/\mathcal{R}$:
+
+1. $c$ where $c$ is any constant;
+
+2. $cf$ where $c>0$ is a constant;
+
+3. $-f$;
+
+4. $1/f$ if it is well defined (i.e., $f(\omega)\ne 0$ for all $\omega \in \Omega$);
+
+5. $f+g$ if it is well defined (i.e., never $\infty-\infty$ or $-\infty+\infty$);
+
+6. $f\vee g =\max(f,g)$ and $f \wedge g= \min(f,g)$;
+
+7. $f^+=f\vee 0$ and $f^-=-(f\wedge 0)$;
+
+8. $|f|$;
+
+9. $fg$ where we define $0\times \infty=0$;
+
+10. $f/g$ if it is well defined (i.e., $g(\omega)\ne 0$ for all $\omega \in \Omega$), where we take $\infty/\infty=0$.
+
+
+
+
+
+&nbsp;&nbsp;
+
+##### Theorem 
+if $f,g:\Omega \rightarrow \mathbb{R}$ are both measurable-$\mathcal{F}/\mathcal{R}$, then
+$$
+\{\omega: f(\omega)<g(\omega) \}, \{f(\omega)\le g(\omega) \}, \{f(\omega)=g(\omega)\}\in \mathcal{F}.
+$$
+
+
+
+&nbsp;&nbsp;
+
+##### Theorem(Measurabilility or Limiting Functions)
+Suppose that $f,g:\Omega\rightarrow \mathbb{R}$ are measurable-$\mathcal{F}/\mathcal{R}$. Then, each of the following functions is measurable-$\mathcal{F}/\mathcal{R}$:
+
+1. $\inf_n f_n$ and $\sup_n f_n$  ;
+
+2. $\liminf_n f_n$ and $\limsup_n f_n$ ;
+
+3. $\lim_n f_n$ if it exists.

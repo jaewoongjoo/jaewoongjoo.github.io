@@ -21,17 +21,19 @@ If two g.d.fs differ by a constant, i.e., $F_1(x)=F_2(x)+c$ for $x\in \mathbb{R}
 
 &nbsp;&nbsp;
 
-##### Theorem
+##### Theorem(correspondence from $\mu$ to $F$)
 Suppose that $\mu$ is a Lebesgue-Stieltjes measure on $\mathbb{R}$. Then there exists a generalized distribution function $F$ satisfying $F(b)-F(a)=\mu((a,b])$ for all $\infty<a\le b<\infty$. Moreover the function $F$ is unique up to an additive constant. 
 
 &nbsp;&nbsp;
 
-##### Theorem
+##### Theorem(correspondence from $F$ to $\mu$)
 If F is a generalized distribution function, then there is a unique Lebesgue-Stieltjes measure $\mu$ on $(\mathbb{R},\mathcal{R})$ satisfying $\mu((a,b])=F(b)-F(a)$ for all $\infty<a\le b<\infty$.
+
+&nbsp;
 
 * 결론은, 주어진 Distribution Function $F$에 대해 $F(b)-F(a)=\mu((a,b])$를 만족하는 Unique 한 measure \mu가 반드시 존재한다는 것이다. 또한 어떠한 measurable space에서 주어진 measure $\mu$에 $F(b)-F(a)=\mu((a,b])$를 만족하는 Unique한 Distribution Function $F$가 반드시 존재한다는 것이다.
 
-￣
+
 &nbsp;&nbsp;
 
 ##### Definition(Lebesgue Measure)
@@ -40,4 +42,12 @@ A *Lebesgue Measure* on $\mathbb{R}$, denoted $\lambda$ is defined to be the uni
 $$
 \lambda((a,b])=b-a \mbox{  for all } -\infty<a\le b< \infty.
 $$
-￩￩
+&nbsp;&nbsp;
+
+##### Remark(Lebesgue Measure on an Interval)
+* If $I$ is any interval, then $I\in \mathbb{R}$ and $\mathcal{R}\cap I$ consisting of all Borel sets containes in $I$, is a $\sigma$-field on $I$, called the Borel $\sigma$-field on $I$, and denoted $\mathcal{B}(I)$.
+
+* If we restrict $\lambda$ to $\mathcal{B}(I)$, then ($I, \mathcal{B}(I), \lambda$) is a $\sigma$-finite measure space, and if I is a bounded interval, then it is a finite measure space. 
+
+* We will often refer to the important example of the unit interval under Lebesgue measure, $((0,1], \mathcal{B}, \lambda)$, with $\mathcal{B}=\mathcal{B}((0,1])$. Note that this is a probability space, because $\lambda((0,1])=1$. (많이 쓰이는 예제)
+
