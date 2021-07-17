@@ -2,7 +2,7 @@
 output: html_document
 ---
 
-## 1.3 Extensions of Measure
+## 1.3 Uniqueness and Extension of Measure
 
 ##### Lemma
 If $\mu_1$ and $\mu_2$ are finite measures on a measurable space $(\Omega, \mathcal{F})$ with $\mu_1(\Omega)=\mu_2(\Omega)$, then the class $\mathcal{L}:= \{A\in\mathcal{F}: \mu_1(A)=\mu_2(A)\}$ is a $\lambda$-system.
@@ -111,24 +111,48 @@ $M(\mu^*)$ is a $\sigma$-field, and $\mu^*$ restricted to $M(\mu^*)$ is a measur
 ##### Definition(semiring)
 A class $\mathcal{A}$ of subsets of $\Omega$ is a *semiring* if 
 
+1. $\phi\in \mathcal{A}$;
+
+2. $A,B \in \mathcal{A}$ implies $A\cap B \in \mathcal{A}$; (closed under finite union)
+
+3. If $A,B \in \mathcal{A}$ and  $A\subset B$, then there exists disjoint $\mathcal{A}$-sets $C_1,\ldots, C_n$ such that $B-A = \uplus_{k=1}^n C_k$.
+
+* Semiring의 예제로서 $\Omega=\mathbb{R}$에 대하여,  $A=(a,b]$, $B=(a,c]$, $a\le b\le c$를 떠올려보자 ($A, B \in \mathcal{A}=\mathcal{R}$).
+
+&nbsp;&nbsp;
+
+매우 중요
+
+##### Theorem(Caratheodory Extension Theorem)
+Suppose that $\mu$ is a set function on a semiring $\mathcal{A}$ satisfying
+
+1. $\mu$ is nonnegative: $0\le \mu\le \infty$ for all $A\in \mathcal{A}$;
+
+2. $\mu(\phi)=0$;
+
+3. $\mu$ is finitely additive on $\mathcal{A}$: if $A_1,A_2,\ldots,A_n\in \mathcal{A}$ are disjoint, and  $\uplus_{k=1}^n A_k\in \mathcal{A}$, then $\mu(\uplus_{k=1}^n A_k)= \sum_{k=1}^n \mu (A_k)$,
+  
+4. $\mu$ is countably subadditive on $\mathcal{A}$: if $A_n\in \mathcal{A}, n\ge 1$ and $\uplus_n A_n\in \mathcal{A}$, then $\mu(\cup_{n} A_n)\le \sum_n \mu (A_n)$.
+
+Then, $\mu$ extends to a measure on $\sigma(\mathcal{A})$. (일반적인 measure $\mu$는 위의 4가지 properties를 갖고있다.)
 
 
+&nbsp;&nbsp;
 
+* 증명을 위해 semiring에서의 $\mu^*$ 를 다음과 같이 정의하자; 
+$$
+\mu^*(A)=\inf\left\{ \sum_n \mu(A_n): A_1,A_2,\ldots\in \mathcal{A}, A\subset \cup_n A_n  \right\}, A\subset \Omega,
+$$
+위의 4가지 properties로 인해 $\mu^*$는 위의 outer measure를 설명한 lemma에서 1~3번을 만족시킨다. 때문에 $\mu^*$는 outer measure on $\mathcal{A}$이다. 또한 $M(\mu^*)$는 $\sigma$-field이고, $\mu^*$ restricted to $M(\mu^*)$은 measure이다.
 
+  여기서 아래 두가지를 증명한다면 Caratheodory Extension Theorem을 증명해낼 수 있다. 
+ 
+   * $\mathcal{A}\subset M(\mu^*)$ : $M(\mu^*)$이 $\sigma$-field이기 때문에 이는 $\sigma(\mathcal{A})\subset M(\mu^*)$이다. 때문에 $\mu^*$ restricted to $M(\mu^*)$ restricted to $\mathcal{A}$도 measure이다. (Exercise)
+   * $\mu$ and $\mu^*$ agree on $\mathcal{A}$ : 이를 통해 $\mu$ and $\mu^*$ agree on $\sigma(\mathcal{A})$를 보인다.(Exercise)
+   
+&nbsp;&nbsp;
 
+결론
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[back](./)
+##### Theorem(Caratheodory Extension Theorem)
+A measure $\mu$ on a field $\mathcal{F}$ has an extension to $\sigma(\mathcal{F})$. If $\mu$ is $\sigma$-finite on $\mathcal{F}$, then the extension is unique.

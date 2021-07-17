@@ -101,11 +101,9 @@ If $\mathcal{P}$ is a $\pi$-system and $\mathcal{L}$ is a $\lambda$-system, then
 
 * $\mathcal{P}\subset\mathcal{L}$ 이라면 $\mathcal{L}$은 $\pi$-system 임과 동시에 $\lambda$-system의 성질을 가지게 되고, 때문에 $\sigma$-field이다.
 
-&nbsp;&nbsp;
-&nbsp;&nbsp;
 
 
 
 
 
-[back](./)
+

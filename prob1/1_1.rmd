@@ -1,5 +1,5 @@
-$)C---
-layout: html_document
+---
+output: html_document
 ---
 
 ## 1.1 Fields and $\sigma$-fields

@@ -1,0 +1,43 @@
+---
+output: html_document
+---
+
+## 1.4 Lebesgue Measure
+
+##### Definition(Lebesgue Stieltjes Measure)
+A *Lebesgue Stieltjes Measure* on $\mathbb{R}$ is a measure on $\mathcal{R}$ that gives finite measure to each bounded interval.
+
+
+&nbsp;&nbsp;
+
+
+##### Definition(Generalized Distribution Function)
+A function $F:\mathbb{R}\rightarrow \mathbb{R}$ will be called a *generalized distribution function* if it is nondecreasing and right continuous.
+
+&nbsp;&nbsp;
+
+##### Theorem
+If two g.d.fs differ by a constant, i.e., $F_1(x)=F_2(x)+c$ for $x\in \mathbb{R}$ and for a constant $c$, then there is a one-to-one correspondence between the g.d.fs and Lebesgue-Stieltjes measures on $\mathbb{R}$.
+
+&nbsp;&nbsp;
+
+##### Theorem
+Suppose that $\mu$ is a Lebesgue-Stieltjes measure on $\mathbb{R}$. Then there exists a generalized distribution function $F$ satisfying $F(b)-F(a)=\mu((a,b])$ for all $\infty<a\le b<\infty$. Moreover the function $F$ is unique up to an additive constant. 
+
+&nbsp;&nbsp;
+
+##### Theorem
+If F is a generalized distribution function, then there is a unique Lebesgue-Stieltjes measure $\mu$ on $(\mathbb{R},\mathcal{R})$ satisfying $\mu((a,b])=F(b)-F(a)$ for all $\infty<a\le b<\infty$.
+
+* 결론은, 주어진 Distribution Function $F$에 대해 $F(b)-F(a)=\mu((a,b])$를 만족하는 Unique 한 measure \mu가 반드시 존재한다는 것이다. 또한 어떠한 measurable space에서 주어진 measure $\mu$에 $F(b)-F(a)=\mu((a,b])$를 만족하는 Unique한 Distribution Function $F$가 반드시 존재한다는 것이다.
+
+￣
+&nbsp;&nbsp;
+
+##### Definition(Lebesgue Measure)
+A *Lebesgue Measure* on $\mathbb{R}$, denoted $\lambda$ is defined to be the unique measure on $\mathcal{R}$ assigning to each interval its length as measure s.t
+
+$$
+\lambda((a,b])=b-a \mbox{  for all } -\infty<a\le b< \infty.
+$$
+￩￩
