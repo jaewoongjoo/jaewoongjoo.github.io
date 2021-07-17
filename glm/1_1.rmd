@@ -1,9 +1,9 @@
 ---
-title: "1.1 Generalized Linear Models"
+title: "1.1. Generalized Linear Models"
 output: html_document
 ---
 
-&nbsp;
+
 
 #### Components of GLM
 
@@ -28,5 +28,158 @@ f(y_i|\theta_i, \phi)= \exp[\{y_i\theta_i-b(\theta_i)\}/a(\phi)+c(y_i;\phi)],
 \end{equation*}$$
 where $\theta_i$ and $\phi$ are a natural parameter and a dispersion parameter, respectively.
 
+&nbsp;&nbsp;
 
-* Examples: 
+##### Examples
+1. Poisson data : $Y_i \sim poisson(\mu_i)$. Then,
+    $$\begin{eqnarray*}
+      f(y_i;\mu_i)&=& \frac{e^{-\mu_i}\mu_i^{y_i}}{y_i!}\\
+      &=& \exp\{y_i \log \mu_i -\mu_i -\log y_i!\}.
+    \end{eqnarray*}$$
+    
+      Thus, $\theta_i=\log \mu_i$, $b(\theta_i)=\mu_i=e^{\theta_i}$, $a(\phi)=1$, $c(y_i;\phi)= -\log y_i!$.
+    
+     (여기서 $\theta_i$를 natural parameter라고 부른다. 이는 exponential family에서의 parameter로서 우리가 배우는 GLM의 목적 중 하나는 데이터의 parameter를 exponential family의 natural parameter와 연결시키는 것이다.) 
+    
+&nbsp;
+    
+2. Binary data : $Y_i \sim Bin(n_i, \pi_i)$. That is
+
+      $Y_i$: Proportion of successes out of $n_i$ trials with success probability $\pi_i$ 
+      
+      Then, for $Y_i=0, \frac{1}{n_i}, \ldots, 1,$
+      $$\begin{eqnarray*}
+      f(y_i;\pi_i, n_i)&=& {n_i \choose n_i\pi_i} \pi^{n_iy_i}(1-\pi_i)^{n_i(1-y_i)}\\
+                       &=& \exp \left\{ n_iy_i\log \pi_i + n_i\log(1-\pi_i)-n_iy_i\log(1-\pi_i)+\log{n_i \choose n_iy_i}\right\}\\
+                       &=& \exp \left\{ \frac{y_i\log \frac{\pi_i}{1-\pi_i} + \log(1-\pi_i)}{1/n_i}+\log{n_i \choose n_iy_i}\right\}
+      \end{eqnarray*}$$
+    
+      Thus, $\theta_i=\log \frac{\pi_i}{1-\pi_i}=\text{logit}{\pi_i}\implies \pi_i=\frac{e^{\theta_i}}{1+e^{\theta_i}},$     
+      $b(\theta_i)= -\log(1-\pi_i)=\log(1+e^{\theta_i}),$
+      
+      $a(\phi)=1/n_i$, $c(y_i;\phi)=\log{n_i \choose n_iy_i}$.
+
+&nbsp;
+
+3. Normal data : $Y_i \sim N(\mu_i, \sigma^2)$.
+
+      Then, 
+      $$\begin{eqnarray*}
+      f(y_i;\mu_i, \sigma^2)&=& \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{1}{2\sigma^2}(y_i-\mu_i)^2 \right)\\
+                       &=& \exp\left(-\log \sqrt{2\pi}-\frac{1}{2}\log\sigma^2-\frac{1}{2\sigma^2}(y_i^2-2y_i\mu_i+\mu_i^2)\right)\\
+                       &=&\exp\left(\frac{y_i\mu_i-\frac{1}{2}\mu_i^2}{\sigma^2}-\frac{y_i^2}{2\sigma^2}-\frac{1}{2}\log \sigma^2 -\log\sqrt{2\pi} \right)
+      \end{eqnarray*}$$
+    
+     Thus, we have $\theta_i=\mu_i$, $b(\theta_i)= \frac{\theta_i^2}{2}$, $a(\phi)=\sigma^2$.
+     
+
+
+&nbsp;&nbsp;
+
+##### Moments of $Y$
+
+Note that
+
+$l(\theta_i; \phi, y_i)= \log f(y_i;\theta_i, \phi) = \frac{ y_i \theta_i-b(\theta_i)}{a(\phi)}+c(y_i;\phi)$.
+
+Then,
+
+$$
+\frac{d l}{d \theta_i}= \frac{y_i-b'(\theta_i)}{a(\phi)}.
+$$
+
+Since $E\left[\frac{d l}{d \theta_i}\right]=0$ from Bartlett's Identity, we have
+$$
+E\left[\frac{d l}{d \theta_i}\right]= E\left[\frac{Y_i-b'(\theta_i)}{a(\phi)}\right]=0\\
+\iff b'(\theta_i)= E[Y_i].
+$$
+
+Next, we have
+$$
+\frac{d^2 l}{d \theta_i^2}= \frac{-b''(\theta_i)}{a(\phi)}.
+$$
+
+Since $E\left[\frac{d^2 l}{d \theta_i^2}\right]= -E\left[ \left(\frac{d l}{d \theta_i}\right)^2 \right]$, we have
+
+$$
+\frac{-b''(\theta_i)}{a(\phi)}=-E\left[ \left(\frac{Y_i-b'(\theta_i)}{a(\phi)} \right)^2 \right]\\
+\iff \frac{b''(\theta_i)}{a(\phi)}= \frac{\text{Var}(Y_i)}{a(\phi)^2}\\
+\iff \text{Var}(Y_i)= a(\phi)b''(\theta_i).
+$$
+
+&nbsp;&nbsp;
+
+##### Examples
+
+1. $Y_i\sim poisson(\mu_i)$ : $\mu_i=e^{\theta_i}$, $b(\theta_i)= e^{\theta_i}$, and $a(\phi)=1$.
+
+      Then, we have
+      
+      $E(Y_i)= b'(\theta_i)=e^{\theta_i}=\mu_i$,
+      
+      $\text{Var}(Y_i)=a(\phi_i)b''(\theta_i)= b''(\theta_i)=e^{\theta_i}=\mu_i$.
+      
+&nbsp;
+      
+2. $n_iY_i\sim Bin(n_i, \pi_i)$, where $\theta_i=\log\frac{\pi_i}{1-\pi_i}$, $b(\theta_i)=\log(1+e^{\theta_i})$, $a(\phi)=1/n_i$. 
+
+    Then, we have
+      
+    $E(Y_i)=b'(\theta_i)= \frac{e^{\theta_i}}{1+e^{\theta_i}}$,
+    
+    $\text{Var}(Y_i)=a(\phi)b''(\theta_i)= \frac{\pi_i(1-\pi_i)}{n_i}.$
+
+
+
+&nbsp;&nbsp;
+
+##### Systematic Component
+
+Let $(x_{i0},x_{i1},\ldots,x_{ip})$ be value of $p$ explanatory variables for subject $i$. Then,
+$$
+\eta_i=\sum_{j=0}^p x_{ij} \beta_j
+$$
+
+is called *systematic component* with unknown parameter $(\beta_0,\beta_1,\ldots,\beta_p)$.
+
+&nbsp;&nbsp;
+
+##### Link Function
+
+Consider $\mu_i=E(Y_i)$ linked to linear predictor by $\eta_i = g(\mu_i)$, where link function $g$ is any monotone differentiable function.
+
+* 여기서 link function의 역할은 데이터의 parameter $E(Y_i)=\mu_i$와 systematic component $\eta_i=\sum_{j=0}^p x_{ij} \beta_j$를 연결하는 역할을 한다. 때문에 우리의 Goal은 $\beta$를 추정하는 것으로 바뀌게 된다. 
+
+
+The $g$ for which $g(\mu_i)=\theta_i$ is called the canonical link.
+
+Since $b'(\theta_i)=\mu_i$, $g=(b')^{-1}$. (Canonical link를 구하는 방법)
+
+Then, $g(\mu_i)= \sum_j x_{ij}\beta_j$, and $g$ such that $g(\mu_i)=\theta_i$ is canonical link.
+
+* Canonical link의 의미를 아는 것이 중요하다. 이는, 주어진 link function $\eta_i = g(\mu_i)$이 exponential family의 parameter인 $\theta_i$와 연결될 때 우리는 이 link를 Canonical link라고 하는 것이다. ($\eta_i = g(\mu_i)=\theta_i$)  Exponential family는 general한 distributional from이기 때문에 그를 통해 canonical이라는 단어의 의미를 유추할 수 있다. 
+
+* e.g. 예로 $n_iY_i\sim Bin（n_i, \pi_i)$라고 하자. 이 데이터에 대해서는 Probit Link 또한 link로서 역할이 가능할 수 있으나 이는 canonical link는 아니다. 
+
+&nbsp;&nbsp;
+
+##### Examples
+
+1. $Y_i \sim poisson(\mu_i)$ : $\mu_i=b'(\theta_i)=e^{\theta_i}=g^{-1}(\theta_i)$.
+ 
+      * Canonical link : $\theta_i=g(\mu_i)=\log \mu_i$.
+   
+   Thus, log link is canonical. 
+  
+   &nbsp;
+   
+2. $n_iY_i\sim Bin(n_i,\pi_i)$ : $\pi_i=b'(\theta_i)=\frac{e^{\theta_i}}{1+e^{\theta_i}}=g^{-1}(\theta_i)$.
+
+   * Canonical link : $\theta_i=\log \frac{\pi_i}{1-\pi_i}.
+   
+&nbsp;
+
+3. $Y_i\sim N(\mu_i,\sigma^2)$ : $\mu_i=b'(\theta_i)= \theta_i= g^{-1}(\theta_i)$
+
+  * Canonical link : $\mu_i= \theta_i$.
+

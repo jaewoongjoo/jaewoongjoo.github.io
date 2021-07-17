@@ -27,7 +27,7 @@ then $\mu (\uplus_n A_{n})= \sum_n \mu (A_{n})$
 
 ##### Remark
 
-If $\mu(\Omega)<\infty$, then $\mu$ is called a \texttt{finite} measure.
+If $\mu(\Omega)<\infty$, then $\mu$ is called a *￩finite* measure.
 
 For $A_1, A_2, \ldots \in \mathcal{F}$, if  $\cup_n A_n = \Omega$ and $\mu(A_n)<\infty$ for all $n$, then $\mu$ is called a $\sigma$-finite measure.
 
@@ -37,7 +37,7 @@ For $A_1, A_2, \ldots \in \mathcal{F}$, if  $\cup_n A_n = \Omega$ and $\mu(A_n)<
 
 Given $\Omega$ and $\mathcal{F}$=$2^\Omega$, Let $\mu(A)=\#(A)$, where $\#(A)$ is the number of points in $A$ if $A$ is finite, or $\infty$ otherwise. Then, $\mu(A)=\#(A)$ is called Counting measure on $\Omega$.
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;￣
 
 ##### Definition(discrete measure)
 Suppose that $\Omega$ is countable and $p:\Omega \rightarrow [0,\infty].$. For any set $A\in 2^\Omega$, let $\mu(A)=\sum_{\omega\in A} P(\omega)$, where an empty sum is taken to be zero. Then, $\mu$ is called a discrete measure.
