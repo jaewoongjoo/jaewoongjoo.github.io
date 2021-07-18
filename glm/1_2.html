@@ -387,29 +387,50 @@ l_i=\{ y_i \theta_i -b(\theta_i) \}/a(\phi)+c(y_i;\phi)
 <div id="asymptotic-covariance-matrix" class="section level5">
 <h5>Asymptotic Covariance Matrix</h5>
 <p>Recall maximum likelihood estimate of <span class="math inline">\(\beta\)</span> follows asymptotically normal s.t. <span class="math display">\[
-\hat{\beta}\sim N(\beta, J^{-1}),
-\]</span> where <span class="math inline">\(J=\)</span>information matrix =<span class="math inline">\(\left\{ E\left[-\frac{d^2l(\beta)}{d\beta_j d\beta_h}\right]\right\}\)</span>. We have</p>
+\hat{\beta}\sim N(\beta, I^{-1}),
+\]</span> where <span class="math inline">\(I=\)</span>information matrix =<span class="math inline">\(\left\{ E\left[-\frac{d^2l(\beta)}{d\beta_j d\beta_h}\right]\right\}\)</span>. We have</p>
 <p><span class="math display">\[
 \frac{d^2l(\beta)}{d\beta_j d\beta_h}=\sum_{i=1}^N \left(\frac{d^2l_i}{d\beta_j d\beta_h} \right).
 \]</span> Thus, <span class="math display">\[\begin{eqnarray*}
-E\left[\frac{d^2l(\beta)}{d\beta_j d\beta_h}\right]=
-\end{eqnarray*}\]</span>…(TBD)</p>
+E\left[\frac{d^2l(\beta)}{d\beta_j d\beta_h}\right]&amp;=&amp; E\left[\sum_{i=1}^N \frac{d}{d\beta_h} \left(\frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}\right)\right]\\
+&amp;=&amp; E\left[\sum_{i=1}^N \frac{d\mu_i}{d\eta_h} \frac{d\eta_i}{d\beta_h} \frac{d}{d\mu_i} \left(\frac{(y_i-\mu_i)x_{ij}}{\text{V}(\mu_i)}\frac{d\mu_i}{d\eta_i}\right)\right]\\
+&amp;=&amp; E\left[\sum_{i=1}^N \frac{d\mu_i}{d\eta_h} \frac{d\eta_i}{d\beta_h} \left(\frac{-x_{ij}}{\text{V}(\mu_i)}\frac{d\mu_i}{d\eta_i}+(y_i-\mu_i)x_{ij}\frac{d}{d\mu_i}\left\{\frac{1}{\text{V}(\mu_i)}\frac{d\mu_i}{d\eta_i}   \right\}\right)\right]\\
+&amp;=&amp; \sum_{i=1}^N \frac{d\mu_i}{d\eta_h} x_{ih} \left(\frac{-x_{ij}}{\text{V}(\mu_i)}\frac{d\mu_i}{d\eta_i}\right)\\
+&amp;=&amp; \sum_{i=1}^N \frac{ -x_{ij}x_{ih} }{\text{V}(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2\\
+\end{eqnarray*}\]</span></p>
+<p>Therefore, we have <span class="math display">\[
+I_{j,h}=-E\left[\frac{d^2l(\beta)}{d\beta_j d\beta_h}\right]= \sum_{i=1}^N \frac{ x_{ij}x_{ih} }{\text{V}(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2=\sum_{i=1}^N w_i x_{ij}x_{ih}
+\]</span> where $w_i= ()^2 $.</p>
+<p>In a matrix form, we have <span class="math display">\[
+I= X^TWX,
+\]</span> where <span class="math inline">\(W=\text{diag}\{w_1,w_2,\ldots,w_N\}.\)</span></p>
+<p>Thus, <span class="math display">\[
+\hat{\text{Cov}}(\hat{\beta}) = I^{-1}= (X^T \hat{W} X)^{-1},
+\]</span> where <span class="math inline">\(\hat{W}\)</span> is evaluated at <span class="math inline">\(\hat{\beta}\)</span>.</p>
 <p>  </p>
 </div>
-<div id="section" class="section level5">
-<h5></h5>
+<div id="examples" class="section level5">
+<h5>Examples</h5>
+<ul>
+<li><p><span class="math inline">\(Y_i\sim poisson(\mu_i)\)</span>:</p>
+<ul>
+<li><p>Suppose <span class="math inline">\((\sum_jx_{ij}\beta_j=)\mbox{ }\eta_i=\log \mu_i \mbox{ }(=\theta_i)\)</span> (canonical link).</p>
+<p><span class="math inline">\(\implies \log\mu=X\beta\)</span> (log linear model),and <span class="math inline">\(\mu_i=e^{\eta_i}\)</span>.</p>
+<p>Thus, <span class="math inline">\(\frac{d\mu_i}{d\eta_i}= e^{\eta_i}=\mu_i\)</span>, as well as <span class="math inline">\(\text{Var}(Y_i)=\mu_i=e^{\eta_i}\)</span>.</p>
+<p>The likelihood equations are</p>
+<p><span class="math display">\[
+\sum_{i=1}^N \frac{(y_i-\mu_i)x_{ij}}{e^{\eta_i}}e^{\eta_i}=\sum_{i=1}^N (y_i-\mu_i)x_{ij}=0\\
+\iff \sum_{i=1}^Ny_ix_{ij}= \sum_{i=1}^N\mu_i x_{ij}.
+\]</span></p>
+<p>Also, <span class="math inline">\(w_i= \frac{1}{V(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2=\mu_i^2/\mu_i=\mu_i\)</span>. Thus, <span class="math display">\[
+  \implies \hat{\text{Cov}}(\hat{\beta}) = I^{-1}= (X^T \hat{W} X)^{-1},
+\]</span> where <span class="math inline">\(\hat{W}\)</span> is diagonal matrix with elements of <span class="math inline">\(\hat{\mu}\)</span>.</p></li>
+</ul></li>
+</ul>
 <p>  </p>
 </div>
-<div id="section-1" class="section level5">
-<h5></h5>
-<p>  </p>
-</div>
-<div id="section-2" class="section level5">
-<h5></h5>
-<p>  </p>
-</div>
-<div id="section-3" class="section level5">
-<h5></h5>
+<div id="deviance-and-goodness-of-fit" class="section level5">
+<h5>Deviance and Goodness of Fit</h5>
 </div>
 
 

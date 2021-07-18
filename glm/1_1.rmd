@@ -181,5 +181,6 @@ Then, $g(\mu_i)= \sum_j x_{ij}\beta_j$, and $g$ such that $g(\mu_i)=\theta_i$ is
 
 3. $Y_i\sim N(\mu_i,\sigma^2)$ : $\mu_i=b'(\theta_i)= \theta_i= g^{-1}(\theta_i)$
 
-  * Canonical link : $\mu_i= \theta_i$.
+   * Canonical link : $\mu_i= \theta_i$.
 
+&nbsp;&nbsp;
