@@ -36,7 +36,7 @@ $$\begin{eqnarray*}
 because
 $$\begin{eqnarray*}
 \frac{dl_i}{d\theta_i}&=& \frac{y_i-\mu_i}{a(\phi)},\\
-\frac{d\theta_i}{d\mu_i}&=& \frac{1}{{d\mu_i}/{d\theta_i}}=\frac{1}{b''(\theta_i)},\\
+\frac{d\theta_i}{d\mu_i}&=& \frac{1}{d\mu_i}/{d\theta_i}=\frac{1}{b''(\theta_i)},\\
 \frac{d\eta_i}{d\beta_j}&=&x_{ij}.
 \end{eqnarray*}$$
 
