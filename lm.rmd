@@ -4,15 +4,18 @@ output: html_document
 ---
 
 
-### Index
+## Index
 
 
 
-##### 1. TBD
+### 1. Vector space and Orthogonality
 
-[1.1 TBD](./lm/1_1.html)
+[1.1. Spectral Theorem](./lm/1_1.html)
 
-[1.2. TBD](./lm/1_2.html)
+[1.2. Projections](./lm/1_2.html)
+
+
+
 
 
 [back](./)

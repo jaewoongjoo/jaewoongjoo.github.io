@@ -1,0 +1,18 @@
+---
+title: 1.1. Spectral Theorem
+output: html_document
+---
+
+##### Definition
+Let $W$ be a subspace of $V$. The *orthogonal complement* of $W$ is 
+$$
+W^\perp:=\{ v \in V: v\perp w \mbox{ for all } w \in W\} 
+$$
+&nbsp;&nbsp;
+
+##### Theorem 
+Let $W$ be a subspace of $V$ and let $W^\perp$ be its orthogonal complement. Then
+
+1. Every $x\in V$ can be written uniquely as $x=x_0+x_1$, with $x_0\in W$ and $x_1\in W^\perp$.
+
+2. dim$(V)$=dim$(W)$+dim$(W^\perp)$.
