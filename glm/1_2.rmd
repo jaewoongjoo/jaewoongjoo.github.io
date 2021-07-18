@@ -76,7 +76,7 @@ Therefore, we have
 $$
 I_{j,h}=-E\left[\frac{d^2l(\beta)}{d\beta_j d\beta_h}\right]= \sum_{i=1}^N \frac{ x_{ij}x_{ih} }{\text{V}(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2=\sum_{i=1}^N w_i x_{ij}x_{ih}
 $$
-where $w_i= \frac{1}{V(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2 $.
+where $w_i= \frac{1}{V(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2$.
 
 In a matrix form, we have
 $$

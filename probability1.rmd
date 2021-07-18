@@ -22,4 +22,6 @@ output: html_document
 
 ### 2. Integration
 
-[2.1 Measurable Functions](./prob1/2_1.html)
+[2.1. Measurable Functions](./prob1/2_1.html)
+
+[2.2. Induced Measures and Distributions](./prob1/2_2.html)

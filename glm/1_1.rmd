@@ -168,14 +168,13 @@ Then, $g(\mu_i)= \sum_j x_{ij}\beta_j$, and $g$ such that $g(\mu_i)=\theta_i$ is
 1. $Y_i \sim poisson(\mu_i)$ : $\mu_i=b'(\theta_i)=e^{\theta_i}=g^{-1}(\theta_i)$.
  
       * Canonical link : $\theta_i=g(\mu_i)=\log \mu_i$.
-   
-   Thus, log link is canonical. 
+
   
    &nbsp;
    
 2. $n_iY_i\sim Bin(n_i,\pi_i)$ : $\pi_i=b'(\theta_i)=\frac{e^{\theta_i}}{1+e^{\theta_i}}=g^{-1}(\theta_i)$.
 
-   * Canonical link : $\theta_i=\log \frac{\pi_i}{1-\pi_i}.
+   * Canonical link : $\theta_i=\log \frac{\pi_i}{1-\pi_i}$.
    
 &nbsp;
 

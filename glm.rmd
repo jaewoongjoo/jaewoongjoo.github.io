@@ -14,5 +14,6 @@ output: html_document
 
 [1.2. Maximum Likelihood Estimation](./glm/1_2.html)
 
+[1.3. Deviance and Goodness of Fit](./glm/1_3.html)
 
 [back](./)
