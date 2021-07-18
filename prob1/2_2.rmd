@@ -1,0 +1,7 @@
+---
+output: html_document
+---
+
+## 2.2 Induced Measures and Distributions
+
+##### Definition(Induced Measure)

@@ -1,8 +1,8 @@
 ---
+title: 1.3. Uniqueness and Extension of Measure
 output: html_document
 ---
 
-## 1.3 Uniqueness and Extension of Measure
 
 ##### Lemma
 If $\mu_1$ and $\mu_2$ are finite measures on a measurable space $(\Omega, \mathcal{F})$ with $\mu_1(\Omega)=\mu_2(\Omega)$, then the class $\mathcal{L}:= \{A\in\mathcal{F}: \mu_1(A)=\mu_2(A)\}$ is a $\lambda$-system.
@@ -147,7 +147,7 @@ $$
 
   여기서 아래 두가지를 증명한다면 Caratheodory Extension Theorem을 증명해낼 수 있다. 
  
-   * $\mathcal{A}\subset M(\mu^*)$ : $M(\mu^*)$이 $\sigma$-field이기 때문에 이는 $\sigma(\mathcal{A})\subset M(\mu^*)$이다. 때문에 $\mu^*$ restricted to $M(\mu^*)$ restricted to $\mathcal{A}$도 measure이다. (Exercise)
+   * $\mathcal{A}\subset M(\mu^*)$ : $M(\mu^*)$이 $\sigma$-field이기 때문에 이는 $\sigma(\mathcal{A})\subset M(\mu^*)$이다. 때문에 $\mu^*$ restricted to $\mathcal{A}$도 measure이다. (Exercise)
    * $\mu$ and $\mu^*$ agree on $\mathcal{A}$ : 이를 통해 $\mu$ and $\mu^*$ agree on $\sigma(\mathcal{A})$를 보인다.(Exercise)
    
 &nbsp;&nbsp;
