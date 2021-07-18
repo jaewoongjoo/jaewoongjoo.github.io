@@ -363,7 +363,7 @@ W^\perp:=\{ v \in V: v\perp w \mbox{ for all } w \in W\}
 <p>Let <span class="math inline">\(W\)</span> be a subspace of <span class="math inline">\(V\)</span> and let <span class="math inline">\(W^\perp\)</span> be its orthogonal complement. Then</p>
 <ol style="list-style-type: decimal">
 <li><p>Every <span class="math inline">\(x\in V\)</span> can be written uniquely as <span class="math inline">\(x=x_0+x_1\)</span>, with <span class="math inline">\(x_0\in W\)</span> and <span class="math inline">\(x_1\in W^\perp\)</span>.</p></li>
-<li><p>dim<span class="math inline">\((V)\)</span>=dim<span class="math inline">\((W)\)</span>+dim<span class="math inline">\((W^\perp)\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{dim}(V)\)</span>=<span class="math inline">\(\text{dim}(W)\)</span>+<span class="math inline">\(\text{dim}(W^\perp)\)</span>.</p></li>
 </ol>
 <p>  </p>
 </div>
@@ -400,11 +400,15 @@ W^\perp:=\{ v \in V: v\perp w \mbox{ for all } w \in W\}
 <h5>Lemma</h5>
 <p>If <span class="math inline">\(A\)</span> is symmetric, then <span class="math inline">\(C(A)\)</span> and <span class="math inline">\(N(A)\)</span> are orthogonal complement.</p>
 <ul>
-<li><p>우선 <span class="math inline">\(C(A)\)</span>와 <span class="math inline">\(N(A')\)</span>는 orthogonal하다: <span class="math inline">\(x\in N(A')\)</span>인 <span class="math inline">\(x\)</span>가 존재한다고 하자. (<span class="math inline">\(A'x=0\)</span>). 또한 <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> 을 A 의 column vectors라고 하자. 그렇다면 <span class="math inline">\(a_i \perp x\)</span> for all <span class="math inline">\(i=1,2,\ldots,n\)</span>이다. 때문에 <span class="math inline">\(x\perp A\)</span> 이다.</p></li>
+<li><p>우선 <span class="math inline">\(C(A)\)</span>와 <span class="math inline">\(N(A')\)</span>는 orthogonal하다: <span class="math inline">\(x\in N(A')\)</span>인 <span class="math inline">\(x\)</span>가 존재한다고 하자. (<span class="math inline">\(A'x=0\)</span>). 또한 <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> 을 A 의 column vectors라고 하자. 그렇다면 <span class="math inline">\(a_i \perp x\)</span> for all <span class="math inline">\(i=1,2,\ldots,n\)</span>이다. 때문에 <span class="math inline">\(x\perp c(A)\)</span> 이다.</p></li>
 <li><p><span class="math inline">\(A\)</span>는 symmetric하기 때문에 <span class="math inline">\(C(A)\)</span>와 <span class="math inline">\(N(A)\)</span>는 orthogonal하다. 또한 dim<span class="math inline">\((C(A))\)</span>+dim<span class="math inline">\((N(A))\)</span>=n하다. <span class="math inline">\(\implies\)</span> Orthogonal complements (두 vector space는 perpendicular하고 dimension의 합이 n이다.)</p></li>
 </ul>
 <p>  </p>
-<p>매우 중요 ￣ ##### Theorem(Spectral Decomposition)만 Let <span class="math inline">\(A\)</span> be a symmetric <span class="math inline">\(n\times n\)</span> amtrix. Then, we can write <span class="math display">\[
+<p>매우 중요</p>
+</div>
+<div id="theoremspectral-decomposition" class="section level5">
+<h5>Theorem(Spectral Decomposition)</h5>
+<p>Let <span class="math inline">\(A\)</span> be a symmetric <span class="math inline">\(n\times n\)</span> amtrix. Then, we can write <span class="math display">\[
 A=PDP',
 \]</span> where <span class="math inline">\(D=\text{diag}(\lambda_1,\lambda_2,\ldots,\lambda_n)\)</span>, and P is orthogonal.</p>
 <p>The <span class="math inline">\(\lambda's\)</span> are eigenvalues of <span class="math inline">\(A\)</span>, and the <span class="math inline">\(i^{th}\)</span> column of <span class="math inline">\(P\)</span> is an eigenvector corresponding to <span class="math inline">\(\lambda_i\)</span>.</p>

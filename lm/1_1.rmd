@@ -15,7 +15,7 @@ Let $W$ be a subspace of $V$ and let $W^\perp$ be its orthogonal complement. The
 
 1. Every $x\in V$ can be written uniquely as $x=x_0+x_1$, with $x_0\in W$ and $x_1\in W^\perp$.
 
-2. dim$(V)$=dim$(W)$+dim$(W^\perp)$.
+2. $\text{dim}(V)$=$\text{dim}(W)$+$\text{dim}(W^\perp)$.
 
 &nbsp;&nbsp;
 
@@ -54,7 +54,7 @@ The orthogonality implies that they are linearly independent.
 ##### Lemma 
 If $A$ is symmetric, then $C(A)$ and $N(A)$ are orthogonal complement.
 
-  * 우선 $C(A)$와 $N(A')$는 orthogonal하다: $x\in N(A')$인 $x$가 존재한다고 하자. ($A'x=0$). 또한 $a_1,a_2,\ldots,a_n$ 을 A 의 column vectors라고 하자. 그렇다면 $a_i \perp x$ for all $i=1,2,\ldots,n$이다. 때문에 $x\perp A$ 이다.
+  * 우선 $C(A)$와 $N(A')$는 orthogonal하다: $x\in N(A')$인 $x$가 존재한다고 하자. ($A'x=0$). 또한 $a_1,a_2,\ldots,a_n$ 을 A 의 column vectors라고 하자. 그렇다면 $a_i \perp x$ for all $i=1,2,\ldots,n$이다. 때문에 $x\perp c(A)$ 이다.
   
   * $A$는 symmetric하기 때문에 $C(A)$와 $N(A)$는 orthogonal하다. 또한 dim$(C(A))$+dim$(N(A))$=n하다. $\implies$ Orthogonal complements (두 vector space는 perpendicular하고 dimension의 합이 n이다.)
   
@@ -62,8 +62,8 @@ If $A$ is symmetric, then $C(A)$ and $N(A)$ are orthogonal complement.
 
 
 매우 중요
-￣
-##### Theorem(Spectral Decomposition)만
+
+##### Theorem(Spectral Decomposition)
 Let $A$ be a symmetric $n\times n$ amtrix. Then, we can write
 $$
 A=PDP',
