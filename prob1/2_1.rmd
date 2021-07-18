@@ -67,10 +67,6 @@ Similarly, if $f:\Omega\rightarrow \mathbb{R}$ is $\mathcal{F}$-measurable, then
 
 
 
-&nbsp;&nbsp;
-
-##### Theorem
-
 
 &nbsp;&nbsp;
 

@@ -16,3 +16,63 @@ Let $W$ be a subspace of $V$ and let $W^\perp$ be its orthogonal complement. The
 1. Every $x\in V$ can be written uniquely as $x=x_0+x_1$, with $x_0\in W$ and $x_1\in W^\perp$.
 
 2. dim$(V)$=dim$(W)$+dim$(W^\perp)$.
+
+&nbsp;&nbsp;
+
+##### Theorem 
+Let $A$ be an $n\times n$ matrix. Then, $\text{dim}(C(A))+\text{dim}(N(A))=n.$
+
+&nbsp;&nbsp;
+
+##### Definition 
+Let $A$ be an $n\times n$ matrix. The scalar $\lambda$ os called an *eigenvalue* of $A$ if $A-\lambda I$ is singular, i.e., there exists a vector $v\ne 0$ such that $Av=\lambda v$.
+
+Any such vector is called an *eigenvector* corresponding to $\lambda$.
+
+&nbsp;&nbsp;
+
+##### Definition(Adjoints)
+Consider a general inner product on $\mathbb{R}^n$. For any operator or matrix $A$ mapping $\mathbb{R}^n$ to $\mathbb{R}^n$, there exists another operator or matrix $A^*$, called the *adjoint*, that satisfies
+$$
+(Ax,y)=(x,A^*y) \hspace{3mm} \mbox{ for all } x,y\in \mathbb{R}^n.
+$$
+
+An operator $A$ is *self-adjoint* if it is equal to its adjoint, i.e., $A=A^*\implies (Ax,y)=(x,Ay)$.
+
+&nbsp;&nbsp;
+
+##### Lemma 
+If $\lambda_1$, $\lambda_2$ are distinct eigenvalues of the symmetric matrix $A$, and $v_1$, and $v_2$ are corresponding eigenvectors, then $v_1 \perp v_2$. 
+
+&nbsp;&nbsp;
+
+##### Lemma 
+The orthogonality implies that they are linearly independent.
+
+&nbsp;&nbsp;
+
+##### Lemma 
+If $A$ is symmetric, then $C(A)$ and $N(A)$ are orthogonal complement.
+
+  * 우선 $C(A)$와 $N(A')$는 orthogonal하다: $x\in N(A')$인 $x$가 존재한다고 하자. ($A'x=0$). 또한 $a_1,a_2,\ldots,a_n$ 을 A 의 column vectors라고 하자. 그렇다면 $a_i \perp x$ for all $i=1,2,\ldots,n$이다. 때문에 $x\perp A$ 이다.
+  
+  * $A$는 symmetric하기 때문에 $C(A)$와 $N(A)$는 orthogonal하다. 또한 dim$(C(A))$+dim$(N(A))$=n하다. $\implies$ Orthogonal complements (두 vector space는 perpendicular하고 dimension의 합이 n이다.)
+  
+&nbsp;&nbsp;
+
+
+매우 중요
+￣
+##### Theorem(Spectral Decomposition)만
+Let $A$ be a symmetric $n\times n$ amtrix. Then, we can write
+$$
+A=PDP',
+$$
+where $D=\text{diag}(\lambda_1,\lambda_2,\ldots,\lambda_n)$, and P is orthogonal.
+
+The $\lambda's$ are eigenvalues of $A$, and the $i^{th}$ column of $P$ is an eigenvector corresponding to $\lambda_i$.
+
+  * 모든 symmetric한 matrix는 eigenvalues로 이루어진 diagonal matrix와 eigenvectors로 이루어진 matrix로 분리할 수 있다. 
+  
+  * Singular한 matrix또한 Spectral decomposition이 가능하다. 이 때, eigenvector로 이루어진 matrix는 orthogonal하지만 eigenvalue로 이루어진 diagonal matrix는 singular한 $i^{th}$ element에 대해 $0$의 값을 갖는다. 
+

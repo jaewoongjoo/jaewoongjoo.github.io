@@ -1,0 +1,9 @@
+￣---
+title: 1.2. Projections
+output: html_document
+---
+
+##### Definition
+Let $A$ be symmetric matrix. Then, $A$ is *positive definite* if for all $v\ne 0$, $v'Av>0$.  
+
+Also, $A$ is *non-negative definite* if for all $v\ne 0$, $v'Av\ge 0$.  

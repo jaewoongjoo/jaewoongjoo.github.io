@@ -11,7 +11,7 @@ Suppose that
 
 2. $T:\Omega\rightarrow \Omega'$ is measurable-$\mathcal{F}/\mathcal{F}', and
 
-3. $\mu is a measure on \Omega$.
+3. $\mu$ is a measure on $\Omega$.
 
 Define a set function $\mu_T$ (or $\mu T^{-1}$ or $\mu \circ T^{-1}$) on $\mathcal{F}'$ by
 $$
