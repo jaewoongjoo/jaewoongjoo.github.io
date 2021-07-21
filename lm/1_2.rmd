@@ -101,3 +101,20 @@ Let $A$ be a symmetric matrix. There exists a generalized inverse $A^\dagger$ sa
 Let $X$ be an arbitrary matrix. Let $X^-=(X'X)^-X$ where $(X'X)^-$ is any generalized inverse of $X'X$. 
 
 Then, $X^-$ is a generalized inverse of $X$.
+
+
+
+&nbsp;&nbsp;
+
+##### Corollary
+Let $W=C(X)$, where $X$ is an arbitrary matrix. Let $(X'X)^-$ be any generalized inverse of $X'X$. Then, $P=X(X'X)^-X'$ is the orthogonal projection onto $W$.
+
+
+&nbsp;&nbsp;
+
+##### Theorem
+If $\text{rank}(X)=p$, then $X'X$ is invertible, and $P=X(X'X)^{-1}X'$ is the orthogonal projection onto $W$.
+
+&nbsp;
+
+If $\text{rank}(X)=r<p$, let $X_0$ be any matrix having $r$ columns that form a bnasis for $C(X)$. Then $P=X_0(X_0'X_0)^{-1}X_0'$ is the orthogonal projection onto $W$.
