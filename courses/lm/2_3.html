@@ -380,11 +380,47 @@ pre {
 <p>Suppose <span class="math inline">\(Y \sim N_n(\mu, V)\)</span>.</p>
 <ol style="list-style-type: decimal">
 <li><p>If <span class="math inline">\(A_1,A_2, \ldots, A_k\)</span> are <span class="math inline">\(n\times n\)</span> symmetric matrices satisfying <span class="math inline">\(A_i V A_j=0\)</span> for <span class="math inline">\(i \ne j\)</span>, then the quadratic forms <span class="math inline">\(Y&#39;A_1Y,\ldots,Y&#39;A_kY\)</span> are independent.</p></li>
-<li><p>If <span class="math inline">\(A\)</span> is symmetric <span class="math inline">\(n\times n\)</span>, B is <span class="math inline">\(m\times n\)</span>, and <span class="math inline">\(AVB&#39;=0\)</span>. then <span class="math inline">\(Y&#39;AY\)</span> and <span class="math inline">\(BY\)</span> are independent.</p></li>
+<li><p>If <span class="math inline">\(A\)</span> is symmetric <span class="math inline">\(n\times n\)</span>, <span class="math inline">\(B\)</span> is <span class="math inline">\(m\times n\)</span>, and <span class="math inline">\(AVB&#39;=0\)</span>. then <span class="math inline">\(Y&#39;AY\)</span> and <span class="math inline">\(BY\)</span> are independent.</p></li>
 </ol>
 <ul>
-<li></li>
+<li>1번 증명: 주어진 조건에 의해 <span class="math inline">\(A_1Y,\ldots,A_kY\)</span>는 독립이다. 또한 <span class="math inline">\(Y&#39;A_iY\)</span>는 function of <span class="math inline">\(A_iY\)</span> which is measurable-<span class="math inline">\(\mathcal{R}^k/\mathcal{R}\)</span>이므로 이 또한 독립이다.</li>
+<li>2번 증명: 주어진 조건에 의해 <span class="math inline">\(AY,BY\)</span>는 독립이다. (나머지는 위와 같다.)</li>
 </ul>
+<p>  </p>
+</div>
+<div id="definition" class="section level5">
+<h5>Definition</h5>
+<p>Let <span class="math inline">\(\delta&gt;0\)</span>, and let <span class="math inline">\(\mu\in \mathbb{R}^p\)</span> be such that <span class="math inline">\(\delta = \frac{1}{2}||\mu||^2\)</span>. Let <span class="math inline">\(Y\sim N_p(\mu,I)\)</span>.</p>
+<p>The <em>noncentral chisquare distribution</em> with noncentrality parameter <span class="math inline">\(\delta\)</span>, denoted <span class="math inline">\(\chi^2_p(\delta)\)</span>, is the distribution of <span class="math inline">\(||Y||^2\)</span>.</p>
+<p>  </p>
+<p>위 Definition을 보충설명 해준다.</p>
+</div>
+<div id="little-lemma" class="section level5">
+<h5>Little Lemma</h5>
+<p>If <span class="math inline">\(Y_1\sim N_p(\mu_1, I),\)</span> <span class="math inline">\(Y_2\sim N_p(\mu_2, I)\)</span>, and <span class="math inline">\(\mu_1&#39;\mu_1=\mu_2&#39;\mu_2\)</span>, then <span class="math inline">\(Y_1&#39;Y_1\stackrel{\text{dist}}{=}Y_2&#39;Y_2\)</span>.</p>
+<ul>
+<li>이 lemma에서 중요한 것은 꼭 <span class="math inline">\(\mu_1\)</span>과 <span class="math inline">\(\mu_2\)</span>가 같지 않아도 <span class="math inline">\(\mu_1&#39;\mu_1=\mu_2&#39;\mu_2\)</span>만 같으면 <span class="math inline">\(||Y_1||^2\)</span>과 <span class="math inline">\(||Y_2||^2\)</span>가 같은 chisquare 분포를 갖는다는 것이다.</li>
+</ul>
+<p>  </p>
+<p>위 Definition을 보충설명 해준다.</p>
+</div>
+<div id="proposition" class="section level5">
+<h5>Proposition</h5>
+<p>If <span class="math inline">\(Y\sim N_n(\mu, V)\)</span> and <span class="math inline">\(V\)</span> is invertible, then <span class="math inline">\(Y&#39;V^{-1}Y\sim \chi^2_n(\frac{1}{2}\mu&#39;V^{-1}\mu)\)</span>.</p>
+<ul>
+<li><span class="math inline">\(Z:=V^{-1/2}Y\)</span> 라 하면 <span class="math inline">\(Y&#39;V^{-1}Y=Z&#39;Z\)</span>이고, <span class="math inline">\(Z\sim N_n(V^{-1/2}\mu, I)\)</span>이다. 즉 <span class="math inline">\(Z&#39;Z\sim \chi^2_n(\frac{1}{2}\mu&#39;V^{-1}\mu)\)</span>이다.</li>
+</ul>
+<p>  </p>
+</div>
+<div id="theorem-1" class="section level5">
+<h5>Theorem</h5>
+<p>If <span class="math inline">\(Y\sim N_n(\mu, I)\)</span> and P is an orthogonal projection with <span class="math inline">\(\text{rank}(P)=k\le n\)</span>, then</p>
+<p><span class="math inline">\(Y&#39;PY\sim \chi^2_k(\frac{1}{2}\mu&#39;P\mu).\)</span></p>
+<ul>
+<li>증명 : <span class="math inline">\(P\)</span>는 symmetric하기 때문에 spectral theorem에 의해 <span class="math inline">\(P=\Gamma D \Gamma&#39;\)</span>로 분해할 수 있다 (<span class="math inline">\(D\)</span>는 <span class="math inline">\(k\)</span>개의 1을 갖고 <span class="math inline">\(n-k\)</span>개의 0을 갖는 대각 행렬). 즉, <span class="math inline">\(Y&#39;PY=Y&#39;\Gamma D \Gamma&#39;Y:=Z&#39;DZ=Z&#39;D&#39;DZ=||DZ||^2\)</span>, where <span class="math inline">\(Z:=\Gamma&#39;Y\sim N_n(\Gamma&#39;\mu=:\eta, I)\)</span>. 여기서 <span class="math inline">\(Z\)</span>를 <span class="math inline">\(Z=\begin{pmatrix}Z_1 \\Z_2 \end{pmatrix} \sim N_n\left( \begin{pmatrix}\eta_1 \\\eta_2 \end{pmatrix}, \begin{pmatrix}I_k &amp; 0 \\0 &amp; I_{n-k} \end{pmatrix} \right).\)</span>라고 하자. 그렇다면 <span class="math inline">\(DZ=Z_1\)</span>이 되고, <span class="math inline">\(Z_1\sim N_k(\eta_1,I_k)\)</span>이다. 즉, <span class="math inline">\(||DZ||^2=||Z_1||^2\sim \chi^2_k(\frac{1}{2}||\eta_1||^2)\)</span>이다. 여기서, <span class="math inline">\(||\eta_1||^2= ||D\eta||^2=||\Gamma&#39;P\Gamma\Gamma&#39;\mu||^2=||\Gamma&#39;P\mu||^2=||P\mu||^2=\mu&#39;P\mu\)</span>이다.</li>
+</ul>
+<p>  </p>
+<p><a href="../lm.html">back</a></p>
 </div>
 
 

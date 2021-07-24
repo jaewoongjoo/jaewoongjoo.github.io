@@ -1,5 +1,5 @@
 ---
-title: "Hello, World!"
+title: "Jaewoong Joo"
 output: html_document
 ---
 
@@ -17,11 +17,18 @@ pre {
 
 Hello, and welcome to my blog. I am Jaewoong Joo, a Ph.D student in Department of Statistics.
 
-Contents are below;
 
-[Course Reviews](./courses/courses.html)
+&nbsp;&nbsp;
 
-[Researches](./researches/researches.html)
 
-[Miscellaneous](./misc/misc.html)
+
+#### Contents
+
+
+
+[1. Course Reviews](./courses/courses.html)
+
+[2. Researches](./researches/researches.html)
+
+[3. Miscellaneous](./misc/misc.html)
 
