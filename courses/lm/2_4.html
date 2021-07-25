@@ -430,7 +430,7 @@ pre {
 <p><span class="math inline">\(\lambda'\beta\)</span> is <em>estimable</em> if there exists <span class="math inline">\(a_{n\times 1}\)</span> such that <span class="math inline">\(E(a'Y)=\lambda'\beta\)</span> for all <span class="math inline">\(\beta\)</span>,</p>
 <p>i.e., <span class="math inline">\(\lambda'\beta\)</span> is estimable if we can write <span class="math inline">\(\lambda'\beta=a'X\beta\)</span> for some <span class="math inline">\(a\)</span>.</p>
 <ul>
-<li><p>즉, parameter <span class="math inline">\(\lambda'\beta\)</span>를 Y의 linear combination로 estimate할 수 있을 때 <span class="math inline">\(\lambda'\beta\)</span>가 estimable하다고 한다.</p></li>
+<li><p>즉, parameter <span class="math inline">\(\beta\)</span>를 Y의 linear combination로 estimate할 수 있을 때 <span class="math inline">\(\lambda'\beta\)</span>가 estimable하다고 한다.</p></li>
 <li><p>Extension: <span class="math inline">\(\Lambda'\beta\)</span> is estimable if there exists <span class="math inline">\(A_{n\times k}\)</span> s.t. <span class="math inline">\(E(A'Y)=\Lambda'\beta\)</span> for all <span class="math inline">\(\beta\)</span>.</p></li>
 </ul>
 <p>  </p>
@@ -479,6 +479,63 @@ pre {
 <ul>
 <li><p>이전 theorem : <span class="math inline">\(E(Y_{n\times 1})=\mu, Var(Y)=V\)</span> 이면 <span class="math inline">\(E(Y'AY)=\text{tr}(AV)+\mu'A\mu\)</span>.</p></li>
 <li><p><span class="math inline">\(PY\)</span>는 <span class="math inline">\(\mu\)</span>를 추정하는데 사용하고, <span class="math inline">\(I-P\)</span>는 <span class="math inline">\(\sigma^2\)</span>를 추정할때 사용한다.</p></li>
+</ul>
+<p>  </p>
+<p>매우 중요</p>
+</div>
+<div id="theorem-2" class="section level5">
+<h5>Theorem</h5>
+<p>Assume <span class="math inline">\(Y\)</span> is normally distributed , <span class="math inline">\(Y\sim N(X\beta, \sigma^2I)\)</span>. Let <span class="math inline">\(r=\text{rank}(X)\)</span>. Suppose <span class="math inline">\(\Lambda'\beta\)</span> is estimable, i.e., there exists <span class="math inline">\(A\)</span> such that <span class="math inline">\(\Lambda'=A'X\)</span>. Then,</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\Lambda'\hat\beta=A'PY\)</span>, so <span class="math inline">\(\Lambda'\hat\beta\)</span> is normally distributed: <span class="math display">\[
+\Lambda'\hat\beta \sim N(\Lambda'\beta, \sigma^2\Lambda'(X'X)^-\Lambda),
+\]</span></p></li>
+<li><p><span class="math inline">\(\frac{Y'(I-P)Y}{\sigma^2}\sim \chi^2_{n-r}\)</span>,</p></li>
+<li><p><span class="math inline">\(\Lambda'\hat\beta\)</span> and <span class="math inline">\(Y'(I-P)Y\)</span> are independent.</p></li>
+</ol>
+<ul>
+<li><p>1번 증명 : 이미 위에서 <span class="math inline">\(\Lambda'\hat\beta\)</span>의 기댓값과 분산에 대해 보였다. 또한 <span class="math inline">\(Y\)</span>가 Normally distributed 일 때 Linear combination of <span class="math inline">\(Y\)</span>도 Normally distributed임을 m.g.f를 통해 보일 수 있다.</p></li>
+<li><p>2번 증명 : 만약 <span class="math inline">\(Y\sim N(a,I)\)</span>일 때 for orthogonal projection <span class="math inline">\(M\)</span>, <span class="math inline">\(Y'MY\sim \chi_{\text{rank}(M)}(\frac{1}{2}a'Ma)\)</span>임을 이미 보였다.</p></li>
+<li><p>3번 증명 :<span class="math inline">\(Y'(I-P)Y=||(I-P)Y||^2\)</span>이기 때문에 function of <span class="math inline">\((I-P)Y\)</span>이고, <span class="math inline">\(\Lambda'\hat\beta=A'X\hat\beta=A'\hat\mu =A'PY\)</span>이기 때문에 function of <span class="math inline">\(PY\)</span>이다. 즉, <span class="math inline">\(P(I-P)=0\)</span>이기 때문에 둘은 독립이다.</p></li>
+</ul>
+<p>  </p>
+<p>매우 중요</p>
+</div>
+<div id="remark-1" class="section level5">
+<h5>Remark</h5>
+<p>Assume <span class="math inline">\(Y\)</span> is normally distributed , <span class="math inline">\(Y\sim N(X\beta, \sigma^2I)\)</span>. Let <span class="math inline">\(\sigma^2=\frac{Y'(I-P)Y}{n-r}\)</span> and <span class="math inline">\(\Sigma=(X'X)^-\)</span>.</p>
+<p>If <span class="math inline">\(X\)</span> is of full rank, then <span class="math display">\[
+\hat\beta_j-\beta_j\sim N(0, \sigma^2\Sigma_{jj}),\\
+\frac{(n-r)\hat\sigma^2}{\sigma^2}\sim \chi_{n-r}^2
+\]</span> and these are independent.</p>
+<p>Thus, <span class="math display">\[
+\frac{(\hat\beta_j-\beta_j)/\sqrt{\sigma^2\Sigma_{jj}}}{\sqrt{\hat\sigma^2/\sigma^2}}\stackrel{\text{dist}}{=} \frac{N(0,1)}{\sqrt{\chi^2_{n-r}/(n-r)}}\sim t_{n-r}.\\
+\implies \frac{(\hat\beta_j-\beta_j)}{\sqrt{\hat{\sigma}^2\Sigma_{jj}}}\sim t_{n-r}.
+\]</span></p>
+<p>Also, for <span class="math inline">\(\lambda'\beta=a'X\beta\)</span>, <span class="math display">\[
+\frac{\lambda'\hat\beta-\lambda'\beta}{\sqrt{\hat{\sigma}^2\lambda'(X'X)^-\lambda}}\sim t_{n-r}.
+\]</span></p>
+<ul>
+<li>결론 : 이 결과를 통해 우리는 <span class="math inline">\(\sigma^2\)</span>가 unknown일 때, <span class="math inline">\(\lambda'\beta\)</span>에 대한 Hypothesis testing을 할 수 있다.</li>
+</ul>
+<p>  </p>
+</div>
+<div id="theorem-3" class="section level5">
+<h5>Theorem</h5>
+<p>Assume Model NDA(no distributional assumption) and assume <span class="math inline">\(X\)</span> is of full rank. If, <span class="math inline">\(\tilde\beta\)</span> is any linear unbiased estimator of <span class="math inline">\(\beta\)</span>, then <span class="math inline">\(\hat\beta_{\text{LS}}\)</span> is better than <span class="math inline">\(\tilde\beta\)</span>.</p>
+<ul>
+<li><p>Assume Model NDA. If <span class="math inline">\(\Lambda'\beta\)</span> is estimable, then <span class="math inline">\(\Lambda'\hat\beta_{\text{LS}}\)</span> is B.L.U.E(Best Linear Unbiased Estimator) of <span class="math inline">\(\Lambda'\beta\)</span>.</p></li>
+<li><p>Linear라는 말은 <span class="math inline">\(\hat\beta_{\text{LS}}\)</span>가 Y의 linear combination(estimable)이기 때문이다 (let <span class="math inline">\(A'=(X'X)^{-1}X'\)</span>, <span class="math inline">\(A'X=I_{p\times p}\)</span>).</p></li>
+</ul>
+<p>  </p>
+</div>
+<div id="theorem-lehmann-scheffe" class="section level5">
+<h5>Theorem (Lehmann-Scheffe)</h5>
+<p>If <span class="math inline">\(Y\)</span> is normally distributed <span class="math inline">\((Y\sim N(X\beta, \sigma^2I))\)</span>, then for any estimable parameter <span class="math inline">\(\lambda'\beta\)</span>, <span class="math inline">\(\lambda'\hat\beta_{\text{LS}}\)</span> has minimum variance among all unbiased estimators of <span class="math inline">\(\lambda'\beta\)</span> (linear or not).</p>
+<p>Also, <span class="math inline">\(\hat\sigma^2\)</span> has minimum variance among all unbiased estimators of <span class="math inline">\(\sigma^2\)</span>.</p>
+<ul>
+<li><p>Note : 만약 <span class="math inline">\((Y\sim N(X\beta, \sigma^2I))\)</span>라면, <span class="math inline">\(\hat\beta_{\text{LS}}\)</span>는 MVUE of <span class="math inline">\(\beta\)</span> 이다 (log likelihood에 대한 Normal equation을 beta에 대해 derivative해서 나온 mle 값과, RSS를 minimize하는 LSE값은 같다).</p></li>
+<li><p>쉽게 생각하면 정규분포 가정이 있던지 없던지, <strong>Unbiased Estimator들 중에서는</strong> 항상 LSE가 제일 좋다는 말이다.</p></li>
 </ul>
 <p>  </p>
 <p><a href="../lm.html">back</a></p>
