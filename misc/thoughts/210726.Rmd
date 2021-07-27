@@ -1,6 +1,7 @@
 ---
 title: "210726"
 ---
+
 <style type="text/css">
 
 body, td {
@@ -18,4 +19,4 @@ pre {
 
 &nbsp;&nbsp;
 
-[back](../misc.html)
+[back](./thoughts.html)

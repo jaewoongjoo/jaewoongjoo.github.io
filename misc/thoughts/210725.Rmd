@@ -1,6 +1,7 @@
 ---
 title: "210725"
 ---
+
 <style type="text/css">
 
 body, td {
@@ -19,4 +20,4 @@ Do more $\rightarrow$ better $\rightarrow$ harder $\rightarrow$ (more) agressive
 
 &nbsp;&nbsp;
 
-[back](../misc.html)
+[back](./thoughts.html)
