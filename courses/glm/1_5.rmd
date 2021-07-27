@@ -13,7 +13,7 @@ pre {
 }
 </style>
 
-&nbsp;&nbsp;
+
 
 Recall likelihood equations for $\beta$ are
 $$

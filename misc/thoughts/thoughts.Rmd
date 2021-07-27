@@ -2,6 +2,16 @@
 title: "Thoughts"
 ---
 
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
 
 
 [210722](./210722.html)
