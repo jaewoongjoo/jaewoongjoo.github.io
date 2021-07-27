@@ -1,0 +1,72 @@
+---
+title: "2.3. Independence of Quadratic Forms"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+
+##### Theorem
+Suppose $Y \sim N_n(\mu, V)$.
+
+1. If $A_1,A_2, \ldots, A_k$ are $n\times n$ symmetric matrices satisfying $A_i V A_j=0$ for $i \ne j$, then the quadratic forms $Y'A_1Y,\ldots,Y'A_kY$ are independent. 
+
+2. If $A$ is symmetric $n\times n$, $B$ is $m\times n$, and $AVB'=0$. then $Y'AY$ and $BY$ are independent.
+
+  * 1번 증명: 주어진 조건에 의해 $A_1Y,\ldots,A_kY$는 독립이다. 또한 $Y'A_iY$는 function of $A_iY$ which is measurable-$\mathcal{R}^k/\mathcal{R}$이므로 이 또한 독립이다. 
+  * 2번 증명: 주어진 조건에 의해 $AY,BY$는 독립이다. (나머지는 위와 같다.)
+
+
+  
+&nbsp;&nbsp;
+
+##### Definition
+Let $\delta>0$, and let $\mu\in \mathbb{R}^p$ be such that $\delta = \frac{1}{2}||\mu||^2$. Let $Y\sim N_p(\mu,I)$. 
+
+The *noncentral chisquare distribution* with noncentrality parameter $\delta$, denoted $\chi^2_p(\delta)$, is the distribution of $||Y||^2$.
+
+
+
+&nbsp;&nbsp;
+
+위 Definition을 보충설명 해준다.
+
+##### Little Lemma
+
+If $Y_1\sim N_p(\mu_1, I),$ $Y_2\sim N_p(\mu_2, I)$, and $\mu_1'\mu_1=\mu_2'\mu_2$, then $Y_1'Y_1\stackrel{\text{dist}}{=}Y_2'Y_2$.
+
+  * 이 lemma에서 중요한 것은 꼭 $\mu_1$과 $\mu_2$가 같지 않아도 $\mu_1'\mu_1=\mu_2'\mu_2$만 같으면 $||Y_1||^2$과 $||Y_2||^2$가 같은 chisquare 분포를 갖는다는 것이다. 
+  
+  
+&nbsp;&nbsp;
+
+위 Definition을 보충설명 해준다.
+
+##### Proposition
+If $Y\sim N_n(\mu, V)$ and $V$ is invertible, then $Y'V^{-1}Y\sim \chi^2_n(\frac{1}{2}\mu'V^{-1}\mu)$.
+
+  *  $Z:=V^{-1/2}Y$ 라 하면 $Y'V^{-1}Y=Z'Z$이고, $Z\sim N_n(V^{-1/2}\mu, I)$이다. 즉 $Z'Z\sim \chi^2_n(\frac{1}{2}\mu'V^{-1}\mu)$이다.
+  
+  
+&nbsp;&nbsp;
+
+##### Theorem
+
+If $Y\sim N_n(\mu, I)$ and P is an orthogonal projection with $\text{rank}(P)=k\le n$, then
+
+$Y'PY\sim \chi^2_k(\frac{1}{2}\mu'P\mu).$
+
+  * 증명 : $P$는 symmetric하기 때문에 spectral theorem에 의해 $P=\Gamma D \Gamma'$로 분해할 수 있다 ($D$는 $k$개의 1을 갖고 $n-k$개의 0을 갖는 대각 행렬). 즉, $Y'PY=Y'\Gamma D \Gamma'Y:=Z'DZ=Z'D'DZ=||DZ||^2$, where $Z:=\Gamma'Y\sim N_n(\Gamma'\mu=:\eta, I)$. 여기서 $Z$를 $Z=\begin{pmatrix}Z_1 \\Z_2 \end{pmatrix} \sim N_n\left( \begin{pmatrix}\eta_1 \\\eta_2 \end{pmatrix}, \begin{pmatrix}I_k & 0 \\0 & I_{n-k} \end{pmatrix} \right).$라고 하자. 그렇다면 $DZ=Z_1$이 되고, $Z_1\sim N_k(\eta_1,I_k)$이다. 즉, $||DZ||^2=||Z_1||^2\sim \chi^2_k(\frac{1}{2}||\eta_1||^2)$이다. 여기서, $||\eta_1||^2= ||D\eta||^2=||\Gamma'P\Gamma\Gamma'\mu||^2=||\Gamma'P\mu||^2=||P\mu||^2=\mu'P\mu$이다.
+  
+#&nbsp;&nbsp;
+
+#[back](../lm.html)

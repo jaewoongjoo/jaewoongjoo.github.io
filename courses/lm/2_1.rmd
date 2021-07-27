@@ -1,0 +1,82 @@
+---
+title: "2.1. Random Vectors and Expectations/Variances"
+output: html_document
+fontsize: 15pt
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+
+##### Definition
+If $Y_{n\times 1}$ is a random vector, then
+
+1. $(E(Y))_{n\times 1}=\mu_{n\times 1}$ means $E(Y_i)=\mu_i$ for all $i$. 
+
+2. $Var(Y)$ is the $n\times n$ matrix whose $ij$-th element is $\text{Cov}(Y_i,Y_j)$.
+
+
+&nbsp;&nbsp;
+
+매우 중요
+
+##### Theorem 
+If $E(Y_{n\times 1})=\mu, Var(Y)=V$, then $$E(Y'AY)=\text{tr}(AV)+\mu'A\mu$$.
+
+  * $E(Y'AY) = E(\text{tr}(Y'AY))= E(\text{tr}(AYY'))=  \text{tr}(E(AYY'))=\text{tr}(A\cdot E(YY'))= \text{tr}(AV+ A\mu \mu')= \text{tr}(AV)+\mu'A\mu.$
+  
+  * Example: $Y_i\stackrel{\text{ind}}{\sim}N(\mu_i, \sigma^2),$ $i=1,2,\ldots,n$. 
+      $\implies E(\sum_{i=1}^n (Y_i-\bar{Y})^2)=E(Y'(I-\frac{1}{n}J)Y)=\sigma^2\text{tr}(I-\frac{1}{n}J)+\mu'(I-\frac{1}{n}J)\mu= (n-1)\sigma^2+ \sum_{i=1}^n(\mu_i-\bar{\mu})^2.$
+      
+&nbsp;&nbsp;
+
+##### Remark
+
+Let $X_{n-1}\sim (\mu, \Sigma)$. Then,
+
+1. $\Sigma$ is nonnegative definite;
+
+2. If $\Sigma$ is not positive definite, then $X$ lies in some hyperplane with probability one, i.e., there exist $b, c$ s.t $P(b'X=c)=1$. 
+
+  * $\Sigma$ 가 양정치행렬이 아니라고 하자. 그렇다면 양정치행렬의 정의에 의해 $b'\Sigma b=0$을 만족하는 $b\ne 0$이 존재한다. 
+    
+      $\iff$ $b'\Sigma b=Var(b'X)=0$ (즉, $b'X$는 constant 이다. ) $\iff$ $P(b'X=c)=1$.
+      
+  
+&nbsp;&nbsp;
+
+##### Definition
+If $X$ is a (one-dimensional) random variable, and there exists $\epsilon>0$ such that $E(\exp(tX))<\infty$ for all $t\in (-\epsilon,\epsilon)$, then *moment generation function* of X is defined as $$M_X(t)=E(\exp(tX)) \mbox{ }\mbox{ for all }t.$$ 
+
+
+
+  * If $X$ has dimension $d\ge 1$, then the MGF of $X$ is $$M_X(t)=E(\exp(t'X)) \mbox{ }\mbox{ }\mbox{ for }t\in \mathbb{R}^d.$$
+
+&nbsp;&nbsp;
+
+##### Example
+1. Let $Z_1,\ldots Z_p\stackrel{\text{iid}}{\sim}N(0,1)$, and let $Z= (Z_1,\ldots Z_p)$ (we can define $Z\sim N(0,I)$). 
+  $$M_Z(t)=E(\exp(t'Z))= E(\exp(t_1Z_1))\cdots E(\exp(t_pZ_p))= \prod_{i=1}^p\exp\left(\frac{1}{2}t_i^2\right)= \exp\left(\frac{1}{2}\sum_{i=1}^p t_i^2\right)=\exp\left(\frac{1}{2}t't\right).$$
+
+&nbsp;
+
+2. If $Z\sim N_p(0,I)$, and $\Gamma$ is an orthogonal matrix, then $\Gamma Z\sim N_p(0,I)$.
+     $$M_{\Gamma Z} (t)= E(\exp(t'\Gamma Z))= M_{Z} (\Gamma' t)= \exp\left( \frac{1}{2} t'\Gamma\Gamma' t\right)= \exp\left( \frac{1}{2} t't\right).$$
+
+&nbsp;
+
+3. Let $X_{q\times 1}= A_{q\times p}Z_{p\times 1}+\mu$  $(Z\sim N_p(0,I))$. Then,
+   $$\begin{eqnarray*} M_X(t)&=&E(\exp(t'X))=E(\exp(t'(AZ+\mu)))= E(\exp(t'AZ)))\exp(t'\mu)\\
+   &=& M_Z(A't)\exp(t'\mu)\\
+   &=&\exp(t'\mu)\exp\left(\frac{1}{2}t'AA't'\right).\end{eqnarray*}$$
+
+
+&nbsp;&nbsp;

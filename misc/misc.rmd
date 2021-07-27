@@ -1,0 +1,16 @@
+---
+title: "Miscellaneous"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+[210722](./misc/210722.html)

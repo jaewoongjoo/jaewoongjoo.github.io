@@ -1,0 +1,120 @@
+---
+title: 1.2. Projections
+output: html_document
+---
+
+##### Definition
+Let $A$ be symmetric matrix. Then, $A$ is *positive definite* if for all $v\ne 0$, $v'Av>0$.  
+
+Also, $A$ is *non-negative definite* if for all $v\ne 0$, $v'Av\ge 0$.  
+
+&nbsp; &nbsp; 
+
+##### Remark
+
+1. $A$ is positive definite $\iff \lambda_i>0$ for all $i$.
+  
+2. $A$ is non-negative definite $\iff \lambda_i\ge 0$ for all $i$.
+
+   * Definition에서 vector $v$에 unit vector를 대입하면 증명할 수 있다. 
+
+3. $tr(A)=\sum_{i=1}^N \lambda_i$
+
+   * Trace의 성질 $tr(ABC)=tr(BCA)=tr(CAB)$를 이용하면 증명할 수 있다. 
+
+&nbsp; &nbsp; 
+
+##### Lemma
+Let $W$ be a subspace on $\mathbb{R}$, and let $W^\perp$ be its orthogonal complement. 
+
+For any $x\in \mathbb{R}^n$, we have the *unique decomposition*
+$$
+x=x_1+x_2, \hspace{3mm} \mbox{ where } x_1\in W, x_2\in W.
+$$
+An orthogonal projection onto $W$ is the map $Px=x_1$.
+
+&nbsp; &nbsp; 
+
+중요
+
+##### Definition
+Let $W$ be a subspace. The linear transformation $P$ is an *orthogonal projection* onto $W$ if
+
+1. for all $x\in W$, $Px=x$; 
+
+2. for all $x\in W^\perp$, $Px=0$. 
+
+   * Preserves $W$, kills $W^\perp$ 로 이해하면 편하다.
+
+&nbsp; &nbsp; 
+
+
+
+##### Proposition
+Suppose $W$ is a subspace, and let $P$ be an orthogonal projection onto $W$.
+
+1. Let $v=v_1+v_2$, where $v_1\in W$, $v_2\in W^\perp$ (unique decomposition). Then $Pv=v_1$.
+   
+   * 즉, 이는 Orthogonal projection(onto $W$)는 항상 unique함을 보여준다.
+   
+   &nbsp; 
+   
+2. $I-P$ is the orthogonal projection onto $W^\perp$.
+
+   * $I-P$ preserves $W^\perp$, kills $(W^\perp)^\perp$ 를 보이면 증명할 수 있다. 
+
+&nbsp; 
+
+3. For all $x\in \mathbb{R}$, $Px$ is the unique closest point in $W$ to $x$. That is
+$$
+||x-y|| \ge  ||x-Px|| \hspace{3mm} \mbox{ for all } y\in W,
+$$
+
+   with equalify if and only if $y=Px$.
+
+
+   * P가 orthogonal projection onto $W$일때, $W$ 공간 안에서 $Px$가 $x$와 가장 가깝다. (직교거리이다.)
+   
+&nbsp;&nbsp; 
+
+매우 중요하다.
+
+##### Proposition 
+$P$ is an orthogonal projection onto some subspace $\iff$ $P^2=P$ and $P$ is symmetric.
+
+   * 어떠한 matrix P가 symmetric하고 idempotent하다면, 그 matrix는 orthogonal projection이다. 
+   
+&nbsp;&nbsp;
+
+##### Theorem
+Let $A$ be a symmetric matrix. There exists a generalized inverse $A^\dagger$ satisfying
+
+1.  $A A^\dagger A=A$;
+
+2.  $A^\dagger$ is symmetric;
+
+3.  $A^\dagger A A^\dagger=A^\dagger$.
+
+&nbsp;&nbsp;
+
+##### Theorem
+Let $X$ be an arbitrary matrix. Let $X^-=(X'X)^-X$ where $(X'X)^-$ is any generalized inverse of $X'X$. 
+
+Then, $X^-$ is a generalized inverse of $X$.
+
+
+
+&nbsp;&nbsp;
+
+##### Corollary
+Let $W=C(X)$, where $X$ is an arbitrary matrix. Let $(X'X)^-$ be any generalized inverse of $X'X$. Then, $P=X(X'X)^-X'$ is the orthogonal projection onto $W$.
+
+
+&nbsp;&nbsp;
+
+##### Theorem
+If $\text{rank}(X)=p$, then $X'X$ is invertible, and $P=X(X'X)^{-1}X'$ is the orthogonal projection onto $W$.
+
+&nbsp;
+
+If $\text{rank}(X)=r<p$, let $X_0$ be any matrix having $r$ columns that form a bnasis for $C(X)$. Then $P=X_0(X_0'X_0)^{-1}X_0'$ is the orthogonal projection onto $W$.

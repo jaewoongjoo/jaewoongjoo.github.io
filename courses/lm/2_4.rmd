@@ -1,0 +1,86 @@
+---
+title: "2.4. Estimation"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+
+##### Definition
+A least squares estimate (LSE) of $\beta$ is any vector $\hat\beta$ that minimizes $$||Y-X\beta||$$ over $\beta \in \mathbb{R}^p$. So, $\hat\beta$ is a least squares estimate if and only if $X\hat\beta=\hat\mu(=PY)$. 
+
+&nbsp;&nbsp;
+
+##### Proposition
+1. If $\hat\beta=(X'X)^-X'Y$, then $\hat\beta$ is a least squares estimate (one of them). 
+
+2. If $\text{rank}(X)=p$, then the least squares estimate is unique (only one).
+
+3. If $\text{rank}(X)< p$, then there are infinitely many $\beta$'s such that $X\beta=\hat\mu$. The set of LSE's forms an affine subspace of $\mathbb{R}^p$.
+
+  * 3 증명 : 만약 $\text{rank}(X)< p$라면, non-zero인 element $w \in \mathcal{N}(X)$ 가 존재한다. 즉 만약 $X\hat\beta_0=\hat\mu$라면, $X(\hat\beta_0+w)=\hat\mu$이다 (affine subspace).
+  
+&nbsp;&nbsp;
+
+##### Definition(identifiability)
+
+Suppose $P_\theta=N(X\beta, \sigma^2I), \theta=(\beta,\sigma^2)$ be a parametric family of distributions, and let $\tau(\theta)=\lambda'\beta$ (a function of $\theta$). The parameter $\tau(\theta)=\lambda'\beta$ is idenfitiable if
+$$
+\lambda'\beta_1 \ne \lambda'\beta_2 \implies  X\beta_1 \ne X\beta_2.
+$$
+&nbsp;&nbsp;
+
+##### Examples
+1. One-way ANOVA model : $Y_{ij}=\alpha+\mu_i+\epsilon_{ij}$, where $\beta=(\alpha, \mu_1,\mu_2,\mu_3)'$. 
+
+  * Is $\alpha$ identifiable?
+
+    Take $\lambda=(1,0,0,0)'$, $\beta_1=(3,0,0,0)'$, $\beta_2=(4,1,1,1)'$.
+    Here, $X=\begin{bmatrix}1 & 1& 0&0 \\1 & 0& 1&0 \\ 1 &0 & 0&1\end{bmatrix}$. Then,
+   
+    $\lambda'\beta_1 \ne \lambda'\beta_2$. But,  $X\beta_1 = X\beta_2$. Thus, $\alpha$ is not identifiable.
+
+&nbsp;
+
+2. Simple linear regression : Consider a linear regression with one predictor with $X=\begin{bmatrix}1 & c\\\vdots  &\vdots\\1 & c \end{bmatrix}$ where $c$ is constant.
+   
+  * Is $\beta_1$ identifiable?
+   
+     Take $\lambda=(0,1)'$, $\beta^{(1)}=(c,4)'$, $\beta^{(2)}=(0,5)'$. Then, $\lambda'\beta_1 \ne \lambda'\beta_2$. But,  $5c=X\beta^{(1)} = X\beta^{(2)}=5c$. 
+   
+     Thus, $\beta_1$ is not identifiable.
+   
+  * Is $\beta_0$ identifiable?
+   
+      Take $\lambda=(1,0)'$, $\beta^{(1)}=(2,-\frac{1}{c})'$, $\beta^{(2)}=(3,-\frac{2}{c})'$. Then, $\lambda'\beta_1 \ne \lambda'\beta_2$. But,  $c=X\beta^{(1)} = X\beta^{(2)}=c$. 
+
+     Thus, $\beta_0$ is not identifiable.
+     
+     
+2. Multiple linear regression : Consider a linear regression with two predictor with $X=\begin{bmatrix}1 & d_1 &    cd_1\\\vdots  &\vdots&\vdots\\1 & d_n & cd_n \end{bmatrix}$ where $c$ is constant. Assume that the $d_i$'s are not all equal.
+
+
+   * 결론: Intercept만 identifiable하다 (대우명제로 보일 수 있다). 
+   
+      We need to show $X\beta^{(1)}=X\beta^{(2)}\implies \beta^{(1)}=\beta^{(2)}.$
+   
+      Suppose $X\beta^{(1)}=X\beta^{(2)}$. Then, $X\beta^{(1)}-X\beta^{(2)}=\textbf{1}(\beta_0^{(1)}-\beta_0^{(2)})+ \textbf{d}(\beta_1^{(1)}-\beta_1^{(2)}+c\beta_2^{(1)}-c\beta_2^{(2)})=0$.
+      
+      This means $$\beta_0^{(1)}-\beta_0^{(2)}=0 \mbox{ and } \beta_1^{(1)}-\beta_1^{(2)}+c\beta_2^{(1)}-c\beta_2^{(2)}=0$$.
+      
+      즉, $\beta_0^{(1)}=\beta_0^{(2)}$.
+      
+      나머지 two predictors는 not identifiable하다 (Exercise).
+      
+  
+##### Remark
+If $\text{rank}(X)<p$, then there exists a component of $\beta$ that is not identifiable.

@@ -1,0 +1,28 @@
+---
+title: "Generalized Linear Models"
+output: html_document
+---
+
+
+### Index
+
+
+
+##### 1. Basics of Generalized Linear Models
+
+[1.1 Generalized Linear Model](./glm/1_1.html)
+
+[1.2. Maximum Likelihood Estimation](./glm/1_2.html)
+
+[1.3. Deviance and Goodness of Fit](./glm/1_3.html)
+
+[1.4. Residuals for GLMs](./glm/1_4.html)
+
+[1.5. Methods for Solving Likelihood Equations](./glm/1_5.html)
+
+[1.6. Estimaton of Dispersion Parameter](./glm/1_6.html)
+
+
+&nbsp;&nbsp;
+
+[back](./)

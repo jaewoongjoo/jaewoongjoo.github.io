@@ -1,0 +1,117 @@
+---
+title: 1.2. Measures
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+
+
+##### Definition(measure)
+
+A measure $\mu$ is a set function defined on a field $\mathcal{F}$ if
+
+1. $\mu$ is nonnegative: $0\le \mu(A) \le \infty$ for all $A\in \mathcal{F}$ 
+
+2. $\mu(\phi)=0$ 
+
+3. $\mu$ is countably additive: if $A_1, A_2,\ldots \in \mathcal{F}$ are disjoint and $\uplus_n A_n \in \mathcal{F}$, 
+then $\mu (\uplus_n A_{n})= \sum_n \mu (A_{n})$
+
+&nbsp;&nbsp;
+
+위 조건을 충족하는 ($\Omega, \mathcal{F}, \mu$)를 Measurable space라고 부른다.
+
+&nbsp;&nbsp;
+
+##### Remark
+
+If $\mu(\Omega)<\infty$, then $\mu$ is called a *￩finite* measure.
+
+For $A_1, A_2, \ldots \in \mathcal{F}$, if  $\cup_n A_n = \Omega$ and $\mu(A_n)<\infty$ for all $n$, then $\mu$ is called a $\sigma$-finite measure.
+
+&nbsp;&nbsp;
+
+##### Definition(counting measure)
+
+Given $\Omega$ and $\mathcal{F}$=$2^\Omega$, Let $\mu(A)=\#(A)$, where $\#(A)$ is the number of points in $A$ if $A$ is finite, or $\infty$ otherwise. Then, $\mu(A)=\#(A)$ is called Counting measure on $\Omega$.
+
+&nbsp;&nbsp;￣
+
+##### Definition(discrete measure)
+Suppose that $\Omega$ is countable and $p:\Omega \rightarrow [0,\infty].$. For any set $A\in 2^\Omega$, let $\mu(A)=\sum_{\omega\in A} P(\omega)$, where an empty sum is taken to be zero. Then, $\mu$ is called a discrete measure.
+
+&nbsp;&nbsp;
+
+
+
+##### Theorem(fundamental properties of measure)
+For any measure $\mu$ on a field $\mathcal{F}$ and sets $A,B,A_1,A_2,\ldots \in \mathcal{F}$.
+
+1. Monotonicity: If $A\subset B$, then $\mu(A) \le \mu(B)$.
+
+2. Subtractivity: If $A\subset B$ and $\mu(A)<\infty$, then $\mu(B-A)=\mu(B)-\mu(A)$.
+
+3. Countable subadditivity: If $\cup_n A_n \in \mathcal{F}$, then $\mu(\cup_n A_n) \le \sum_n \mu(A_n)$.
+
+4. Continuity from below: If $A_n\uparrow A$, then $\mu(A_n)\uparrow \mu(A)$.
+
+5. Continuity from above: If $A_n\downarrow A$ and $\mu(A_1)<\infty$, then $\mu(A_n)\downarrow \mu(A)$.
+
+&nbsp;&nbsp;
+
+
+* 아래의 Theorem들은 대부분 Caratheodory Extension Theorem을 위한 내용들이다. Caratheodory Extension Theorem는 field에서 정의된 measure $\mu$가 $\sigma$-field까지 확장될 수 있고, 그 measure $\mu$가 field에서 unique하다면, $\sigma$-field에서도 unique할 수 있음을 보여준다. 그를 위해 Dynkin의 파이 람다 시스템에 대해 먼저 알아보자.
+
+&nbsp;&nbsp;
+
+##### Theorem 
+
+Definition($\pi$-system)
+A class $\mathcal{P}$ of subsets of $\Omega$ is called a $\pi$-system if it is closed under finite intersection.
+
+Definition($\lambda$-system)
+A class $\mathcal{L}$ of subsets of $\Omega$ is called a $\lambda$-system if
+
+1. $\Omega\in \mathcal{L}$;
+2. $A\in \mathcal{L}$ implies $A^c \in \mathcal{L}$ (closed under complementation);
+3. For $A_1,A_2,\ldots \in \mathcal{L}$ and $A_m\cap A_n=\phi$ $m\ne n$, $\uplus_n A_n\in \mathcal{L}$ (closed under countable disjoint union).
+
+This can be replaced by
+
+a. $\Omega\in \mathcal{L}$;
+b. $A, B \in \mathcal{L}$, $A\subset B$ implies $B-A \in \mathcal{L}$ (closed under subtraction);
+c. For $A_1,A_2,\ldots \in \mathcal{L}$, $A_n\uparrow A$ implies $A \in \mathcal{L}$.
+
+&nbsp;&nbsp;
+
+##### Lemma
+
+A class that is both a $\pi$-system and $\lambda$-system is a $\sigma$-field.
+
+
+&nbsp;&nbsp;
+
+
+
+##### Theorem(Dynkin's $\pi-\lambda$ theorem)
+
+If $\mathcal{P}$ is a $\pi$-system and $\mathcal{L}$ is a $\lambda$-system, then  $\mathcal{P}\subset \mathcal{L}$ implies  $\sigma(\mathcal{P}) \subset  \mathcal{L}$.
+
+* $\mathcal{P}\subset\mathcal{L}$ 이라면 $\mathcal{L}$은 $\pi$-system 임과 동시에 $\lambda$-system의 성질을 가지게 되고, 때문에 $\sigma$-field이다.
+
+
+
+
+
+
+

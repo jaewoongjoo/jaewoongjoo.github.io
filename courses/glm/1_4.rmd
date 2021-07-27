@@ -1,0 +1,133 @@
+---
+title: "1.4. Residuals for GLMs"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+&nbsp;&nbsp;
+
+##### Remark
+**Pearson residual** is defined as 
+$$
+e_i=\frac{Y_i-\hat\mu_i}{\sqrt{\text{Var}(Y_i)}}.
+$$
+   * Pearson's $X^2= \sum_i e_i^2= \sum_i \frac{(Y_i-\hat\mu_i)^2}{\text{Var}(Y_i)}$는 익숙할 것이다. 
+   
+   * Example : $Y_i\sim poisson(\mu_i)$. 
+      
+      $\implies e_i=\frac{Y_i-\hat\mu_i}{\sqrt{\mu_i}}$, $X^2=\sum_i e_i^2=\sum_i\frac{(Y_i-\hat\mu_i)^2}{\mu_i} \sim \chi^2$.
+      
+   * Example : $Y_i\sim \text{Bin}(n_i,\pi_i)$. 
+      
+      $e_i=\frac{Y_i-n_i\hat\pi_i}{\sqrt{n_i\hat\pi_i(1-\hat\pi_i)}}$.
+      
+
+&nbsp;&nbsp;
+
+##### Remark(Deviance residual)
+
+Recall that deviance is
+$$
+D(y_i;\hat\mu)= 2\sum_i w_i[y_i(\tilde\theta_i-\hat\theta_i)-b(\tilde\theta_i)+b(\hat\theta_i)]=\sum_id_i,
+$$
+where 
+$$
+d_i=2 w_i[y_i(\tilde\theta_i-\hat\theta_i)-b(\tilde\theta_i)+b(\hat\theta_i)]\mbox{ }\mbox{ }\mbox{ (contribution of ith observation to deviance)}.
+$$       
+
+The *$i^{th}$ deviance residual* is 
+$$
+\sqrt{d_i}\text{sign}(y_i-\hat\mu_i).
+$$
+
+  * Example : $Y_i\sim poisson(\mu_i)$.
+  
+     $D(y_i;\hat\mu)= 2\sum_i [y_i(\log y_i-\log \hat\mu_i)-y_i+\hat\mu_i]$,
+     
+     Deviance residual = $\sqrt{d_i}\text{sign}(y_i-\hat\mu_i)= \sqrt{2[y_i(\log y_i-\log \hat\mu_i)-y_i+\hat\mu_i]}\text{sign}(y_i-\hat\mu_i).$
+     
+     
+&nbsp;&nbsp;
+
+##### Remark
+When $\phi=1$, the approximate distribution of $D(y; \hat\mu)$ is often $\chi^2_{n-p}$ under $H_0 :$ model holds. Then, 
+$$
+E[D(y;\hat\mu)]\approx n-p\\
+\implies E\left[\frac{D(y;\hat\mu)}{n}\right]\approx \frac{n-p}{n}<1.\\
+$$
+  * 우리가  지금까지 R 이나 SAS의 table에서 유사한 값을 보아왔다. SAS proc glm 에서 Deviance table에서의 Value/DF 값이 1보다 작다면 model holds한다고 배워왔던 것은 이와 유사하다. 
+
+&nbsp;
+
+Similarly, Pearson statistics $\sum_i e_i^2$ often approximately follows $\chi^2_{n-p}$. So, 
+$$
+E\left[\frac{\sum_i e_i^2}{n}\right]\approx \frac{n-p}{n}<1. 
+$$ 
+
+Also, Under $H_0:$ model holds, 
+$$
+E[\sqrt{d_i}\text{sign}(y_i-\hat\mu_i)]\approx 0.
+$$
+
+So, average variance of $e_i$ and $\sqrt{d_i}\text{sign}(y_i-\hat\mu_i)$ is less than 1.0 (Mean 이 0이기 때문에)
+
+&nbsp;
+
+What is $\text{Var}(Y-\hat\mu)$? : Using information matrix, we showed asymptotic covariance matrix of $\hat\beta$ is
+$$
+   Var(\beta)=(X'WX)^{-1},
+$$
+where 
+$$\begin{eqnarray*}
+\eta&=& X\beta=g(\mu),\\
+W&=& \text{diag}\left\{\left(\frac{d\mu_i}{d\eta_i}\right)^2/V(\mu_i)\right\}=DV(\mu)^{-1}D.
+\end{eqnarray*}$$
+with $V(\mu)=diag\{V(\mu_i)\}$, $D=\text{diag}\left\{\frac{d\mu_i}{d\eta_i}\right\}$. 
+
+Since $\hat\eta=X\hat\beta=g(\hat\mu)$, we get by delta method,
+$$
+Var(\hat\mu)=DX(X'WX)^{-1}X'D'.
+$$
+
+Then, by a theorem from *Pierce(1982)* we can get
+$$
+Var(Y-\hat\mu)=V(\mu)^{\frac{1}{2}}(I-H)V(\mu)^{\frac{1}{2}}
+$$
+where $H=W^{\frac{1}{2}}X(X'WX)^{-1}X'W^{\frac{1}{2}}$.(복잡해서 생략)
+
+Now, we can construct a standardized Pearson residual
+$$
+r_i=\frac{y_i-\hat\mu_i}{\sqrt{\text{Var}(Y_i-\hat\mu_i)}}= \frac{y_i-\hat\mu_i}{\sqrt{V(\mu_i)(1-\hat h_{ii})}}= \frac{e_i}{\sqrt{1-\hat{h_{ii}}}}, 
+$$
+where "leverage" $\hat h_{ii}$ is i-th element on diagonal of $\hat{H}=\hat W^{1/2}X(X'\hat W X)^{-1}X'\hat W^{1/2}$. 
+
+When model holds,
+$$
+r_i\sim N(0,1),
+$$
+under asymptotics for while $y_i$ follows approximate nomal, $i=1,2,\ldots,n$.
+
+
+
+For example, poisson GLM has
+$$
+r_i=\frac{y_i-\hat\mu_i}{\sqrt{\hat\mu_i(1-\hat h_{ii})}}
+$$
+
+Approximate normality holds as $\{ \hat\mu_i \uparrow \infty\}$ not as $N\uparrow \infty$ for fixed $\{\mu_i\}$.
+
+&nbsp;&nbsp;
+
+[back](../glm.html)
+
+
+

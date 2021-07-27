@@ -1,0 +1,168 @@
+---
+title: 1.3. Uniqueness and Extension of Measure
+output: html_document
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+
+##### Lemma
+If $\mu_1$ and $\mu_2$ are finite measures on a measurable space $(\Omega, \mathcal{F})$ with $\mu_1(\Omega)=\mu_2(\Omega)$, then the class $\mathcal{L}:= \{A\in\mathcal{F}: \mu_1(A)=\mu_2(A)\}$ is a $\lambda$-system.
+
+&nbsp;&nbsp;
+
+* 증명은 간단하다. 
+
+  주어진 조건 $\mu_1(\Omega)=\mu_2(\Omega)$로 인하여 $\Omega \in \mathcal{L}$은 trivial하다. 
+
+  또한 $A\in \mathcal{F}$에 대하여 $\mu_1(A^c)=\mu_1(\Omega)-\mu_1(A)=\mu_2(\Omega)-\mu_2(A)=\mu_2(A^c)$를 얻을 수 있다. 
+
+  그리고 $A_1,A_2,\ldots\in\mathcal{F}$, $A_m\cap A_n =\phi, m\ne n$에 대해
+
+  $\mu_1(\uplus_nA_n)=\sum_n \mu_1(A_n)=\sum_n \mu_2(A_n)=\mu_2(\uplus_nA_n)$이다.
+
+  때문에 $\uplus_nA_n \in \mathcal{F}$ 이다.
+
+&nbsp;&nbsp;
+
+
+
+##### Lemma(First Uniqueness Theorem for Finite Measure)
+Suppose $\mu_1$ and $\mu_2$ are finite measures on $\sigma(\mathcal{P})$, where $\mathcal{P}$ is a $\pi$-system with $\Omega\in \mathcal{P}$. If $\mu_1$ and $\mu_2$ agree on $\mathcal{P}$, then they agree on $\sigma(\mathcal{P})$.
+
+  (만약 두 measure가 finite measure일 때 주어진 field에서 agree하다면, $\sigma$-field에서도 agree한다. 즉 Unique함을 의미한다.)
+
+&nbsp;&nbsp;
+
+
+##### Lemma(Second Uniqueness Theorem for Finite Measure)
+Suppose $\mu_1$ and $\mu_2$ are finite measures on $\sigma(\mathcal{P})$, where $\mathcal{P}$ is a $\pi$-system and $\Omega$ can be written as a finite or countably infinite union of sets in $\mathcal{P}$. If $\mu_1$ and $\mu_2$ agree on $\mathcal{P}$, then they agree on $\sigma(\mathcal{P})$.
+
+&nbsp;&nbsp;
+
+
+##### Definition(Outer Measures)
+An outer measure is a set function $\mu^*$ defined on $2^\Omega$ and satisfying
+
+1. $0\le \mu^*(A)\le \infty$ for all $A\subset\Omega$;
+
+2. $\mu^*(\phi)=0$ ;
+
+3. Monotonicity: $A\subset B$ implies $\mu^*(A)\le \mu^*(B)$.
+
+3. Countable subadditivity: for all $A_1, A_2, \ldots \subset \Omega$, $\mu^*(\cup_n A_n)\le \sum_n \mu^*(A_n)$.
+
+
+&nbsp;&nbsp;
+
+##### Lemma
+
+Let $\mu$ be a set function on a class $\mathcal{A}$ of subsets of $\Omega$, where
+
+1. $\phi\in \mathcal{A}$;  (field의 조건.)
+
+2. $\mu(\phi)=0$;  (measure의 조건)
+
+3. $0 \le \mu(A) \le \infty$ for all $A\in \mathcal{A}$.   (measure의 조건)
+
+If $\mu^*$ is defined by 
+$$
+\mu^*(A)=\inf\left\{ \sum_n \mu(A_n): A_1,A_2,\ldots\in \mathcal{A}, A\subset \cup_n A_n  \right\}, A\subset \Omega,
+$$
+then $\mu^*$ is an outer measure.
+
+
+* Outer measure는 주어진 set A를 cover하는 sequence of sets 중에서, 그 set들의 sum of measure들의 가장 작은 값으로 생각할 수 있다.
+
+&nbsp;&nbsp;
+
+
+
+##### Definition($\mu^*$-measurable)
+If $\mu^*$ is an outer measure, then a set $A\subset \Omega$ is $\mu^*$-measurable if
+
+$$
+\mu^*(E)= \mu^*(A\cap E)+ \mu^*(A^c \cap E) \mbox{ for all }E\subset \Omega,
+$$
+and let $M(\mu^*)$ denote the class of $\mu^*$-measurable sets.
+
+&nbsp;&nbsp;
+
+
+##### Lemma
+$M(\mu^*)$ is a $\sigma$-field, and $\mu^*$ restricted to $M(\mu^*)$ is a measure.
+
+&nbsp;&nbsp;
+
+* 첫번째로, $M(\mu^*)$는 field임을 간단히 증명할 수 있다.
+  $\mu^*$는 symmetric하기 때문에 당연히 $\Omega$를 포함하고, closed under complementation이다. 
+  Closedness under finite intersection을 보이려면 $A, B\in M(\mu^*)$에 대하여
+  $$
+  \mu^*(E)=\mu^*((A\cap B ) \cap E)+ \mu^*((A\cap B )^c \cap E)
+  $$
+  를 보이면 된다.
+  $\mu^*(E)\le \mu^*((A\cap B ) \cap E)+ \mu^*((A\cap B )^c \cap E)$는 countable subadditivity에 의해 trivial 하고 때문에 $\mu^*(E)\ge \mu^*((A\cap B ) \cap E)+ \mu^*((A\cap B )^c \cap E)$만 보이면 된다. (Exercise)
+  이미 $M(\mu^*)$가 field임을 보였기 때문에 $M(\mu^*)$가 countable disjoint union에 의해 닫혀있다면 $M(\mu^*)$는 $\sigma$-field임을 증명할 수 있다. (Exercise)
+  
+* $\mu^*$는 outer measure이기 때문에 공집합을 포함하고 nonnegative하다. 때문에 countable additivity만 증명하면 $\mu^*$ restricted to $M(\mu^*)$ 는 measure이다.  (Exercise)
+
+
+&nbsp;&nbsp;
+
+  
+##### Definition(semiring)
+A class $\mathcal{A}$ of subsets of $\Omega$ is a *semiring* if 
+
+1. $\phi\in \mathcal{A}$;
+
+2. $A,B \in \mathcal{A}$ implies $A\cap B \in \mathcal{A}$; (closed under finite union)
+
+3. If $A,B \in \mathcal{A}$ and  $A\subset B$, then there exists disjoint $\mathcal{A}$-sets $C_1,\ldots, C_n$ such that $B-A = \uplus_{k=1}^n C_k$.
+
+* Semiring의 예제로서 $\Omega=\mathbb{R}$에 대하여,  $A=(a,b]$, $B=(a,c]$, $a\le b\le c$를 떠올려보자 ($A, B \in \mathcal{A}=\mathcal{R}$).
+
+&nbsp;&nbsp;
+
+매우 중요
+
+##### Theorem(Caratheodory Extension Theorem)
+Suppose that $\mu$ is a set function on a semiring $\mathcal{A}$ satisfying
+
+1. $\mu$ is nonnegative: $0\le \mu\le \infty$ for all $A\in \mathcal{A}$;
+
+2. $\mu(\phi)=0$;
+
+3. $\mu$ is finitely additive on $\mathcal{A}$: if $A_1,A_2,\ldots,A_n\in \mathcal{A}$ are disjoint, and  $\uplus_{k=1}^n A_k\in \mathcal{A}$, then $\mu(\uplus_{k=1}^n A_k)= \sum_{k=1}^n \mu (A_k)$,
+  
+4. $\mu$ is countably subadditive on $\mathcal{A}$: if $A_n\in \mathcal{A}, n\ge 1$ and $\uplus_n A_n\in \mathcal{A}$, then $\mu(\cup_{n} A_n)\le \sum_n \mu (A_n)$.
+
+Then, $\mu$ extends to a measure on $\sigma(\mathcal{A})$. (일반적인 measure $\mu$는 위의 4가지 properties를 갖고있다.)
+
+
+&nbsp;&nbsp;
+
+* 증명을 위해 semiring에서의 $\mu^*$ 를 다음과 같이 정의하자; 
+$$
+\mu^*(A)=\inf\left\{ \sum_n \mu(A_n): A_1,A_2,\ldots\in \mathcal{A}, A\subset \cup_n A_n  \right\}, A\subset \Omega,
+$$
+위의 4가지 properties로 인해 $\mu^*$는 위의 outer measure를 설명한 lemma에서 1~3번을 만족시킨다. 때문에 $\mu^*$는 outer measure on $\mathcal{A}$이다. 또한 $M(\mu^*)$는 $\sigma$-field이고, $\mu^*$ restricted to $M(\mu^*)$은 measure이다.
+
+  여기서 아래 두가지를 증명한다면 Caratheodory Extension Theorem을 증명해낼 수 있다. 
+ 
+   * $\mathcal{A}\subset M(\mu^*)$ : $M(\mu^*)$이 $\sigma$-field이기 때문에 이는 $\sigma(\mathcal{A})\subset M(\mu^*)$이다. 때문에 $\mu^*$ restricted to $\mathcal{A}$도 measure이다. (Exercise)
+   * $\mu$ and $\mu^*$ agree on $\mathcal{A}$ : 이를 통해 $\mu$ and $\mu^*$ agree on $\sigma(\mathcal{A})$를 보인다.(Exercise)
+   
+&nbsp;&nbsp;
+
+결론
+
+##### Theorem(Caratheodory Extension Theorem)
+A measure $\mu$ on a field $\mathcal{F}$ has an extension to $\sigma(\mathcal{F})$. If $\mu$ is $\sigma$-finite on $\mathcal{F}$, then the extension is unique.

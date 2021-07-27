@@ -1,0 +1,43 @@
+---
+title: "1.6. Estimaton of Dispersion Parameter"
+output: html_document
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+##### Remark(ML estimation)
+If the dispersion parameter is unknown, its ML estimate, $\hat\phi$ may be obtained as a solution to the equation
+
+$$
+0 &=&\frac{dL}{d\phi}\Big|_{\beta=\hat\beta}\\
+  &=&
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)
+

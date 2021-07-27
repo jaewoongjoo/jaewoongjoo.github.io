@@ -1,0 +1,31 @@
+---
+title: "Courses"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+## Index
+
+
+[Probability Theory 1](./probability1.html)
+
+[Probability Theory 2](./probability2.html)
+
+[Decision Theory](./decision.html)
+
+[Generalized Linear Models](./glm.html)
+
+[Linear Models](./lm.html)
+
+&nbsp;
+
+[back](../index.html)

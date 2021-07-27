@@ -1,0 +1,22 @@
+---
+title: '210725'
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+Do more $\rightarrow$ better $\rightarrow$ harder $\rightarrow$ (more) agressive $\rightarrow$ greater.
+
+![](../pic/outliers.jpg){width=300}
+
+
+&nbsp;&nbsp;
+
+[back](../misc.html)

@@ -1,0 +1,21 @@
+---
+title: '210726'
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+![](../pic/210726.jpg){width=300}
+
+
+
+&nbsp;&nbsp;
+
+[back](../misc.html)

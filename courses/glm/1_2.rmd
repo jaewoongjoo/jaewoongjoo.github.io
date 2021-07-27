@@ -1,0 +1,134 @@
+---
+title: "1.2. Maximum Likelihood Estimation"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+Note that for $N$ independent observations, log likelihood is
+$$\begin{eqnarray*}
+l(\theta;y)&=&\log \prod_{i=1}^N f(y_i;\theta_i,\phi)\\
+           &=&\sum_{i=1}^N\log f(y_i;\theta_i,\phi)\\
+           &=&\sum_{i=1}^N \frac{y_i\theta_i-b(\theta_i)}{a(\phi)}+c(y_i;\phi).
+\end{eqnarray*}$$
+
+For the canonical link
+$$
+\sum_jx_{ij}\beta_j=\eta_i=g(\mu_i)=\theta_i.
+$$
+Thus, the kernel of log likelihood is
+$$\begin{eqnarray*}
+l(\beta)&=&\sum_{i=1}^Ny_i\sum_{j=0}^p x_{ij}\beta_j=\sum_{j=0}^p \beta_j \sum_{i=1}^Ny_i x_{ij}.
+\end{eqnarray*}$$
+Thus, the sufficient statistic for $\beta_j$ is $\sum_{i=1}^Ny_i x_{ij}$, $j=0,1,\ldots,p$.
+
+&nbsp;
+
+The contribution of the $i^{th}$ observation to log likelihood is
+$$
+l_i=\{ y_i \theta_i -b(\theta_i) \}/a(\phi)+c(y_i;\phi)
+$$
+
+Thus, we have
+$$\begin{eqnarray*}
+\frac{dl_i}{d\beta_j}&=& \frac{dl_i}{d\theta_i}\frac{d\theta_i}{d\mu_i}\frac{d\mu_i}{d\eta_i}\frac{d\eta_i}{d\beta_j}\\
+&=& \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i},
+\end{eqnarray*}$$
+
+because
+$$\begin{eqnarray*}
+\frac{dl_i}{d\theta_i}&=& \frac{y_i-\mu_i}{a(\phi)},\\
+\frac{d\theta_i}{d\mu_i}&=& \frac{1}{d\mu_i}/{d\theta_i}=\frac{1}{b''(\theta_i)},\\
+\frac{d\eta_i}{d\beta_j}&=&x_{ij}.
+\end{eqnarray*}$$
+
+Thus, *likelihood equation* is
+
+$$
+\sum_{i=1}^N \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}=0, \mbox{ for } j=0,1,\ldots,p.
+$$
+Note that
+
+1. $\beta$ implicitly in euqations through $\mu_i=g^{-1}(\sum_j\beta_jx_{ij})$.
+
+2. Likelihood equations depend on distribution of $Y_i$ only through $\mu_i$ and Var$(Y_i)$.
+
+&nbsp;&nbsp;
+
+##### Asymptotic Covariance Matrix 
+Recall maximum likelihood estimate of $\beta$ follows asymptotically normal s.t. 
+$$
+\hat{\beta}\sim N(\beta, I^{-1}),
+$$
+where $I=$information matrix =$\left\{ E\left[-\frac{d^2l(\beta)}{d\beta_j d\beta_h}\right]\right\}$. We have
+
+$$
+\frac{d^2l(\beta)}{d\beta_j d\beta_h}=\sum_{i=1}^N \left(\frac{d^2l_i}{d\beta_j d\beta_h} \right).
+$$
+Thus,
+$$\begin{eqnarray*}
+E\left[\frac{d^2l(\beta)}{d\beta_j d\beta_h}\right]&=& E\left[\sum_{i=1}^N \frac{d}{d\beta_h} \left(\frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}\right)\right]\\
+&=& E\left[\sum_{i=1}^N \frac{d\mu_i}{d\eta_h} \frac{d\eta_i}{d\beta_h} \frac{d}{d\mu_i} \left(\frac{(y_i-\mu_i)x_{ij}}{\text{V}(\mu_i)}\frac{d\mu_i}{d\eta_i}\right)\right]\\
+&=& E\left[\sum_{i=1}^N \frac{d\mu_i}{d\eta_h} \frac{d\eta_i}{d\beta_h} \left(\frac{-x_{ij}}{\text{V}(\mu_i)}\frac{d\mu_i}{d\eta_i}+(y_i-\mu_i)x_{ij}\frac{d}{d\mu_i}\left\{\frac{1}{\text{V}(\mu_i)}\frac{d\mu_i}{d\eta_i}   \right\}\right)\right]\\
+&=& \sum_{i=1}^N \frac{d\mu_i}{d\eta_h} x_{ih} \left(\frac{-x_{ij}}{\text{V}(\mu_i)}\frac{d\mu_i}{d\eta_i}\right)\\
+&=& \sum_{i=1}^N \frac{ -x_{ij}x_{ih} }{\text{V}(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2\\
+\end{eqnarray*}$$
+
+Therefore, we have
+$$
+I_{j,h}=-E\left[\frac{d^2l(\beta)}{d\beta_j d\beta_h}\right]= \sum_{i=1}^N \frac{ x_{ij}x_{ih} }{\text{V}(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2=\sum_{i=1}^N w_i x_{ij}x_{ih}
+$$
+where $w_i= \frac{1}{V(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2$.
+
+In a matrix form, we have
+$$
+I= X^TWX,
+$$
+where $W=\text{diag}\{w_1,w_2,\ldots,w_N\}.$
+
+Thus, 
+$$
+\hat{\text{Cov}}(\hat{\beta}) = I^{-1}= (X^T \hat{W} X)^{-1},
+$$
+where $\hat{W}$ is evaluated at $\hat{\beta}$.
+
+&nbsp;&nbsp;
+
+##### Examples
+* $Y_i\sim poisson(\mu_i)$: 
+
+  * Suppose $(\sum_jx_{ij}\beta_j=)\mbox{ }\eta_i=\log \mu_i \mbox{ }(=\theta_i)$ (canonical link).
+    
+    $\implies \log\mu=X\beta$ (log linear model),and $\mu_i=e^{\eta_i}$. 
+    
+    Thus, $\frac{d\mu_i}{d\eta_i}= e^{\eta_i}=\mu_i$, as well as $\text{Var}(Y_i)=\mu_i=e^{\eta_i}$.
+
+    The likelihood equations are
+    
+    $$
+    \sum_{i=1}^N \frac{(y_i-\mu_i)x_{ij}}{e^{\eta_i}}e^{\eta_i}=\sum_{i=1}^N (y_i-\mu_i)x_{ij}=0\\
+    \iff \sum_{i=1}^Ny_ix_{ij}= \sum_{i=1}^N\mu_i x_{ij}.
+    $$
+    
+    Also, $w_i= \frac{1}{V(\mu_i)}\left(\frac{d\mu_i}{d\eta_i}\right)^2=\mu_i^2/\mu_i=\mu_i$. Thus,
+    $$
+      \implies \hat{\text{Cov}}(\hat{\beta}) = I^{-1}= (X^T \hat{W} X)^{-1},
+    $$
+    where $\hat{W}$ is diagonal matrix with elements of $\hat{\mu}$.
+
+
+&nbsp;&nbsp;
+
+
+
+
+

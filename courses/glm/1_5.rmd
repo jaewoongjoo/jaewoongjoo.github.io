@@ -1,0 +1,124 @@
+---
+title: "1.5. Methods for Solving Likelihood Equations"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+&nbsp;&nbsp;
+
+Recall likelihood equations for $\beta$ are
+$$
+\sum_{i=1}^n\frac{(Y_i-\mu_i)x_{ij}}{V(\mu_i)}\frac{d\mu_i}{d\eta_i}=0,\mbox{ }\mbox{ }\mbox{ }j=0,1,\ldots,p.
+$$
+&nbsp;&nbsp;
+
+
+Let $\beta^{(t)}$ is the t-th approximation for ML estimate $\hat\beta$ of $\beta$. Then,
+
+##### Theorem 
+The *Newton Raphson* algorithm is a method getting $\beta$ iteratively such that 
+$$
+\beta^{(t+1)}=\beta^{(t)}-{H^{(t)}}^{-1}U(t), \mbox{ }\mbox{ } t=0,1,2,\ldots.
+$$
+where $U_j=\frac{dL(\beta)}{d\beta_j}$ (score), $H=\left\{-\frac{d^2L(\beta)}{d\beta_jd\beta_h}\right\}$ (observed information),
+
+Note that $U^{(t)}$ and $H^{(t)}$ are $U$ and $H$ evaluated at $\beta=\beta^{(t)}$.
+
+&nbsp;&nbsp;
+
+
+##### Theorem 
+Let 
+$$
+J=-E\left\{ \frac{d^2L(\beta)}{d\beta_jd\beta_h} \right\}=-E(H) \mbox{ (expected information matrix)}.
+$$
+Then, the *Fisher Scoring* algorithm is a method getting $\beta$ iteratively such that 
+$$
+\beta^{(t+1)}=\beta^{(t)}+{J^{(t)}}^{-1}U(t)\\
+\iff {J^{(t)}}\beta^{(t+1)}={J^{(t)}}\beta^{(t)}+U(t).
+$$
+
+
+&nbsp;&nbsp;
+
+##### Remark
+Suppose we have a linear model
+$$
+Z=X\beta+\epsilon,
+$$
+with $Var(\epsilon)=V$. Generalized Lease Squares (GLS) estimator of $\beta$ is 
+$$
+\hat\beta=(X'V^{-1}X)^{-1}X'V^{-1}Z.
+$$
+For any GLM, recall $J=X'WX$ where $W$ is diagonal with elements,
+$$\begin{eqnarray*}
+W&=& \text{diag}\left\{\left(\frac{d\mu_i}{d\eta_i}\right)^2/V(\mu_i)\right\}.\\
+D&=&\text{diag}\left(\frac{d\mu_i}{d\eta_i}\right).
+\end{eqnarray*}$$
+
+Also, 
+$$\begin{eqnarray*}
+U_j&=&\frac{dL(\beta)}{d\beta_j}=\sum_{i=1}^n\frac{(Y_i-\mu_i)x_{ij}}{V(\mu_i)}\frac{d\mu_i}{d\eta_i}=0,\\
+\implies U&=&X'WD^{-1}(Y-\mu). 
+\end{eqnarray*}$$
+
+Thus, note that we can express the Fisher scoring algorithm as
+$$\begin{eqnarray*}
+{J^{(t)}}\beta^{(t+1)}&=&{J^{(t)}}\beta^{(t)}+U(t)\\
+&=& (X'W^{(t)}X)\beta^{(t)}+ X'W^{(t)}{D^{(t)}}^{-1}(Y-\mu^{(t)}).\\
+&=& X'W^{(t)} [X\beta^{(t)}++ {D^{(t)}}^{-1}(Y-\mu^{(t)}) ]\\
+&=& X'W^{(t)}z^{(t)}
+\end{eqnarray*}$$
+where $z_i^{(t)}=\sum_j x_{ij}\beta_j^{(t)}+ (y_i-\mu_i^{(t)})\frac{d\eta_i}{d\mu_i}$. So, the Fisher scoring is
+$$
+(X'W^{(t)}X)\beta^{(t+1)}= X'W^{(t)}z^{(t)}\\
+\implies \beta^{(t+1)}= (X'W^{(t)}X)^{-1}X'W^{(t)}z^{(t)},
+$$
+which is a GLS estimator for "response" $z^{(t)}$ and covariance matrix ${W^{(t)}}^{-1}$.
+
+  *  즉 fisher scoring 은 response $z_i^{(t)}=\sum_j x_{ij}\beta_j^{(t)}+ \left(y_i-\mu_i^{(t)}\right)\frac{d\eta_i}{d\mu_i}=\eta_i^{(t)}+ \left(y_i-\mu_i^{(t)}\right)\frac{d\eta_i}{d\mu_i}$와 covariance matrix ${W^{(t)}}^{-1}$에 대한 GLS estimator를 update하는 문제로 바뀐다는 것이다.  
+
+
+Note that by the second order Taylor expansion
+$$
+g(y_i)\approx g(\mu_i)+(y_i-\mu_i)g'(\mu_i)=\eta_i+\left(y_i-\mu_i\right)\left(\frac{d\eta_i}{d\mu_i} \right)=z_i.
+$$
+So, "response" $z_i^{(t)}$ is a linearized version of $g(y_i)$, evaluated at $\mu_i=\mu_i^{(t)}$.
+
+   * 기존에 simple linear regression에서 GLS estimator는 response $Y\sim (X\beta,V)$에 대해 $\beta$를 추정하는 값이었다. 즉, 간단히 정리하자면 GLM에서 Fisher scoring algorithm은, response $g(y_i)$에 대하여 GLS estimator를 iteratively estimate하는 것으로 생각할 수 있다.
+
+   * Fisher schoring resgresses a "response" $z^{(t)}$ on $X$ with weight $W^{(t)}$ to obtain $\beta^{(t+1)}}
+$$
+   \rightarrow \eta^{(t+1)}=X\beta^{(t+1)}.
+$$
+
+&nbsp;&nbsp;
+
+##### Note
+Canonical link 에 대해서는 Fisher scoring algorithm과 Newton-raphson 알고리즘은 같다 (Likelihood equation을 두번 미분하여 구한 값이 Y에 dependent하지 않기 때문에 expectation의 영향을 받지 않기 때문이다).
+
+하지만 가정한 link가 canonical link가 아니라면, 두 알고리즘은 다른 iterative procedure를 보여준다.
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)
+

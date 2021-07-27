@@ -1,0 +1,19 @@
+---
+title: "Researches"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+### Index
+
+TBD

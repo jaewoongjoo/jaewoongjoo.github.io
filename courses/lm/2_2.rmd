@@ -1,0 +1,56 @@
+---
+title: "2.2. Independence of Random Vectors"
+output: html_document
+fontsize: 15pt
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+
+##### Proposition
+Let 
+$$
+\begin{pmatrix}X_1\\X_2 \end{pmatrix}\sim N\left( {\mu_1\choose \mu_2}, \begin{pmatrix}\Sigma_{11}& \Sigma_{12}\\\Sigma_{21}& \Sigma_{22} \end{pmatrix}\right).
+$$
+Then, $X_1$ and $X_2$ are independent $\iff$ $\Sigma_{12}=\Sigma_{21}=0$.
+
+
+  * $\text{Cov}(X_1,X_2)$가 0행렬이라면, $X_1,X_2$는 independent하다. 
+  
+  
+&nbsp;&nbsp;
+
+
+##### Theorem 
+If $X\sim N_p(\mu, \Sigma)$ and $A\Sigma B'=0$, then $AX$ and $BX$ are independent.
+
+  * ${AX \choose BX}\sim  N \left( \begin{pmatrix} A\mu \\ B\mu \end{pmatrix},  \begin{pmatrix} A\Sigma A'& A\Sigma B'\\ (A\Sigma B')'& B\Sigma B'\end{pmatrix} \right)$. 
+  
+    $\text{Cov}(AX,BX)= A\Sigma B'=0\iff AX\perp BX.$  
+
+  * 확장: If $X\sim N_p(\mu, \Sigma)$ and $A_1,\ldots,A_k$ saitsfy $A_i\Sigma A_j'=0$ for $i\ne j$, then $A_1X$ and $A_kX$ are independent.
+
+&nbsp;&nbsp;
+
+##### Theorem 
+Suppose $Y\sim N(\mu,\sigma^2I).$ If $P_1,\ldots,P_k$ are orthogonal projections satisfying $P_iP_j=0$ for $i\ne j$, then
+
+1. $P_1Y,P_2Y,\ldots ,P_kY$ are independent;
+
+2. $||P_1Y||^2,\ldots,||P_kY||^2$ are independent;
+
+3. $P_iY\sim N(P_i\mu, \sigma^2P_i)$.
+
+
+  * $P_i$들은 symmetric하고 idempotent하다. 또한 $P_iP_j=0$이기 때문에 이는 orthogonal decomposition이고 $\text{range}(P_i)\perp\text{range}(P_j)$이다. 또한 $\text{range}(P)=\text{range}(P_1)\oplus\cdots\oplus\text{range}(P_k)$이다. 
+
+&nbsp;&nbsp;
