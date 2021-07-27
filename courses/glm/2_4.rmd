@@ -1,0 +1,78 @@
+---
+title: "2.4. Probit Model"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+##### Remark(Motivation)
+
+1. Latent variable model with threshold:
+   
+   Suppose that there is underlying normal response $Y^*$ and we observe (WLOG, $\tau=0$)
+$$
+y_i=\begin{cases}0, & \mbox{ if }y_i^*\le \tau \mbox{ (threshold) }\\ 1, & \mbox{ if }y_i^* > \tau.\end{cases}
+$$
+
+   Suppose $y_i^*=\alpha+\beta x_i+\epsilon_i$, where $\epsilon_i$ iid $N(0,1)$. Then,
+
+$$\begin{eqnarray*}
+   P(Y_i=1) &=& P(Y_i^*>0) \mbox{ }\mbox{ }\mbox{ (여기서 } P(Y_i^*>0)\mbox{이 아닌 } P(Y_i^*>\tau)\mbox{더라도 } \alpha^*=\alpha-\tau \mbox{로서 상쇄된다.}) \\
+   &=& P(\epsilon_i>-(\alpha+\beta x_i))\\
+   &=& 1-\Phi(-(\alpha+\beta x_i))\\
+   &=& \Phi(\alpha+\beta x_i),  \mbox{ where } \beta=  \mbox{change in } E(Y^*) \mbox{ for 1-unit increase in } x_i.
+\end{eqnarray*}$$
+   
+   &nbsp;&nbsp;
+  
+2. Normal tolerance distribution(Bliss, 1935):
+
+   It has been used frequently in toxicology. 
+   
+   $(x_i,y_i)=($dosage, response$)$ for subject $i$, where $y_i=1$ if $i$-th subject death, 0 otherwise. 
+
+   Suppose tolerance $T\sim N(\mu,\sigma^2)$. Then, $Y_i=1 \iff T_i \le x_i$.
+
+   Note that   
+   
+$$\begin{eqnarray*}
+\pi_i&=&P(Y_i=1)\\
+&=&P(T_i\le x_i)\\
+&=&P\left(\frac{T_i-\mu}{\sigma}\le \frac{x_i-\mu}{\sigma}\right)\\
+&=&\Phi\left(\frac{x_i-\mu}{\sigma}\right)=\Phi(\alpha+\beta x_i)
+\end{eqnarray*}$$
+  
+   where $\alpha=-\frac{\mu}{\sigma}$, $\beta=\frac{1}{\sigma}$.
+
+&nbsp;&nbsp;
+
+
+##### Remark(Probit likelihood equations)
+Recall likelihood equations for binary GLM are
+$$
+\sum_{i=1}^n \frac{n_i(y_i-\pi_i)x_{ij} f(\eta_i)}{\pi_i(1-\pi_i)}=0, \mbox{ }\mbox{ }j=0,1,\ldots,p,
+$$
+where $\pi_i=F(\sum_j \beta_jx_{ij})$ and $f(\eta_i)=F'(\eta_i)$ $(n_iY_i\sim \text{Bin}(n_i,\pi_i)$.  
+
+For probit model, the likelihood equation is
+$$
+\sum_{i=1}^n \frac{n_i(y_i-\pi_i)x_{ij} \phi(\sum_j\beta_jx_{ij})}{\pi_i(1-\pi_i)}=0, \mbox{ }\mbox{ }j=0,1,\ldots,p,
+$$
+where $\phi(u)=\frac{1}{\sqrt{2\pi}}e^{-u^2/2}.$
+
+&nbsp;&nbsp;
+
+   * 결국 Binomial 분포에서의 $\text{Var}(Y_i)=\frac{\pi_i(1-\pi_i)}{n_i}$는 그대로 이용하고, c.d.f인 $F(\eta_i)$에서만 logistic c.d.f 또는 standard normal c.d.f를 사용하는지만 다르다.
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)

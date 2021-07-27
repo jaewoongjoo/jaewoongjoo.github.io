@@ -366,6 +366,55 @@ pre {
 <p>Recall for a GLM, the likelihood equations are <span class="math display">\[
 \sum_{i=1}^N \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\left(\frac{d\mu_i}{d\eta_i}\right)=0, \mbox{ }j=0,1,\ldots,p.
 \]</span></p>
+<p>For a binary GLM, <span class="math inline">\(n_iY_i\sim \text{Bin}(n_i,\pi_i)\)</span>, where <span class="math inline">\(\pi_i=F(\sum_j \beta_jx_{ij})\)</span> or <span class="math inline">\(\mu_i=\pi_i=F(\eta_i)\)</span> for some c.d.f <span class="math inline">\(F\)</span>.</p>
+<p>So, <span class="math inline">\(\frac{\mu_i}{\eta_i}=f(\eta_i)\)</span> where <span class="math inline">\(f(u)=\frac{dF(u)}{du}\)</span>.</p>
+<p> </p>
+<p>Likelihood equations are <span class="math display">\[
+\sum_{i=1}^N \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\left(\frac{d\mu_i}{d\eta_i}\right)= \sum_{i=1}^N \frac{\{y_i-F(\sum_j \beta_jx_{ij})\}x_{ij} f(\sum_j \beta_jx_{ij})}{F(\sum_j \beta_jx_{ij})\left\{1-F(\sum_j \beta_jx_{ij})\right\}/n_i }=0, \mbox{ }\mbox{ }j=0,1,\ldots,p.
+\]</span></p>
+<p>  </p>
+</div>
+<div id="examples" class="section level5">
+<h5>Examples</h5>
+<ol style="list-style-type: decimal">
+<li><p>Identity link : <span class="math inline">\(F(u)=u, 0&lt;u&lt;1\)</span> (uniform c.d.f)</p>
+<p>Model <span class="math inline">\(\pi_i=\sum_j \beta_jx_{ij}\)</span> called <em>linear probability model</em>.</p></li>
+</ol>
+<p> </p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Logit link : <span class="math inline">\(F(u)=\frac{e^u}{1+e^u}\)</span>(logistic c.d.f)</p>
+<p>Model <span class="math inline">\(\pi_i=\frac{e^{\sum_j \beta_jx_{ij}}}{1+e^{\sum_j \beta_jx_{ij}}}\)</span> called <strong>logit model</strong>.</p></li>
+</ol>
+<ul>
+<li><p>Recall for a GLM with canonical link, <span class="math display">\[
+   l(\beta)= \sum_{i=1}^n l_i,\\
+   \frac{dl_i}{d\beta_j}=\frac{(y_i-\mu_i)x_{ij}}{a(\phi)}\\
+   \implies \frac{l(\beta)}{d\beta_j}=\sum_{i=1}^n \frac{y_i-\mu_i}{a(\phi)}=0\\
+   \iff \sum_{i=1}^n \frac{y_ix_{ij}}{a(\phi)}= \sum_{i=1}^n \frac{\mu_ix_{ij}}{a(\phi)}.
+   \]</span></p>
+<p>For <span class="math inline">\(n_iY_i\sim \text{Bin}(n_i, \pi_i)\)</span>, <span class="math inline">\(a(\phi)=1/n_i\)</span>, <span class="math display">\[
+   \sum_i n_iy_ix_{ij}= \sum_i n_i\pi_ix_{ij}\\
+   \mbox{ or }\\
+   \sum_i y_i^*x_{ij}= \sum_i n_i\pi_ix_{ij},
+   \]</span> where <span class="math inline">\(Y_i^*=n_iY_i\sim \text{Bin}(n_i,\pi_i)\)</span>.</p></li>
+</ul>
+<p> </p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Probit link : <span class="math inline">\(F(u)=\Phi(u)\)</span>(standard normal c.d.f)</p>
+<p>Model <span class="math inline">\(\pi_i= \Phi(\sum_j\beta_jx_{ij})\)</span> is called <strong>probit model</strong>.</p></li>
+</ol>
+<ul>
+<li><p>Suppose we have <span class="math inline">\(p=1\)</span> predictor.</p>
+<p><span class="math inline">\(\pi_i=\Phi(\alpha+\beta x_i)=\Phi\left(\frac{x_i-\mu}{\sigma}\right)\)</span> with <span class="math inline">\(\sigma=1/\beta\)</span>, and <span class="math inline">\(\mu=-\alpha/\beta\)</span>.</p>
+<p>So, <span class="math inline">\(\pi_i=\frac{1}{2}\)</span> at <span class="math inline">\(x=-\alpha/\beta=\)</span>distance between points where <span class="math inline">\(\pi_i=1/2\)</span>, and <span class="math inline">\(\Phi(1)=0.84\)</span> or <span class="math inline">\(\pi=\Phi(-1)=0.16\)</span>.</p></li>
+<li><p>Rate of change in <span class="math inline">\(\pi(x)= \frac{d\pi(x)}{dx}= \beta \phi(\alpha+\beta x)\)</span> is highest when <span class="math inline">\(\alpha+\beta x=0\)</span>, i.e., <span class="math inline">\(x=-\alpha/\beta\)</span>, where <span class="math inline">\(\pi(x)=1/2\)</span>.</p>
+<p>When it equals <span class="math inline">\(\beta/\sqrt{2\pi}=0.40\beta\)</span>.</p></li>
+</ul>
+<p> </p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>log-log link : <span class="math inline">\(F(u)=\exp[-\exp(-u)]\)</span> (c.d.f of extreme value distribution)</p>
+<p>Model <span class="math inline">\(\pi_i= \exp[-\exp(-\sum_j \beta_j x_{ij})] \iff \sum_j \beta_jx_{ij}=-\log (-\log \pi_i)\)</span>.</p></li>
+</ol>
 <p>  </p>
 <p><a href="../glm.html">back</a></p>
 </div>

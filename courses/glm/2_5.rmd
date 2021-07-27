@@ -1,0 +1,51 @@
+---
+title: "2.5. Log-log Links"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+##### Remark(Motivation)
+
+1. Use $F$ for extreme value distribution
+$$
+F(u)= \exp\{-\exp(-u)\}.
+$$
+Two-parameter extreme value distribution (Gumbel distribution) is
+$$\begin{eqnarray*}
+&&F(x;a,b)=\exp\left\{-\exp\left(-\frac{x-a}{b}\right)\right\}, \mbox{ }\mbox{ } -\infty<a<\infty,\\
+&&E(X)=a+b(0.577), \mbox{ } \sigma(X)=\frac{\pi b}{\sqrt{6}}.
+\end{eqnarray*}$$
+  
+The binary GLM has form
+
+$$\begin{eqnarray*}
+&&\pi_i=\exp\{-\exp(\sum_j \beta_j x_{ij})\}\\
+&\iff& \log(-\log \pi_i) =\sum_j \beta_j x_{ij} \mbox{ : log-log link,}\\
+&\mbox{ }& \log(-\log (1-\pi_i))= \sum_j \beta_j x_{ij} \mbox{ : complementary log-log link.}
+\end{eqnarray*}$$
+   
+   * Complementary log-log model for $\pi_i$ = log-log model for $1-\pi_i$.
+
+&nbsp;&nbsp;
+
+##### Remark(Interpretation)
+For the two complementary log-log model, we have
+$\log\left\{-\log (1-\pi_i)\right\}$-$\log\left\{-\log (1-\pi_h)\right\}=\beta'(x_i-x_h)$. So
+$$
+\frac{\log(1-\pi_i)}{\log(1-\pi_h)}=\exp\{ \beta'(x_i-x_h)\}\\
+\iff 1-\pi_i= (1-\pi_h)^{\exp\{\beta'(x_i-x_h)\}}.
+$$
+So, $P(\text{failure})$ at $x_i$ is power $\exp\{\beta'(x_i-x_h)\}$ of $P(\text{failure})$ at $x_h$.
+
+&nbsp;&nbsp;
+
+[back](../glm.html)

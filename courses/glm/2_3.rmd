@@ -20,7 +20,70 @@ $$
 \sum_{i=1}^N \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\left(\frac{d\mu_i}{d\eta_i}\right)=0, \mbox{ }j=0,1,\ldots,p.
 $$
 
+For a binary GLM, $n_iY_i\sim \text{Bin}(n_i,\pi_i)$, where $\pi_i=F(\sum_j \beta_jx_{ij})$ or $\mu_i=\pi_i=F(\eta_i)$ for some c.d.f $F$. 
 
+So, $\frac{\mu_i}{\eta_i}=f(\eta_i)$ where $f(u)=\frac{dF(u)}{du}$.
+
+&nbsp;
+
+Likelihood equations are
+$$
+\sum_{i=1}^N \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\left(\frac{d\mu_i}{d\eta_i}\right)= \sum_{i=1}^N \frac{\{y_i-F(\sum_j \beta_jx_{ij})\}x_{ij} f(\sum_j \beta_jx_{ij})}{F(\sum_j \beta_jx_{ij})\left\{1-F(\sum_j \beta_jx_{ij})\right\}/n_i }=0, \mbox{ }\mbox{ }j=0,1,\ldots,p.
+$$
+
+&nbsp;&nbsp;
+   
+
+##### Examples
+
+1. Identity link : $F(u)=u, 0<u<1$ (uniform c.d.f)
+
+   Model $\pi_i=\sum_j \beta_jx_{ij}$ called *linear probability model*.
+
+&nbsp;
+
+2. Logit link : $F(u)=\frac{e^u}{1+e^u}$(logistic c.d.f)
+
+    Model $\pi_i=\frac{e^{\sum_j \beta_jx_{ij}}}{1+e^{\sum_j \beta_jx_{ij}}}$ called **logit model**.
+   
+  * Recall for a GLM with canonical link, 
+   $$
+   l(\beta)= \sum_{i=1}^n l_i,\\
+   \frac{dl_i}{d\beta_j}=\frac{(y_i-\mu_i)x_{ij}}{a(\phi)}\\
+   \implies \frac{l(\beta)}{d\beta_j}=\sum_{i=1}^n \frac{y_i-\mu_i}{a(\phi)}=0\\
+   \iff \sum_{i=1}^n \frac{y_ix_{ij}}{a(\phi)}= \sum_{i=1}^n \frac{\mu_ix_{ij}}{a(\phi)}.
+   $$
+
+    For $n_iY_i\sim \text{Bin}(n_i, \pi_i)$, $a(\phi)=1/n_i$, 
+   $$
+   \sum_i n_iy_ix_{ij}= \sum_i n_i\pi_ix_{ij}\\
+   \mbox{ or }\\
+   \sum_i y_i^*x_{ij}= \sum_i n_i\pi_ix_{ij},
+   $$
+    where $Y_i^*=n_iY_i\sim \text{Bin}(n_i,\pi_i)$.
+
+&nbsp;
+
+3. Probit link : $F(u)=\Phi(u)$(standard normal c.d.f)
+
+   Model $\pi_i= \Phi(\sum_j\beta_jx_{ij})$ is called **probit model**.
+   
+  * Suppose we have $p=1$ predictor. 
+   
+    $\pi_i=\Phi(\alpha+\beta x_i)=\Phi\left(\frac{x_i-\mu}{\sigma}\right)$ with $\sigma=1/\beta$, and $\mu=-\alpha/\beta$.
+
+    So, $\pi_i=\frac{1}{2}$ at $x=-\alpha/\beta=$distance between points where $\pi_i=1/2$, and $\Phi(1)=0.84$ or $\pi=\Phi(-1)=0.16$. 
+
+
+  * Rate of change in $\pi(x)= \frac{d\pi(x)}{dx}= \beta \phi(\alpha+\beta x)$ is highest when $\alpha+\beta x=0$, i.e., $x=-\alpha/\beta$, where $\pi(x)=1/2$.
+   
+    When it equals $\beta/\sqrt{2\pi}=0.40\beta$.
+    
+&nbsp;
+
+4.  log-log link : $F(u)=\exp[-\exp(-u)]$ (c.d.f of extreme value distribution)
+
+    Model $\pi_i= \exp[-\exp(-\sum_j \beta_j x_{ij})] \iff \sum_j \beta_jx_{ij}=-\log (-\log \pi_i)$.
 
 &nbsp;&nbsp;
 

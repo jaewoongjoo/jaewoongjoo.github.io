@@ -48,6 +48,10 @@ pre {
 
 [2.3. Likelihood Equations for Binary GLMs](./glm/2_3.html)
 
+[2.4. Probit Model](./glm/2_4.html)
+
+[2.5. Log-log Links](./glm/2_5.html)
+
 &nbsp;&nbsp;
 
 [back](../index.html)
