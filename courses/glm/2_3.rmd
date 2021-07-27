@@ -1,0 +1,27 @@
+---
+title: "2.3. Likelihood Equations for Binary GLMs"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+##### Remark
+
+Recall for a GLM, the likelihood equations are
+$$
+\sum_{i=1}^N \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\left(\frac{d\mu_i}{d\eta_i}\right)=0, \mbox{ }j=0,1,\ldots,p.
+$$
+
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)

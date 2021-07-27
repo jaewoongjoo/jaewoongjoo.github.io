@@ -403,7 +403,16 @@ I_\beta=\phi^{-1}X'WX.
 <p>In contrast, the information about <span class="math inline">\(\phi\)</span> is the same as in the unit weight case, and therefore does not increase with the weights.(<span class="math inline">\(i_\phi=\frac{n}{2\phi^2}\)</span>).</p>
 <p>Thus, <span class="math inline">\(\hat\beta\)</span> is consistent and asymptotically normal with increasing weights, but <span class="math display">\[
 \hat\phi=\frac{1}{n}\sum_{i=1}^n m_i(y_i-x_i'\hat\beta)^2
-\]</span> is not.   </p>
+\]</span> is not.</p>
+<p>  </p>
+<ul>
+<li><p>정리하면 Normal linear model에서 <span class="math inline">\(\hat\beta\stackrel{\text{approx}}{\sim}N(\beta, \phi(X'X)^{-1})\)</span>였다.</p>
+<p>Generalized Linear Model에서는 GLS estimator <span class="math inline">\(\hat\beta\)</span> 에 대해 <span class="math inline">\(\hat\beta\stackrel{\text{approx}}{\sim}N(\beta, \phi(X'WX)^{-1})\)</span>이다.</p></li>
+<li><p>1.2에서 구했던 <span class="math inline">\(\text{Var}(\hat\beta)=(X'WX)^{-1}\)</span>는 <span class="math inline">\(\phi=1\)</span>임을 가정하고 derive했다는 것을 명심하자.</p>
+<p>실제로 우리가 다루었던 example들에서 binomial, poisson은 <span class="math inline">\(\phi=1\)</span>이지만, Normal은 <span class="math inline">\(\phi=\sigma^2\)</span>를 갖는다.</p>
+<p>때문에 Normal 분포가정에서는 <span class="math inline">\(\phi\)</span>를 무시할 수 없고 <span class="math inline">\(\hat\beta\stackrel{\text{approx}}{\sim}N(\beta, \phi(X'WX)^{-1})\)</span>로 생각해야 한다.</p></li>
+</ul>
+<p>  </p>
 <p><a href="../glm.html">back</a></p>
 </div>
 

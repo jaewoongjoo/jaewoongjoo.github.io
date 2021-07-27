@@ -1,0 +1,168 @@
+---
+title: "1.1. General Non-Sequential Decision Problem"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+&nbsp;&nbsp;
+
+##### Remark
+
+The general non-sqeuqntial decision theory consists of three basic elements;
+
+1. parameter space : A nonempty set $\Theta$, possible states of nature,
+
+2. actions : A nonempty set $A$ available to statisticians,
+
+3. loss function : $L(\theta,a)$, mapping from $\Theta\times A$ to $\mathbb{R}$.
+
+ 
+&nbsp;&nbsp;
+
+##### Definition (Non-randomized Decision Rule)
+Consider a function $\delta:\mathcal{X}\rightarrow\Theta$. If $X=x$ is observed, and $\theta$ is the true parameter, the loss incurred is $L(\theta, \delta(x))$. Note that $L(\theta, \delta(X))$ is a random variable. The **average loss** or **risk** is given by
+$$
+R(\theta, \delta)= E_\theta [L(\theta, \delta(X))]=\int L(\theta, \delta(x))f_\theta(x)dx \mbox{ or } \sum L(\theta, \delta(x))f_\theta(x).
+$$
+&nbsp;
+
+  * Decision Theory 에서 
+     1. $\theta$는 우리가 알고자 하는 state of nature, 
+     2. $X=x$는 통계학자들이 수집한 데이터,
+     3. $\delta(x)$는 데이터를 통해 결정한 parameter 추정값 (통계학자들의 action),
+     4. $L(\theta, \delta(x))$는 State of nature와 추정값의 차이이다. 
+
+&nbsp;&nbsp;
+
+##### Remark 
+The fundamental problem of decision theory is to choose the best decision rule that has **the smallest risk uniformly for all** $\theta\in \Theta$. But, **such a decision rule usually does not exist.**
+
+   * Example : Let $X_1,\ldots, X_{16} \stackrel{\text{iid}}{\sim}N(\theta, 1)$. Point estimate of $\theta$?
+   
+      Let $L(\theta, a)=(\theta-a)^2$. 
+      
+      suggested : $\delta_1(X)=\frac{1}{16}=\bar{X}$, $\delta_2(X)=0$.
+  
+      $\implies$ $R(\theta,\delta_1)=\frac{1}{16}$, $R(\theta,\delta_2)= \theta^2$. 비교가 불가능하다.
+
+   * Best Decision Rule을 구하기 위해 Smallest risk를 구하고 싶지만 항상 존재하지 않는다. 이에 보완책으로 두가지 방법을 사용한다. 
+   
+     1. Bayes Principle
+     2. Minimax Principle 
+
+
+\vspace{2cm}
+
+&nbsp;&nbsp;
+
+*아래 두 정의는 Bayes principle에 대한 설명*
+
+##### Definition
+The **Bayes risk** of a decision rule $\delta$ w.r.t a prior distribution $\xi$ denoted by $r(\xi,\delta)$ is defined by 
+$$
+r(\xi,\delta)=E[R(\omega,\delta)],
+$$
+where $\omega$ is a random variable assuming values $\theta\in \Theta$ with a distribution $\xi$.
+
+
+  * Bayes principle은  **prior distribuiton** of $\theta$를 이용한다.
+
+
+&nbsp;&nbsp;
+
+##### Definition
+A decision rule $\delta_\xi$ is **Bayes** w.r.t a prior distribution $\xi$ if 
+$$
+r(\xi, \delta_\xi)=\inf_{\delta\in D}r(\xi,\delta).
+$$
+
+
+&nbsp;&nbsp;
+
+##### Definition
+A decision rule $\delta_\xi$ is **\epsilon-Bayes** w.r.t a prior distribution $\xi$ if for $\epsilon > 0$,
+$$
+r(\xi, \delta_\xi)\le\inf_{\delta\in D}r(\xi,\delta)+\epsilon. 
+$$
+
+
+  * 정리하자면 Bayes Principle은 Statistician은 Bayes risk를 최소로 갖는 $\delta$ 를 Action으로 선택한다는 것이다.
+
+
+
+&nbsp;&nbsp;
+
+*아래부터는 Minimax*
+
+##### Definition(Minimax principle)
+A decision rule $\delta_1$ is preferred to a decision rule $\delta_2$ if 
+$$
+\sup_\theta R(\theta, \delta_1) <\sup_\theta R(\theta, \delta_2)
+$$
+
+  * Minimax principle은 여러 액션들 중 worst인 경우의 Risk가 더 작은 Action을 선택한다는 것이다. 
+  
+  * Minimax principle은 ordering과 관련이 있다. 즉 worst인 경우의 Risk가 작은 순서대로 action에 order를 줄 수 있다.
+
+&nbsp;&nbsp;
+
+##### Definition(Minimax)
+A decision rule $\delta_D$ is **Minimax** if
+$$
+\sup_{\theta\in\Theta} R(\theta, \delta_D) = \inf_{\delta\in D} \sup_{\theta\in\Theta}  R(\theta, \delta).
+$$
+  * Minimax는 모든 액션 $\delta\in D$중 worst인 경우의 Risk가 가장 작은 Action이다. 
+
+##### Definition($\epsilon$-Minimax)
+A decision rule $\delta_D$ is **$\epsilon$-Minimax** if for $\epsilon > 0$,
+$$
+\sup_{\theta\in\Theta} R(\theta, \delta_D) \le \inf_{\delta\in D} \sup_{\theta\in\Theta}  R(\theta, \delta)+\epsilon.
+$$
+&nbsp;&nbsp;
+
+
+
+
+
+##### Remark(Randomized Decision Rules)
+
+Suppose $D$ is the space of all non-randomized decision rules. We extend $D$ to $D^*$ which is the space of all probability distributions over $D$, e.g., suppose $D=\{\delta_1.\delta_2,\delta_3,\delta_4\}$. A typical element of $D^*$ is a probability distribution $\delta^*$ such that $\delta^*$ assigns probability $\zeta_i$ to $\delta_i$, $\zeta_i\ge 0$, $i=1,2,3,4$, $\sum_i \zeta_i =1$.
+
+In general, we write the risk function corresponding to $\delta^*$ as 
+$$
+R(\theta,\delta^*)= E[R(\theta,Y)],
+$$
+ where $Y$ is a random variable assuming values in $D$ with distribution given by $\delta^*$.
+&nbsp;&nbsp;
+
+
+  * 즉, Non-Randomized decision rule 은 $\delta$들이 주어져 있고 Random하지 않지만, Randomized Decision Rules에선 $\delta$들의 random하게 분포가 주어진다. 때문에 Risk를 구할 때 $\delta$ 들에 대해 한번 더 기대값을 취한다. 
+
+&nbsp;&nbsp;
+
+### 내용요약
+통계학자들은 true nature $\theta$에 대해, 주어진 data인 $X=x$를 가지고 추정을 한다. 이를 Action이라고 명명하고 $\delta(x)$를 action이라 하자. 
+
+하지만 당연히 $\theta$와  $\delta(x)$ 사이에 차이값이 존재하고 이를 Loss라고 하며 $L(\theta,\delta(x))$라 한다. 
+
+이 때 통계학자들의 목적은 이 Loss를 가장 적게 갖는 action $\delta$를 구하는 것이 목적이며 이는 $E_\theta(L(\theta,\delta(X)))=R(\theta,\delta)$를 최소로 만들어주는 $\delta$를 구하는 문제로 바뀐다. 
+
+하지만 이 $\delta$를 항상 구할 수 있는 것이 아니고 minimum 또는 infimum을 구할 수 없을 때가 존재한다. 때문에 이에 두가지 방법이 사용된다.
+
+1. $\theta$의 분포를 알고 있는 경우(prior) $E[R(\theta,\delta)]$가 최소값을 갖게하는 $\delta$를 선택(Bayes Principle),
+
+2. Worst Case 에서 가장 risk를 최소로 주는 $\delta$를 선택(Minimax).
+
+
+&nbsp;&nbsp;
+
+[back](../decision.html)

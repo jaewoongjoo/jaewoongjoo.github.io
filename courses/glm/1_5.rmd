@@ -111,13 +111,6 @@ Canonical link 에 대해서는 Fisher scoring algorithm과 Newton-raphson 알�
 
 
 
-
-
-
-
-
-
-
 &nbsp;&nbsp;
 
 [back](../glm.html)

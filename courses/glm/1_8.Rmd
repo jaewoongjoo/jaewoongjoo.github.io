@@ -1,0 +1,95 @@
+---
+title: "1.8. Hypothesis Testing"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+이 chapter의 목적은 Nested model이 hold 하는지에 대해 어떻게 Test하는지, 또 어떤 statistic을 사용하는지에 대해 다루는 것이다.  
+
+##### Remark
+1. Wald test: we may test the hypothesis $H_0: \beta_j=\beta_{j0}$, by comparing the statistic
+$$
+Z=\frac{\hat\beta_j-\beta_{j0}}{\sqrt{\hat{\text{Var}}(\hat\beta_j})}
+$$
+   to a standard normal distribution. Equivalently, one could compare $Z^2=\frac{(\hat\beta_j-\beta_{j0})^2}{\hat{\text{Var}}(\hat\beta_j)}$ to a chi-squared distribution with $\text{df}=1$.
+
+   More generally, suppose $L$ is a $k\times(p+1)$ matrix of rank $r(1\le r \le k)$. Then,
+$$
+L\hat\beta\sim N(L\beta, \phi L(X'WX)^{-1}L'),
+$$
+   where $W=\text{diag}\{\frac{d\mu_1}{d\eta_1}/V(\mu_1),\ldots,\frac{d\mu_n}{d\eta_n}/V(\mu_n)\}$.
+   
+   The Wald statistic for testing $H_0:L\beta=c$ is given by
+   $$
+   \text{Wald}\stackrel{H_0}{=} \frac{1}{\hat\phi}(L\hat\beta-c)'\{ L(X'\hat WX)^{-1}L'\}^-(L\hat\beta-c)  \stackrel{\text{approx}}{\sim} \chi^2_r \mbox{ if }n  \mbox{ is large}.
+   $$
+   Note that the Wald statistic is invariant to the choice of generalized inverse. 
+
+
+    * 이미 알고 있는 $F$-test(with a linear contrast $L$)와는 다르다. 
+
+&nbsp;&nbsp;
+
+2. Analysis of deviance (LR test):
+
+   Let $H_0: \beta_{p-r+1}=\cdots = \beta_p=0$; i.e., the responses are conditionally independent of $x_{p-r+1},\ldots, x_{p}$ given $x_1,\ldots,x_{p-r}$. 
+
+   LR statistic comparing model is 
+   $$\begin{eqnarray*}
+   \Lambda&=& -2\{l(\hat\mu_0;y)-l(\hat\mu_1;y)\}\\
+   &=& D(y;\hat\mu_0)/a(\phi)- D(y;\hat\mu_1)/a(\phi)\\
+   &=& 2\sum_{i=1}^n w_i\{y_i(\hat\theta_{i1}-\hat\theta_{i0})-b(\hat\theta_{i1})+b(\hat\theta_{i0}) \}/\phi \mbox{ }\mbox{ }\mbox{ }( \because a(\phi)=\phi/w_i) \\
+   &\stackrel{d}{\rightarrow}&  \chi^2_r \mbox{, under regularity condition. }
+   \end{eqnarray*}$$
+
+
+&nbsp;&nbsp;
+
+
+3. Score test: The score function is the gradient vector obtained by differentiating the log-likelihood with respect to the parameters. 
+
+   With parameter $\Psi$, let $U(\Psi)$ denote the score function and $I_\Psi$ the Fisher information. Then, we want to test
+   $$
+   H_0:\Psi=\Psi_0.
+   $$
+
+   If the score function is asymptotically normal, then the score test statistic $S$ is
+   $$
+   S(\Psi_0)=U(\Psi_0)'I_{\Psi_0}^{-1}U(\Psi_0)\stackrel{d}{\rightarrow} \chi_r^2 \mbox{ as } n\rightarrow \infty \mbox{ under }H_0.
+   $$
+   where $r=\text{dim}(\Psi)$.
+
+   * Score statistic의 가장 큰 장점은 null model fit만 있으면 구할 수 있다는 것이다 (Wald나 Deviance의 statistic은 위에서 보다시피 estimates under alternative model이 필요하다.)
+
+
+   * Examples: Binomial $Y\sim \text{Bin}(m, \mu)$. Let $H_0:\mu=\mu_0$.
+
+   Then we have the following results:
+    $$\begin{eqnarray*}
+    l(\mu;y)=y\log\mu+(m-y)\log(1-\mu),\\
+    \implies U(\mu)=\frac{y}{\mu}-\frac{m-y}{1-\mu}=\frac{y-m\mu}{\mu(1-\mu)},\\
+    I_\mu=\frac{m}{\mu}+\frac{m}{1-\mu}=\frac{m}{\mu(1-\mu)}.
+    \end{eqnarray*}$$
+    
+    Thus, 
+    $S(\mu_0)= U(\mu_0)'I_{\mu_0}^{-1}U(\mu_0)= \frac{(y-m\mu_0)^2}{m\mu_0(1-\mu_0)}\stackrel{d}{\rightarrow}\chi^2_1$ as $m \rightarrow \infty$ under $H_0$.
+
+
+
+
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)
+

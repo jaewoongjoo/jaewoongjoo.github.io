@@ -81,7 +81,22 @@ $$
 \hat\phi=\frac{1}{n}\sum_{i=1}^n m_i(y_i-x_i'\hat\beta)^2
 $$
 is not. 
+
 &nbsp;&nbsp;
+
+
+  * 정리하면 Normal linear model에서 $\hat\beta\stackrel{\text{approx}}{\sim}N(\beta, \phi(X'X)^{-1})$였다. 
+  
+    Generalized Linear Model에서는 GLS estimator $\hat\beta$ 에 대해 $\hat\beta\stackrel{\text{approx}}{\sim}N(\beta, \phi(X'WX)^{-1})$이다. 
+
+
+  * 1.2에서 구했던 $\text{Var}(\hat\beta)=(X'WX)^{-1}$는 $\phi=1$임을 가정하고 derive했다는 것을 명심하자. 
+  
+    실제로 우리가 다루었던 example들에서 binomial, poisson은 $\phi=1$이지만, Normal은 $\phi=\sigma^2$를 갖는다. 
+    
+    때문에 Normal 분포가정에서는 $\phi$를 무시할 수 없고 $\hat\beta\stackrel{\text{approx}}{\sim}N(\beta, \phi(X'WX)^{-1})$로 생각해야 한다.
+  
+  &nbsp;&nbsp;
 
 [back](../glm.html)
 

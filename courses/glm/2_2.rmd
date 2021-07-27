@@ -1,0 +1,52 @@
+---
+title: "2.2. Asymptotic distribution of GLMs for Binary Data"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+##### Remark
+Recall that for GLMs, information matrix $J=X'WX$, 
+
+where $W$ is a diagonal matrix with elements $w_i=\left( \frac{d\mu_i}{d\eta_i}\right)^2/\text{Var}(Y_i)$ on main diagonal.
+
+   * 여기서 elements of $W$의 분모가 $V(\mu_i)$가 아니라 $\text{Var}(Y_i)$인 것은 $a(\phi)=1/n_i$값을 갖기 때문이다 (dependent on $i$). 
+
+&nbsp;
+
+For logit link with binary GLM,
+$$\begin{eqnarray*}
+&&\eta_i= \log\left(\frac{\pi_i}{1-\pi_i}\right),\mbox{ (canonical)}\\
+&&\frac{d\eta_i}{d\mu_i}=\frac{d\eta_i}{d\pi_i}=\frac{1}{\pi_i(1-\pi_i)}\implies \frac{d\mu_i}{d\eta_i}=\pi_i(1-\pi_i),\\
+&&\text{Var}(Y_i)= \frac{\pi_i(1-\pi_i)}{n_i}.
+\end{eqnarray*}$$
+Thus,
+$$
+w_i=n_i\pi_i(1-\pi_i),\\
+W=\text{diag}\{n_i\pi_i(1-\pi_i)\}\\
+\implies Var(\hat\beta)\stackrel{\text{asymp}}{=}(X'WX)^{-1}.
+$$
+
+For Fisher scoring (=Newton-Raphson for logit link), iterative method of obtaining ML estimate solves
+$$
+(X'W^{(t)}X)\beta^{(t+1)}=X'W^{(t)}z^{(t)},
+$$
+where
+$$\begin{eqnarray*}
+W^{(t)}&=&\text{diag}\{n_i\pi_i^{(t)}(1-\pi_i^{(t)}) \},\\
+z_i^{(t)}&=&\eta_i^{(t)}+\frac{y_i-\pi_i^{(t)}}{\pi_i^{(t)}\left(1-\pi_i^{(t)}\right)} \mbox{ for logit link.} 
+\end{eqnarray*}$$
+
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)

@@ -1,0 +1,104 @@
+---
+title: "1.3. Deviance and Goodness of Fit"
+output: html_document
+---
+
+Model of interest : $\{\hat\mu_i\},  \{\hat\theta_i\}$.
+
+'Saturated' model has maximum likelihood estimate $\tilde{\mu_i}=y_i$, $i=1,2,\ldots,N$.
+
+Recall log likelihood is
+$$
+l(\theta;y)=\sum_{i=1}^N\{y_i \theta_i-b(\theta_i) \}/a(\phi)+\sum_{i=1}^N c(y_i;\phi).
+$$
+Let $l(\hat{\theta};y)=l(\hat{\mu};y)$ be log-likelihood maximized over $\beta$, 
+
+and $l(\tilde{\theta};y)=l(y;y)$ be log-likelihood for saturated model.
+
+Likelihood Ratio(LR) statistics for testing "$H_0 : \mbox{model holds}$" is
+$$\begin{eqnarray*}
+\Lambda &=& -2\log \frac{\text{M.L under } H_0}{\text{M.L under saturated model}}\\
+        &=& 2[l(y;y)-l(\hat\mu;y)] \\
+        &=& 2\sum_{i=1}^N \{ y_i\tilde{\theta_i}-b(\tilde\theta_i)\}/a(\phi)-\{ y_i\hat{\theta_i}-b(\hat\theta_i)\}/a(\phi).\\
+\end{eqnarray*}$$
+
+Suppose $a(\phi)=\phi/w_i$. Then,
+
+$$\begin{eqnarray*}
+\Lambda &=& 2\sum_{i=1}^N \{ y_i\tilde{\theta_i}-b(\tilde\theta_i)\}/a(\phi)-\{ y_i\hat{\theta_i}-b(\hat\theta_i)\}/a(\phi)\\
+&=& 2\sum_{i=1}^N w_i \{ y_i(\tilde{\theta_i}-\hat{\theta_i})-b(\tilde\theta_i)+b(\hat\theta_i)\}/\phi\\
+&=& D(y;\mu_i)/\phi,
+\end{eqnarray*}$$
+
+if we define $D(y;\mu_i)=2\sum_{i=1}^N w_i \{ y_i(\tilde{\theta_i}-\hat{\theta_i})-b(\tilde\theta_i)+b(\hat\theta_i)\}$.
+
+Here, $D(y;\mu_i)$ is called *Deviance* and $\Lambda=D(y;\mu_i)/\phi$ is called *Scaled Deviance*.
+
+Note that $D(y;\mu_i)\ge 0$ and the greater the deviance is, the poorer the fit is.
+
+&nbsp;&nbsp;
+
+Deviance considers comparing model $M_0$ nested within $M_1$.
+
+Since $l(\hat\mu_1;y)\ge l(\hat\mu_0;y)$, LR statistic comparing two models is
+$$\begin{eqnarray*}
+\Lambda&=& -2 [ l(\hat\mu_0;y)- l(\hat\mu_1;y)]\\
+       &=& -2 [l(\hat\mu_0;y) - l(y;y) + l(y;y) - l(\hat\mu_1;y) ]\\ 
+       &=& D(y;\hat\mu_0)/\phi-D(y;\hat\mu_1)/\phi (\ge 0)\\
+       &=& 2\sum_{i=1}^N w_i\{y_i(\tilde\theta_i-\hat\theta_{i0})-b(\tilde\theta_i)+b(\hat\theta_{i0})-y_i(\tilde\theta_i-\hat\theta_{i1})+b(\tilde\theta_i)-b(\hat\theta_{i1})\}/\phi\\
+       &=& 2\sum_{i=1}^N w_i\{y_i(\hat\theta_{i1}-\hat\theta_{i0})+b(\hat\theta_{i0})-b(\hat\theta_{i1})\}/\phi\\
+       &\xrightarrow{d} & \chi^2_{p_1-p_0},
+\end{eqnarray*}$$
+where $p_1$ and $p_0$ are the number of parameters for model $M_1$ and $M_0$, respectively.
+
+##### Example
+
+1. $Y_i \sim poisson(\mu_i)$: Note that $\theta_i=\log\mu_i$, $b(\theta_i)=e^{\theta_i}$, $\phi=1$.
+
+  * $\hat{\theta_i}=\log{\hat\mu_i}$, $b(\hat\theta_i)=e^{\hat\theta_i}=\hat\mu_i$.
+  
+  * $\tilde{\theta_i}=\log y_i$, $b(\tilde\theta_i)=e^{\tilde\theta_i}=y_i$.
+  
+    Thus, 
+    $$\begin{eqnarray*} D(y;\hat\mu)&=&D(y;\hat\mu)/\phi \\
+    &=& 2\sum_{i=1}^N y_i(\log y_i-\log \hat\mu_i)-y_i + \hat\mu_i\\
+    &=& 2\sum_{i=1}^N y_i\log \frac{y_i}{\hat\mu_i}-y_i + \hat\mu_i.
+    \end{eqnarray*}$$
+
+&nbsp;
+
+2. $Y_i \sim N(\mu_i, \sigma^2)$: Note that $\theta_i=\mu_i$, $b(\theta_i)=\mu_i^2/2$, $\phi=\sigma^2$.
+
+  * $\hat{\theta_i}=\hat\mu_i$, $b(\hat\theta_i)=\hat\mu_i^2/2$.
+  
+  * $\tilde{\theta_i}=y_i$, $b(\tilde\theta_i)=y_i^2/2$.
+  
+    Thus, 
+    $$\begin{eqnarray*} D(y;\hat\mu)&=& 2\sum_{i=1}^N y_i(y_i-\hat\mu_i) -y_i^2/2+ \hat\mu_i^2/2\\
+    &=& 2\sum_{i=1}^N (y_i^2-y_i\hat\mu_i)-y_i^2/2+ \hat\mu_i^2/2\\
+    &=& \sum_{i=1}^N y_i^2-2y_i\hat\mu_i+\hat\mu_i^2\\
+    &=& \sum_{i=1}^N (y_i-\hat\mu_i)^2. \mbox{ (Residual Sum of Squares)}
+    \end{eqnarray*}$$
+    
+    Note that the scaled deviance is
+    $$
+    \frac{D(y;\hat\mu)}{\phi}=\sum_{i=1}^N \frac{(y_i-\hat\mu_i)^2}{\sigma^2}.
+    $$
+    
+    
+&nbsp;&nbsp;
+
+##### Remark
+1. For some cases, scaled deviance$\sim \chi^2_{N-p}$ where $p$ is the number of parameter $\beta$'s.  (e.g. Normal)
+
+2. For some others, scaled deviance$\xrightarrow{d}\chi^2_{N-p}$. (e.g. poisson with large $\mu_i$)
+  
+    * 만약 $\hat\mu_i$가 매우 작다면 $y_i\log \frac{y_i}{\hat\mu_i}$가 정의되기가 어려움을 확인할 수 있다.
+  
+3. For others, need not be asymptotic $\chi^2$. (e.g. binary with continuous explanatory variables).
+
+    * Deviance를 계산해보면 $2\sum_i y_i(\log \frac{y_i}{\hat\pi_i})$이다. 
+    
+&nbsp;&nbsp;
+
+[back](../glm.html)

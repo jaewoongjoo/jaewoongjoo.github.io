@@ -1,0 +1,74 @@
+---
+title: "2.1. Introduction to GLMs for Binary Data"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+##### Remark
+ 
+Suppose we have independent observations $y_1,y_2,\ldots,y_N$ where $n_iY_i\sim \text{Bin}(n_i,\pi_i)$, $n=(n_1,\ldots,n_N)$.
+
+
+1. We have the linear predictor
+$$
+\eta_i=\sum_{j=0}^p \beta_jx_{ij},
+$$
+   where $\eta_i=g(\pi_i)=F^{-1}(\pi_i)$ for some continuous c.d.f $F$, i.e., 
+$$
+\pi=F\left(\sum_{j=0}^p\beta_jx_{ij}\right).
+$$
+&nbsp;
+
+2. Note that for cannonical link
+$$\begin{eqnarray*}
+\frac{d^2l_i}{d\beta_j d\beta_h}&=& \frac{d}{ d\beta_h}\sum_{i=1}^N \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}  \\
+&=& \frac{d}{ d\beta_h}\sum_{i=1}^N n_i\frac{(y_i-\mu_i)x_{ij}}{V(\mu_i)}\frac{d(b'(\theta_i))}{d\theta_i} \\
+&=& \frac{d}{ d\beta_h}\sum_{i=1}^N n_i\frac{(y_i-\mu_i)x_{ij}}{V(\mu_i)}b''(\theta_i) \\
+&=& \frac{d}{ d\beta_h}\sum_{i=1}^N n_ix_{ij}(y_i-\mu_i) \\
+&=& \frac{d\mu_i}{ d\beta_h}(-n_ix_{ij}) \\
+&=& -\frac{x_{ij}}{a(\phi)}\frac{d\mu_i}{d\beta_h} : \mbox{ independent of data.}
+\end{eqnarray*}$$
+   So, observed information matrix = expected information matrix.
+
+  * Canonical link일때는 항상 observed information matrix = expected information matrix임을 반드시 기억하자.
+  
+    If link is not canonical,   observed information matrix = expected information matrix
+
+&nbsp;
+
+3. Recall that the binomial probability function has form
+$$
+f(y_i;\theta_i,\phi)=\exp[\{y_i\theta_i-b(\theta_i)\}/a(\phi)+c(y_i;\phi)],
+$$
+   where
+$$\begin{eqnarray*}
+&&\theta_i=\log \frac{\pi_i}{1-\pi_i}=\text{logit}(\pi_i),\\
+&&b(\theta_i)=\log(1+e^\theta_i)=-\log(1-\pi_i),\\
+&&a(\phi)=\frac{1}{n_i}=\frac{\phi}{w_i} \mbox{ with } w_i=n_i, \mbox{ } \phi=1,\\
+&&c(y_i;\phi)=\log {n_i \choose n_iy_i}.\\
+\end{eqnarray*}$$
+
+
+   Note that 
+$$\begin{eqnarray*}
+\text{Deviance} &=& \text{scaled deviance} \\
+  &=& 2\{ L(y;y)-L(\hat\mu;y)\} \\
+  &=& 2\sum_i n_iy_i\log \left(\frac{n_iy_i}{n_i\hat\pi_i}\right)+2\sum_i n_i(1-y_i)\log \left(\frac{n_i-n_iy_i}{n_i-n_i\hat\pi_i}\right).
+\end{eqnarray*}$$
+
+
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)
