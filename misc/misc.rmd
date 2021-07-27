@@ -13,4 +13,11 @@ pre {
 }
 </style>
 
-[210722](./misc/210722.html)
+[Thoughts](./thoughts/thoughts.html)
+
+[Noah & Runi](./pic.html)
+
+
+&nbsp;&nbsp;
+
+[back](../index.html)
