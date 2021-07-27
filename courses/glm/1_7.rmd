@@ -1,0 +1,87 @@
+---
+title: "1.7. Distribution Theory"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+##### Remark
+Standard arguments can be used to prove consistency and asymptotic normality of the ML estimates $\beta$ and $\phi$. Specifically, 
+$$
+\hat\beta \stackrel{\text{Pr}}{\rightarrow}\beta \mbox{ and } \hat\phi \stackrel{\text{Pr}}{\rightarrow}\phi,
+$$
+and
+$$\begin{eqnarray*}
+I_\beta^{1/2}(\hat\beta-\beta)&\stackrel{d}{\rightarrow}& N(0,I),\\
+i_\phi^{1/2}(\hat\phi-\phi)&\stackrel{d}{\rightarrow}& N(0,1) \mbox{ as }n \rightarrow \infty,
+\end{eqnarray*}$$
+where $I_\beta=X'WX=J$.
+
+
+##### Example(Normal linear model) 
+  $$
+  y=X\beta+\epsilon, \mbox{ } \epsilon \sim N(0, \phi I).
+  $$
+
+The ML estimates are
+$$\begin{eqnarray*}
+\hat\beta&=&(X'X)^{-1}X'y,\\
+\hat\phi&=&\frac{1}{n}\sum_{i=1}^n (y_i-x_i'\hat\beta)^2\\
+&=& \frac{1}{n}(y-X\hat\beta)'(y-X\hat\beta)\\
+&=& \frac{1}{n}y'(I-X(X'X)^{-1}X')y.
+\end{eqnarray*}$$
+
+Then,
+$$
+\hat\beta\sim N(\beta, \phi(X'X)^{-1}),\\
+\hat\phi\sim \frac{\phi}{n}\chi^2_{\text{df}}.
+$$
+Twice differentiating the log-likelihood reveals
+
+$$
+\frac{d^2l}{d\phi^2}=-\frac{1}{\phi^3}\sum_{i=1}^n(y_i-x_i'\beta)^2+\frac{n}{2\phi^2}.
+$$
+   * 1.6 확인할 것
+
+By taking expectation, we have
+$$
+i_\phi= -E\left[ \frac{d^2l}{d\phi^2}\right]=\frac{n}{\phi^2}-\frac{n}{2\phi^2}=\frac{n}{2\phi^2}.
+$$
+  
+Thus,
+$$
+\phi \stackrel{\text{approx}}{\sim} N(\phi, 2\phi^2/n) \mbox{ for large }n. 
+$$
+More generally, consider the normal theory linear model context with weights, $m_i$, $i=1,\ldots,n$, associated with the $n$ responses, 
+$$
+\epsilon \sim N(0, \phi W^{-1}),
+$$
+where $W=\text{diag}\{ m_1,\ldots,m_n\}$. 
+
+Note that the consistency and asymptotic normality results for ML estimates hold as the Fisher information increases. 
+
+The information matrix for $\beta$ is
+$$
+I_\beta=\phi^{-1}X'WX.
+$$
+Thus, subject to some regularity conditions on the covariates, the information about $\beta$ increases as $\min(m_i)\rightarrow \infty$, with $n$ fixed. 
+
+In contrast, the information about $\phi$ is the same as in the unit weight case, and therefore does not increase with the weights.($i_\phi=\frac{n}{2\phi^2}$).
+
+Thus, $\hat\beta$ is consistent and asymptotically normal with increasing weights, but
+$$
+\hat\phi=\frac{1}{n}\sum_{i=1}^n m_i(y_i-x_i'\hat\beta)^2
+$$
+is not. 
+&nbsp;&nbsp;
+
+[back](../glm.html)
+

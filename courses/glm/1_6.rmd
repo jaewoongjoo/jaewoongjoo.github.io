@@ -1,5 +1,5 @@
 ---
-title: "1.6. Estimaton of Dispersion Parameter"
+title: "1.6. Estimation of Dispersion Parameter"
 output: html_document
 ---
 <style type="text/css">
@@ -15,22 +15,50 @@ pre {
 ##### Remark(ML estimation)
 If the dispersion parameter is unknown, its ML estimate, $\hat\phi$ may be obtained as a solution to the equation
 
+$$\begin{eqnarray*}
+0&=&\frac{dL}{d\phi}\Big|_{\beta=\hat\beta}\\
+  &=& -\frac{1}{\phi^2}\sum_{i=1}^n w_i \{\hat\theta y_i -b(\hat\theta) \} + \sum_{i=1}^n\frac{d}{d\phi}c(y_i;\phi/w_i),
+\end{eqnarray*}$$
+where $a(\phi)=\phi/w_i$.
+
+
+  * Example : Normal variance
+    The log-likelihood for a normal theory linear model is 
+    $$
+    l(\hat\beta, \phi; y)= -\frac{1}{\sigma^2}\sum_{i=1}^n (y_i-\hat\mu_i)^2 - \frac{n}{2}\log\phi,
+    $$
+    where $\hat\mu=x_i'\beta$. Differentiating and solving for $\hat\phi$ yiedls the MLE
+    $$
+    \hat\phi=\frac{1}{n}\sum_{i=1}^n(y_i-\hat\mu_i)^2.
+    $$
+
+&nbsp;&nbsp;
+
+##### Remark(Pearson and deviance estimates)
+
+Recall
 $$
-0 &=&\frac{dL}{d\phi}\Big|_{\beta=\hat\beta}\\
-  &=&
+\text{Var}(Y_i)= V(\mu_i)a(\phi)=V(\mu_i)\frac{\phi}{w_i}.
+$$
+It follows that
+$$
+E\left[ \frac{w_i(y_i-\mu)^2}{V(\mu_i)} \right]=\phi\mbox{ }\mbox{ for all }i.
 $$
 
+This motivates the **Pearson estimate** of $\phi$, given by
+$$
+\tilde\phi= \frac{1}{\text{df}}\sum_{i=1}^n \frac{w_i(y_i-\hat\mu_i)^2}{V(\hat\mu_i)}=\frac{1}{\text{df}}\chi^2(y;\hat\mu),
+$$
+where $\text{df}=n-p-1$ is the degree of freedom for estimating the dispersion parameter. 
 
+In the normal theory linear model setting, this estimate is the MSE, the usual unbiased estimate of the variance. 
 
+  * 정규분포 예제에서, $b(\theta_i)=\frac{\theta_i^2}{2}$이고 $\mu_i=\theta_i$이다. 때문에  $b''(\theta_i)=V(\mu_i)=1$이어서 위의 식이 MSE가 된다. 
 
-
-
-
-
-
-
-
-
+Similarly, the **deviance estimate** is defined by
+$$
+\bar{\phi}=\frac{1}{\text{df}}D(y;\hat\mu).
+$$
 
 
 
