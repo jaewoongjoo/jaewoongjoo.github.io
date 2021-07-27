@@ -34,10 +34,12 @@ $$\begin{eqnarray*}
 \end{eqnarray*}$$
    
    * Complementary log-log model for $\pi_i$ = log-log model for $1-\pi_i$.
-
+  
+   * 암기하기 ￩쉽게 말하자면, $1-\pi_i$를 $\pi_i$로 바꾸면 된다.  
+   
 &nbsp;&nbsp;
 
-##### Remark(Interpretation)
+##### Remark(Interpretation)￩
 For the two complementary log-log model, we have
 $\log\left\{-\log (1-\pi_i)\right\}$-$\log\left\{-\log (1-\pi_h)\right\}=\beta'(x_i-x_h)$. So
 $$

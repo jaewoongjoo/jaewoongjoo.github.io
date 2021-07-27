@@ -39,7 +39,7 @@ where $\theta_i$ and $\phi$ are a natural parameter and a dispersion parameter, 
 &nbsp;&nbsp;
 
 ##### Examples
-1. Poisson data : $Y_i \sim poisson(\mu_i)$. Then,
+1. Poisson data : $Y_i \sim \text{poisson}(\mu_i)$. Then,
     $$\begin{eqnarray*}
       f(y_i;\mu_i)&=& \frac{e^{-\mu_i}\mu_i^{y_i}}{y_i!}\\
       &=& \exp\{y_i \log \mu_i -\mu_i -\log y_i!\}.
@@ -51,7 +51,7 @@ where $\theta_i$ and $\phi$ are a natural parameter and a dispersion parameter, 
     
 &nbsp;
     
-2. Binary data : $Y_i \sim Bin(n_i, \pi_i)$. That is
+2. Binary data : $Y_i \sim \text{Bin}(n_i, \pi_i)$. That is
 
       $Y_i$: Proportion of successes out of $n_i$ trials with success probability $\pi_i$ 
       
@@ -119,7 +119,7 @@ $$
 
 ##### Examples
 
-1. $Y_i\sim poisson(\mu_i)$ : $\mu_i=e^{\theta_i}$, $b(\theta_i)= e^{\theta_i}$, and $a(\phi)=1$.
+1. $Y_i\sim \text{poisson}(\mu_i)$ : $\mu_i=e^{\theta_i}$, $b(\theta_i)= e^{\theta_i}$, and $a(\phi)=1$.
 
       Then, we have
       
@@ -129,7 +129,7 @@ $$
       
 &nbsp;
       
-2. $n_iY_i\sim Bin(n_i, \pi_i)$, where $\theta_i=\log\frac{\pi_i}{1-\pi_i}$, $b(\theta_i)=\log(1+e^{\theta_i})$, $a(\phi)=1/n_i$. 
+2. $n_iY_i\sim \text{Bin}(n_i, \pi_i)$, where $\theta_i=\log\frac{\pi_i}{1-\pi_i}$, $b(\theta_i)=\log(1+e^{\theta_i})$, $a(\phi)=1/n_i$. 
 
     Then, we have
       
@@ -173,14 +173,14 @@ Then, $g(\mu_i)= \sum_j x_{ij}\beta_j$, and $g$ such that $g(\mu_i)=\theta_i$ is
 
 ##### Examples
 
-1. $Y_i \sim poisson(\mu_i)$ : $\mu_i=b'(\theta_i)=e^{\theta_i}=g^{-1}(\theta_i)$.
+1. $Y_i \sim \text{poisson}(\mu_i)$ : $\mu_i=b'(\theta_i)=e^{\theta_i}=g^{-1}(\theta_i)$.
  
       * Canonical link : $\theta_i=g(\mu_i)=\log \mu_i$.
 
   
    &nbsp;
    
-2. $n_iY_i\sim Bin(n_i,\pi_i)$ : $\pi_i=b'(\theta_i)=\frac{e^{\theta_i}}{1+e^{\theta_i}}=g^{-1}(\theta_i)$.
+2. $n_iY_i\sim \text{Bin}(n_i,\pi_i)$ : $\pi_i=b'(\theta_i)=\frac{e^{\theta_i}}{1+e^{\theta_i}}=g^{-1}(\theta_i)$.
 
    * Canonical link : $\theta_i=\log \frac{\pi_i}{1-\pi_i}$.
    
@@ -191,3 +191,5 @@ Then, $g(\mu_i)= \sum_j x_{ij}\beta_j$, and $g$ such that $g(\mu_i)=\theta_i$ is
    * Canonical link : $\mu_i= \theta_i$.
 
 &nbsp;&nbsp;
+
+[back](../glm.html)

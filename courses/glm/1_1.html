@@ -383,7 +383,7 @@ f(y_i|\theta_i, \phi)= \exp[\{y_i\theta_i-b(\theta_i)\}/a(\phi)+c(y_i;\phi)],
 <div id="examples" class="section level5">
 <h5>Examples</h5>
 <ol style="list-style-type: decimal">
-<li><p>Poisson data : <span class="math inline">\(Y_i \sim poisson(\mu_i)\)</span>. Then, <span class="math display">\[\begin{eqnarray*}
+<li><p>Poisson data : <span class="math inline">\(Y_i \sim \text{poisson}(\mu_i)\)</span>. Then, <span class="math display">\[\begin{eqnarray*}
    f(y_i;\mu_i)&amp;=&amp; \frac{e^{-\mu_i}\mu_i^{y_i}}{y_i!}\\
    &amp;=&amp; \exp\{y_i \log \mu_i -\mu_i -\log y_i!\}.
  \end{eqnarray*}\]</span></p>
@@ -392,7 +392,7 @@ f(y_i|\theta_i, \phi)= \exp[\{y_i\theta_i-b(\theta_i)\}/a(\phi)+c(y_i;\phi)],
 </ol>
 <p> </p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Binary data : <span class="math inline">\(Y_i \sim Bin(n_i, \pi_i)\)</span>. That is</p>
+<li><p>Binary data : <span class="math inline">\(Y_i \sim \text{Bin}(n_i, \pi_i)\)</span>. That is</p>
 <p><span class="math inline">\(Y_i\)</span>: Proportion of successes out of <span class="math inline">\(n_i\)</span> trials with success probability <span class="math inline">\(\pi_i\)</span></p>
 <p>Then, for <span class="math inline">\(Y_i=0, \frac{1}{n_i}, \ldots, 1,\)</span> <span class="math display">\[\begin{eqnarray*}
    f(y_i;\pi_i, n_i)&amp;=&amp; {n_i \choose n_i\pi_i} \pi^{n_iy_i}(1-\pi_i)^{n_i(1-y_i)}\\
@@ -441,14 +441,14 @@ E\left[\frac{d l}{d \theta_i}\right]= E\left[\frac{Y_i-b'(\theta_i)}{a(\phi)}\ri
 <div id="examples-1" class="section level5">
 <h5>Examples</h5>
 <ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(Y_i\sim poisson(\mu_i)\)</span> : <span class="math inline">\(\mu_i=e^{\theta_i}\)</span>, <span class="math inline">\(b(\theta_i)= e^{\theta_i}\)</span>, and <span class="math inline">\(a(\phi)=1\)</span>.</p>
+<li><p><span class="math inline">\(Y_i\sim \text{poisson}(\mu_i)\)</span> : <span class="math inline">\(\mu_i=e^{\theta_i}\)</span>, <span class="math inline">\(b(\theta_i)= e^{\theta_i}\)</span>, and <span class="math inline">\(a(\phi)=1\)</span>.</p>
 <p>Then, we have</p>
 <p><span class="math inline">\(E(Y_i)= b'(\theta_i)=e^{\theta_i}=\mu_i\)</span>,</p>
 <p><span class="math inline">\(\text{Var}(Y_i)=a(\phi_i)b''(\theta_i)= b''(\theta_i)=e^{\theta_i}=\mu_i\)</span>.</p></li>
 </ol>
 <p> </p>
 <ol start="2" style="list-style-type: decimal">
-<li><p><span class="math inline">\(n_iY_i\sim Bin(n_i, \pi_i)\)</span>, where <span class="math inline">\(\theta_i=\log\frac{\pi_i}{1-\pi_i}\)</span>, <span class="math inline">\(b(\theta_i)=\log(1+e^{\theta_i})\)</span>, <span class="math inline">\(a(\phi)=1/n_i\)</span>.</p>
+<li><p><span class="math inline">\(n_iY_i\sim \text{Bin}(n_i, \pi_i)\)</span>, where <span class="math inline">\(\theta_i=\log\frac{\pi_i}{1-\pi_i}\)</span>, <span class="math inline">\(b(\theta_i)=\log(1+e^{\theta_i})\)</span>, <span class="math inline">\(a(\phi)=1/n_i\)</span>.</p>
 <p>Then, we have</p>
 <p><span class="math inline">\(E(Y_i)=b'(\theta_i)= \frac{e^{\theta_i}}{1+e^{\theta_i}}\)</span>,</p>
 <p><span class="math inline">\(\text{Var}(Y_i)=a(\phi)b''(\theta_i)= \frac{\pi_i(1-\pi_i)}{n_i}.\)</span></p></li>
@@ -481,12 +481,12 @@ E\left[\frac{d l}{d \theta_i}\right]= E\left[\frac{Y_i-b'(\theta_i)}{a(\phi)}\ri
 <div id="examples-2" class="section level5">
 <h5>Examples</h5>
 <ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(Y_i \sim poisson(\mu_i)\)</span> : <span class="math inline">\(\mu_i=b'(\theta_i)=e^{\theta_i}=g^{-1}(\theta_i)\)</span>.</p>
+<li><p><span class="math inline">\(Y_i \sim \text{poisson}(\mu_i)\)</span> : <span class="math inline">\(\mu_i=b'(\theta_i)=e^{\theta_i}=g^{-1}(\theta_i)\)</span>.</p>
 <ul>
 <li>Canonical link : <span class="math inline">\(\theta_i=g(\mu_i)=\log \mu_i\)</span>.</li>
 </ul>
 <p> </p></li>
-<li><p><span class="math inline">\(n_iY_i\sim Bin(n_i,\pi_i)\)</span> : <span class="math inline">\(\pi_i=b'(\theta_i)=\frac{e^{\theta_i}}{1+e^{\theta_i}}=g^{-1}(\theta_i)\)</span>.</p>
+<li><p><span class="math inline">\(n_iY_i\sim \text{Bin}(n_i,\pi_i)\)</span> : <span class="math inline">\(\pi_i=b'(\theta_i)=\frac{e^{\theta_i}}{1+e^{\theta_i}}=g^{-1}(\theta_i)\)</span>.</p>
 <ul>
 <li>Canonical link : <span class="math inline">\(\theta_i=\log \frac{\pi_i}{1-\pi_i}\)</span>.</li>
 </ul></li>
@@ -499,6 +499,7 @@ E\left[\frac{d l}{d \theta_i}\right]= E\left[\frac{Y_i-b'(\theta_i)}{a(\phi)}\ri
 </ul></li>
 </ol>
 <p>  </p>
+<p><a href="../glm.html">back</a></p>
 </div>
 </div>
 
