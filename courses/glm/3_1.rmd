@@ -1,0 +1,107 @@
+---
+title: "3.1. Introduction to GLMs for Count Data"
+output: html_document
+---
+  
+<style type="text/css">
+  
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+  
+Suppose $y_1,\ldots,y_N$ independent with nonnegative integer values.
+
+이 챕터에서는 우리가 위와 같은 response들을 갖고 있을 때 어떻게 Modeling을 하는지에 대해 통상적인 소개를 하는 것이 목적이다.  
+
+##### Remark
+1. Transformation approach:
+   Suppose $Y_i\sim \text{poisson}(\mu_i)$. 
+   
+   Consider we want to get lease squares estimate after transforming them to approximate normality with constant variance.
+ 
+   To be specific, recall
+$$
+f(y_i;\mu_i)=\frac{e^{-\mu_i}\mu_i^{y_i}}{y_i!}, \mbox{ }\mbox{ } \mbox{ }y_i=0,1,2,\ldots. 
+$$
+    We know $E(Y_i)=\text{Var}(Y_i)=\mu_i$ and skewness = $E\left(\frac{(Y_i-\mu_i)^3}{\sigma_i^3}\right)=\frac{1}{\sqrt{\mu_i}}$. Then,
+$$
+    Y_i\stackrel{\text{approx}}{\sim}N(\mu_i,\mu_i)\mbox{ }\mbox{ for large } \mu_i.
+$$
+
+  * 즉, skewness가 $\mu_i$가 점점 커짐에 따라서 0에 가깝게 되기 때문에, $Y$의 분포는 asymptotically 정규분포를 향해 간다. 
+   
+  * Mean and Variance of $Y_i$를 추정하고 싶지만, $\mu_i$가 커짐에 따라 Variance가 함께 커지기 때문에 추정이 어렵다. 
+   
+&nbsp;&nbsp;
+
+
+   Recall by delta method, $g(Y_i)$ has variance $(g'(\mu_i))^2 \text{Var}(Y_i)$. 
+   
+   For example, if $Y_i\sim \text{poisson}(\mu_i)$, then $\sqrt{Y_i}$ has variance approximately
+$$
+   \text{Var}(\sqrt{Y_i})=\left(\frac{1}{2\sqrt{\mu_i}}\right)^2\mu_i=\frac{1}{4}.
+$$
+    Thus, we can model $\sqrt{Y_i}$, $i=1,2,\ldots,N$ with normal methods (ordinary least squares).
+  
+&nbsp;&nbsp;
+  
+  
+   * 원래의 approxmate $Y_i$분포는 분산이 $\mu_i$에 dependent하다. 때문에 $\mu_i$가 커짐에 따라 분산도 계속 커지게 된다. 하지만 이처럼 변수를 제곱근으로 변환하면 분산이      $\mu_i$에 영향을 받지 않게 되어 nice 해진다. 
+   
+   * 참고 : 전에 poisson regression에 대해 scaled deviance나 deviance의 approximate distribution $(\chi_{N-p}^2)$ 에 대해 다룬적이 있었다. 이 때 $\mu_i$가 커짐에 따라 deviance가 chisquare 분포에 수렴했다는 것을 기억하자. 
+   
+&nbsp;&nbsp;
+
+
+2. GLM approach:
+   Suppose $Y_i\sim \text{poisson}(\mu_i)$. Then,
+   $$\begin{eqnarray*}
+   \log f(y_i;\theta_i, \phi)&=& \{ y_i\theta_i-b(\theta_i)\}/a(\phi)+c(y_i;\phi)\\
+                        &=& y_i \log \mu_i - \mu_i - \log y_i.
+   \end{eqnarray*}$$
+   
+   Thus, 
+   $$\begin{eqnarray*}
+   &&\theta_i=\log \mu_i \mbox{ (canonical link),}\\
+   &&a(\phi)=1,\\
+   &&c(y_i;\phi),\\
+   && b(\theta_i)=\mu_i=e^{\theta_i}\\
+   &&\implies E(Y_i)=b'(\theta_i)=e^{\theta_i}=\mu_i, \mbox{ } \text{Var}(Y_i)=a(\phi)b''(\theta_i)=\mu_i.\\
+   \end{eqnarray*}$$
+   
+  * 이 내용은 매우 자주 사용되니 암기하는 게 좋다.
+    
+&nbsp;&nbsp;
+   
+   
+
+##### Remark(Likelihood equation for GLM approach)
+Note that likelihood equations for GLMs are 
+$$
+\sum_{i=1}^n\frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}=0, \mbox{ }j=0,1,\ldots,p.
+$$
+For canonical link, $\frac{d\mu_i}{d\eta_i}=\frac{d\mu_i}{d\theta_i}=\frac{d \mbox{ }b'(\theta_i)}{d\theta_i}=b''(\theta_i)$. Thus, 
+
+$$
+\sum_{i=1}^n\frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}=\sum_{i=1}^n\frac{(y_i-\mu_i)x_{ij}}{a(\phi)}=\sum_{i=1}^n(y_i-\mu_i)x_{ij} =0\\
+\iff \sum_{i=1}^n y_ix_{ij} =  \sum_{i=1}^n \mu_ix_{ij}, \mbox{ }j=0,1,\ldots,p.
+$$
+Also, we already know that $\hat{\text{Cov}}(\hat\beta)= (X'WX)^{-1}$ where $W=\text{diag}(w_1,\ldots,w_n)$ with $w_i=\left(\frac{d\mu_i}{d\eta_i}\right)^2/\text{Var}(Y_i)=\mu_i$.
+
+Deviance is
+$$
+D(y;\hat\mu_i)= 2\sum_{i=1}^ny_i\log\frac{y_i}{\hat\mu_i}-y_i+\hat\mu_i.
+$$
+
+
+
+   
+  
+  
+&nbsp;&nbsp;
+  
+[back](../glm.html)
