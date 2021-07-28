@@ -1,6 +1,12 @@
 ---
 title: "4.1. Quasi Likelihood Approach"
+<<<<<<< HEAD
 output: html_document
+=======
+output:
+  html_document: default
+  pdf_document: default
+>>>>>>> 12a4e0ab9dfd3ae0e83c7ea0d4015d3a5e8b0882
 ---
 
 <style type="text/css">
@@ -19,14 +25,26 @@ In GLM, $g(\mu_i)=\sum_j \beta_jx_{ij}$ and likelihood equations are
 $$
 \sum_i \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}=0,\mbox{ }\mbox{ } j=0,1,\ldots,p.
 $$
-Let the score function $\beta$ be
+Let 
 $$
+<<<<<<< HEAD
 S=(S_0(\beta), S_1(\beta),\ldots,S_p(\beta)).
 $$
   * 즉 $S$는 log-likelihood $l(\beta)$를 각각 $\beta_0,\ldots,\beta_p$로 미분한 벡터이다. 
   
 Note that ML estimates depend on the distribution of $Y_i$ only through $\mu_i$ and $\text{Var}(Y_i)=V(\mu_i)$.
+=======
+S(\beta)=(S_0(\beta), S_1,(\beta),\ldots,S_p(\beta)).
+$$
 
+
+Also, note that ML estimates depend on the distribution of $Y_i$ only through $\mu_i$ and $\text{Var}(Y_i)=V(\mu_i)$.
+>>>>>>> 12a4e0ab9dfd3ae0e83c7ea0d4015d3a5e8b0882
+
+&nbsp;&nbsp;
+
+  * Quasi-likelihood는 주로 $\phi=1$인 poisson이나 binomial case에 주로 사용된다. 그렇기 때문에 $\text{Var}(Y_i)=V(\mu_i)$임을 가정한다. 
+  
 &nbsp;&nbsp;
 
 ##### Remark(Quasi likelihood approach)
@@ -36,7 +54,6 @@ Note that ML estimates depend on the distribution of $Y_i$ only through $\mu_i$ 
 
 3. To allow overdispersion, take $V(\mu_i)=\phi V^*(\mu_i)$, where $V^*(\mu_i)$ is variance function for common model such as  $V^*(\mu_i)=\mu_i$ for count data.
 
-
 &nbsp;&nbsp;
 
 ##### Definition
@@ -44,9 +61,19 @@ A function $h(Y,\beta)$ is an unbiased *estimating function* if
 $$
 E[h(Y;\beta)]=0 \mbox{ }\mbox{ for all }\beta.
 $$
-$S_j(\beta)$ is unbiased estimating function and $S(\beta)=0$ are estimating equations. 
+   * 즉 $S_j(\beta)$ 는 unbiased estimating function이고, $S_j(\beta)$를 set to zero한 $S(\beta)=0$, 이 방정식은 estimating equations이다. 
+   
+&nbsp;&nbsp;
 
+##### Remark
+1. Quasi-score function $S(\beta)$ is regarded as derivative of quasi log-likelihood function (need not correspond to a proper distribution).
+
+<<<<<<< HEAD
     
+=======
+2. QL estimators have similar properties as ML estimators (McCuallagh, 1983). Solution $\hat\beta$ of $S(\beta)=0$ is asymptotically normal with covariance matrix $V=(X'WX)^{-1}$, where $W$ is diagonal with $w_i=\left(\frac{d\mu_i}{d\eta_i}\right)^2/\text{Var}(Y_i)$. 
+
+>>>>>>> 12a4e0ab9dfd3ae0e83c7ea0d4015d3a5e8b0882
 &nbsp;&nbsp;
 
 [back](../glm.html)
