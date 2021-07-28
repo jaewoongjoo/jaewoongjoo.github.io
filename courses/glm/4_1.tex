@@ -1,0 +1,119 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={4.1. Quasi Likelihood Approach},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{4.1. Quasi Likelihood Approach}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+In GLM, \(g(\mu_i)=\sum_j \beta_jx_{ij}\) and likelihood equations are
+\[
+\sum_i \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}=0,\mbox{ }\mbox{ } j=0,1,\ldots,p.
+\] Let the score function \(\beta\) be \[
+S=(S_0(\beta), S_1(\beta),\ldots,S_p(\beta)).
+\] * 즉 \(S\)는 log-likelihood \(l(\beta)\)를 각각
+\(\beta_0,\ldots,\beta_p\)로 미분한 벡터이다.
+
+Note that ML estimates depend on the distribution of \(Y_i\) only
+through \(\mu_i\) and \(\text{Var}(Y_i)=V(\mu_i)\).
+
+~~
+
+\hypertarget{remarkquasi-likelihood-approach}{%
+\subparagraph{Remark(Quasi likelihood
+approach)}\label{remarkquasi-likelihood-approach}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Use model \(g(\mu_i)=\sum_j \beta_jx_{ij}\) and variance function
+  \(V(\mu_i)\) but do not assume distribution for \(Y_i\).
+\item
+  Use estimating equations \(S(\beta)=0\) even if they do not correspont
+  to likelihood equations for distribution in exponential family.
+\item
+  To allow overdispersion, take \(V(\mu_i)=\phi V^*(\mu_i)\), where
+  \(V^*(\mu_i)\) is variance function for common model such as
+  \(V^*(\mu_i)=\mu_i\) for count data.
+\end{enumerate}
+
+~~
+
+\hypertarget{definition}{%
+\subparagraph{Definition}\label{definition}}
+
+A function \(h(Y,\beta)\) is an unbiased \emph{estimating function} if
+\[
+E[h(Y;\beta)]=0 \mbox{ }\mbox{ for all }\beta.
+\] \(S_j(\beta)\) is unbiased estimating function and \(S(\beta)=0\) are
+estimating equations.
+
+~~
+
+\href{../glm.html}{back}
+
+\end{document}

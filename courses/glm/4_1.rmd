@@ -1,8 +1,6 @@
 ---
 title: "4.1. Quasi Likelihood Approach"
-output:
-  pdf_document: default
-  html_document: default
+output: html_document
 ---
 
 <style type="text/css">
@@ -23,9 +21,10 @@ $$
 $$
 Let the score function $\beta$ be
 $$
-S=(S_0(\beta), S_1,(\beta),\ldots,S_p(\beta)).
+S=(S_0(\beta), S_1(\beta),\ldots,S_p(\beta)).
 $$
-
+  * 즉 $S$는 log-likelihood $l(\beta)$를 각각 $\beta_0,\ldots,\beta_p$로 미분한 벡터이다. 
+  
 Note that ML estimates depend on the distribution of $Y_i$ only through $\mu_i$ and $\text{Var}(Y_i)=V(\mu_i)$.
 
 &nbsp;&nbsp;
@@ -47,7 +46,7 @@ E[h(Y;\beta)]=0 \mbox{ }\mbox{ for all }\beta.
 $$
 $S_j(\beta)$ is unbiased estimating function and $S(\beta)=0$ are estimating equations. 
 
-
+    
 &nbsp;&nbsp;
 
 [back](../glm.html)

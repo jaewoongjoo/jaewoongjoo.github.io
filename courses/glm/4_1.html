@@ -363,13 +363,13 @@ pre {
 </style>
 <p>In GLM, <span class="math inline">\(g(\mu_i)=\sum_j \beta_jx_{ij}\)</span> and likelihood equations are <span class="math display">\[
 \sum_i \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}=0,\mbox{ }\mbox{ } j=0,1,\ldots,p.
-\]</span> Let the estimating equation <span class="math inline">\(S\)</span> be <span class="math display">\[
-S=(S_0(\beta), S_1,(\beta),\ldots,S_p(\beta)).
-\]</span></p>
+\]</span> Let the score function <span class="math inline">\(\beta\)</span> be <span class="math display">\[
+S=(S_0(\beta), S_1(\beta),\ldots,S_p(\beta)).
+\]</span> * 즉 <span class="math inline">\(S\)</span>는 log-likelihood <span class="math inline">\(l(\beta)\)</span>를 각각 <span class="math inline">\(\beta_0,\ldots,\beta_p\)</span>로 미분한 벡터이다.</p>
 <p>Note that ML estimates depend on the distribution of <span class="math inline">\(Y_i\)</span> only through <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\text{Var}(Y_i)=V(\mu_i)\)</span>.</p>
 <p>  </p>
-<div id="remarkql-approach" class="section level5">
-<h5>Remark(QL approach)</h5>
+<div id="remarkquasi-likelihood-approach" class="section level5">
+<h5>Remark(Quasi likelihood approach)</h5>
 <ol style="list-style-type: decimal">
 <li><p>Use model <span class="math inline">\(g(\mu_i)=\sum_j \beta_jx_{ij}\)</span> and variance function <span class="math inline">\(V(\mu_i)\)</span> but do not assume distribution for <span class="math inline">\(Y_i\)</span>.</p></li>
 <li><p>Use estimating equations <span class="math inline">\(S(\beta)=0\)</span> even if they do not correspont to likelihood equations for distribution in exponential family.</p></li>
