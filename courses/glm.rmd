@@ -48,9 +48,24 @@ pre {
 
 [2.3. Likelihood Equations for Binary GLMs](./glm/2_3.html)
 
-[2.4. Probit Model](./glm/2_4.html)
+[2.4. Probit Links](./glm/2_4.html)
 
 [2.5. Log-log Links](./glm/2_5.html)
+
+&nbsp;&nbsp;
+
+### 3. GLMs for Count Data
+
+[3.1. Introduction to GLMs for Count Data](./glm/3_1.html)
+
+[3.2. Overdispersion](./glm/3_2.html)
+
+&nbsp;&nbsp;
+
+### 4. Quasi Likelihood
+
+[4.1. Quasi Likelihood Approach](./glm/4_1.html)
+
 
 &nbsp;&nbsp;
 

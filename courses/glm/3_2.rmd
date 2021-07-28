@@ -40,17 +40,17 @@ We have three approaches dealing with the overdispersion:
 &nbsp;&nbsp;
 
 
-지금부터 이 3가지 approach에 대해 자세히 derivation을 할 것이다. 
 
-##### Remark(Negative binomial regression)
-Suppose that given $\lambda$, $Y\sim \text{poisson}(\lambda)$ and $\lambda\sim\Gamma(k,k/\mu).$ Then,
+
+##### Remark(Negative binomial models)
+Suppose that given $\lambda$, $Y|\lambda\sim \text{poisson}(\lambda)$ and $\lambda\sim\Gamma(k,k/\mu).$ Then,
 $$
 f(\lambda;k,\mu)= \frac{(k/\mu)^k}{\Gamma(k)}\exp\left(-\frac{k\lambda }{\mu}\right), \mbox{ }\lambda>0.
 $$
 
 We have $E(\lambda)=\mu$ and $\text{Var}(\lambda)=\mu^2/k$.
 
-Then, Greenwood and Yule (1920) showed that $Y$ has probability mass function
+Then, $Y$ has probability mass function
 $$
 P(Y=y; k, \mu)= \frac{\Gamma(y+k)}{\Gamma(k)\Gamma(y+1)}\left(\frac{\mu}{\mu+k}\right)^y \left(1-\frac{\mu}{\mu+k}\right)^k,
 $$
@@ -65,12 +65,55 @@ As $n\rightarrow \infty$, $\text{Var}(\lambda)\rightarrow 0$ and $\text{Var}(Y)\
 
    * $Y$의 marginal 분포는 $Y|\lambda$의 분포와 $\lambda$의 분포를 곱하여 joint density를 구한 다음, $\lambda$에 대하여 적분하면 구할 수 있다. 
    
-   * 일반적인 Negative binomial 분포의 mean은 $E(X)=\frac{rp}{1-p}$, Variance는 $\text{Var}(X)=\frac{rp}{(1-p)^2}$이다.(notation 설명 생략: $r$은 우리 예제에선 $k$). 
+   * 일반적인 Negative binomial 분포의 mean은 $E(X)=\frac{rp}{1-p}$, Variance는 $\text{Var}(X)=\frac{rp}{(1-p)^2}$이다.(notation 생략: $r$은 여기선 $k$). 
      $$
-    \because E(Y)=\frac{k \frac{\mu}{\mu+k} }{\frac{k}{\mu+k}}=\mu, \mbox{ }  \text{Var}(Y)=\frac{k \frac{\mu}{\mu+k} }{\frac{k^2}{(\mu+k)^2}}=\frac{\mu}{k}(\mu+k)=\mu+\mu^2/k.
+    \implies E(Y)=\frac{k \frac{\mu}{\mu+k} }{\frac{k}{\mu+k}}=\mu, \mbox{ }  \text{Var}(Y)=\frac{k \frac{\mu}{\mu+k} }{\frac{k^2}{(\mu+k)^2}}=\frac{\mu}{k}(\mu+k)=\mu+\mu^2/k.
      $$
      
 &nbsp;&nbsp;
 
-Note that we take $g(\mu_i)=\sum_j\beta_jx_{ij}$ and fixed $k$ (unknown) for all $i$. Usually, $g(\mu_i)=\log \mu_i$.
-     
+Note that
+$$\begin{eqnarray*}
+P(Y=y; k, \mu)&=& \frac{\Gamma(y+k)}{\Gamma(k)\Gamma(y+1)}\left(\frac{\mu}{\mu+k}\right)^y \left(1-\frac{\mu}{\mu+k}\right)^k,\\
+&=&\exp\left\{y \log \frac{\mu}{\mu+k}  + k \log \frac{k}{\mu+k}  +\log\frac{\Gamma(y+k)}{\Gamma(k)\Gamma(y+1)} \right\}\\
+&=&\exp\left\{y \theta  + k \log (1-e^\theta)  +\log\frac{\Gamma(y+k)}{\Gamma(k)\Gamma(y+1)} \right\}.
+\end{eqnarray*}$$
+Thus, for known $k$, the distribution of $Y$ has the exponential dispersion form $\exp\left\{\frac{y \theta- b(\theta)}{a(\phi)}  +c(y;\phi) \right\}$ with 
+
+$\theta=\log\frac{\mu}{\mu+k}$, $b(\theta)=- k\log (1-e^\theta)$, $a(\phi)=1$.
+
+When $Y$ has this distribution as p.m.f, we will write $Y\sim \text{NegBin}(\mu,k)$.
+
+&nbsp;&nbsp;
+
+##### Remark
+
+Suppose now that $Y_1,\ldots,Y_N$ are independent, where $Y_i\sim \text{NegBin}(\mu_i,k)$ with
+$$
+\log\mu_i=x_i'\beta.
+$$
+For fixed $k$, we can estimate $\beta$ by iterative reweighted least squares (IRLS). For fixed $\beta$, the log-likelihood for $k$ is
+$$\begin{eqnarray*}
+l(k)&=&\sum_i \left\{y_i \log \frac{\mu_i}{\mu_i+k}  + k \log \frac{k}{\mu_i+k}  +\log\Gamma(y_i+k)-\log{\Gamma(k)}- \log{\Gamma(y_i+1)} \right\}\\
+&=& \sum_i\left\{\log \Gamma(y_i+k)-(y_i+k)\log(\mu_i+k)\right\}+n\{k\log k-\log \Gamma(k)  \} +c(y;\mu).
+\end{eqnarray*}$$
+This expression can be maximized over $k$(differentiate, set to zero, and solve numerically for $k$). We then iterate these steps, alternatively maximizing over $\beta$ for the current $k$, and then $k$ for the current $\beta$. Because
+$$
+E\left[ \frac{(Y_i-\mu_i)^2}{\mu_i}\right]= 1+\frac{\mu_i}{k},
+$$
+
+a reasonable starting value for $k$ can be obtained by solving the equation
+$$
+\frac{1}{n}X^2=1+\frac{\bar\mu}{k}
+$$
+where $X^2$ is the *Peason statistic* obtained by fitting a poisson model, and $\bar\mu$ is the average of the fitted mean for that model. 
+
+
+
+
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)
+

@@ -1,0 +1,54 @@
+---
+title: "4.1. Quasi Likelihood Approach"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+<style type="text/css">
+  
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+
+
+In GLM, $g(\mu_i)=\sum_j \beta_jx_{ij}$ and likelihood equations are
+$$
+\sum_i \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}=0,\mbox{ }\mbox{ } j=0,1,\ldots,p.
+$$
+Let the score function $\beta$ be
+$$
+S=(S_0(\beta), S_1,(\beta),\ldots,S_p(\beta)).
+$$
+
+Note that ML estimates depend on the distribution of $Y_i$ only through $\mu_i$ and $\text{Var}(Y_i)=V(\mu_i)$.
+
+&nbsp;&nbsp;
+
+##### Remark(Quasi likelihood approach)
+1. Use model $g(\mu_i)=\sum_j \beta_jx_{ij}$ and variance function $V(\mu_i)$ but do not assume distribution for $Y_i$.
+
+2. Use estimating equations $S(\beta)=0$ even if they do not correspont to likelihood equations for distribution in exponential family.
+
+3. To allow overdispersion, take $V(\mu_i)=\phi V^*(\mu_i)$, where $V^*(\mu_i)$ is variance function for common model such as  $V^*(\mu_i)=\mu_i$ for count data.
+
+
+&nbsp;&nbsp;
+
+##### Definition
+A function $h(Y,\beta)$ is an unbiased *estimating function* if 
+$$
+E[h(Y;\beta)]=0 \mbox{ }\mbox{ for all }\beta.
+$$
+$S_j(\beta)$ is unbiased estimating function and $S(\beta)=0$ are estimating equations. 
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)
+
