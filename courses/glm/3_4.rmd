@@ -1,0 +1,70 @@
+---
+title: "3.4. Mixture Modeling"
+---
+
+<style type="text/css">
+ 
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+
+##### Remark(Correlated Bernoulli trials)
+   
+   For $n_i>1$ trials, let $Y_i=(X_{i1}+\cdots+X_{i,n_i})/n_i$ where
+$$\begin{eqnarray*}
+P(X_{ij}=1)&=&\pi_i=1-P(X_{ij}=0),\\
+\text{Corr}(X_{ij},X_{ih})&=&\rho, \mbox{ }j\ne h,\\
+\text{Var}\left(\sum_jX_{ij}\right)&=&n_i\pi_i(1-\pi_i)+n_i(n_i-1)\rho\pi_i(1-\pi_i),\\
+\implies\text{Var}(Y_i)&=&\frac{n_i\pi_i(1-\pi_i)+n_i(n_i-1)\rho\pi_i(1-\pi_i)}{n_i^2}\\
+&=&\frac{\pi_i(1-\pi_i)+(n_i-1)\rho\pi_i(1-\pi_i)}{n_i}=\frac{\pi_i(1-\pi_i)}{n_i}\left(1+ (n_i-1)\rho\right).\\
+\end{eqnarray*}$$
+
+   Since $n_i>1$, there is overdispersion in this correlated bernoulli data.
+
+&nbsp;&nbsp;
+ 
+
+##### Remark(Beta-Binomial Model)
+Suppose given $\pi$, 
+$$
+Y|\pi\sim \text{Bin}(n,\pi)\mbox{ }\mbox{ and }\mbox{ } \pi\sim \text{Beta}(\alpha,\beta),
+$$
+where
+$$
+f(\pi;\alpha,\beta)=\frac{1}{B(\alpha,\beta)}\pi^{\alpha-1}(1-\pi)^{\beta-1}, \mbox{ } 0<\pi<1, \mbox{ }\alpha,\beta>0.
+$$
+Let $\mu=\frac{\alpha}{\alpha+\beta}$, $\theta=\frac{1}{\alpha+\beta}$. Then,
+$$
+E(\pi)=\mu,\mbox{ } \text{Var}(\pi)=\mu(1-\mu)\frac{\theta}{1+\theta}.
+$$
+Unconditionally,
+$$\begin{eqnarray*}
+P(Y=y)&=&E[P(Y=y|\pi)]\\
+&=&\int_0^1{n \choose y}\pi^y(1-\pi)^{n-y}\frac{1}{B(\alpha,\beta)}\pi^{\alpha-1}(1-\pi)^{\beta-1}    d\pi\\
+&=&\cdots={n \choose y}\frac{B(a+y, n+\beta-y)}{B(\alpha,\beta)},\mbox{ }y=0,1,\ldots,n.
+\end{eqnarray*}$$
+This is Beta-Binomial distribution and 
+$$
+E(Y)=n\mu, \mbox{ } \text{Var}(Y)=n\mu(1-\mu)\{ 1+(n-1)\theta/(1+\theta)\}.
+$$
+
+   * 즉 parameter에도 distribution을 걸어주고 marginal 분포를 구해내는 방법을 Mixture Modeling방법이라 한다(Bayesian idea).
+
+   * 위의 분산에서도 확인할 수 있다시피 Beta binomial은 $n=1$일 때는 일반 Binomial 과 같다. 
+
+   * Note : As $\theta=\frac{1}{\alpha+\beta}\downarrow$, $\text{Var}(\pi)\rightarrow 0$, $\text{Var}(Y)\rightarrow n\mu(1-\mu)$, and $Y\rightarrow \text{Bin}(n,\mu)$ ($\alpha+\beta$가 커지면 커질수록 Binomial 분포로 수렴한다). 
+
+
+
+
+
+
+&nbsp;&nbsp;
+
+[back](../glm.html)
+

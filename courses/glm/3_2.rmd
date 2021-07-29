@@ -51,9 +51,11 @@ $$
 We have $E(\lambda)=\mu$ and $\text{Var}(\lambda)=\mu^2/k$.
 
 Then, $Y$ has probability mass function
-$$
-P(Y=y; k, \mu)= \frac{\Gamma(y+k)}{\Gamma(k)\Gamma(y+1)}\left(\frac{\mu}{\mu+k}\right)^y \left(1-\frac{\mu}{\mu+k}\right)^k,
-$$
+$$\begin{eqnarray*}
+P(Y=y)&=& E[P(Y=y|\lambda)]\\
+&=&\int_0^\infty  \frac{e^{-\lambda}\lambda^y}{y!}\frac{(k/\mu)^k}{\Gamma(k)}\exp\left(-\frac{k\lambda }{\mu}\right)d\lambda\\
+&=&\cdots= \frac{\Gamma(y+k)}{\Gamma(k)\Gamma(y+1)}\left(\frac{\mu}{\mu+k}\right)^y \left(1-\frac{\mu}{\mu+k}\right)^k,
+\end{eqnarray*}$$
 for $y=0,1,2,\ldots.$. This is p.m.f of negative binomial distribution.
 
 Note that
@@ -62,8 +64,6 @@ $$
 E(Y)= \mu, \mbox{ } \text{Var}(Y)=\mu+\mu^2/k.
 $$
 As $n\rightarrow \infty$, $\text{Var}(\lambda)\rightarrow 0$ and $\text{Var}(Y)\rightarrow \mu$ (Negative bionmial $\rightarrow$ poisson).  
-
-   * $Y$의 marginal 분포는 $Y|\lambda$의 분포와 $\lambda$의 분포를 곱하여 joint density를 구한 다음, $\lambda$에 대하여 적분하면 구할 수 있다. 
    
    * 일반적인 Negative binomial 분포의 mean은 $E(X)=\frac{rp}{1-p}$, Variance는 $\text{Var}(X)=\frac{rp}{(1-p)^2}$이다.(notation 생략: $r$은 여기선 $k$). 
      $$

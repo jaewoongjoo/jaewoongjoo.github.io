@@ -60,12 +60,9 @@ pre {
 
 [3.2. Overdispersion](./glm/3_2.html)
 
-&nbsp;&nbsp;
+[3.3. Quasi Likelihood Approach](./glm/3_3.html)
 
-### 4. Quasi Likelihood
-
-[4.1. Quasi Likelihood Approach](./glm/4_1.html)
-
+[3.4. Mixture Modeling](./glm/3_4.html)
 
 &nbsp;&nbsp;
 

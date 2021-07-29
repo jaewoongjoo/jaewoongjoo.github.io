@@ -1,0 +1,145 @@
+---
+title: "3.3. Quasi Likelihood Approach"
+output: html_document
+---
+ 
+<style type="text/css">
+ 
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+ 
+ 
+ 
+In GLM, $g(\mu_i)=\sum_j \beta_jx_{ij}$ and likelihood equations are
+$$
+\sum_i \frac{(y_i-\mu_i)x_{ij}}{\text{Var}(Y_i)}\frac{d\mu_i}{d\eta_i}=0,\mbox{ }\mbox{ } j=0,1,\ldots,p.
+$$
+
+Also, note that ML estimates depend on the distribution of $Y_i$ only through $\mu_i$ and $\text{Var}(Y_i)=V(\mu_i)$.
+  
+&nbsp;&nbsp;
+ 
+  * Quasi-likelihood는 주로 $\phi=1$인 poisson이나 binomial case에 주로 사용된다. 그렇기 때문에 $\text{Var}(Y_i)=V(\mu_i)$임을 가정한다.
+  
+&nbsp;&nbsp;
+
+##### Definition
+A function $h(Y,\beta)$ is an unbiased *estimating function* if
+$$
+E[h(Y;\beta)]=0 \mbox{ }\mbox{ for all }\beta.
+$$
+   
+   * $h(Y;\beta)$ 는 unbiased estimating function이고, $h(Y;\beta)$를 set to zero한 $h(Y;\beta)=0$, 이 방정식은 **estimating equations**이다.
+   
+   * 우리가 알고 있는 Likelihood equation도 estimating equation이다.
+   
+&nbsp;&nbsp;
+ 
+##### Remark(Quasi likelihood approach)
+1. Use model $g(\mu_i)=\sum_j \beta_jx_{ij}$ and variance function $V(\mu_i)$ but do not assume distribution for $Y_i$.
+
+2. To allow overdispersion, take $V(\mu_i)=\phi V^*(\mu_i)$, where $V^*(\mu_i)$ is variance function for common model such as  $V^*(\mu_i)=\mu_i$ for count data.
+ 
+3. Use estimating equations $S(\beta)=0$ even if they do not correspont to likelihood equations for distribution in exponential family. Here, $S(\beta)$ is the quasi score functions such that
+$$
+S(\beta)=(S_0(\beta), S_1(\beta)\ldots,S_p(\beta)),
+$$
+where 
+$$
+S_j(\beta)=\sum_i \frac{(y_i-\mu_i)x_{ij}}{\phi V^*(\mu)}\frac{d\mu_i}{d\eta_i}\stackrel{\text{set}}{=}0,\mbox{ }\mbox{ } j=0,1,\ldots,p.
+$$
+
+  * 즉 $\text{Var}(Y_i)$를 $\phi V^*(\mu_i)$로 놓고 set to zero하여 $\beta$에 대해 풀겠다는 것이다. 
+  
+&nbsp;&nbsp;
+ 
+ 
+##### Remark
+1. Quasi-score function $S(\beta)$ is regarded as derivative of quasi log-likelihood function (need not correspond to a proper distribution).
+ 
+2. QL estimators have similar properties as ML estimators (McCuallagh, 1983). Solution $\hat\beta$ of $S(\beta)=0$ is asymptotically normal with covariance matrix $V=(X'WX)^{-1}$, where $W$ is diagonal with $w_i=\left(\frac{d\mu_i}{d\eta_i}\right)^2/\text{Var}(Y_i)$.
+
+3. If $g(\mu_i)=\sum_j \beta_jx_{ij}$ is correct, then $\hat\beta\rightarrow\beta$, regardless of whether variance function is correctly specified (White, 1984).
+   
+
+4. For $\text{Var}(Y_i)=\phi V^*(\mu_i),$ $\phi$ drops out of estimating equations, usually estimated by approximate method of moments.
+
+   For example, note that
+   $$
+   X^2=\sum_i\frac{(Y_i-\hat\mu_i)^2}{\hat{\text{Var}}(Y_i)}= \sum_i\frac{(Y_i-\hat\mu_i)^2}{\phi V^*(\hat\mu_i)}\stackrel{\text{approx}}{\sim}\chi^2_{N-p},
+   $$
+
+   where $X^2$ is Pearson statistic. Then
+  $$
+   E\left\{ \sum_i\frac{(Y_i-\hat\mu_i)^2}{\phi V^*(\hat\mu_i)} \right\}\approx N-p \\
+   \implies    E\left\{ \sum_i\frac{(Y_i-\hat\mu_i)^2}{ V^*(\hat\mu_i)} \right\}/(N-P) \approx \phi. \\
+  $$
+   Thus, we have
+$$
+\hat\phi= \frac{X^2}{N-p}= \sum_i\frac{(Y_i-\hat\mu_i)^2}{ V^*(\hat\mu_i)}/(N-P).
+$$
+
+   The $X^2$ is Pearson statistic is used for testing fit for GLM with variance function $V^*(\mu_i)$(Wedderbern, 1974).
+
+
+&nbsp;&nbsp;
+
+##### Example
+1. Quasi-likelihood for counts:
+
+   For poisson GLM, $V^*(\mu_i)=\mu_i$ does not allow overdispersion. In QL alternative, $V(\mu_i)=\phi\mu_i$, where typically expect $\phi>1$. Then, we have
+   $$
+   S_j(\beta)= \sum_i \frac{(y_i-\mu_i)x_{ij}}{\phi \mu_i}\frac{d\mu_i}{d\eta_i}=0, \mbox{ }j=0,1,\ldots,p.
+   $$
+
+   Note that $\hat\beta$ is the same as $\hat\beta$ for poisson GLM: $\text{Cov}(\hat\beta)= (X'WX)^{-1}$ with $w_i=\left(\frac{d\mu_i}{d\eta_i}\right)^2/\text{Var}(Y_i)$. For log link, $w_i=\left(\frac{d\mu_i}{d\eta_i}\right)^2/\text{Var}(Y_i)=b''(\theta_i)^2/\phi\mu_i=\mu_i/\phi$. 
+   
+   So, $\text{Cov}(\hat\beta)=\phi\times\text{Cov}$ for poisson GLM.  Also,
+   
+   $$
+   \hat\phi=\frac{X^2}{N-p}, 
+   $$
+where $X^2=\sum_i \frac{(y_i-\hat\mu_i)^2}{\hat\mu_i}.$
+
+&nbsp;&nbsp;
+
+
+2. Quasi-likelihood for Binomial overdispersion:
+   Let $n_iY_i\sim \text{Bin}(n_i, \pi_i)$, where
+   $$
+   \text{Var}(Y_i)=\phi V(\mu_i)= \frac{\pi_i(1-\pi_i)}{n_i}, \mbox{ } \phi=1.
+   $$
+   To allow overdispersion, take $V(\mu_i)=V(\pi_i)=\phi \frac{\pi_i(1-\pi_i)}{n_i}$. Then, we can derive 
+    $\text{Cov}(\hat\beta)=\phi(X'WX)^{-1}$ where $W=\text{diag}(w_1,\ldots,w_n)$ with $w_i=\left(\frac{d\mu_i}{d\eta_i}\right)^2/V(\mu_i)$.
+
+&nbsp;&nbsp;
+
+
+
+&nbsp;&nbsp;
+
+
+   
+##### 정리
+
+* 지금까지 우리는 poisson과 binomial에 대해 $\phi=1$로 가정하고 likelihood equation을 풀어서 iteratively reweighted least squares를 이용하는 방법으로 $\beta^{(t+1)}= (X'W^{(t)}X)^{-1}X'W^{(t)}z^{(t)}$를 이용하여 $\beta$를 update 해왔다. 
+   
+* 여기서 $W=\text{diag}(w_1,\ldots,w_n)$를 구하기 위해 $w_i=\left(\frac{d\mu_i}{d\eta_i}\right)^2/V(\mu_i)$ 를 이용했다. 
+   
+* 이젠 overdispersion를 고려하여 $\phi>1$ 이라고 생각하고 $w_i=\left(\frac{d\mu_i}{d\eta_i}\right)/\text{Var}(Y_i)=\left(\frac{d\mu_i}{d\eta_i}\right)/\phi V(\mu_i)$로 생각한다.
+   
+* 즉, $\text{Cov}(\hat\beta)=\phi(X'WX)^{-1}$값을 갖게 되고 $\hat{\text{Cov}}(\hat\beta)=\hat\phi(X'WX)^{-1}$를 이용하여 iteratively $\beta$를 update하고 그를 위해 $\hat\phi= \sum_i\frac{(Y_i-\hat\mu_i)^2}{ V^*(\hat\mu_i)}/(N-P)$ 또한 iteratively update한다. 
+
+
+
+
+
+&nbsp;&nbsp;
+ 
+[back](../glm.html)
+ 

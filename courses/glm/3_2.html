@@ -388,18 +388,19 @@ E(Y)&amp;=&amp;E_\lambda\{E(Y|\lambda) \}= E\{\lambda \}=\lambda,\\
 f(\lambda;k,\mu)= \frac{(k/\mu)^k}{\Gamma(k)}\exp\left(-\frac{k\lambda }{\mu}\right), \mbox{ }\lambda&gt;0.
 \]</span></p>
 <p>We have <span class="math inline">\(E(\lambda)=\mu\)</span> and <span class="math inline">\(\text{Var}(\lambda)=\mu^2/k\)</span>.</p>
-<p>Then, <span class="math inline">\(Y\)</span> has probability mass function <span class="math display">\[
-P(Y=y; k, \mu)= \frac{\Gamma(y+k)}{\Gamma(k)\Gamma(y+1)}\left(\frac{\mu}{\mu+k}\right)^y \left(1-\frac{\mu}{\mu+k}\right)^k,
-\]</span> for <span class="math inline">\(y=0,1,2,\ldots.\)</span>. This is p.m.f of negative binomial distribution.</p>
+<p>Then, <span class="math inline">\(Y\)</span> has probability mass function <span class="math display">\[\begin{eqnarray*}
+P(Y=y)&amp;=&amp; E[P(Y=y|\lambda)]\\
+&amp;=&amp;\int_0^\infty  \frac{e^{-\lambda}\lambda^y}{y!}\frac{(k/\mu)^k}{\Gamma(k)}\exp\left(-\frac{k\lambda }{\mu}\right)d\lambda\\
+&amp;=&amp;\cdots= \frac{\Gamma(y+k)}{\Gamma(k)\Gamma(y+1)}\left(\frac{\mu}{\mu+k}\right)^y \left(1-\frac{\mu}{\mu+k}\right)^k,
+\end{eqnarray*}\]</span> for <span class="math inline">\(y=0,1,2,\ldots.\)</span>. This is p.m.f of negative binomial distribution.</p>
 <p>Note that</p>
 <p><span class="math display">\[
 E(Y)= \mu, \mbox{ } \text{Var}(Y)=\mu+\mu^2/k.
 \]</span> As <span class="math inline">\(n\rightarrow \infty\)</span>, <span class="math inline">\(\text{Var}(\lambda)\rightarrow 0\)</span> and <span class="math inline">\(\text{Var}(Y)\rightarrow \mu\)</span> (Negative bionmial <span class="math inline">\(\rightarrow\)</span> poisson).</p>
 <ul>
-<li><p><span class="math inline">\(Y\)</span>의 marginal 분포는 <span class="math inline">\(Y|\lambda\)</span>의 분포와 <span class="math inline">\(\lambda\)</span>의 분포를 곱하여 joint density를 구한 다음, <span class="math inline">\(\lambda\)</span>에 대하여 적분하면 구할 수 있다.</p></li>
-<li><p>일반적인 Negative binomial 분포의 mean은 <span class="math inline">\(E(X)=\frac{rp}{1-p}\)</span>, Variance는 <span class="math inline">\(\text{Var}(X)=\frac{rp}{(1-p)^2}\)</span>이다.(notation 생략: <span class="math inline">\(r\)</span>은 여기선 <span class="math inline">\(k\)</span>). <span class="math display">\[
+<li>일반적인 Negative binomial 분포의 mean은 <span class="math inline">\(E(X)=\frac{rp}{1-p}\)</span>, Variance는 <span class="math inline">\(\text{Var}(X)=\frac{rp}{(1-p)^2}\)</span>이다.(notation 생략: <span class="math inline">\(r\)</span>은 여기선 <span class="math inline">\(k\)</span>). <span class="math display">\[
     \implies E(Y)=\frac{k \frac{\mu}{\mu+k} }{\frac{k}{\mu+k}}=\mu, \mbox{ }  \text{Var}(Y)=\frac{k \frac{\mu}{\mu+k} }{\frac{k^2}{(\mu+k)^2}}=\frac{\mu}{k}(\mu+k)=\mu+\mu^2/k.
-\]</span></p></li>
+\]</span></li>
 </ul>
 <p>  </p>
 <p>Note that <span class="math display">\[\begin{eqnarray*}
