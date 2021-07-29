@@ -66,4 +66,23 @@ pre {
 
 &nbsp;&nbsp;
 
+### 4. Multinomial Response Models
+
+[4.1.](./glm/4_1.html)
+
+
+&nbsp;&nbsp;
+
+
+### 5. Marginal Models for Repeated Measurement
+
+&nbsp;&nbsp;
+
+### 6. Generalized Linear Mixed Models
+
+
+
+
+&nbsp;&nbsp;
+
 [back](../index.html)
