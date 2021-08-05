@@ -45,7 +45,7 @@ If $g\le f_n\uparrow f$ a.e., where $\int g\mbox{ }d\mu>-\infty$, then $-\infty<
 
   * 만약 $\int g\mbox{ }d\mu=\infty$라면 trivial하다. 때문에, let $\int |g|\mbox{ }d\mu < \infty$. This implies $|g|< \infty$ a.e.
 
-  * $0\le f_n-g \uparrow f-g$ a.e., $\stackrel{\text{monotone}}s{\implies} 0\le \int(f_n-g)d\mu\uparrow \int(f-g)d\mu\stackrel{\text{linearity}}{\implies}-\infty< \int g\mbox{ }d\mu \le  \int f_n \mbox{ }d\mu \uparrow \int f\mbox{ }d\mu$.
+  * $0\le f_n-g \uparrow f-g$ a.e., $\stackrel{\text{monotone}}{\implies} 0\le \int(f_n-g)d\mu\uparrow \int(f-g)d\mu\stackrel{\text{linearity}}{\implies}-\infty< \int g\mbox{ }d\mu \le  \int f_n \mbox{ }d\mu \uparrow \int f\mbox{ }d\mu$.
 
 &nbsp;&nbsp;
 
