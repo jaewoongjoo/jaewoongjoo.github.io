@@ -1,0 +1,91 @@
+---
+title: 2.3. Approximation by Simple Functions
+output: html_document
+---
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+##### Definition(Indicator Function)
+For a set $A\subset\Omega$, the function $I_A:\Omega\rightarrow\mathbb{R}$ defined by
+$$
+I_A(\omega)=\begin{cases}1, & \mbox{if }\omega\in A,\\0,& \mbox{otherwise}.\end{cases}
+$$
+is called the *indicator* of $A$.
+
+&nbsp;&nbsp;
+
+##### Remark
+Note that $I_A$ is measurable-$\mathcal{F}/\mathcal{R}$ if and only if $A\in \mathcal{F}$ because
+
+$$
+I_A^{-1}(H)=\begin{cases}A, & \mbox{if }1 \in H,0 \notin H\\A^c,& \mbox{if }1 \notin H,0 \in H \\ \Omega & \mbox{if }0,1\in H\\ \phi, & \mbox{if }0,1\notin H,\end{cases}
+$$
+so that $I_A^{-1}(H)\in \mathcal{F}$ for all $H\in \mathcal{R}$ if and only if $A\in \mathcal{F}$.
+
+
+   *  $1\in H$ 가 의미하는 건 $I_A(\omega)=1$, 즉 $\omega\in A$라는 의미로 받아들일 수 있다. 반대로 $1\notin H$ 가 의미하는 건 $\omega\notin A$라는 의미이다.
+
+
+&nbsp;&nbsp;
+
+##### Definition(Simple function)
+A real-valued *simple function* is a function $f:\Omega\rightarrow\mathbb{R}$ that can be written in the form
+$$
+f(\omega)= \sum_{i=1}^n a_iI_{A_i}(\omega),
+$$
+where $a_1,\ldots,a_n\in \mathbb{R}$ and $A_1,\ldots,A_n$ form a finite partition of $\Omega$(i.e., $\Omega=\uplus_{i=1}^nA_i)$.
+
+   * 즉 Simple function은 $\Omega$의 유한개 partition들에 대한 indicator function들의 조합이다.
+   
+&nbsp;&nbsp;
+
+##### Theorem
+If $f:\Omega\rightarrow \mathbb{R}$ is nonnegative and $\mathcal{F}$-measurable, then there exists a sequence $\{f_n\}$ of $\mathcal{F}$-measurable, real-valued simple functions such that $0\le f_n(\omega)\uparrow f(\omega)$ for all $\omega\in \Omega$.
+
+   * Nonnegative한 measurable function은 simple function으로 근사시킬 수 있다. 
+
+
+
+&nbsp;&nbsp;
+
+##### Corollary
+If $f:\Omega \rightarrow \mathbb{R}$ is $\mathcal{F}$-measurable, then there exists a sequence $\{f_n\}$ of $\mathcal{F}$-measurable, real-valued simple functions such that
+$$
+0\le f_n(\omega)\uparrow f(\omega) \mbox{ if } f(\omega)\ge 0,\\
+$$
+and
+$$
+0\ge f_n(\omega)\downarrow f(\omega) \mbox{ if } f(\omega)\le 0.\\
+$$
+
+   * negative한 part에서는 positive part에서 부호만 반대로 생각해주면 된다. 
+   
+   * 결론은 negative또는 positive한 모든 measurable function은 simple function으로 근사시킬 수 있다. 
+
+&nbsp;&nbsp;
+
+##### Lemma(Monotonicity for nonnegative simple functions)
+If $f=\sum_{i=1}^m a_iI_{A_i}$ and $g=\sum_{j=1}^n b_jI_{B_j}$ are measurable, extended-real-valued simple functions satisfying $0\le f(\omega) \le g(\omega)$ for all $\omega\in \Omega$, then
+$$
+\sum_{i=1}^m a_i\mu(A_i)\le\sum_{j=1}^n b_j\mu(B_j).
+$$ 
+
+   * 즉, $\int f\mbox{ } d\mu=\sum_{i=1}^m a_i\mu(A_i)\le\sum_{j=1}^n b_j\mu(B_j)=\int g\mbox{ } d\mu$을 의미한다.
+
+&nbsp;&nbsp;
+
+
+
+
+[back](../prob1.html)
+

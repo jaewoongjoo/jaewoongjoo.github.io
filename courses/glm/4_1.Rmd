@@ -1,9 +1,8 @@
 ---
 title: "4.1. Models for Nominal data"
 ---
-
-<style type="text/css">
  
+<style type="text/css">
   body, td {
     font-size: 15px;
   }
@@ -13,27 +12,26 @@ pre {
 </style>
 
 
-
-##### Remark 
-
-Suppose categorical response has $J>2$ categories. 
-
-Sampling model: Independent miltinomial distribution with probabilities $\{ \pi_1(x), \ldots, \pi_J(x)\}$ at each setting $x$ of explanatory variables. 
-
-Then we have two cases
-
-1. Unordered categories(nominal scale),
-
-2. Ordered categories(ordinal scale).
-
-&nbsp;&nbsp;
-
 ##### Remark
-
-For the unordered categories, Basiline category logit models are used. 
-
+ 
+Suppose categorical response has $J>2$ categories.
+ 
+Sampling model: Independent miltinomial distribution with probabilities $\{ \pi_1(x), \ldots, \pi_J(x)\}$ at each setting $x$ of explanatory variables.
+ 
+Then we have two cases
+ 
+1. Unordered categories(nominal scale),
+ 
+2. Ordered categories(ordinal scale).
+ 
+&nbsp;&nbsp;
+ 
+##### Remark
+ 
+For the unordered categories, Basiline category logit models are used.
+ 
 Choose baseline category (say, $J$) and form logits
-
+ 
 $$\begin{eqnarray*}
 \log\left\{\frac{\pi_j(x)}{\pi_J(x)} \right\}&=&\log\left\{\frac{\pi_j(x)/(\pi_j(x)+\pi_J(x))}{\pi_J(x)/(\pi_j(x)+\pi_J(x))} \right\}\\
 &=&\text{logit}\left\{P(Y=j|Y=j \mbox{ or }Y=J) \right\}.
@@ -42,15 +40,15 @@ Then, we can set up a model such that
 $$
 \log\left\{\frac{\pi_j(x)}{\pi_J(x)} \right\}=\alpha_j+\beta_j'x, \mbox{ }j=1,2,\ldots,J-1.
 $$
-
+ 
 &nbsp;&nbsp;
-
+ 
 ##### Remark
-1. Other logits are determined by this basic set of $J-1$ logits: For $a<b<J$, 
+1. Other logits are determined by this basic set of $J-1$ logits: For $a<b<J$,
 $$
 \log\left\{\frac{\pi_a(x)}{\pi_b(x)} \right\}=\log\left\{\frac{\pi_a(x)}{\pi_J(x)} \right\}-\log\left\{\frac{\pi_b(x)}{\pi_J(x)} \right\} = (\alpha_a-\alpha_b)+(\beta_a'-\beta_b')x.
 $$
-
+ 
 2. For subject $i$,
 $$
 \pi_j(x_i)=\frac{\exp(\eta_{ij})}{\sum_h\exp(\eta_{ih})}=\frac{\exp(\eta_{ij})}{1+\sum_{h=1}^{J-1}\exp(\eta_{ih})}
@@ -60,51 +58,75 @@ $$
 \log\left\{\frac{\pi_j(x_i)}{\pi_J(x_i)}\right\}= (\alpha_j-\alpha_J)+(\beta_j-\beta_J)'x_i.
 $$
 (WLOG, $\alpha_J=\beta_J=0$). 어차피 같은 값이 모든 $j=1,2,\ldots,J-1$에 빼지는 것이기 때문이다.
-
+ 
 &nbsp;&nbsp;
-
-  * Note : 
+ 
+  * Note :
 $$\begin{eqnarray*}
   \log\left\{\frac{\pi_j(x_i)}{\pi_J(x_i)}\right\}&=&\log\left\{\frac{\pi_j(x_i)}{1-(\pi_1+\cdots+\pi_{J-1}(x_i))}\right\} = \alpha_j+\beta_j'x_i\\
    \implies \exp(\eta_{ij})&=&1-\frac{\pi_j(x_i)}{1-(\pi_1(x_i)+\cdots+\pi_{J-1}(x_i))}\\
    \implies \exp(\eta_{iJ})&=&1-\frac{\pi_J(x_i)}{1-(\pi_1(x_i)+\cdots+\pi_{J-1}(x_i))}=1.
 \end{eqnarray*}$$
-
-
+ 
+ 
 &nbsp;&nbsp;
-
+ 
 3. Let $y_{ij}=1$ if subject $i$ makes response in category $j$, $y_{ij}=0$ otherwise, i.e.,
-
+ 
    $y_i=(y_{i1},\ldots,y_{iJ})$ such that $\sum_{j=1}^Jy_{ij}=1.$
-   
+  
    Let $\mu_{ij}=E(Y_{ij})=\pi_j(x_i)$.
-
+ 
    More general "Multivariate GLM" has form
    $$
    g(\mu_{ij})=\alpha_j+x_i'\beta_j, \mbox{ }j=1,2,\ldots,J-1.
    $$
-
+ 
 &nbsp;&nbsp;
-
-4. For a particular observation, let   $y_i=(y_{i1},\ldots,y_{iJ})$. Then, contribution to log-likelihood for $i$ is 
+ 
+4. For a particular observation, let   $y_i=(y_{i1},\ldots,y_{iJ})$. Then, contribution to log-likelihood for $i$ is
 $$\begin{eqnarray*}
   \log\left\{\prod_j\pi_j^{y_{ij}}(x_i)\right\} &=& \sum_{j=1}^{J-1}y_{ij}\log\pi_j(x_i)+\left(1-\sum_{j=1}^{J-1}y_j \right)\log\left\{1-\sum_{j=1}^{J-1}\pi_j(x_i)\right\} \\
   &=&\sum_{j=1}^{J-1}y_{ij}\log\frac{\pi_j(x_i)}{1-\sum_{j=1}^{J-1}\pi_j(x_i)}+\log\left\{1-\sum_{j=1}^{J-1}\pi_j(x_i)\right\}.
 \end{eqnarray*}$$
-
+ 
 So, baseline-category logit models are canonical in multivariate exponential family.
-
+ 
 &nbsp;&nbsp;
-
+ 
 ##### Remark
-Let $Y=Y_1,\ldots, Y_N)$ are independent observations. Then, the joint distribution is
+Let $Y=(Y_1,\ldots, Y_N)$ are independent observations. Then, the joint distribution is
 $$\begin{eqnarray*}
-  f(y_1,\ldots,y_n)=\text{...}
+  f(y_1,\ldots,y_n)&=&\prod_{i=1}^N \left\{\ \prod_{j=1}^J\pi_j(x_i)^{y_{ij}} \right\}\\
+  &=& \prod_{i=1}^N \left\{\ \prod_{j=1}^J\left(\frac{\exp(\alpha_j+\beta_j'x_i)}{1+\sum_{j=1}^{J-1}\exp(\alpha_j\beta_j'x_i)    }\right)^{y_{ij}} \right\}\\
+  &=&\frac{ \exp\left\{\sum_{i=1}^N\sum_{j=1}^{J-1}(y_{ij}\alpha_{j} +\sum_{k=1}^p\beta_{jk}x_{ik}y_{ij})\right\}}{\prod_{i=1}^N \left\{ 1+\sum_{j=1}^{J-1}\exp(\alpha_j+\beta_h'x_i)\right\}^{\sum_{j=1}^Jy_{ij}}}
 \end{eqnarray*}$$
 
+Let $n_j=\sum_{i=1}^Ny_{ij}=$number of response in category $j$. Then,
+$$\begin{eqnarray*}
+  f(y_1,\ldots,y_n)&=&\prod_{i=1}^N \left\{\ \prod_{j=1}^J\pi_j(x_i)^{y_{ij}} \right\}\\
+  &=& \prod_{i=1}^N \left\{\ \prod_{j=1}^J\left(\frac{\exp(\alpha_j+\beta_j'x_i)}{1+\sum_{j=1}^{J-1}\exp(\alpha_j\beta_j'x_i)    }\right)^{y_{ij}} \right\}\\
+  &=&\frac{ \exp\left\{\sum_{i=1}^N\sum_{j=1}^{J-1}(y_{ij}\alpha_{j} +\sum_{k=1}^p\beta_{jk}x_{ik}y_{ij})\right\}}{\prod_{i=1}^N \left\{ 1+\sum_{j=1}^{J-1}\exp(\alpha_j+\beta_h'x_i)\right\}^{\sum_{j=1}^Jy_{ij}}}
+\end{eqnarray*}$$
+
+The sufficient statistics are $\{n_1,n_2,\ldots,n_{J-1}\}$ and $\left\{\sum_{i=1}^Nx_{ik}y_{ij},\mbox{ }j=1,\ldots,J-1, \mbox{ }k=1,\ldots,p\right\}.$
+
+Log-likelihood is concave and Newton Raphson yields ML estimate. 
 
 &nbsp;&nbsp;
+ 
+##### Remark(Discrete-choice Models)s
+Discrete choice models describe, explain and predict choices between two or more discrete alternatives (**subject's choice of discrete set of options**).
+
+  * Example: how to get to school today? $\implies$ walk, drive, bicycle.
+  
+There are two types of explanatory variables:
+
+  1. "Characterisrics of the chooser" - constant across choice set for a subject(e.g. income).
+  
+  2. "Characterisrics of the choice" - take different value for each response choice 
 
 
+&nbsp;&nbsp;
+ 
 [back](../glm.html)
-

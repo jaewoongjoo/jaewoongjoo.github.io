@@ -1,0 +1,98 @@
+---
+title: 2.4. The Integral
+output: html_document
+---
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+매우매우 중요
+
+##### Definition(Integral)
+Assume in this definition that $f:\Omega\rightarrow\mathbb{R}$ is measurable-$\mathcal{F}/\mathcal{R}$.
+
+If $f=\sum_{i=1}^m a_iI_{A_i}$ is a nonnegative, real-valued simple function, then *the integral* of $f$ (with respect to $\mu$) is defined to be
+$$
+\int f \mbox{ }d\mu=\sum_{i=1}^m a_i\mu(A_i).
+$$
+
+For general nonnegative $f$,
+$$
+\int f\mbox{ } d\mu=\sup\left\{ \int g\mbox{ }d\mu  :0\le g\le f, \mbox{ } g \mbox{ simple, real-valued, and measurable.}        \right\}
+$$
+Finally, for general $f$, we define
+$$
+\int f\mbox{ } d\mu=\int f^+\mbox{ } d\mu-\int f^-\mbox{ } d\mu
+$$
+whenever the difference on the right-hand side is well-defined. In this case, we say that the integral exists, and otherwise that the integral fails to exist. 
+
+If both $\int f^+\mbox{ } d\mu$ and $\int f^-\mbox{ } d\mu$ are finite, so that $\int f\mbox{ } d\mu$ exists and is finite, then we say that $f$ is **integrable** w.r.t $\mu$.
+
+&nbsp;
+
+   * Simple function $f$에 대해서 integral은 finite partition들에 대한 measure들의 sum으로 계산된다. 
+   
+   * Nonnegative general $f$의 integral은 f보다 작거나 같은 simple function의 integral값들의 supremum값이다.
+
+   * General $f$의 integral은 $f^+\ge 0$와 $f^-\ge 0$값으로 나누고, 각각을 Nonnegative general $f$의 integral로 구하여 계산한다. 이 때 이 integral값이 finite하다면 $f$는 integrable하다. 
+   
+&nbsp;&nbsp;
+
+##### Theorem(Approximation of the integral Using Simple function)
+If $f\ge 0$ is measurable-$\mathcal{F}/\mathcal{R}$ and $f_n, n\ge 1$ is a sequence of real-valued simple functions satisfying $0\le f_n \uparrow f$, then
+$$
+0\le \int f_n \mbox{ }d\mu \uparrow \int f\mbox{ }d\mu.
+$$
+
+
+   * $f_n$은 nonnegative하고 nondecreasing한 simple function이다. 때문에 $f_n$의 integral값(measure값)도 nondecreasing한다. 
+   
+   
+&nbsp;&nbsp;
+
+##### Definition
+A property is said to hold **almost everywhere(a.e.)**, or more specifically $\mu$-almost everywhere ($\mu$-a.e.), if the property holds for all $\omega$ in some set $A\in \mathcal{F}$ with $\mu(A^c)=0$. If $\mu$ is a probability measure, then we say that the property holds **almost surely (a.s.)** or **with probability 1 (w.p.1)**.
+
+   * 어떤 property가 $\mu(A)=1$, $\mu(A^c)=0$인 some set $A\in\mathcal{F}$에서 만족한다면 이 property는 almost everywhere 하게 hold한다고 말할 수 있다. 
+   
+   * Measure값이 0인 partition of $\Omega$에 대해서는 생각하지 않는 의미로 생각할 수 있다. 
+   
+&nbsp;&nbsp;
+
+##### Theorem
+
+If $f,g:\Omega\rightarrow \mathbb{R}$ are measurable functions satisfying $f=g$ a.e., then $\int f\mbox{ }d\mu$ exists if and only if $\int g\mbox{ }d\mu$ exists, and in this case $\int f\mbox{ }d\mu= \int g\mbox{ }d\mu$. In particular, if $f=0$ a.e., then $\int f\mbox{ }d\mu= 0$.
+
+
+   * 포인트는 만약 $f=g$ a.e. 이고 $f,g$의 integral들이 exist한다면(not $\infty-\infty$), $\int f\mbox{ }d\mu= \int g\mbox{ }d\mu$한다는 것이다.
+
+   * 증명은 $f=g$ a.e. 를 이용한다. $A\in \mathcal{F}$가 $f(\omega)=g(\omega)$ for all $\omega\in A$, where $\mu(A^c)=0$을 만족한다고 하자 ($f=fI_A=gI_A=g$).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;&nbsp;
+
+[back](../prob1.html)
+

@@ -20,7 +20,7 @@ Suppose that
 
 1. $(\Omega,\mathcal{F})$ and $(\Omega',\mathcal{F}')$ are measurable spaces,
 
-2. $T:\Omega\rightarrow \Omega'$ is measurable-$\mathcal{F}/\mathcal{F}', and
+2. $T:\Omega\rightarrow \Omega'$ is measurable-$\mathcal{F}/\mathcal{F}'$, and
 
 3. $\mu$ is a measure on $\Omega$.
 
@@ -34,7 +34,7 @@ $$
 
 2. $\mu_T(\phi)=\mu(\phi)=0$;
 
-3. $\mu_T$ is countably additive: if $A_1', A_2',\ldots\in \mathcal{F}$ are disjoint, then $T^{-1}A_1', T^{-1}A_2',\ldots\in \mathcal{F}$ are disjoint.
+3. $\mu_T$ is countably additive: if $A_1', A_2',\ldots\in \mathcal{F}$ are disjoint, then $T^{-1}(A_1'), T^{-1}(A_2'),\ldots\in \mathcal{F}$ are disjoint.
 
       $\left(\mbox{간단증명: }\omega\in T^{-1}(A_1')\implies T(\omega)\in A_1'\implies T(\omega)\notin A_2'\implies \omega\notin T^{-1}(A_2')\right)$
  
@@ -61,10 +61,62 @@ $$
   * 우리가 알고 있는 c.d.f는 Probability measure induced by the random variable이다. 깊은 의미로 받아들이도록 하자.
   
 
-&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;
 
-##### Definition 
-The quantile function of a probability distribution function $F$ on $\mathbb{R}$ is given by
+##### Lemma (Basic properties of the quantile function)
+If $F$ is a probability distribution function on $\mathbb{R}$, then the quantile function $F^{-1}$ is finite, nondecreasing, and left-continuous on (0,1) and satisfies
+
+1. $F(x)\ge u$ if and only if $x\ge F^{-1}(u)$
+
+    $\iff F(x)<u$ if and only if $x<F^{-1}(u)$. 
+
+
+2. $F^{-1}(0+)=-\infty$ if and only if  $F(x)>0$ for all $x\in \mathbb{R}$.
+
+3. $F^{-1}(1-)=\infty$ if and only if  $F(x)<0$ for all $x\in \mathbb{R}$.
+
+&nbsp;&nbsp;
+
+##### Theorem (Existence of a random variable with a given distribution)
+
+If $F$ is a probability distribution on $\mathbb{R}$, then there exists a probability space $(\Omega, \mathcal{F}, P)$ and a random variable $X$ defined on $\Omega$ having distribution function $F$.
+
+1. **First construction:**
+
+   Let $\mu$ be the unique measure on $(\mathbb{R},\mathcal{R})$ satisfying $\mu((a,b])=F(b)-F(a)$ 
+   
+   (In the given probability space, there exist a unique measure w.r.t the probability distribution function $F$ by correspondence theorem). 
+   
+   Then
+   $$
+   \mu((-\infty,x])=\lim_{n\rightarrow \infty}   \mu((-n,x])=F(x)-\lim_{n\rightarrow \infty}F(-n)=F(x)-0=F(x),
+   $$
+and
 $$
-F^{-1}(u)=\inf{x\in\mathbb{R}}
+   \mu(\mathbb{R})=\lim_{n\rightarrow \infty}   \mu((-\infty,n])=\lim_{n\rightarrow \infty}F(n)=1.
 $$
+
+   Thus, $\mu$ is a probability measure on $(\mathbb{R},\mathcal{R})$.
+
+   Now let $(\Omega, \mathcal{F},P)=(\mathbb{R},\mathcal{R},\mu)$ and let $X(\omega)=\omega$ for all $\omega\in \mathbb{R}$. Then,
+$$
+P(X\le x)=  \mu(\{\omega: X(\omega)\le x \})= \mu(\{\omega: \omega\le x \})=\mu((-\infty,x])=F(x).  
+$$
+&nbsp;
+
+2. **Second construction:**
+
+   Let $(\Omega, \mathcal{F},P)=((0,1),\mathcal{B}(0,1),\lambda)$, where $\lambda$ is Lebesgue measure on (0,1), and let $X(\omega)=F^{-1}(\omega)$ for $\omega\in (0,1)$. (Quantile function $F^{-1}(\omega$는 defined on $(0,1)$이라 적절하다.)
+   Then,
+$$
+P(X\le x)= P(\{ \omega\in (0,1): F^{-1}(\omega)\le x \})= P(\{ \omega\in (0,1): \omega\le F(x) \})=F(x).
+$$
+
+
+
+
+&nbsp;&nbsp;
+
+
+[back](../prob1.html)
+
