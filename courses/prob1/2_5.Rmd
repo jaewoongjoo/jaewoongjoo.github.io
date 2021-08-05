@@ -50,16 +50,24 @@ If $g\le f_n\uparrow f$ a.e., where $\int g\mbox{ }d\mu>-\infty$, then $-\infty<
 &nbsp;&nbsp;
 
 
+역시 매우 중요 
 
 ##### Theorem((Extended) Fatou's Lemma)
+If $f_n\ge g$ a.e., where $\int g\mbox{ }d\mu>-\infty$, then
+$$
+\int \liminf_nf_nd\mu\le \liminf_n\int f_nd\mu.
+$$
+
+   * Note that $\liminf$ is nondecreasing function.
 
 
+   * $g\le \inf_{k\ge n}f_k \uparrow \liminf_n f_n$ a.e. $\stackrel{\text{extended M.C.T}}{\implies} \lim_n \int \inf_{k \ge n}f_k \mbox{ }d\mu=\int \liminf_n f_n \mbox{ }d\mu$. 
 
 
-
-
-
-
+   * $g\le \inf_{k\ge n}f_k \le f_n$ $\forall n$, $\int g\mbox{ }d\mu>-\infty$
+   
+     $\stackrel{\text{ext. monotone}}{\implies}\int \inf_{k\ge n}f_k\mbox{ }d\mu \le \int f_n \mbox{ }d\mu \implies \liminf_n\int \inf_{k\ge n}f_k\mbox{ }d\mu \le \liminf_n\int f_n \mbox{ }d\mu$(End).
+ 
 
 
 
