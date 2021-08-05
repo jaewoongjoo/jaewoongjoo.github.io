@@ -361,19 +361,33 @@ pre {
   font-size: 15px
 }
 </style>
+<p>  </p>
+<p>In this section, <span class="math inline">\((\Omega, \mathcal{F}, \mu)\)</span> is taken to be a measure space. Also, unless otherwise stated, any simple function <span class="math inline">\(f=\sum_{i=1}^m a_i I_{A_i}\)</span> is assumed to be <span class="math inline">\(\mathcal{F}\)</span>-measurable and to be represented in such a way that <span class="math inline">\(A_i\in \mathcal{F}\)</span> and <span class="math inline">\(A_i=\phi\)</span> for all <span class="math inline">\(i=1,\ldots,m\)</span>, and <span class="math inline">\(\Omega=\uplus_{i=1}^m A_i\)</span>.</p>
+<p>  </p>
+<div id="lemmamonotonicity-for-nonnegative-simple-functions" class="section level5">
+<h5>Lemma(Monotonicity for nonnegative simple functions)</h5>
+<p>If <span class="math inline">\(f=\sum_{i=1}^m a_iI_{A_i}\)</span> and <span class="math inline">\(g=\sum_{j=1}^n b_jI_{B_j}\)</span> are measurable, extended-real-valued simple functions satisfying <span class="math inline">\(0\le f(\omega) \le g(\omega)\)</span> for all <span class="math inline">\(\omega\in \Omega\)</span>, then <span class="math display">\[
+\sum_{i=1}^m a_i\mu(A_i)\le\sum_{j=1}^n b_j\mu(B_j).
+\]</span></p>
+<ul>
+<li>즉, <span class="math inline">\(\int f\mbox{ } d\mu=\sum_{i=1}^m a_i\mu(A_i)\le\sum_{j=1}^n b_j\mu(B_j)=\int g\mbox{ } d\mu\)</span>을 의미한다.</li>
+</ul>
+<p>  </p>
 <p>매우매우 중요</p>
+</div>
 <div id="definitionintegral" class="section level5">
 <h5>Definition(Integral)</h5>
-<p>Assume in this definition that <span class="math inline">\(f:\Omega\rightarrow\mathbb{R}\)</span> is measurable-<span class="math inline">\(\mathcal{F}/\mathcal{R}\)</span>.</p>
+<p>Assume in this definition that <span class="math inline">\(f:\Omega\rightarrow\bar{\mathbb{R}}\)</span> is measurable-<span class="math inline">\(\mathcal{F}/\mathcal{R}\)</span>.</p>
 <p>If <span class="math inline">\(f=\sum_{i=1}^m a_iI_{A_i}\)</span> is a nonnegative, real-valued simple function, then <em>the integral</em> of <span class="math inline">\(f\)</span> (with respect to <span class="math inline">\(\mu\)</span>) is defined to be <span class="math display">\[
 \int f \mbox{ }d\mu=\sum_{i=1}^m a_i\mu(A_i).
 \]</span></p>
 <p>For general nonnegative <span class="math inline">\(f\)</span>, <span class="math display">\[
 \int f\mbox{ } d\mu=\sup\left\{ \int g\mbox{ }d\mu  :0\le g\le f, \mbox{ } g \mbox{ simple, real-valued, and measurable.}        \right\}
-\]</span> Finally, for general <span class="math inline">\(f\)</span>, we define <span class="math display">\[
+\]</span></p>
+<p>Finally, for general <span class="math inline">\(f\)</span>, we define <span class="math display">\[
 \int f\mbox{ } d\mu=\int f^+\mbox{ } d\mu-\int f^-\mbox{ } d\mu
 \]</span> whenever the difference on the right-hand side is well-defined. In this case, we say that the integral exists, and otherwise that the integral fails to exist.</p>
-<p>If both <span class="math inline">\(\int f^+\mbox{ } d\mu\)</span> and <span class="math inline">\(\int f^-\mbox{ } d\mu\)</span> are finite, so that <span class="math inline">\(\int f\mbox{ } d\mu\)</span> exists and is finite, then we say that <span class="math inline">\(f\)</span> is <strong>integrable</strong> w.r.t <span class="math inline">\(\mu\)</span>.</p>
+<p>If both <span class="math inline">\(\int f^+\mbox{ } d\mu\)</span> and <span class="math inline">\(\int f^-\mbox{ } d\mu\)</span> are finite, so that <span class="math inline">\(\int f\mbox{ } d\mu\)</span> exists and is finite, then we say that <span class="math inline">\(f\)</span> is <strong>integrable</strong> w.r.t <span class="math inline">\(\mu\)</span> <span class="math inline">\((\int |f|d\mu &lt;\infty)\)</span>.</p>
 <p> </p>
 <ul>
 <li><p>Simple function <span class="math inline">\(f\)</span>에 대해서 integral은 finite partition들에 대한 measure들의 sum으로 계산된다.</p></li>
@@ -397,19 +411,100 @@ pre {
 <p>A property is said to hold <strong>almost everywhere(a.e.)</strong>, or more specifically <span class="math inline">\(\mu\)</span>-almost everywhere (<span class="math inline">\(\mu\)</span>-a.e.), if the property holds for all <span class="math inline">\(\omega\)</span> in some set <span class="math inline">\(A\in \mathcal{F}\)</span> with <span class="math inline">\(\mu(A^c)=0\)</span>. If <span class="math inline">\(\mu\)</span> is a probability measure, then we say that the property holds <strong>almost surely (a.s.)</strong> or <strong>with probability 1 (w.p.1)</strong>.</p>
 <ul>
 <li><p>어떤 property가 <span class="math inline">\(\mu(A)=1\)</span>, <span class="math inline">\(\mu(A^c)=0\)</span>인 some set <span class="math inline">\(A\in\mathcal{F}\)</span>에서 만족한다면 이 property는 almost everywhere 하게 hold한다고 말할 수 있다.</p></li>
-<li><p>Measure값이 0인 partition of <span class="math inline">\(\Omega\)</span>에 대해서는 생각하지 않는 의미로 생각할 수 있다.</p></li>
+<li><p>Measure값이 0인 partition of <span class="math inline">\(\Omega\)</span>에 대해서는 고려하지 않는 의미로 생각할 수 있다.</p></li>
 </ul>
 <p>  </p>
 </div>
 <div id="theorem" class="section level5">
 <h5>Theorem</h5>
-<p>If <span class="math inline">\(f,g:\Omega\rightarrow \mathbb{R}\)</span> are measurable functions satisfying <span class="math inline">\(f=g\)</span> a.e., then <span class="math inline">\(\int f\mbox{ }d\mu\)</span> exists if and only if <span class="math inline">\(\int g\mbox{ }d\mu\)</span> exists, and in this case <span class="math inline">\(\int f\mbox{ }d\mu= \int g\mbox{ }d\mu\)</span>. In particular, if <span class="math inline">\(f=0\)</span> a.e., then <span class="math inline">\(\int f\mbox{ }d\mu= 0\)</span>.</p>
+<p>If <span class="math inline">\(f,g:\Omega\rightarrow \bar{\mathbb{R}}\)</span> are measurable functions satisfying <span class="math inline">\(f=g\)</span> a.e., then <span class="math inline">\(\int f\mbox{ }d\mu\)</span> exists if and only if <span class="math inline">\(\int g\mbox{ }d\mu\)</span> exists, and in this case <span class="math inline">\(\int f\mbox{ }d\mu= \int g\mbox{ }d\mu\)</span>. In particular, if <span class="math inline">\(f=0\)</span> a.e., then <span class="math inline">\(\int f\mbox{ }d\mu= 0\)</span>.</p>
 <ul>
 <li><p>포인트는 만약 <span class="math inline">\(f=g\)</span> a.e. 이고 <span class="math inline">\(f,g\)</span>의 integral들이 exist한다면(not <span class="math inline">\(\infty-\infty\)</span>), <span class="math inline">\(\int f\mbox{ }d\mu= \int g\mbox{ }d\mu\)</span>한다는 것이다.</p></li>
-<li><p>증명은 <span class="math inline">\(f=g\)</span> a.e. 를 이용한다. <span class="math inline">\(A\in \mathcal{F}\)</span>가 <span class="math inline">\(f(\omega)=g(\omega)\)</span> for all <span class="math inline">\(\omega\in A\)</span>, where <span class="math inline">\(\mu(A^c)=0\)</span>을 만족한다고 하자 (<span class="math inline">\(f=fI_A=gI_A=g\)</span>).</p></li>
+<li><p>증명은 <span class="math inline">\(f=g\)</span> a.e.를 이용한다. <span class="math inline">\(A\in \mathcal{F}\)</span>가 <span class="math inline">\(f(\omega)=g(\omega)\)</span> for all <span class="math inline">\(\omega\in A\)</span>, where <span class="math inline">\(\mu(A^c)=0\)</span>을 만족하는 set이라 하면 <span class="math inline">\(\int f\mbox{ }d\mu= \int fI_A \mbox{ }d\mu= \int gI_A \mbox{ }d\mu=\int g\mbox{ }d\mu\)</span>이다 (Exercise).</p></li>
 </ul>
 <p>  </p>
-<p><a href="../prob1.html">back</a></p>
+</div>
+<div id="theoremmonotonicity-of-the-integral-for-nonnegative-functions" class="section level5">
+<h5>Theorem(Monotonicity of the Integral for Nonnegative Functions)</h5>
+<p>Suppose that <span class="math inline">\(f,g:\Omega\rightarrow\bar{\mathbb{R}}\)</span> are measurable-<span class="math inline">\(\mathcal{F}\)</span>. If <span class="math inline">\(0\le f\le g\)</span> a.e., then <span class="math inline">\(\int f\mbox{ }d\mu \le \int g\mbox{ }d\mu\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(0\le f\le g\)</span> a.e.라 하자 (<span class="math inline">\(0\le fI_A \le gI_A\)</span> for <span class="math inline">\(A\in \mathcal{F}\)</span> with <span class="math inline">\(\mu(A^c)=0\)</span>).</p></li>
+<li><p><span class="math inline">\(\int f\mbox{ }d\mu= \int fI_A \mbox{ }d\mu\)</span>이고 <span class="math inline">\(\int gI_A \mbox{ }d\mu=\int g\mbox{ }d\mu\)</span>이다.</p></li>
+<li><p>때문에 WLOG, <span class="math inline">\(0\le f(\omega)\le g(\omega)\)</span> for all <span class="math inline">\(\omega\in \Omega\)</span>라고 가정하자.</p></li>
+<li><p>Simple function <span class="math inline">\(h\)</span>에 대해 <span class="math inline">\(\int f \mbox{ }d\mu:=\sup\left\{ \int h\mbox{ }d\mu: 0\le h \le f, \mbox{ }\mbox{ h real valued, simple, measurable} \right\}\)</span>이다. 즉 <span class="math inline">\(\int f\mbox{ }d\mu\)</span>는 <span class="math inline">\(\int h\mbox{ }d\mu\)</span> 의 upper bound이다. 하지만 이는 <span class="math inline">\(\int g\mbox{ }d\mu\)</span>라는 더 우측의 upper bound에 bounded되어있다(End).</p></li>
+</ul>
+<p>  </p>
+<p>매우 중요</p>
+</div>
+<div id="theoremmonotone-convergence-theorem" class="section level5">
+<h5>Theorem(Monotone Convergence Theorem)</h5>
+<p>Suppose that <span class="math inline">\(f\)</span> and <span class="math inline">\(f_n,n\ge 1\)</span> are <span class="math inline">\(\mathcal{F}\)</span>-measurable, extended-real-valued functions on <span class="math inline">\(\Omega\)</span>.</p>
+<p>If <span class="math inline">\(0\le f_n\uparrow f\)</span> a.e., then <span class="math display">\[
+\int f_n \mbox{ }d\mu \uparrow \int f \mbox{ }d\mu. 
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\iff \lim_n \int f_n\mbox{ }d\mu=\int\lim_n f_n\mbox{ }d\mu\)</span>.</li>
+</ul>
+<p>  </p>
+</div>
+<div id="theorembasic-properties-of-the-integral" class="section level5">
+<h5>Theorem(Basic properties of the Integral)</h5>
+<p>Suppose throughout that <span class="math inline">\(f,g:\Omega\rightarrow \bar{\mathbb{R}}\)</span> are measurable-<span class="math inline">\(\mathcal{F}\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>(Scalar multiplication and integration commute) If <span class="math inline">\(c\in \mathbb{R}\)</span> and <span class="math inline">\(\int f\mbox{ }d\mu\)</span> exists, then <span class="math inline">\(\int cf \mbox{ }d\mu=c\int f \mbox{ }d\mu\)</span>.</li>
+</ol>
+<p> </p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>(Additivity) If <span class="math inline">\(f+g\)</span> is well-defined(not <span class="math inline">\(\infty-\infty\)</span>) and <span class="math inline">\(\int f\mbox{ }d\mu\)</span> and <span class="math inline">\(\int g\mbox{ }d\mu\)</span> exist, then <span class="math display">\[
+  \int (f+g)\mbox{ }d\mu= \int f\mbox{ }d\mu+ \int g\mbox{ }d\mu, 
+\]</span></p>
+<p>as long as the expression on the right-hand side is defined. In particular, if <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are integrable, then so is <span class="math inline">\(f+g\)</span>.</p></li>
+</ol>
+<p> </p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>(Linearity) Suppose that <span class="math inline">\(a,b\in \mathbb{R}\)</span>, that <span class="math inline">\(af+bg\)</span> is well-defined, and that <span class="math inline">\(\int f\mbox{ }d\mu\)</span> and <span class="math inline">\(\int g\mbox{ }d\mu\)</span> exist. Then, <span class="math display">\[
+  \int (af+bg)\mbox{ }d\mu= a\int f\mbox{ }d\mu+ b\int g\mbox{ }d\mu, 
+\]</span></p>
+<p>as long as the expression on the right-hand side is defined. In particular, this holds whenever <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are integrable.</p></li>
+</ol>
+<p> </p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(f\ge 0\)</span> and <span class="math inline">\(\mu(f&gt;0)&gt;0\)</span>, then <span class="math inline">\(\int f\mbox{ }d\mu&gt;0\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(\mu(f&gt;0)&gt;0\)</span>은 <span class="math inline">\(A:=\{w\in \Omega: f(\omega)&gt;0\}\)</span>가 공집합이 아니라는 의미이다.</p></li>
+<li><p><span class="math inline">\(A^c=\{w\in \Omega: f(\omega)=0\}\)</span>이므로 <span class="math inline">\(\mu(A^c)=\int_{A^c} f\mbox{ }d\mu=\int fI_{A^c}\mbox{ }d\mu=0\)</span>이다. 때문에 <span class="math inline">\(f&gt;0\)</span> a.e.이다.</p></li>
+<li><p>if <span class="math inline">\(f=0\)</span> a.e., then <span class="math inline">\(\int f\mbox{ }d\mu= 0\)</span>의 역명제로 if <span class="math inline">\(f&gt;0\)</span> a.e., then <span class="math inline">\(\int f\mbox{ }d\mu&gt;0\)</span>을 유추할 수 있다(두가지 경우밖에 없기 때문).</p></li>
+</ul></li>
+</ol>
+<p> </p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(\int f\mbox{ }d\mu&lt;\infty\)</span>, then <span class="math inline">\(f&lt;\infty\)</span> a.e.</p>
+<ul>
+<li>Integral 값이 <span class="math inline">\(\infty\)</span>보다 작다면, <span class="math inline">\(f &lt;\infty\)</span> a.e. 이다.</li>
+</ul></li>
+</ol>
+<p> </p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>(Monotonicity) If <span class="math inline">\(f\le g\)</span> a.e., and both <span class="math inline">\(\int f\mbox{ }d\mu\)</span> and <span class="math inline">\(\int g\mbox{ }d\mu\)</span> exist, then <span class="math inline">\(\int f\mbox{ }d\mu\le \int g\mbox{ }d\mu\)</span>.</p>
+<ul>
+<li>Integral을 씌워도 부등호는 같다.</li>
+</ul></li>
+</ol>
+<p> </p>
+<ol start="7" style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(\int f\mbox{ }d\mu\)</span> exists, then <span class="math inline">\(|\int f\mbox{ }d\mu|\le \int |f|\mbox{ }d\mu\)</span>.</p>
+<ul>
+<li><span class="math inline">\(-|f|\le f \le |f|\implies -\int|f|d\mu=\int-|f|d\mu\le \int f\mbox{ }d\mu \le \int|f|d\mu\implies|\int f\mbox{ }d\mu|\le \int |f|\mbox{ }d\mu\)</span>.</li>
+</ul></li>
+</ol>
+<p>  </p>
+</div>
+<div id="theoremextended-monotonicity" class="section level5">
+<h5>Theorem(Extended monotonicity)</h5>
+<p>Assume that <span class="math inline">\(f\le g\)</span> a.e. If <span class="math inline">\(\int f\mbox{ }d\mu\)</span> exists and <span class="math inline">\(\int f\mbox{ }d\mu&gt;-\infty\)</span>, then <span class="math inline">\(\int g\mbox{ }d\mu\)</span> exists.</p>
+<p>Similarly, if <span class="math inline">\(\int g\mbox{ }d\mu\)</span> exists and <span class="math inline">\(\int g\mbox{ }d\mu&lt;\infty\)</span>, then <span class="math inline">\(\int f\mbox{ }d\mu\)</span> exists. In either case, <span class="math inline">\(\int f\mbox{ }d\mu\le \int g\mbox{ }d\mu\)</span>.</p>
+<p>  </p>
+<p><a href="../probability1.html">back</a></p>
 </div>
 
 

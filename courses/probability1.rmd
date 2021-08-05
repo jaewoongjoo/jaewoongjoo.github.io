@@ -25,3 +25,9 @@ output: html_document
 [2.1. Measurable Functions](./prob1/2_1.html)
 
 [2.2. Induced Measures and Distributions](./prob1/2_2.html)
+
+[2.3. Approximation by Simple Functions](./prob1/2_3.html)
+
+[2.4. The Integral](./prob1/2_4.html)
+
+[2.5. Limits and Integration](./prob1/2_5.html)

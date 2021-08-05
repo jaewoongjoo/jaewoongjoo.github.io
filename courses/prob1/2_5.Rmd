@@ -1,0 +1,115 @@
+---
+title: "2.5. Limits and Integration"
+output: html_document
+---
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+&nbsp;&nbsp;
+
+##### Theorem(Monotone Convergence Theorem)
+If $0 \le f_n \uparrow f$ a.e., then $\int f_n d\mu \uparrow \int f\mbox{ }d\mu$. 
+
+&nbsp;&nbsp;
+
+
+매우 중요하다.
+
+##### Corollary
+If $f_n \ge 0$ for all $n\ge 1$, then 
+$$
+\int \sum_{n=1}^\infty f_n\mbox{ } d\mu =  \sum_{n=1}^\infty\int f_n\mbox{ }d\mu. 
+$$
+
+  * $f_n$이 nonnegative일 때, summation이 밖으로 빠져나올 수 있다. 
+
+  * $g_N(\omega):=\sum_{n=1}^Nf_n(\omega)\uparrow \sum_{n=1}^\infty f_n(\omega)=:g(\omega)$를 이용해 증명 가능하다.
+
+&nbsp;&nbsp;
+
+
+Fatou's Lemma를 위해 
+
+##### Theorem(Extended Monotone Convergence Theorem)
+
+If $g\le f_n\uparrow f$ a.e., where $\int g\mbox{ }d\mu>-\infty$, then $-\infty<\int f_n \mbox d\mu \uparrow \int f \mbox d\mu$.
+
+  * 만약 $\int g\mbox{ }d\mu=\infty$라면 trivial하다. 때문에, let $\int |g|\mbox{ }d\mu < \infty$. This implies $|g|< \infty$ a.e.
+
+  * $0\le f_n-g \uparrow f-g$ a.e., $\stackrel{\text{monotone}}s{\implies} 0\le \int(f_n-g)d\mu\uparrow \int(f-g)d\mu\stackrel{\text{linearity}}{\implies}-\infty< \int g\mbox{ }d\mu \le  \int f_n \mbox{ }d\mu \uparrow \int f\mbox{ }d\mu$.
+
+&nbsp;&nbsp;
+
+
+
+##### Theorem((Extended) Fatou's Lemma)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;&nbsp;
+
+[back](../probability1.html)
+

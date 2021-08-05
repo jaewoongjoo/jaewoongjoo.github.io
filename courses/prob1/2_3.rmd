@@ -15,6 +15,9 @@ pre {
 </style>
 
 
+&nbsp;&nbsp;
+
+
 ##### Definition(Indicator Function)
 For a set $A\subset\Omega$, the function $I_A:\Omega\rightarrow\mathbb{R}$ defined by
 $$
@@ -74,18 +77,7 @@ $$
 
 &nbsp;&nbsp;
 
-##### Lemma(Monotonicity for nonnegative simple functions)
-If $f=\sum_{i=1}^m a_iI_{A_i}$ and $g=\sum_{j=1}^n b_jI_{B_j}$ are measurable, extended-real-valued simple functions satisfying $0\le f(\omega) \le g(\omega)$ for all $\omega\in \Omega$, then
-$$
-\sum_{i=1}^m a_i\mu(A_i)\le\sum_{j=1}^n b_j\mu(B_j).
-$$ 
-
-   * 즉, $\int f\mbox{ } d\mu=\sum_{i=1}^m a_i\mu(A_i)\le\sum_{j=1}^n b_j\mu(B_j)=\int g\mbox{ } d\mu$을 의미한다.
-
-&nbsp;&nbsp;
 
 
-
-
-[back](../prob1.html)
+[back](../probability1.html)
 

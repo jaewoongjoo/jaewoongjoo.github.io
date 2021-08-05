@@ -118,5 +118,5 @@ $$
 &nbsp;&nbsp;
 
 
-[back](../prob1.html)
+[back](../probability1.html)
 
