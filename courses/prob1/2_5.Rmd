@@ -14,6 +14,9 @@ pre {
 }
 </style>
 
+
+이 챕터는 전부 다 매우 중요하다. 
+
 &nbsp;&nbsp;
 
 ##### Theorem(Monotone Convergence Theorem)
@@ -50,59 +53,75 @@ If $g\le f_n\uparrow f$ a.e., where $\int g\mbox{ }d\mu>-\infty$, then $-\infty<
 &nbsp;&nbsp;
 
 
+역시 매우 중요 
 
 ##### Theorem((Extended) Fatou's Lemma)
+If $f_n\ge g$ a.e., where $\int g\mbox{ }d\mu>-\infty$, then
+$$
+\int \liminf_nf_nd\mu\le \liminf_n\int f_nd\mu.
+$$
+
+   * Note that $\liminf$ is nondecreasing function.
 
 
+   * $g\le \inf_{k\ge n}f_k \uparrow \liminf_n f_n$ a.e. $\stackrel{\text{extended M.C.T}}{\implies} \lim_n \int \inf_{k \ge n}f_k \mbox{ }d\mu=\int \liminf_n f_n \mbox{ }d\mu$. 
 
 
+   * $g\le \inf_{k\ge n}f_k \le f_n$ $\forall n$, $\int g\mbox{ }d\mu>-\infty$
+   
+     $\stackrel{\text{ext. monotone}}{\implies}\int \inf_{k\ge n}f_k\mbox{ }d\mu \le \int f_n \mbox{ }d\mu \implies \liminf_n\int \inf_{k\ge n}f_k\mbox{ }d\mu \le \liminf_n\int f_n \mbox{ }d\mu$(End).
+ 
+
+&nbsp;&nbsp;
+
+매우 중요 
+
+##### Theorem(Lebesgue Dominated Convergence Theorem)
+If $|f_n|\le g$ a.e. for all $n\ge 1$, where $g$ is integrable, and if $f_n\rightarrow f$ a.e., then $f$ and the $f_n$ are integrable and $\int f_n\mbox{ }d\mu \rightarrow \int f\mbox{ }d\mu$.
+
+  * 조건 3가지를 잘 기억해야 한다.
+    * $|f_n|\le g$ a.e. for all $n\ge 1$;
+    * $g$ is integrable;
+    * $f_n\rightarrow f$ a.e.
 
 
+&nbsp;&nbsp;
+
+D.C.T의 Variation
+
+##### Corollary(Bounded Convergence Theorem)
+Suppose that $\mu$ is a finite measure. If $f_n\rightarrow f$ a.e. and the $f_n, n\ge 1$ are a.e. uniformly bounded(by some finite constant), then $\int f_n\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$.
+
+   * We can take $g(\omega)=c$ for all $\omega$, where $c>0$, $g$ is the function in D.C.T(결국 단순한 D.C.T의 variation).
+  
+   * Then, $0\le \int g\mbox{ }d\mu= \int c\mbox{ }d\mu=c\int I_\Omega\mbox{ }d\mu=c\mu(\Omega)<\infty$.
+   
+   * Uniformly bounded: $|f_n|\le c$ a.e $\iff \mu(\{\omega: |f_n(\omega)>c \})=0$ where $c$ is not dependent on $n$.
 
 
+&nbsp;&nbsp;
+
+##### Corollary
+If $\sum_{n=1}^\infty f_n$ converges a.e. and $|\sum_{k=1}^n f_k|\le g$ a.e. for all $n\ge 1$, where g is integrable, then both $\sum_{n=1}^\infty f_n$ and the individual $f_n$s are integrable and $\int\sum_{n=1}^\infty f_n \mbox{ }d\mu=\sum_{n=1}^\infty\int f_n\mbox{ }d\mu$.
+
+   * Define $h_n:=\sum_{k=1}^n f_k$, $h:=\sum_{n=1}^\infty f_n$. 
+   
+1. $|h_n|\le g$ a.e. for all $n\ge 1$;
+
+2. $g$ is integrable;
+   
+3.  $h_n\rightarrow h$($h$ exists from the given assumption). 
 
 
+   * Thus, D.C.T can be applied s.t. 
+   $$
+   \int h_n \mbox{ }d\mu\rightarrow \int h\mbox{ }d\mu \\
+   \implies \lim_n \int \sum_{k=1}^n f_k\mbox{ }d\mu=\int \sum_{n=1}^\infty f_k\mbox{ }d\mu\\
+   \implies  \lim_n \sum_{k=1}^n \int  f_k\mbox{ }d\mu=\int \sum_{n=1}^\infty f_k\mbox{ }d\mu\\
+   \implies\sum_{n=1}^\infty \int  f_n\mbox{ }d\mu=\int \sum_{n=1}^\infty f_k\mbox{ }d\mu.
+    $$
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+&nbsp;&nbsp;
 
 
 

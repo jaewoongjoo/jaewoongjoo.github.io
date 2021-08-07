@@ -1,0 +1,289 @@
+---
+title: "2.10. The Fubini's Theorem"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+Probability Theory 1에서 가장 중요한 Part이다. 이 내용들을 이해하기 위해 Product measure 파트가 필요하다.
+
+<br>
+<br>
+
+
+#### Theorem (Fubini's Theorem)
+If $(\Omega_1,\mathcal{F}_1, \mu_1)$ and $(\Omega_2\mathcal{F}_2, \mu_2)$ are $\sigma$-finite measure spaces and if $f:\Omega_1\times\Omega_2\rightarrow \bar{\mathbb{R}}$ is and $\mathcal{F}_1\times\mathcal{F}_2$-measurable function for which $\int_{\Omega_1\times\Omega_2}f\mbox{ }d(\mu_1\times\mu_2)$ exists, then
+$$\begin{eqnarray*}
+\int_{\Omega_1\times\Omega_2}f(\omega_1, \omega_2)\mbox{ }d(\mu_1\times\mu_2)(\omega_1, \omega_2)&=&\int_{\Omega_1}\left[\int_{\Omega_2}f(\omega_1,\omega_2)\mbox{ } d\mu_2(\omega_2)\right]d\mu_1(\omega_1) \\
+&=&\int_{\Omega_2}\left[\int_{\Omega_1}f(\omega_1,\omega_2)\mbox{ } d\mu_1(\omega_1)\right]d\mu_2(\omega_2). 
+\end{eqnarray*}$$
+Here, $\int_{\Omega_2}f(\omega_1,\omega_2)\mbox{ } d\mu_2(\omega_2)$ is defined for $\mu_1$-almost all $\omega_1$ and we take its value to be zero(or any other arbitrary constant) for those $\omega_1$ for which it is not defined.
+
+Similarly, $\int_{\Omega_1}f(\omega_1,\omega_2)\mbox{ } d\mu_1(\omega_1)$ is defined for $\mu_2$-almost all $\omega_2$ and we take its value to be zero for those $\omega_2$ for which it is not defined.
+
+In particular, the result holds if $f$ is either nonnegative or integrable w.r.t $\mu_1\times\mu_2$, and in the latter case, $\int_{\Omega_2}f(\omega_1,\omega_2)\mbox{ } d\mu_2(\omega_2)$ is finite for $\mu_1$-almost all $\omega_1$ and $\int_{\Omega_1}f(\omega_1,\omega_2)\mbox{ } d\mu_1(\omega_1)$ is finite for $\mu_2$-almost all $\omega_2$ and 
+
+
+
+<br>
+<br>
+
+#### Definition(Sections)
+To set notation, for $A\subset\Omega_1\times\Omega_2$, let
+$$
+A_{\omega_1}^{(1)}=\{\omega_2:(\omega_1,\omega_2)\in A \}\subset \Omega_2,
+$$
+and
+$$
+A_{\omega_2}^{(2)}=\{\omega_1:(\omega_1,\omega_2)\in A \}\subset \Omega_1
+$$
+be the $\omega_1$ and $\omega_2$ *sections* of $A$, respectively.
+
+   * $xy$-plane에서의 사각형을 생각해보면 쉽다. $(\omega_1,\omega_2)\in A$에 대해서 $A_{\omega_1}^{(1)}$는 $\omega_2$, 즉 $y$축 부분의 Range(Section)로, $A_{\omega_2}^{(2)}$는 $x$축 부분의 Range(Section)로 연상할 수 있다.
+   
+   *  두 set $A, B\in \Omega_1\times \Omega_2$에 대해, $A_{\omega_1}^{(1)}\cap B_{\omega_1}^{(1)}=\phi$ for all $\omega_1\in \Omega_1$라면 $A\cap B=\phi$이다. 
+   
+   * $\omega_1$ section of a union of subsets of $\Omega_1\times\Omega_2$ is the union of their $\omega_1$ sections ($\Omega_1\times\Omega_2$의 부분집합들의 합집합에서 $\omega_1$ sections은 부분집합들의 $\omega_1$ sections의 합집합과 같다).
+
+
+
+<br>
+<br>
+
+#### Lemma
+If $A\in \mathcal{F}_1\times \mathcal{F}_2$, then $A_{\omega_1}^{(1)}\in \mathcal{F}_2$ for all $\omega_1\in \Omega_1$.
+
+   * Section은 $(\omega_1,\omega_2)$ 둘 중 하나를 fix하고 한쪽 축만 고려하는 것과 같다.
+   
+   * 그러므로 $A_{\omega_1}^{(1)}$는 $\omega_1$을 fix했기 때문에 $A_2\in \mathcal{F}_2$의 문제로 바뀐다.  
+
+<br>
+<br>
+<br>
+
+증명을 위해 필요
+
+#### Lemma(Fubini's theorem for indicators)
+If $(\Omega_1,\mathcal{F}_1, \mu_1)$ and $(\Omega_2,\mathcal{F}_2, \mu_2)$ are $\sigma$-finite measure spaces, and if $A\in \mathcal{F}_1\times\mathcal{F}_2$, then
+
+1. for fixed $\omega_1$, the function $\omega_2 \mapsto I_A(\omega_1,\omega_2)$ is $\mathcal{F}_2$-measurable;
+
+2. the function $\omega_1\mapsto \int_{\Omega_2}I_A(\omega_1,\omega_2)d\mu_2(\omega_2)$ is $\mathcal{F}_1$-measurable; 
+  
+   * Note  $\int_{\Omega_2}I_A(\omega_1,\omega_2)d\mu_2(\omega_2)$는 $\omega_2$에 대한 적분이기 때문에 $\omega_1$은 적분과 관계가 없다. $\omega_1$을 fix되었다고 생각한다면
+   $$
+   \int_{\Omega_2}I_A(\omega_1,\omega_2)d\mu_2(\omega_2)=\int_{\Omega_2}I_{A_{\omega_1}^{(1)}}(\omega_2)d\mu_2(\omega_2)=\mu_2(A_{\omega_1}^{(1)})
+   $$
+   이기 때문에 2번을 $\omega_1\mapsto \mu_2(A_{\omega_1}^{(1)})$ 라고 쓸 수 있다.
+   
+3. $(\mu_1\times\mu_2)(A)=\int_{\Omega_1}\left[\int_{\Omega_2}I_A(\omega_1, \omega_2)d\mu_2(\omega_2)\right]d\mu_1(\omega_1)$.
+
+<br>
+<br>
+<br>
+
+   * 1번: $\omega_1\in \Omega_1$으로 fix하면, $A\in \Omega_1\times\Omega_2$에 대해,
+   $$
+   I_A(\omega_1,\omega_2)= I_{A_{\omega_1}^{(1)}}(\omega_2)
+   $$
+   이다. 즉 $I\left(\omega_2\in A_{\omega_1}^{(1)}\right)$이고 이는 $\omega_2$가 $A$의 $y$축 영역에서의 범위 안에 들어있는지에 대한 Indicator function을 의미한다. 바로 위의 Lemma에서 $A_{\omega_1}^{(1)}\in \mathcal{F}_2$이기 때문에, $I_{A_{\omega_1}^{(1)}}(\omega_2)$는 $\mathcal{F}_2$-measurable하다. 
+   
+   * 2번 : For all $A=A_1\times A_2\in \text{Rect}(\mathcal{F}_1,\mathcal{F}_2)$ 
+   $$
+   I_{A_1\times A_2}(\omega_1,\omega_2)= I_{A_1}(\omega_1)I_{A_2}(\omega_2)=I(\omega_1\in A_1)I(\omega_2\in A_2),
+   $$
+   by the definition of measurable rectangle(2.9에서 첫번째 정의). Then,
+   $$
+   \int_{\Omega_2}I_{A_1\times A_2}(\omega_1,\omega_2)\mbox{ }d\mu_2(\omega_2)= I_{A_1}(\omega_1)\int_{\Omega_2}I_{A_2}(\omega_2)\mbox{ }d\mu_2(\omega_2)=I_{A_1}(\omega_1)\mu_2(A_2),
+   $$
+   which is $\mathcal{F}_1$-measurable because $A_1\in \mathcal{F}_1$(즉 Field에 대해서는 성립한다).   <br>
+   
+       First, let $\mu_2$ be a finite measure, and let $\mathcal{L}$ be the class of $\mathcal{F}_1\times\mathcal{F}_2$-sets $A$ for which 2. holds. Then, $\mathcal{L}$ is a $\lambda$-system: 
+       
+       1. $\Omega_1\times \Omega_2\in \text{Rect}(\mathcal{F}_1,\mathcal{F}_2)\subset \mathcal{L}$  $\mbox{ }$$\mbox{ }$ (Field에서는 hold하기 때문).
+       
+       2. If $A\in \mathcal{L}$, then because $\mu_2(\Omega_2)<\infty$,
+$$
+       \mu_2\left((A^c)_{\omega_1}^{(1)}\right)=\mu_2\left(\left(A_{\omega_1}^{(1)}\right)^c\right)=\mu_2(\Omega_2)-\mu_2\left(A_{\omega_1}^{(1)}\right),
+$$
+       which is clearly a $\mathcal{F}_1$ measurable function of $\omega_1$ because $\mu_2\left(A_{\omega_1}^{(1)}\right)$ is $\mathcal{F}_1$-measurable (Linear combination of $\mathcal{F}_1$ measurable functions). Thus, $A^c\in \mathcal{L}$.
+
+       3. If $A_1,A_2,\ldots,\in \mathcal{L}$ are disjoint, then
+$$
+\mu_2\left(\left(\biguplus_{n=1}^\infty A_n \right)_{\omega_1}^{(1)}\right)= \mu_2\left(\biguplus_{n=1}^\infty A_{n, \omega_1}^{(1)}\right)= \sum_{n=1}^{\infty}\mu_2(A_{n, \omega_1}^{(1)}),
+$$
+        which is $\mathcal{F}_1$ measurable, being a limit of $\mathcal{F}_1$ measurable functions.
+        
+       But since $\text{Rect}(\mathcal{F}_1,\mathcal{F}_2)\subset \mathcal{L}$ is a $\pi$-system generating $\mathcal{F}_1,\mathcal{F}_2$, it follows from the $\pi-\lambda$ theorem that $\mathcal{F}_1\times \mathcal{F}_2\subset \mathcal{L}$, i.e., 2. holds for all $A\in \mathcal{F}_1\times\mathcal{F}_2$.
+        
+   
+   
+       Second, let $\mu_2$ be $\sigma$-finite. Let $B_{2,n}\in \mathcal{F}_2$ satisfy $B_{2,n}\uparrow \Omega_2$ and $\mu_2(B_{2.n})<\infty$ for all $n\ge 1$. Then, $\mu_{2,n}(A_2):=\mu_{2,n}(A_2\cap B_{2.n})$ defines a finite measure on $\mathcal{F}_2$, and for any $A\in \mathcal{F}_1\times\mathcal{F}_2$,
+$$
+\mu_{2,n}(A_{\omega_1}^{(1)})=\mu_2(A_{\omega_1}^{(1)}\cap B_{2,n})\uparrow \mu_2(A_{\omega_1}^{(1)})
+$$
+       (좌변이 finite measure값이기 때문에 아무리 increasing한다고 해도 limit 또한 finite값이다). 
+       
+       즉 finite 과 $\sigma$-finite한 $\mu_2$에 대해 function $\omega_1\mapsto \mu_2(A_{\omega_1}^{(1)})$, being a limit of $\mathcal{F}_1$-measurable functions, is itself $\mathcal{F}_1$-measurable.
+       
+   * 3번: Define
+   $$
+   \mu(A)=\int_{\Omega_1}\mu_2(A_{\omega_1}^{(1)})d\mu_1(\omega_1), \mbox{ }\mbox{ }\mbox{ }A\in \mathcal{F}_1\times\mathcal{F}_2.
+   $$
+   Clearly $\mu$ is nonnegative(Basic properties of Integral, 4 참고), and, since $(\uplus_n A_n)_{\omega_1}^{(1)}=(\uplus_{n} A_{n,\omega_1}^{(1)})$, countable additivity of $\mu_2$ and monotone conergence for series of nonnegative terms implies that $\mu$ is countably additive and hence a measure on $\mathcal{F}_1\times \mathcal{F}_2$:
+   $$\begin{eqnarray*}
+   \mu(\uplus_n A_n)&=& \int_{\Omega_1}\mu_2\left((\uplus_n A_n)_{\omega_1}^{(1)}\right)d\mu_1(\omega_1)\\
+   &=&\int_{\Omega_1}\mu_2\left((\uplus_{n} A_{n,\omega_1}^{(1)})\right)d\mu_1(\omega_1)\\
+   &=&\int_{\Omega_1}\sum_n\mu_2\left(A_{n,\omega_1}^{(1)}\right)d\mu_1(\omega_1)\\
+   &=&\sum_n\int_{\Omega_1}\mu_2\left(A_{n,\omega_1}^{(1)}\right)d\mu_1(\omega_1)=\sum_n\mu(A_n).
+   \end{eqnarray*}$$
+   Further, for $A=A_1\times A_2\in \text{Rect}(\mathcal{F}_1,\mathcal{F}_2)$ we have
+$$\begin{eqnarray*}
+   \mu_2\left((A_1\times A_2)_{\omega_1}^{(1)}\right)&=&\int_{\Omega_2} I_{A_1\times A_2}(\omega_1,\omega_2)d\mu_2(\omega_2) \\
+   &=&I_{A_1}(\omega_1)\mu_2(A_2)\\
+   \implies\mu(A_1\times A_2)&=&\int_{\Omega_1}I_{A_1}(\omega_1)\mu_2(A_2)d\mu_1(\omega_1)\\
+   &=&\mu_1(A_1)\mu_2(A_2)=(\mu_1\times\mu_2)(A_1\times A_2).
+\end{eqnarray*}$$
+   Thus, $\mu$ and $\mu_1\times\mu_2$ agree on the $\pi$-system $\text{Rect}(\mathcal{F}_1,\mathcal{F}_2)$, and $\mu_1\times\mu_2$ is $\sigma$-finite on $\text{Rect}(\mathcal{F}_1,\mathcal{F}_2)$. By the uniqueness theorem for $\sigma$-finite measures, $\mu=\mu_1\times\mu_2$.
+
+
+
+<br>
+<br>
+<br>
+
+Simple function $f$ $\rightarrow$ nonnegative function $f$ $\rightarrow$ general function $f$ 순서로 증명할 것이다.
+
+##### Proof of Fubini's Theorem(simple function $f$)
+
+Suppose that $f=\sum_{i=1}^m a_iI_{A_i}$ is a nonnegative simple function, with $A_1,\ldots, A_m \in \mathcal{F}_1\times\mathcal{F}_2$.  Then, for each fixed $\omega_1$, the function
+$$
+\omega_2\mapsto f(\omega_1,\omega_2)=\sum_{i=1}^m a_i I_{A_i}(\omega_1,\omega_2)
+$$
+is $\mathcal{F}_2$-measurable, being a nonnegative linear combination of $\mathcal{F}_2$-measurable functions. Also, by linearity of the integral, 
+$$
+\int_{\Omega_2} f(\omega_1, \omega_2)d\mu_2(\omega_2)= \sum_{i=1}^m a_i\int_{\Omega_2}I_{A_i}(\omega_1,\omega_2)I_{A_i}(\omega_1,\omega_2)d\mu_2(\omega_2)
+$$
+so that the function 
+$$
+\omega_1\mapsto \int_{\Omega_2} f(\omega_1,\omega_2)d\mu_2(\omega_2)
+$$
+is $\mathcal{F}_1$-measurable, being a nonnegative linear combination of $\mathcal{F}_1$-measurable functions.
+
+Finally by linearity of the integral and Fubini's theorem for indicator functions,
+$$\begin{eqnarray*}
+\int_{\Omega_1\times\Omega_2} f(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2)&=&\int_{\Omega_1\times\Omega_2} \sum_{i=1}^m a_iI_{A_i}(\omega_1,\omega_2) d(\mu_1\times\mu_2)(\omega_1, \omega_2)\mbox{ }\mbox{ }\mbox{ by the definition of }f\\
+&=&\sum_{i=1}^m a_i\int_{\Omega_1\times\Omega_2} I_{A_i}(\omega_1,\omega_2) d(\mu_1\times\mu_2)(\omega_1, \omega_2) \\
+&=&\sum_{i=1}^m a_i\int_{\Omega_1}\left[\int_{\Omega_2} I_{A_i}(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1) \mbox{ }\mbox{ }\mbox{ by }3 \mbox{ of the above lemma}\\
+&=&\int_{\Omega_1}\left[\sum_{i=1}^m a_i\int_{\Omega_2} I_{A_i}(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)\\
+&=&\int_{\Omega_1}\left[\int_{\Omega_2}\sum_{i=1}^m a_i I_{A_i}(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)\\
+&=&\int_{\Omega_1}\left[\int_{\Omega_2}f(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)\mbox{ }\mbox{ }\mbox{ by the definition of }f.
+\end{eqnarray*}$$
+
+
+<br>
+<br>
+
+##### Proof of Fubini's Theorem(Nonnegative $f$)
+
+For $\mathcal{F}_1\times\mathcal{F}_2$-measurable $f\ge 0$, let $f_n, n\ge 1$ be simple function satisfying $0\le f_n \uparrow f$. Then, for each fixed $\omega_1$, the function
+$$
+\omega_2\mapsto f(\omega_1,\omega_2)= \lim_n f_n(\omega_1, \omega_2)
+$$
+is $\mathcal{F}_2$-measurable, being a limit of $\mathcal{F}_2$-measurable functions.
+
+Also, by the monotone convergence theorem,
+$$
+0\le \int_{\Omega_2}f_n(\omega_1,\omega_2)d\mu_2(\omega_2)\uparrow \int_{\Omega_2}f(\omega_1,\omega_2)d\mu_2(\omega_2) \mbox{}\mbox{ }\mbox{ for all }\omega_1,
+$$
+so that the function
+$$
+\omega_1\mapsto \int_{\Omega_2}f(\omega_1,\omega_2)d\mu_2(\omega_2)
+$$
+is $\mathcal{F}_1$-measurable, being a limit of $\mathcal{F}_1$-measurable functions ($ \int_{\Omega_2}f_n(\omega_1,\omega_2)d\mu_2(\omega_2)$이 $\mathcal{F}_1$-measurable이기 때문).
+
+Thus by monotone convergence and the result for the simple function again,
+$$\begin{eqnarray*}
+\int_{\Omega_1\times\Omega_2} f(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2)&=&\lim_n \int_{\Omega_1\times\Omega_2} f_n(\omega_1,\omega_2) d(\mu_1\times\mu_2)(\omega_1, \omega_2)\mbox{ }\mbox{ }\mbox{ by M.C.T}(0\le f_n\uparrow f, \mbox{ take integral w.r.t } \mu_1\times\mu_2) \\
+&=& \lim_n \int_{\Omega_1}\left[\int_{\Omega_2} f_n(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)\mbox{ }\mbox{ }\mbox{ }\mbox{ simple function }f_n\\
+&=&  \int_{\Omega_1}\left[\lim_n\int_{\Omega_2} f_n(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)\\
+&=&\int_{\Omega_1}\left[\int_{\Omega_2} f(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)\mbox{ }\mbox{ }\mbox{ by M.C.T}(0\le f_n\uparrow f, \mbox{ take integral w.r.t } \mu_2).
+\end{eqnarray*}$$
+<br>
+<br>
+
+##### Proof of Fubini's Theorem(general $f$)
+Finally, suppose that $f$ is a general $\mathcal{F}_1\times\mathcal{F}_2$-measurable function.
+
+Then, by the result for nonnegative functions, the function
+$$
+\omega_2\mapsto f^+(\omega_1,\omega_2)
+$$
+is $\mathcal{F}_2$-measurable for each fixed $\omega_1$, and the function
+$$
+\omega_1\mapsto \int_{\Omega_2}f^+(\omega_1,\omega_2)d\mu_2(\omega_2)
+$$
+is $\mathcal{F}_1$-measurable, and
+$$
+\int_{\Omega_1\times\Omega_2} f^+(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2)=\int_{\Omega_1}\left[\int_{\Omega_2} f^+(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)
+$$
+Of course the analogous results hold for $f^-$.
+
+
+Now if
+$$
+\int_{\Omega_1\times\Omega_2} f(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2)=\int_{\Omega_1\times\Omega_2} f^+(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2)-\int_{\Omega_1\times\Omega_2} f^-(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2)
+$$
+exists(well-defined), then at least one of the integrals on the right-hand side must be finite. WLOG, suppose that the negative part is finite. Then,
+$$
+\int_{\Omega_1\times\Omega_2} f^-(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2)=\int_{\Omega_1}\left[\int_{\Omega_2} f^-(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)
+$$
+which implies that
+$$
+0\le \int_{\Omega_2} f^-(\omega_1,\omega_2) d\mu_2(\omega_2) < \infty \mbox{ }\mbox{ }\mbox{ }\mu_1\mbox{-a.e. }
+$$
+by the $5^{th}$ part of the *Basic Properties of the Integral*.
+
+Thus, 
+$$
+\int_{\Omega_2} f(\omega_1,\omega_2)d\mu_2(\omega_2)=\int_{\Omega_2} f^+(\omega_1,\omega_2)d\mu_2(\omega_2)-\int_{\Omega_2} f^-(\omega_1,\omega_2)d\mu_2(\omega_2)
+$$
+is defined $\mu_1$-a.e., as claimed.
+
+Thus, finally we have
+$$\begin{eqnarray*}
+\int_{\Omega_1}\left[\int_{\Omega_2} f(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)&=&\int_{\Omega_1}\left[\int_{\Omega_2} f^+(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1) -\int_{\Omega_1}\left[\int_{\Omega_2} f^-(\omega_1,\omega_2) d\mu_2(\omega_2)\right]d\mu_1(\omega_1)\\
+&=&\int_{\Omega_1\times\Omega_2} f^+(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2)-\int_{\Omega_1\times\Omega_2} f^-(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2)\\
+&=&\int_{\Omega_1\times\Omega_2} f(\omega_1,\omega_2)d(\mu_1\times\mu_2)(\omega_1, \omega_2).
+\end{eqnarray*}$$
+
+
+<br>
+<br>
+
+
+#### 정리
+Fubini's theorem은 두 주어진 measurable spaces에서 $f$가 measurable-$\mathcal{F}_1/\mathcal{F}_2$일 때(가장 중요) product measure에 대한 indefinite integral이 각 measure에 대한 indefinite integral로 쪼개질 수 있고, 그 순서도 바뀔 수 있다는 것을 보여준다. 즉 
+$$\begin{eqnarray*}
+\int_{\Omega_1\times\Omega_2}f(\omega_1, \omega_2)\mbox{ }d(\mu_1\times\mu_2)(\omega_1, \omega_2)&=&\int_{\Omega_1}\left[\int_{\Omega_2}f(\omega_1,\omega_2)\mbox{ } d\mu_2(\omega_2)\right]d\mu_1(\omega_1) \\
+&=&\int_{\Omega_2}\left[\int_{\Omega_1}f(\omega_1,\omega_2)\mbox{ } d\mu_1(\omega_1)\right]d\mu_2(\omega_2). 
+\end{eqnarray*}$$
+이고, 매우 많이 쓰이기 때문에 반드시 암기하자. 
+
+<br>
+<br>
+
+
+[back](../probability1.html)
+

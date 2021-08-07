@@ -1,0 +1,195 @@
+---
+title: "2.6. Integration Over Sets"
+output: html_document
+---
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+<br>
+<br>
+
+
+#### Definition
+The integral of $f$ over a  set $A\in \mathcal{F}$ is defined by
+$$
+\int_A f \mbox{ }d\mu=\int fI_A \mbox{ }d\mu,
+$$
+whenever the latter integral exists. The definition applies even if $f$ is defined only on $A$ by taking, e.g., $f(\omega)=0$ for $\omega\notin A$. 
+
+<br>
+<br>
+<br>
+
+
+#### Proposition
+If $\int f\mbox{ }d\mu$ exists, then so does $\int f_A\mbox{ }d\mu$ for any $A\in \mathcal{F}$.
+
+
+<br>
+<br>
+<br>
+
+Let $\nu(A)=\int_A f\mbox{ }d\mu$, $A\in \mathcal{F}$. This is called *indefinite integral* of $f$.
+
+#### Theorem
+If $\int f\mbox{ }d\mu$ exists and $A_1,A_2,\ldots\in \mathcal{F}$ are disjoint, then
+
+$$
+\nu\left(\biguplus_{n=1}^\infty A_n\right)=\int_{\uplus_{n=1}^\infty A_n}f\mbox{ }d\mu= \sum_{n=1}^\infty\int_{A_n}f\mbox{ }d\mu=\sum_{n=1}^\infty \nu(A_n).
+$$
+
+   * Note: Let $A=\uplus_{n=1}^\infty A_n$. Then, $I_A=I_{\uplus_{n=1}^\infty A_n}=\sum_{n=1}^\infty I_{A_n}$.
+   
+   * 증명: Nonnegative한 $f$에 대해서는 Corollary of monotone convergence theorem에 의해 다음을 얻는다.
+  
+$$
+\nu(A)= \int fI_A \mbox{ }d\mu= \int \sum_{i=1}^\infty fI_{A_i}d\mu\stackrel{\text{Corollary}}{=}\sum_{i=1}^\infty \int fI_{A_i}d\mu=\sum_{i=1}^\infty \nu(A_i).
+$$
+
+   
+   * General $f$에 대해 $f=f^+-f^-$를 만족하는 $f^+$, $f^-$를 고려하자. 그렇다면, 
+   
+$$
+\nu(A)=\int_A f \mbox{ }d\mu=\int_A f^+ \mbox{ }d\mu- \int_A f^- \mbox{ }d\mu= \sum_{n=1}^\infty\int_{A_n}f^+\mbox{ }d\mu-\sum_{n=1}^\infty\int_{A_n}f^-\mbox{ }d\mu= \sum_{n=1}^\infty\left(\int_{A_n}f^+\mbox{ }d\mu-\int_{A_n}f^-\mbox{ }d\mu\right)=\sum_{n=1}^\infty \int_{A_n}f\mbox{ }d\mu=\sum_{n=1}^\infty\nu(A_n).
+$$
+   
+        
+<br>
+<br>
+<br>
+
+Suppose that the ingetrals of $f$ and $g$ exist and their indefinite integrals are equal, i.e.,
+$$\begin{equation}
+\int_Af\mbox{ }d\mu=\int_Ag\mbox{ }d\mu\mbox{ }\mbox{ }\mbox{ }\mbox{ for all }A\in \mathcal{F}.
+\end{equation}$$
+Under fairly broad conditions this implies that $f=g$ a.e., as the next theorem shows.
+
+#### Theorem
+Suppose that $\int f\mbox{ }d\mu$ and $\int g\mbox{ }d\mu$ exist. 
+
+1. If $\mu$ is $\sigma$-finite on $\mathcal{F}$, and
+
+   $\int_Af\mbox{ }d\mu=\int_Ag\mbox{ }d\mu$ for all $A\in \mathcal{F}$, then $f=g$ a.e.
+
+2. If $f$ and $g$ are integrable, and 
+
+   $\int_Af\mbox{ }d\mu=\int_Ag\mbox{ }d\mu$ for all $A\in \mathcal{F}$, then $f=g$ a.e.
+
+3. if $f$ and $g$ are integrable,
+
+   and $\int_Af\mbox{ }d\mu=\int_Ag\mbox{ }d\mu$ for all $A\in \mathcal{P}$, where $\mathcal{P}$ is a $\pi$-system, $\mathcal{F}=\sigma(\mathcal{P})$, and $\Omega$ is a finite or countable union of $\mathcal{P}$-sets, then $f=g$ a.e.
+
+
+<br>
+<br>
+<br>
+
+
+#### Definition
+Suppose that $\delta:\Omega\rightarrow \bar{\mathbb{R}}$ is nonnegative and $\mathcal{F}$-measurable, and let
+$$
+\nu(A)=\int_A\delta\mbox{ } d\mu, \mbox{ }\mbox{ }\mbox{ }A\in \mathcal{F}.
+$$
+Then, $\nu$ is a measure on $\mathcal{F}$, and we say that $\nu$ has density $\delta$ with respect to $\mu$.
+
+   * countable additivity: $A:=\uplus_{n=1}^\infty A_n$라 정의하자. Since $\delta$ is nonnegative,
+
+$$
+\nu\left(\uplus_{n=1}^\infty A_n\right)=\nu(A)= \int \delta I_A \mbox{ }d\mu= \int \sum_{i=1}^\infty \delta I_{A_i}d\mu\stackrel{\text{Corollary}}{=}\sum_{i=1}^\infty \int \delta I_{A_i}d\mu=\sum_{i=1}^\infty \nu(A_i).
+$$
+
+
+
+<br>
+<br>
+<br>
+
+
+중요하다
+
+#### Theorem(Change of Variables)
+Suppose that $(\Omega, \mathcal{F}, \mu)$ is a measure space, $(\Omega', \mathcal{F}')$ is a measurable space.
+
+Let $T:\Omega\rightarrow \Omega'$ is measurable-$\mathcal{F}/\mathcal{F}'$.
+
+Let $\mu_T=\mu\circ T^{-1}$ represent the induced measure on $(\Omega', \mathcal{F}')$, and let $f:\Omega'\rightarrow \bar{\mathbb{R}}$ is measurable-$\mathcal{F}'/\bar{\mathcal{R}}$. 
+
+Then,
+$$
+\int_\Omega f(T(\omega))d\mu(\omega)=\int_{\Omega'}f(\omega')d\mu_T(\omega'),
+$$
+in the sense that if either integral exists then so deos the other and they are equal. More generally, for any $A'\in \mathcal{F}'$, 
+
+$$
+\int_{T^{-1}(A')} f(T(\omega))d\mu(\omega)=\int_{A'}f(\omega')d\mu_T(\omega'),
+$$
+in the same sense as above. 
+
+<br>
+
+##### 증명
+
+1. Suppose $f$ is nonnegative simple function. Then,
+$$
+0\le f(\omega')=\sum_{i=1}^m a_i I_{A_i'}(\omega'),\mbox{ }\mbox{ } \omega'\in \Omega'.
+$$
+
+   Then, note that
+
+$$
+f(T(\omega))=\sum_{i=1}^m a_i I_{A_i'}(T(\omega))=\sum_{i=1}^m a_i I(T(\omega)\in A_i')
+=\sum_{i=1}^m a_i I(\omega\in T^{-1}(A_i'))=\sum_{i=1}^m a_i I_{T^{-1}(A_i')}(\omega),\mbox{ }\mbox{ } \omega\in \Omega.\\
+\implies\int_\Omega f(T(\omega))d\mu(\omega)=\sum_{i=1}^m a_i \mu({T^{-1}(A_i')})=\sum_{i=1}^m a_i \mu_T(A_i')= \int_{\Omega'}f(\omega')d\mu_T(\omega').
+$$
+
+
+2. Suppose now that $f$ is general nonnegative function. let $\{f_n\}$ be a sequence of simple functions, $0\le f_n \uparrow f$. Then, note that $0\le f_n \circ T \uparrow f \circ T$. By applying the result for simple functions together with the monotone convergence theorem (twice), we have
+$$
+\int_{\Omega}f(T(\omega))d\mu(\omega)\stackrel{\text{M.C.T}}{=} \lim_{n\rightarrow \infty}\int_\Omega f_n(T(\omega))d\mu(\omega)=\lim_{n\rightarrow \infty}\int_{\Omega'} f_n(\omega')d\mu_T(\omega')\stackrel{\text{M.C.T}}{=}\int_{\Omega'} f(\omega')d\mu_T(\omega').
+$$
+3. For general $f$, suppose $(f\circ T)^+=f^+\circ T$, and $(f\circ T)^-=f^-\circ T$. THen,
+$$
+\int_{\Omega}f(T(\omega))d\mu(\omega)= \int_{\Omega}f^+(T(\omega))d\mu(\omega)-\int_{\Omega}f^-(T(\omega))d\mu(\omega)=\int_{\Omega'}f^+(\omega')d\mu_T(\omega')- \int_{\Omega'}f^-(\omega')d\mu_T(\omega')= \int_{\Omega'}f(\omega')d\mu_T(\omega'). 
+$$
+4. Finally, note that $\int_{A'} f(\omega')d\mu_T(\omega')= \int_{\Omega'}f(\omega')I_{A'}(\omega')d\mu_T(\omega')$. Let $\tilde{f}=fI_{A'}$. Then,
+$$\begin{eqnarray*}
+\int_{T^{-1}(A')} f(T(\omega))d\mu(\omega)&=& \int_\Omega f(T(\omega))I_{T^{-1}(A')}(\omega)d\mu(\omega)\\
+&=& \int_\Omega f(T(\omega))I_{A'}(T(\omega))d\mu(\omega) \\
+&=&\int_{\Omega}\tilde{f}(T(\omega))d\mu(\omega)\\ 
+&=&\int_{\Omega'}\tilde{f}(\omega')d\mu(\omega')\\ 
+&=&\int_{\Omega'}f(\omega')I_{A'}(\omega')d\mu(\omega')\\ 
+&=&\int_{A'}f(\omega')d\mu_T(\omega'). 
+\end{eqnarray*}$$
+
+<br>
+<br>
+
+##### Example(Change of Variables)
+Suppose that $X$ is a finite-valued random variable on a probability space $(\Omega, \mathcal{F},P)$, i.e., $X:\Omega\rightarrow \mathbb{R}$ is $\mathcal{F}$-measurable. Then for any Borel measurable $g$
+
+Let $P_X=P\circ X^{-1}$ be the distribution of $X$ (a probability measure on $(\mathbb{R}, \mathcal{R})$), and let $F_X$ be the corresponding distribution function 
+
+$$
+E[g(X)]= \int g(X)dP= \int_\Omega g(X(\omega))dP(\omega)= \int_\mathbb{R} g(x)dP_{x}(x).
+$$
+
+
+
+
+
+<br>
+<br>
+<br>
+
+[back](../probability1.html)
+

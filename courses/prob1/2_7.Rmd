@@ -1,0 +1,236 @@
+---
+title: "2.7. The Radon-Nikodym Theorem"
+output: html_document
+---
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Definition
+Suppose that $\mu$ and $\nu$ are measures on a measurable space $(\Omega, \mathcal{F})$. Then, we say that $\nu$ is **absolutely continuous** with respect to $\mu$, denoted $\nu \ll\mu$, if for all $A\in \mathcal{F}$,
+$$
+\mu(A)=0 \mbox{ }\mbox{ }\mbox{ implies }\mbox{ }\mbox{ }\nu(A)=0.
+$$
+
+<br>
+<br>
+매우 중요하다
+
+#### Theorem(Radon-Nikodym)
+
+Let $\mu$ and $\nu$ be measures on a measurable space $(\Omega, \mathcal{F})$, where $\mu$ is $\sigma$-finite and $\nu \ll \mu$. Then, there exists a nonnegative, $\mathcal{F}$-measurable function $f:\Omega \rightarrow \bar{\mathbb{R}}$ such that
+$$
+\nu(A)=\int_A f\mbox{ }d\mu\mbox{ }\mbox{ }\mbox{ for all }A\in \mathcal{F}, 
+$$
+and the function $f$ is unique. If in addition $\nu$ is $\sigma$-finite, then $f$ is finite $\mu$-a.e.
+
+  * 즉 $\nu$가 absolutely continuous w.r.t the $\sigma$-finite measure $\mu$일 때, 위를 만족하는 $f=d\nu/d\mu$가 존재한다.
+  
+  * 여기서 point는 $f$이다. 
+<br>
+<br>
+
+#### Definition
+The density $f$ in the Radon-Nikodym theorem is called the **Radon-Nikodym derivative** of $\nu$ w.r.t $\mu$, and is usually denoted $d\nu/d\mu$. 
+
+<br>
+<br>
+
+지금부터 아래는 Radon-Nikodym을 증명하기 위해 필요한 많은 내용들이므로 간단히 넘어가려 한다. 
+
+#### Definition
+Suppose that $(\Omega, \mathcal{F})$ is a measurable space. An extended real-valued set function $\varphi$ defined on $\mathcal{F}$ is a *signed measure* if
+
+1.  $\varphi(\phi)=0$;
+
+2.  $\varphi$ is countably additive: if $A=\uplus_nA_n$ with $A_n\mathcal{F}$, then  $\varphi(A)=\sum_n \varphi(A_n)$
+
+   * measure에서 nonnegative 조건이 빠져있다. 
+
+<br>
+<br>
+
+#### Definition
+If $\varphi$ is a signed measure on $(\Omega, \mathcal{F})$ and $A\in \mathcal{F}$, then we say that $A$ is positive set if
+$$
+\varphi(E)\ge 0 \mbox{ }\mbox{ }\mbox{ for all } E\subset A, E\in \mathcal{F},  
+$$
+and $A$ is a negative set if
+$$
+\varphi(E)\le 0 \mbox{ }\mbox{ }\mbox{ for all } E\subset A, E\in \mathcal{F}.
+$$
+If $A$ is both positive and negative, then $\varphi(E)=0$ for all $E\subset A, E\in \mathcal{F}$, and in this case $A$ is called a null set. 
+
+<br>
+<br>
+
+#### Definition(Hahn Decomposition)
+Let $\varphi$ is a signed measure on the measurable space $(\Omega, \mathcal{F})$. Then there exists a positive set $A$ and a negative set $B$ such that $\Omega=A\uplus B(A\cap B=\phi)$.
+
+<br>
+<br>
+
+#### Lemma
+1. Every measurable subset of a positive(negative) set is positive(negative).
+
+2. The union of a countable collection of positive(negative) sets is positive(negative).
+
+<br>
+<br>
+
+#### Lemma
+Let $E\in \mathcal{F}$ satisfy $-\infty<\varphi(E)<0$(finite, strictly negative). 
+
+Then there exists a negative set $A\subset E$ with $\varphi(A)<0$.
+
+   * $E$가 negative set들로만 이루어져있다면, trivial하지만 그렇지 않을수도 있다(E의 subset들이 positive set일 경우도 가능).
+   
+   * 증명 idea: Let $n_1$ be the smallest positive integer such that there exists $E_1\in\mathcal{F}$ satisfying $E_1\subset E$, $\varphi(E_1)\ge \frac{1}{n_1}$.
+   
+<br>
+<br>
+
+#### Definition
+Two measure $\mu$ and $\nu$ on a measurable space $(\Omega, \mathcal{F})$ are said to be **mutually singular** if there exists disjoint sets $A,B\in \mathcal{F}$ such that $\Omega=A\uplus B$(i.e.,$B=A^c$) and $\mu(A)=\nu(B)=0$. 
+
+In this case, we also say that $\mu$ is singular w.r.t $\nu$ and vice versa, and we write $\mu \perp \nu$.
+
+   * Example: On $(\mathbb{R}, \mathcal{R})$, let \lambda represent Lebesgue measure and let $\mu$ be counting measure on $\mathbb{N}$. Let $\Omega=\mathbb{R}$, $A=\mathbb{N}$. Then, $A\subset \mathbb{\Omega}.$ Note that $\lambda(A)=\lambda(\mathbb{N})=0$, but $\mu(A^c)=\mu(\mathbb{N^c})=0$.
+
+<br>
+<br>
+
+#### Theorem(Jordan Decomposition)
+If $\varphi$ is a signed measure on a measurable space $(\Omega, \mathcal{F})$, then there exist measures $\varphi^+$ and $\varphi^-$ on $(\Omega,\mathcal{F})$ such that $\varphi^+\perp \varphi^-$ and  $\varphi=\varphi^+ + \varphi^-$. Moreover, there is only one such pair of mutually singlular measures(unique pair). 
+
+   * Let $\Omega=A\uplus B$ be a Hahn decomposition for $\varphi$, so that $A\in \mathcal{F}$ is a positive set, $B=A^c$ is a negative set. Define $\varphi^+(E)= \varphi^+(E\cap A)$ and $\varphi^-(E)= \varphi^-(E\cap B)$  for $E\in\mathcal{F}$. Clearly $\varphi^+$ and  $\varphi^-$ are measures on $(\Omega, \mathcal{F})$. Also, $\varphi^+(B)=\varphi(A\cap B)=\varphi^-(A)=\varphi(\phi)=0$. Thus, $\varphi^+\perp\varphi^-$. 
+
+   * Unique pair는 증명 생략.
+
+
+   * 즉, Jordan Decomposition의 핵심은 measurable space $(\Omega, \mathcal{F})$에서 정의된 signed measure $\varphi$가 mutually singlular한 두개의 positive signed measure $\varphi^+$와 negative signed $\varphi^-$로 분리될 수 있다는 것이다.
+
+
+
+<br>
+<br>
+
+#### Definition
+The decomposition $\varphi=\varphi^+ +\varphi^-$ is called the **Jordan decomposition of the signed measure $\varphi$**. The measures $\varphi^+$ and $\varphi^-$ are called the positive and negative variations of $\varphi$. Since $\varphi$ assumes at most one of the values $\pm\infty$, at least one of $\varphi^+$ and $\varphi^-$ must be finite. If both are finite then $\varphi$ is called a **finite signed measure**. The measure $|\varphi|$ defined by 
+$$
+|\varphi|(E)=\varphi^+(E)+\varphi^-(E), \mbox{ }\mbox{ }\mbox{ } E\in \mathcal{F},
+$$
+is called the **total variation** of $\varphi$. 
+
+<br>
+<br>
+
+증명을 위해 다시 살펴보자
+
+#### Theorem(Radon-Nikodym)
+
+Let $\mu$ and $\nu$ be measures on a measurable space $(\Omega, \mathcal{F})$, where $\mu$ is $\sigma$-finite and $\nu \ll \mu$. Then, there exists a nonnegative, $\mathcal{F}$-measurable function $f:\Omega \rightarrow \bar{\mathbb{R}}$ such that
+$$
+\nu(A)=\int_A f\mbox{ }d\mu\mbox{ }\mbox{ }\mbox{ for all }A\in \mathcal{F}, 
+$$
+and the function $f$ is unique. If in addition $\nu$ is $\sigma$-finite, then $f$ is finite $\mu$-a.e.
+
+<br>
+
+#### 증명
+$\mu$와 $\nu$가 finite한 case에 대해서만 증명할 것이다.
+
+1. 우선 만약 $\mu$가 $\sigma$-finite measure on $\mathcal{F}$이고 $\int_A f\mbox{ }d\mu=\int_A g\mbox{ }d\mu$ for all $A\in\mathcal{F}$라면, $f=g$ a.e.라는 Theorem을 기억하자. 때문에 여기서 $f$는 Unique하다.
+
+2. 만약 $\nu$가 $\sigma$-finite하다면, $A_1,A_2,\ldots\in \mathcal{F}$, $\Omega=\cup_nA_n$에 대해 $\nu(A_n)=\int_{A_n}f\mbox{ }d\mu<\infty$ for all n이다. 이 indefinite integral이 finite이라는 말은 $A_n$ set에 대해서 $f$의 measure값이 finite하다는 의미이므로 $\mu(A_n\cap \{f=\infty\})=0$ 이다($f=\infty$라면 indefinite integral은 무조건 $\infty$이기 때문). 즉
+   $$
+   \mu(A_n\cap\{f=\infty\})=0 \mbox{ }\forall n\implies \mu(\{f=\infty\})\le \sum_n \mu(A_n\cap\{f=\infty\})=0.
+   $$
+   이므로 $\mu$는 finite measure이다.
+   
+3. A Good set $\mathcal{G}$를 다음과 같이 정의하자. 
+
+   $$
+\mathcal{G}=\left\{ g:\Omega\rightarrow \bar{\mathbb{R}}: \mbox{ g measurable }, g\ge 0, \int_Ag\mbox{ }d\mu \le \nu(A)\mbox{ } \forall A\in \mathcal{F} \right\}.
+   $$   
+   또한 $\gamma=\sup\left\{ \int g\mbox{ }d\mu:g\in \mathcal{G}\right\}$로 정의하자. 그렇다면 good set의 정의에 의해 $0\in \mathcal{G}$이고 $0\le \gamma \le \nu(\Omega)<\infty$이다. 
+   
+   또한 $g,h\in \mathcal{G}$에 대해 $g\vee h\in \mathcal{G}$이다. 왜냐하면
+   $$
+   \int_A(g\vee h)d\mu=\int_{A\cap[g>h]}g\mbox{ }d\mu+\int_{A\cap[g<h]}h\mbox{ }d\mu\le \nu(A\cap[g>h])+\nu(A\cap[g<h])=\nu(A).
+   $$
+   또한 $g_n\in \mathcal{G}$가 $\int g_n\mbox{ }d\mu\rightarrow \gamma$를 만족한다고 하고 $f_n=\max\{g_1,\ldots,g_n\}$이라 하자. 
+   
+   그렇다면 $f_n$은 increasing function이고 $0\le f_n \uparrow f$, where $f=\sup_ng_n\ge 0$ is measurable이다. 여기서
+   $$
+   \int f\mbox{ }d\mu \stackrel{\text{M.C.T}}{=}\lim_{n\rightarrow\infty}\int f_nd\mu\stackrel{\text{Def of } f_n}\ge \lim_{n\rightarrow\infty}\int g_nd\mu=\gamma.
+   $$
+   그리고 $f_n\in \mathcal{G}$ 이기 때문에 $\int_A f\mbox{ }d\mu=\lim_{n\rightarrow\infty}\int_A f_nd\mu\le \nu(A)$ for all $A\in \mathcal{F}$이다. 결국 $f\in \mathcal{G}$이고 $\int f\mbox{ }d\mu=\gamma$이다. 
+   
+4. Let $\nu_{ac}(A)=\int_A f\mbox{ }d\mu$, and $\nu_{s}(A)=\nu(A)-\nu_{ac}(A)$. 여기서 $f\in \mathcal{G}$라서, $\nu_s$는 nonnegative하다. 또한 $\nu_s$와 $\nu_{ac}$는 finite measure이고 $\nu_{ac}\ll \mu$, $\nu_{s}\ll \mu$이다. 
+
+   우리의 목표는 $\nu_s(\Omega)=0$을 보여서 $\nu(A)=\nu_{ac}(A)=\int_A f\mbox{ }d\mu$을 보이는 것이다.
+   
+   Contradiction을 위해 $\nu_s(\Omega)>0$라 가정하자. 그렇다면 $\mu$는 finite measure이기 때문에, $\mu(\Omega)-k\nu_s(\Omega)<0$을 만족하는 $k$가 존재한다. 
+   
+   여기서 signed measure $\varphi=\mu-k\nu_S$라 정의하고 이 signed measure를 통해 $\Omega=A\uplus B$로 Positive set $A$, Negative set $B=A^c$로 Hahn decomposition한다고 생각하자(Hahn decomposition은 any signed measure로도 가능하다). 
+
+   여기서 $\mu(B)>0$이다. 왜냐하면 $\mu(B)=0$이라면 absolute continuity에 의해 $\nu_s(B)=0$이 되고, $\varphi(B)=\mu(B)-k\nu_s(B)=0$.이 된다. 그렇다면 $A$가 positive set이기 때문에
+   $$
+   \varphi(\Omega)= \varphi(A\uplus B)= \varphi(A)+\varphi(B)=\varphi(A)\ge 0
+   $$
+   인데, $\varphi(\Omega)=\mu(\Omega)-k\nu_S(\Omega)<0$로 $k$를 잡았으므로 contradiction이다. 때문에 $\mu(B)>0$이다. 
+   
+   $f^*=f+k^{-1}I_B$라고 하자. B는 $\varphi$-negative set이기 때문에, for any $E\in \mathcal{F}$, 
+   $$
+   \varphi(E\cap B)=\mu(E\cap B)-k\nu_s(E\cap B)\le 0 \implies \frac{1}{k}\mu(E\cap B)\le \nu_s(E\cap B),
+   $$
+  이고 이를 이용하면
+  $$
+  \int_E f^*d\mu=\int_E f\mbox{ }d\mu+\frac{1}{k}\mu(E\cap B)\le \nu_{ac}(E)+\nu_s(E\cap B)\le\nu_{ac}(E)+\nu_s(E)=\nu(E) 
+  $$
+   라서, 결국 $f^*\in \mathcal{G}$이다. 하지만
+   $$
+   \int f^*d\mu=\int f\mbox{ }d\mu+\frac{1}{k}\mu(B)= \gamma+\frac{1}{k}\mu(B)>\gamma \mbox{ }(\mu(B)>0)
+   $$
+   이므로 $\nu_s(\Omega)>0$에 contradiction이다. 즉 $\nu(A)=\int_A f\mbox{ }d\mu$인 f가 존재한다. 
+   
+   
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+
+[back](../probability1.html)
+

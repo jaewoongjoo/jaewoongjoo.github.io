@@ -1,0 +1,74 @@
+---
+title: "2.8. Lebesgue Decomposition"
+output: html_document
+---
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+#### Theorem(Lebesgue Decomposition)
+Let $\mu$ and $\nu$ be measures on the measurable space $(\Omega,\mathcal{F})$, and let $\nu$ be $\sigma$-finite. Then, there exist unique measures $\nu_{ac}$ and $\nu_s$ on $(\Omega, \mathcal{F})$ satisfying $\nu_{ac}\ll \mu$, $\nu_s\perp \mu$, and $\nu=\nu_{ac}+\nu_s$.
+
+<br>
+<br>
+
+##### 증명
+$\nu$가 finite measure일때만 증명할 것이다.
+
+1. Let 
+   $$
+      \mathcal{C}=\{A\in \mathcal{F}:\mu(A)=0 \}
+   $$
+   and
+   $$
+      \gamma = \sup\{\nu(A):A\in \mathcal{C}\}.
+   $$
+   그렇다면 $\gamma$는 finite이고 ($\nu$: finite measure), there exist $A_1,A_2,\ldots\in \mathcal{C}$ satisfying $\nu(A_n)\rightarrow \gamma$ as $n\rightarrow \infty$(finite 하기 때문에 수렴하는 sequence of sets가 존재한다). 
+   
+   여기서 $A=\cup_nA_n$이라고 하자. 당연히 $C$는 closed under the formation of countable unions하고(subadditivity), 때문에 $A\in \mathcal{C}$이다. 
+   
+   때문에, $\gamma\ge \nu(A)\le \nu(A_n)\rightarrow \gamma$이고, $\nu(A)=\gamma$이다. 
+
+   여기서 for every $C\in\mathcal{C}$에 대해 $\nu(C\cap A^c)=0$이다. 왜냐하면 만약 $\nu(C\cap A^c)>0$이라면, $A\cup C\in \mathcal{C}$이고, 따라서
+   $$
+   \nu(A\cup C)= \nu(A)+\nu(C\cap A^c)>\nu(A)=\gamma,
+   $$
+   라서 모순이다. 즉, $\nu(C\cap A^c)=0$ for $C\in \mathcal{C}$이다.
+   
+   여기서 $E\in \mathcal{F}$에 대해 $\nu_s(E)=\nu(E\cap A)$, $\nu_{ac}=\nu(E\cap A^c)$라고 정의하자.
+
+<br>
+<br>
+
+1. 만약 $\mu(E)=0$이라면, $E\in \mathcal{C}$이고, 때문에 바로 위의 결과에 의해 $\nu(E\cap A^c)=\nu_{ac}=0$이다. $\implies\nu_{ac}\ll \mu$.
+
+2. 또한 $A\in \mathcal{C}$ 이기 때문에 $\mu(A)=0$이고, $\nu_s(A^c)= \nu(A^c\cap A)=0$이다. $\implies \nu_s\perp\mu$.
+
+3. 마지막으로 당연히 $\nu(E)=\nu_{ac}(E)+\nu_s(E)$ for $E\in \mathcal{F}$이다. 
+
+<br>
+<br>
+
+   * 정리하자면 우리는 주어진 measurable space의 두 measure $\mu$, $\nu$에 대해 $\nu$를
+   
+   (1) $\mu$에 absolutely continuous한 $\nu_{ac}$
+   
+   (2) $\mu$에 mutually singular한 $\nu_{s}$로 decompose할 수 있다(순서는 상관없음). 
+<br>
+<br>
+
+
+[back](../probability1.html)
+

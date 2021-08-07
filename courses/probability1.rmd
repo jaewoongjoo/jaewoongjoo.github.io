@@ -1,5 +1,5 @@
 ---
-title: "Probability Theory 1"
+title: "Probability Theory"
 output: html_document
 ---
 
@@ -31,3 +31,13 @@ output: html_document
 [2.4. The Integral](./prob1/2_4.html)
 
 [2.5. Limits and Integration](./prob1/2_5.html)
+
+[2.6. Integration Over Sets](./prob1/2_6.html)
+
+[2.7. The Radon-Nikodym Theorem](./prob1/2_7.html)
+
+[2.8. Lebesgue Decomposition](./prob1/2_8.html)
+
+[2.9. Product Measure](./prob1/2_9.html)
+
+[2.10. The Fubini's Theorem](./prob1/2_10.html)
