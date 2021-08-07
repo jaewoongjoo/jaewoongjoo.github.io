@@ -1,5 +1,5 @@
 ---
-title: "2.10. The Fubini's Theorem"
+title: "2.10. The Fubini-Tonelli Theorem"
 output: html_document
 ---
 
