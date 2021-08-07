@@ -41,3 +41,8 @@ output: html_document
 [2.9. Product Measure](./prob1/2_9.html)
 
 [2.10. The Fubini's Theorem](./prob1/2_10.html)
+
+<br>
+<br>
+
+[back](../index.html)
