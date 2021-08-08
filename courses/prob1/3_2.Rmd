@@ -1,0 +1,140 @@
+---
+title: "3.2. Tail Probabilities and Moments"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+<br>
+<br>
+
+#### Remark
+
+Let $X$ be a (real-valued) random variable. Then as $n\rightarrow \infty$, 
+$$
+\{\omega:|X(\omega)| > n \}\downarrow \phi\implies P(|X|>n)\downarrow 0,
+$$
+and because $P(|X|>t)$ is monotone in $t$, it follows that
+$$
+\lim_{t\rightarrow \infty}P(|X|>t)=0.
+$$
+
+<br>
+<br>
+
+자주 쓰인다.
+
+#### Theorem
+If $X$ is a **nonnegative** random variable, then
+$$
+E(X)=\int_0^\infty P(X>t)dt = \int_0^\infty P(X\ge t)dt.
+$$
+  
+   * 증명: $X(\omega)=\lambda(0,X(\omega))$임을 이용한다면, $A=\{(t,\omega):0<t<X(\omega)\}$에 대해
+   $$
+   E(X)=\int_\Omega X(\omega)dP(\omega)=\int_\Omega \lambda(0,X(\omega))dP(\omega)=\int_\Omega\int_\mathbb{R} I_A(t,\omega) d\lambda(t) dP(\omega)
+   $$
+   이고 $A\in \mathcal{R}\times \mathcal{F}$이다. 때문에 $I_A(t,\omega)$는 $\mathcal{R}\times \mathcal{F}$-measurable이고 Fubini's Theorem에 의해 다음을 얻는다:
+   $$\begin{eqnarray*}
+      E(X)&=&\int_\Omega\int_\mathbb{R} I_A(t,\omega) d\lambda(t) dP(\omega)\\
+      &=&\int_\mathbb{R}\int_\Omega I_A(t,\omega) dP(\omega)d\lambda(t) \\
+      &=& \int_\mathbb{R}\int_\Omega I_{(0,\infty)}(t)I_{\{X>t\}} dP(\omega)d\lambda(t)                \mbox{ }\mbox{ }\mbox{ (두 영역의 교집합을 하면 }0<t<X\mbox{ 기 때문이다.) }\\
+     &=& \int_\mathbb{R} I_{(0,\infty)}(t) \int_\Omega I_{\{X>t\}} dP(\omega)d\lambda(t)\\
+     &=& \int_\mathbb{R} P(X>t)d\lambda(t)=\int_\mathbb{R} P(X>t)dt.
+   \end{eqnarray*}$$
+   
+   * $P(X\ge t)= P(X>t)$.
+   
+   
+<br>
+<br>
+
+#### Corollary
+For any random variable $X$ and $0<p<\infty$,
+$$
+E(|X|^p)=\int_0^\infty P(|X|>t^{1/p})dt=\int_0^\infty P(|X|\ge t^{1/p})dt.
+$$
+
+   * 위의 Theorem에 $|X|^p$ 대입하면 된다. 
+
+<br>
+<br>
+
+매우 자주 쓰인다.
+
+#### Corollary
+For a **nonnegative** random variable $X$,
+$$
+\sum_{n=1}^{\infty} P(X\ge n)\le E(X)\le \sum_{n=0}^\infty P(X>n),
+$$
+and $E(X)<\infty$ if and only if $\sum_{n=1}^\infty P(X\ge n)<\infty$.
+
+   * 위의 Theorem과 Corollary에서:
+   $$\begin{eqnarray*}
+   E(X)&=&\int_0^\infty P(X\ge t)dt= \int_0^\infty \left(\sum_{n=1}^\infty I_{(n-1,n]}(t)\right)P(X\ge t)dt\\
+   &\stackrel{\text{MCT}}{=}&\sum_{n=1}^\infty  \int_0^\infty I_{(n-1,n]}(t)P(X\ge t)dt\\
+   &=& \sum_{n=1}^\infty\int_{n-1}^nP(X\ge t)dt\\
+   &\ge&\sum_{n=1}^\infty\int_{n-1}^nP(X\ge n)dt\\
+   &=&\sum_{n=1}^\infty P(X\ge n) \int_{n-1}^ndt=\sum_{n=1}^\infty P(X\ge n).
+   \end{eqnarray*}$$
+   Similarly,
+   $$\begin{eqnarray*}
+   E(X)&=&\int_0^\infty P(X> t)dt= \int_0^\infty \left(\sum_{n=0}^\infty I_{(n,n+1]}(t)\right)P(X> t)dt\\
+   &\stackrel{\text{MCT}}{=}&\sum_{n=0}^\infty  \int_0^\infty I_{(n,n+1]}(t)P(X> t)dt\\
+   &=& \sum_{n=0}^\infty\int_{n}^{n+1}P(X> t)dt\\
+   &\le&\sum_{n=0}^\infty\int_{n}^{n+1}P(X> n)dt\\
+   &=&\sum_{n=0}^\infty P(X> n) \int_{n}^{n+1}dt=\sum_{n=0}^\infty P(X> n).
+   \end{eqnarray*}$$
+   Thus,  $\sum_{n=1}^{\infty} P(X\ge n)\le E(X)\le \sum_{n=0}^\infty P(X>n)$.
+   
+   * Note that
+   $$
+   \sum_{n=1}^{\infty} P(X\ge n)\le E(X)\le \sum_{n=0}^\infty P(X>n)\le\sum_{n=0}^\infty P(X\ge n)=1+\sum_{n=1}^\infty P(X\ge n)\\
+   \sum_{n=1}^{\infty} P(X\ge n)\le E(X)\le 1+\sum_{n=1}^\infty P(X\ge n)
+   $$
+   즉 $\sum_{n=1}^\infty P(X\ge n)<\infty$이어야지만 $E(X)<\infty$이다(Sandwich로 둘러쌓였기 때문).
+
+<br>
+<br>
+
+#### Theorem(Tail Rate from pth Moment)
+If $X\in L^p$ for some $0<p<\infty$, then
+$$
+t^p P(|X|\ge t)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }\mbox{ }\mbox{ }t\rightarrow \infty.
+$$
+
+   * 증명: 마코프 부등식(finer version)을 이용한다. 
+   $$
+   \int_{[|X|^p\ge t]}|X|^p \mbox{ }dP \ge \int_{[|X|^p\ge t]}t^p \mbox{ }dP=t^pP(|X|^p\ge t) \mbox{ }\ge 0\mbox{ }\mbox{ }\mbox{ for }t\ge 0\\
+   \implies \int |X|^p I_{\{|X|^p\ge t\}} \mbox{ }dP \ge t^pP(|X|^p\ge t).
+   $$
+   여기서 $|X|^p I_{\{|X|^p\ge t\}}$에 D.C.T를 적용하기 위해 condition을 확인한다.
+   1. $|X|^p I_{\{|X|^p\ge t\}} \le |X|^p$ ($t$에 영향을 받지 않는다);
+   
+   2. $|X|^p\in L^p$, integrable;
+   
+   3. $|X|^p I_{\{|X|^p\ge t\}} \rightarrow 0$ as $t\rightarrow \infty$;
+   
+   때문에 $\int |X|^p I_{\{|X|^p\ge t\}} dP \rightarrow 0$ as $t\rightarrow \infty$이고, 따라서
+   $$
+   t^pP(|X|^p\ge t)\le \int |X|^p I_{\{|X|^p\ge t\}} \mbox{ }dP \rightarrow 0  \mbox{ }\mbox{ }\mbox{ as }\mbox{ } t\rightarrow \infty\\
+   \implies   t^pP(|X|^p\ge t)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }\mbox{ } t\rightarrow \infty.
+   $$
+
+
+
+<br>
+<br>
+
+
+[back](../probability1.html)
+
