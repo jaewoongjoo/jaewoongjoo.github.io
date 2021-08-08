@@ -1,0 +1,125 @@
+---
+title: "3.1. Setup for General Linear Hypothesis"
+fontsize: 15pt
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+##### Remark
+Model : $Y\sim N(X\beta, \sigma^2I)$.
+
+We are going to test 
+  $$
+  H_0: L\beta=0 \mbox{ }\mbox{ } \mbox{ vs. } H_1: L\beta\ne 0.
+  $$
+  where $L$ is $r\times p$, $r\le p$. 
+
+&nbsp;
+
+##### Example
+
+1. Consider one-way ANOVA model:
+$$
+Y_{ij}=\beta_i+\epsilon_{ij}, \mbox{ }\mbox{ } \mbox{ } j=1,2,\ldots,n_i, \mbox{ } i=1,\ldots,k.
+$$
+Test $H_0:\beta_1=\beta_2$. 
+   
+  * Use $L=(1,-1,0,\ldots,0)$.
+  
+  
+2. Test equality of slopes in simple linear regression s.t.
+    $$
+    Y_i=\beta_0+\beta_1x_i+e_i, \mbox{ }\mbox{ }\mbox{ } i=1,2,\ldots,n,\\
+    Y_i^*=\beta_0^*+\beta_1^*x_i^*+e_i^*, \mbox{ }\mbox{ }\mbox{ } i=1,2,\ldots,m,
+    $$
+   where the $m+n$ $\epsilon$'s are independent.
+
+   Test $H_0:\beta_1=\beta_1^* \mbox{ } \mbox{ }  \mbox{vs. }H_1:\beta_1\ne\beta_1^*$. 
+  
+  * X를 한 intercept, column of $(x', 0')'$, column of $(0', x^*)$로 3개의 열로 구성된 design matrix로 놓고,  $\beta=(\beta_0,\beta_1,\beta_1^*)$로 놓는다. 그 후에 $L=(0,1,-1)$로 놓으면 된다. 
+  
+&nbsp;
+
+##### Remark
+
+Model : $Y\sim N(\mu, \sigma^2I)$, $\mu\in V_{\text{full}}$. We are often interested in testing
+$$
+H_0: \mu\in V_{\text{red}} \mbox{ }\mbox{ } \mbox{ vs. } H_1: \mu\notin V_{\text{red}}
+$$
+where $V_{\text{red}}$ and $V_{\text{full}}$ are subspaces satisfying
+$$
+V_{\text{red}}\subset V_{\text{full}}\subset\mathbb{R}^n.
+$$
+Note that for $\beta=\begin{pmatrix}\beta_{1 (p_1\times 1)}\\ --- \\\beta_{2 (p_2\times 1)}\end{pmatrix},$
+$$\begin{eqnarray*}
+V_{\text{full}}&=&\{ \mu \in \mathbb{R}^n: \mu=X\beta \mbox{ for } \beta\in \mathbb{R}^p \}= \text{range}(X),\\
+V_{\text{red}}&=&\{ \mu \in \mathbb{R}^n: \mu=X\beta \mbox{ for } \beta \mbox{ with }\beta_2=0\}\\
+&=&\{ \mu \in \mathbb{R}^n: \mu=X_1\beta_1 \mbox{ for some } \beta_1\in \mathbb{R}^{p_1}\}= \text{range}(X_1).
+\end{eqnarray*}$$
+
+  
+&nbsp;
+
+##### Theorem
+Let $V_r$, $V_f$ be two subspaces with $V_r \subset V_f$. Let $P_r$, $P_f$ be the orthogonal projection onto $V_r$ and $V_f$, respectively. Then,
+$$
+  I=P_r+ (P_f-P_r)+(I-P_f)
+$$
+gives an orthogonal decomposition.
+
+   * 각 $P_r$, $(P_f-P_r)$, $(I-P_f)$는 idempotent하다($P_fP_r$은 projection onto $V_r$이고 projection은 unique하기 때문에 $P_fP_r=P_r$이다).
+     또한 symmetric하기 때문에 모두 projection이다. 
+   
+   * 또한 세 projection의 합도 idempotent and symmetric 하다.
+   
+   * 마지막으로 pairwise product도 모두 0이다. 
+
+&nbsp;
+
+##### Remark (the $F$ test)
+We wish to test 
+$$
+H_0: \mu \in V_r \mbox{ }\mbox{ }\mbox{ vs. } \mbox{ }\mbox{ }H_0: \mu \notin V_r. 
+$$
+
+Note that
+$$\begin{eqnarray*}
+&&Y=P_rY+(P_f-P_r)Y+(I-P_f)Y\\
+&&\implies ||Y||^2=||P_rY||^2+||(P_f-P_r)Y||^2+||(I-P_f)Y||^2 \mbox{ (orthogonal decomposition)}\\
+&&\implies \frac{||Y||^2}{\sigma^2}=\frac{||P_rY||^2}{\sigma^2}+\frac{||(P_f-P_r)Y||^2}{\sigma^2}+\frac{||(I-P_f)Y||^2}{\sigma^2}.
+\end{eqnarray*}$$
+   
+   * 또는 pitagorian theorem이라고 생각할 수도 있다. 
+
+&nbsp;
+
+Note that the terms on the right are independent. 
+
+   * 각각 functions of $P_rY$, $(P_f-P_r)Y$, $(I-P_f)Y$ 이기 때문.
+   
+&nbsp;
+
+Also note that
+
+1. $\frac{||P_rY||^2}{\sigma^2}\sim \chi^2_{\nu_r}(\frac{1}{2\sigma^2}\mu'P_r\mu)$
+ 
+2. $\frac{||(P_f-P_r)Y||^2}{\sigma^2}\sim \chi^2_{\nu_f-\nu_r}(\frac{1}{2\sigma^2}\mu'(P_f-P_r)\mu)$
+ 
+3. $\frac{||(I-P_f)Y||^2}{\sigma^2}\sim \chi^2_{n-\nu_f}(\frac{1}{2\sigma^2}\mu'(I-P_f)\mu)$
+
+
+  * If $Y\sim N(\mu_I)$, then $Y'PY\sim \chi^2_k(\frac{1}{2}\mu'P\mu)$ (2.3에서 다루었다).
+  
+&nbsp;
+
+[back](../lm.html)
+

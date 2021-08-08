@@ -1,0 +1,48 @@
+---
+title: "3.2. The $F$-test"
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+어렵다
+
+##### Definition
+Let $Y$ and $X$ be two real-valued random variables. 
+
+We say that $Y$ is **stochastically greater** than $X$ (denoted $Y\succeq X$) if for all $t\in \mathbb{R}$, $P(Y>t)\ge P(X>t)$.
+
+
+&nbsp;&nbsp;
+
+##### Proposition
+For fixed $\nu$, the family of distributions 
+
+
+
+
+
+
+&nbsp;&nbsp;
+
+
+
+
+
+
+
+
+
+
+&nbsp;&nbsp;
+
+[back](../lm.html)
+
