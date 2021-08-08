@@ -25,6 +25,20 @@ output: html_document
 
 [2.3. Independence of Quadratic Forms](./lm/2_3.html)
 
+[2.4. Estimation]
+
+&nbsp;
+
+### 3. Hypothesis Testing
+
+[3.1. Setup for General Linear Hypothesis](./lm/3_1.html)
+
+[3.2. 3.2. The $F$-test](./lm/3_2.html)
+
+
+<br>
+<br>
+
 [back](./courses.html)
 
 

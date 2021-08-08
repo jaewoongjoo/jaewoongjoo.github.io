@@ -13,6 +13,8 @@ pre {
 }
 </style>
 
+<br>
+<br>
 
 ##### Remark
 Model : $Y\sim N(X\beta, \sigma^2I)$.
@@ -85,7 +87,7 @@ gives an orthogonal decomposition.
 
 &nbsp;
 
-##### Remark (the $F$ test)
+##### Remark
 We wish to test 
 $$
 H_0: \mu \in V_r \mbox{ }\mbox{ }\mbox{ vs. } \mbox{ }\mbox{ }H_0: \mu \notin V_r. 
@@ -117,7 +119,7 @@ Also note that
 3. $\frac{||(I-P_f)Y||^2}{\sigma^2}\sim \chi^2_{n-\nu_f}(\frac{1}{2\sigma^2}\mu'(I-P_f)\mu)$
 
 
-  * If $Y\sim N(\mu_I)$, then $Y'PY\sim \chi^2_k(\frac{1}{2}\mu'P\mu)$ (2.3에서 다루었다).
+  * If $Y\sim N(\mu,I)$, then $Y'PY\sim \chi^2_k(\frac{1}{2}\mu'P\mu)$ (2.3에서 다루었다).
   
 &nbsp;
 

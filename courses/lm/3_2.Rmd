@@ -13,36 +13,172 @@ pre {
 }
 </style>
 
-어렵다
+<br>
+<br>
 
-##### Definition
+중요하다.
+
+#### Definition
 Let $Y$ and $X$ be two real-valued random variables. 
 
 We say that $Y$ is **stochastically greater** than $X$ (denoted $Y\succeq X$) if for all $t\in \mathbb{R}$, $P(Y>t)\ge P(X>t)$.
 
 
-&nbsp;&nbsp;
+<br>
+<br>
 
-##### Proposition
-For fixed $\nu$, the family of distributions 
+#### Proposition
+For fixed $\nu$, the family of distributions $\chi_\nu^2(\gamma)$ is stochastically increasing with $\gamma$. 
 
+<br>
+<br>
 
+#### Lemma
+$Y$ is stochastically greater than $X$ 
 
-
-
-
-&nbsp;&nbsp;
-
-
-
-
-
-
-
-
+$\iff$ there exists a single probability space on which are defined random variables $\tilde{X}$ and $\tilde{Y}$ with 
+$$
+\tilde{X}\sim F_X\mbox{ }\mbox{ }\mbox{ and }\mbox{ }\mbox{ }\tilde{Y}\sim F_Y,
+$$
+and $\tilde{Y}\ge \tilde{X}$ with probability one.
 
 
-&nbsp;&nbsp;
+  * 정리 : Stochastically greater한 경우는(chisquare의 경우 noncentrality parameter가 더 클때) 쉽게 생각하면 distribution이 비교 대상 distribution에 비해 우측에 위치했다고 생각할 수 있다. 
+   
+<br>
+<br>
+
+#### Remark(The $F$ statistic)
+For $Y\sim N(\mu, \sigma^2I)$, we want to test $H_0: \mu\in V_r$ vs $H_1: \mu\in V_f$. 
+
+Note: 
+$$
+\mu\in V_f \mbox{ }\mbox{ }\mbox{ implies}\mbox{ }\mbox{ }(I-P_f)\mu=0,\\
+\mu\in V_r \mbox{ }\mbox{ }\mbox{ implies}\mbox{ }\mbox{ }(P_f-P_r)\mu=0.
+$$
+So, if $\mu\in V_r$, then $(P_f-P_r)Y$ has mean 0.
+
+And if $\mu\notin V_r$, then $(P_f-P_r)Y$ has a mean other than 0.
+
+So it takes sense to reject $H_0$ if $||(P_f-P_r)Y||^2$ is too large.
+
+If $\sigma$ was known, e.g. it is known to be $1$, then we would base the test on the $\chi^2$ distribution. We would reject the null hypothesis if $||(P_f-P_r)Y||^2>\chi^2_{\nu_f-\nu_r, 1-\alpha}$, and the second proposition in this page implies that the power of this test is greater than $\alpha$ when $\mu\notin V_r$, and increases as $\mu$ moves away from $V_r$.
+
+<br>
+
+   * 무슨 의미냐면 만약 $\mu\in V_r$이라면 $(P_f-P_r)Y$는 mean 0를 갖는다. 그렇다면 chi-square test에서의 noncentral parameter는 0이된다 $(||(P_f-P_r)Y||^2=Y'(P_f-P_r)Y\sim \chi^2(\delta)$이고 $\delta$는 $\mu'(P_f-P_r)\mu$이기 때문이다$)$. 반면에 $\mu\notin V_r$이라면 $(||(P_f-P_r)Y||^2=Y'(P_f-P_r)Y\sim \chi^2(\delta), \delta>0$이므로 $\mu\in V_r$일 때보다 stochastically greater하다(더 density가 우측에 있다).
+   
+   * 때문에 이 경우 power가 더 크고 $\delta$가 크면 클수록(as $\mu$ moves away from $V_r$) 점점 커진다. 
+
+<br>
+
+But in general, $\sigma$ is not known. 
+
+The statements
+$$
+\mu\in V_f \mbox{ }\mbox{ }\implies\mbox{ }\mbox{ }(I-P_f)\mu=0,\\
+\mu\in V_r \mbox{ }\mbox{ }\implies\mbox{ }\mbox{ }(P_f-P_r)\mu=0.
+$$
+imply that
+$$
+F=\frac{Y'(P_f-P_r)Y/(\nu_f-\nu_r)}{Y'(I-P_f)Y/(n-\nu_f)}
+$$
+satisfies
+$$\begin{cases}F\sim F_{\nu_f-\nu_r, n-\nu_f} & \mbox{under } H_0:\mu\in V_r,\\ F\sim F_{\nu_f-\nu_r, n-\nu_f}(\frac{1}{2}\mu'(P_f-P_r)\mu)& \mbox{under } H_1:\mu\notin V_r(\mbox{but }\mu\in V_f).  \end{cases}$$
+
+   * 당연히 분자와 분모는 독립이다($A:=P_f-P_r$, $B:=I-P_f$라고 했을때 $AVB'=\sigma^2(P_f-P_r)(I-P_f)=0).$   
+
+<br>
+<br>
+
+#### Remark
+Note: $\mu\in V_f$ can be written (uniquely) as
+$$
+\mu=\mu_1+\mu_2,\mbox{ }\mbox{ }\mbox{ }\mbox{ where }\mu_1\in V_r,\mbox{ } \mu_2\in V_f\cap V_r^\perp.
+$$
+So, 
+$$
+||\mu_2||^2=\mu'(P_f-P_r)\mu
+$$
+measures departure from $H_0:\mu\in V_r$.
+
+
+   * 1.3.에서의 proposition 복습: Let $V,U,W$ be three subspaces($V$가 나머지 둘을 포함하는 큰 subspace다). Then,
+   $$
+   P_U=P_V-P_W\iff W\subset V\mbox{ and } U=V\cap W^\perp.
+   $$
+   즉 $W,U$ 두 subspace가 orthogonal할 때 $P_V-P_W$는 $U=V\cap W^\perp$, 나머지 orthogonal한 공간의 projection이다.
+   
+   * 만약 $\mu=\mu_1$이라면, $\mu'(P_f-P_r)\mu=0$이다. 
+
+<br>
+<br>
+
+#### Theorem
+Suppose $X$ has full rank $p$, $L_{r\times p}$ has rull row rank $r$, and let $C=(X'X)^{-1}$. Then,
+$$
+(L\hat\beta)'(LCL')^{-1}(L\hat\beta)=Y'(P_f-P_r)Y.
+$$
+
+   * Note: 
+   $$\begin{eqnarray*}
+   (L\hat\beta)'(LCL')^{-1}(L\hat\beta) &=& Y'X(X'X)^{-1}L'(L(X'X)^{-1}L')^{-1}L(X'X)^{-1}X'Y\\
+   &=& Y'A(A'A)^{-1}A'Y, \mbox{ }\mbox{ }\mbox{ where }A\stackrel{\text{def}}{=}X(X'X)^{-1}L'
+   \end{eqnarray*}$$
+   
+   We know that $A(A'A)^{-1}A'$ is the orthogonal projection onto $\text{range}(A)$.
+
+<br>   
+
+#### Lemma
+With $X$ and $L$ as in the above theorem,
+
+$$
+\text{range}(A)= \text{range}(X(X'X)^{-1}L')=V_f\cap (V_r^\perp)=\text{range}(P_f-P_r).
+$$
+   * 증명:
+   
+$$\begin{eqnarray*}
+   \mu \in V_f\cap (V_r^\perp) &\iff& \mu=X\beta \mbox{ for some }\beta  \tag{*}\\
+   && \mbox{and } \mu \perp X\alpha \mbox{ whenever }L\alpha=0\\
+   &\iff& (*) \mbox{ and } (X\beta)'(X\alpha)=0 \mbox{ when }L\alpha=0\\
+   &\iff& (*) \mbox{ and }(X'X\beta)'\alpha=0 \mbox{ when }L\alpha=0\\
+   &\iff& (*) \mbox{ and } X'X\beta\perp\alpha \mbox{ when } \alpha\in \text{null}(L) \\
+   &\iff& (*) \mbox{ and } X'X\beta\in (\text{null}(L))^\perp=\text{range}(L')\\
+   &\iff& (*) \mbox{ and } X'X\beta=L' \xi \mbox{ for some }\xi\\
+   &\iff& (*) \mbox{ and } \beta=(X'X)^{-1}L' \xi \mbox{ for some }\xi\\
+   &\iff& (*) \mbox{ and } \mu=X(X'X)^{-1}L' \xi \mbox{ for some }\xi\\
+   &\iff& (*) \mbox{ and } \mu\in\text{range}(X(X'X)^{-1}L').
+\end{eqnarray*}$$
+
+   * 즉 $V_f\cap (V_r^\perp)=\text{range}(X(X'X)^{-1}L')$이 되고, 때문에 $P_f-P_r$은 projection onto $\text{range}(X(X'X)^{-1}L')$이 된다. 
+
+
+<br>
+<br>
+
+
+#### 정리
+1. Hypothesis testing을 하기 위해 우리는 $F$-test를 해야한다. 그러기 위해 
+   $$
+F=\frac{Y'(P_f-P_r)Y/(\nu_f-\nu_r)}{Y'(I-P_f)Y/(n-\nu_f)}
+   $$
+   를 구하는 것이 목적이다. 
+   
+2. $Y'(P_f-P_r)Y=(L\hat\beta)'(LCL')^{-1}(L\hat\beta)$를 통해 구할 수 있다. 
+   
+   즉 일반적으로 constraint에 대해 chi-square 값을 구하던 방법이 $Y'(P_f-P_r)Y/(\nu_f-\nu_r)$를 구하던 방법과 같았다.
+   참고:
+   $$\begin{eqnarray*}
+   \hat\beta\sim N(\beta,\sigma^2C)   &\implies&   L\hat\beta\sim N(L\beta,\sigma^2LCL')\\
+   &\implies&   L\hat\beta\stackrel{H_0}\sim N(0,\sigma^2LCL')\\
+   &\implies&  \frac{1}{\sigma}(LCL')^{-1/2}L\hat\beta\stackrel{H_0}\sim N(0,I)\\
+   &\implies&  \frac{1}{\sigma^2}(L\hat\beta)'(LCL')(L\hat\beta)\stackrel{H_0}\sim \chi^2_{\text{rank}(L)}\equiv \chi^2_{\nu_f-\nu_r}.
+   \end{eqnarray*}$$
+
+   
+
+<br>
+<br>
 
 [back](../lm.html)
-
