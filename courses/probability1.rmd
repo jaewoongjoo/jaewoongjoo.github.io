@@ -18,7 +18,7 @@ output: html_document
 
 [1.4. Lebesgue Measure](./prob1/1_4.html)
 
-&nbsp;&nbsp;
+<br>
 
 ### 2. Integration
 
@@ -41,6 +41,14 @@ output: html_document
 [2.9. Product Measure](./prob1/2_9.html)
 
 [2.10. The Fubini's Theorem](./prob1/2_10.html)
+
+<br>
+
+### 3. Mode of Convergence
+
+[3.1. $L^p$-spaces and Inequalities](./prob1/3_1.html)
+
+[3.2. Tail Probabilities and Moments](./prob1/3_2.html)
 
 <br>
 <br>
