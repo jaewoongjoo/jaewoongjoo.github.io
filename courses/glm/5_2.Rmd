@@ -1,0 +1,101 @@
+---
+title: "5.2. Conditional Models"
+---
+ 
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Remark
+Matched pairs:
+
+  * two samples when each observation in one sample pairs with an observation in the other.
+  
+  * Such matched pairs data commonly occur in studies with repeated measurement of subjects, such as longitudinal studies.
+
+<br>
+<br>
+
+Let $Y_{it}=$response at time $t$ for subject $i$(1=success, 0=failure).
+
+Then conditional model for the matched pair is 
+$$
+\text{logit}\{P(Y_{it}=1)\}=\alpha_i+\beta x_{it},\mbox{ }\mbox{ }t=1,2,
+$$
+with $x_{it}=0$ for $t=1$; $x_{it}=1$ for $t=2$.
+
+
+Traditional approach estimates $\beta$ conditional on sufficient statistics for *nuisance parameters* $\{\alpha_i\}$.
+   
+   
+   * Example : Matched pairs
+   $$
+   \text{logit}P(Y_{i1}=1)=\alpha_i,\\
+   \text{logit}P(Y_{i2}=1)=\alpha_i+\beta.
+   $$
+
+Assume $(Y_{i1},Y_{i2})$ are independent, given $\alpha_i,\beta$, and independent of different matched pairs. Joint probability function of $\{(y_{11}, y_{12}),\ldots,(y_{n1},y_{n2})\}$ is
+$$
+\prod_{i=1}^n \left(\frac{e^{\alpha_i}}{1+e^{\alpha_i}}\right)^{y_{i1}}\left(\frac{1}{1+e^{\alpha_i}}\right)^{1-y_{i1}}  \left(\frac{e^{\alpha_i+\beta}}{1+e^{\alpha_i+\beta}}\right)^{y_{i2}}\left(\frac{1}{1+e^{\alpha_i+\beta}}\right)^{1-y_{i2}}\\
+\propto\exp\left( \sum_i \alpha_i(y_{i1}+y_{i2})+\beta\left(\sum_iy_{i2} \right)\right).
+$$
+Then, sufficient statistics for $\{\alpha_i\}$ are $\{S_i= y_{i1}+y_{i2}\}$.
+
+Thus, eliminate $\{\alpha_i\}$ by conditioning on $\{S_i= y_{i1}+y_{i2}\}$.
+
+<br>
+
+  * Given $S_i=0$, $P(Y_{i1}=Y_{i2}= 0|S_i=0)=1$.
+  
+  * Given $S_i=2$, $P(Y_{i1}=Y_{i2}= 1|S_i=2)=1$
+  
+  * Given $S_i=1$, $P(Y_{i1}= 1 \mbox{ or } Y_{i2}= 1|S_i=1)$ has two cases: $(Y_{i1}= 1, \mbox{ } Y_{i2}= 0)$, $(Y_{i1}= 0, \mbox{ } Y_{i2}= 1)$.
+  
+  $\implies$Conditional distribution of $(Y_{i1}, Y_{i2})$ depends on $\beta$ only when $S_i=1$.
+
+<br>
+
+Given $Y_{i1}+Y_{i2}= 1$, 
+$$\begin{eqnarray*}
+P(Y_{i1}=y_{i1}, Y_{i2}= y_{i2}|S_i=1)&=& \frac{P(Y_{i1}=y_{i1}, Y_{i2}= y_{i2})}{P(Y_{i1}=1, Y_{i2}=0)+ P(Y_{i1}=0, Y_{i2}=1)}  \\
+&=& 
+\frac{\left(\frac{e^{\alpha_i}}{1+e^{\alpha_i}}\right)^{y_{i1}}\left(\frac{1}{1+e^{\alpha_i}}\right)^{1-y_{i1}}\left(\frac{e^{\alpha_i+\beta}}{1+e^{\alpha_i+\beta}}\right)^{y_{i2}}\left(\frac{1}{1+e^{\alpha_i+\beta}}\right)^{1-y_{i2}}}{{\left(\frac{e^{\alpha_i}}{1+e^{\alpha_i}}\right)\left(\frac{1}{1+e^{\alpha_i+\beta}}\right)+ \left(\frac{1}{1+e^{\alpha_i}}\right)  \left(\frac{e^{\alpha_i+\beta}}{1+e^{\alpha_i+\beta}}\right)}}\\
+&=&\begin{cases} \frac{e^\beta}{1+e^\beta}& y_{i1}=0, y_{i2}=1, \\ \frac{1}{1+e^\beta} & y_{i1}=1, y_{i2}=0.\end{cases}
+\end{eqnarray*}$$
+Thus, conditional on $S_i=1$, joint distribution is
+$$
+\prod_{S_i=1}\left(\frac{e^\beta}{1+e^\beta}\right)^{y_{i2}}\left(\frac{1}{1+e^\beta}\right)^{y_{i1}}=\frac{(e^\beta)^{\sum y_{i2}}}{(1-e^\beta)^{\sum y_{i1}+y_{i2}}}.
+$$
+Conditional log likelihood is
+$$
+l(\beta)=\beta\sum_i y_{i2}-\log(1-e^\beta)\left(\sum_i y_{i1}+y_{i2}\right)\\
+\implies\frac{d\mbox{ }l(\beta)}{d\beta}= 0 \\
+\implies \hat\beta=\log\frac{\sum_i y_{i2}}{\sum_i y_{i1}}=\log\frac{n_{21}}{n_{12}}.
+$$
+
+
+##### 정리
+
+1. Conditional model의 관심은 nuisance parameter를 제외하고 관심이 있는 parameter만을 추정하는 것이다.
+
+2. 그러기 위해서 full likelihood에서 Nuisance parameter의 sufficient statistic을 찾아낸 다음, conditional likelihood를 구해낸다.
+
+   * 위의 예제에서는 $S_i$가 0, 2일때는 Probability가 1이므로, likelihood에 영향을 미치지 않기 때문에 $S_i$가 1일 때에만 conditional likelihood를 구했다.
+
+
+
+
+
+
+<br>
+<br>
+ 
+[back](../glm.html)

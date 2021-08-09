@@ -33,7 +33,7 @@ output: html_document
 
 [3.1. Setup for General Linear Hypothesis](./lm/3_1.html)
 
-[3.2. 3.2. The $F$-test](./lm/3_2.html)
+[3.2. The $F$-test](./lm/3_2.html)
 
 
 <br>

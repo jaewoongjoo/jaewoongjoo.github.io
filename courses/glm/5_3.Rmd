@@ -1,0 +1,137 @@
+---
+title: "5.3. Generalized Linear Mixed Models"
+---
+ 
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Remark
+Let $y_{it}$ be $t$th response in cluster $i$, $i=1,\ldots,n$; $t=1,\ldots,T$. Also, let $u_i$ be vector of random effects for cluster $i$.
+
+Conditional on $u_i$, Generalized Linear Mixed Model(GLMM) resembles GLM s.t
+$$
+\mu_{it}=E(y_{it}|u_i),
+$$
+i.e., $\{Y_1,\ldots,Y_T\}$ are independent with
+$$
+g(\mu_{it})=x_{it}'\beta+z_{it}'u_i.
+$$
+Assume
+$$
+u_i\sim N(0,\Sigma)
+$$
+with unknown *variance components*.
+
+e.g. Binary matched pairs
+$$
+\text{logit}P(Y_{it}=1)=\alpha_i+\beta x_{it}\mbox{ }\mbox{ }\mbox{ with }\mbox{ }\mbox{ }x_{i1}=0, x_{i2}=1.
+$$
+Write now as $u_i+\beta x_{it}$ where $u_i\sim N(\alpha, \sigma^2)$ or $\alpha+\beta x_{it}+u_i$ where $u_i\sim N(0,\sigma^2)$.
+
+Here, $g(\mu_{it})=x_{it}'\beta+z_{it}'u_i$, where
+$$
+\beta={\alpha \choose \beta},\mbox{ } x_{i1}'=(1,0), \mbox{ }x_{i2}'=(1,1), \mbox{ } z_{it}=1.
+$$
+$\mu_{it}=P(Y_{it}=1|u_i)$, $g=$logit link, $u_i\sim N(0,\sigma^2)$.
+
+This is a *random intercept* model.
+
+<br>
+<br>
+
+#### Remark(Connection between Conditional Models and Marginal Models)
+Conditional Model : 
+$$
+E(Y_{it}|u_i)=g^{-1}(x_{it}'\beta+z_{it}'u_i).
+$$
+Marginally,
+$$
+E(Y_{it})=E\{ E(Y_{it}|u_i)\}=\int g^{-1}(x_{it}'\beta+z_{it}'u_i) f(u_i;\Sigma)du_i.
+$$
+For identity link,
+$$
+E(Y_{it})=\int (x_{it}'\beta+z_{it}'u_i) f(u_i;\Sigma)du_i= x_{it}'\beta.
+$$
+has some model form and effects $\beta$, but not true for other links. 
+
+   * 즉 identity link일때는 conditional model과 marginal model이 같다. 하지만 다른 link일때는 그렇지 않다. 
+   
+<br>
+
+For Probit GLMM for binary data,
+$$
+\Phi^{-1}\{E(Y_{it}|u_i)\}=x_{it}'\beta+z_{it}'u_i,
+$$
+where $\Phi$ is $N(0,1)$ cdf. 
+
+Note that
+$$\begin{eqnarray*}
+E(Y_{it}|u_i)&=&\Phi(x_{it}'\beta+z_{it}'u_i|u_i)\\
+&=&P(Z\le x_{it}'\beta+z_{it}'u_i|u_i),\\
+E(Y_{it})&=& E\{E(Y_{it}|u_i)\}\\
+&=&\int P(Z-z_{it}'u_i\le x_{it}'\beta|u_i)dF(u_i)\\
+&=&\int \Phi\left(\frac{x_{it}'\beta}{\sqrt{1+z_{it}'\Sigma z_{it}}}\right)dF(u_i)\mbox{  }\mbox{  }(\mbox{Let }Z\perp u_i)\\
+&=&\Phi\left(\frac{x_{it}'\beta}{\sqrt{1+z_{it}'\Sigma z_{it}}}\right)\\
+&=&\Phi(x_{it}'\beta^*)
+\end{eqnarray*}$$
+where $\beta^*=\beta/\sqrt{1+z_{it}'\Sigma z_{it}}$.
+Note that the marginal model also is a probit model($\beta$값만 다르다).
+
+   * For random intercept model, $\beta^*=\beta/\sqrt{1+\sigma^2}$.
+
+For log-linear GLMM (count data),
+$$\begin{eqnarray*}
+\log E(Y_{it}|u_i)&=&x_{it}'\beta+z_{it}u_i,\\
+E(Y_{it}|u_i)&=& e^{x_{it}'\beta+z_{it}u_i},\\
+E(Y_{it})&=&E\{E(Y_{it}|u_i)\}=e^{x_{it}'\beta}E(e^{z_{it}'u_i})\\
+&=&e^{x_{it}'\beta}e^{\frac{1}{2}z_{it}'\Sigma z_{it}}=e^{x_{it}'\beta+\frac{1}{2}z_{it}'\Sigma z_{it}}.
+\end{eqnarray*}$$   
+
+   * 정규분포의 m.g.f 공식을 떠올리면 된다.
+
+Thus,
+$$
+\log\{ E(Y_{it})\}-\frac{1}{2}z_{it}'\Sigma z_{it}=x_{it}'\beta.
+$$
+That is the form of a log-linear GLM with offset(오차가 생겼다).
+
+For random intercept model,
+$$
+E(Y_{it})=e^{\frac{\sigma^2}{2}}e^{x_{it}'\beta}=e^{\frac{\sigma^2}{2}+x_{it}'\beta}.
+$$
+<br>
+
+If $Y_{it}|u_i$ is Poisson (i.e., random intercept Poisson GLMM), variance of marginal distribution is
+$$\begin{eqnarray*}
+\text{Var}(Y_{it})&=&E\{\text{Var}(Y_{it}|u_i)\}+ \text{Var}\{E(Y_{it}|u_i)\}\\
+&=& E(\mu_{it})+\text{Var}(\mu_i)\\
+&=& E(e^{x_{it}'\beta+z_{it}u_i})+\text{Var}(e^{x_{it}'\beta+z_{it}u_i})\\
+&=& E(e^{x_{it}'\beta+u_i})+\text{Var}(e^{x_{it}'\beta+u_i})\\
+&=& e^{x_{it}'\beta+\frac{1}{2}\sigma^2}+e^{2x_{it}'\beta}\left\{E(e^{2u_i})-\{E(e^{u_i})\}^2\right\}\\
+&=&E(Y_{it})+e^{2x_{it}'\beta}\left(e^{2\sigma^2}-e^{\sigma^2}\right)\\
+&=&E(Y_{it})+e^{2x_{it}'\beta}e^{\sigma^2}\left(e^{2\sigma^2}-1\right)\\
+&=&E(Y_{it})+\{E(Y_{it})\}^2\left(e^{2\sigma^2}-1\right).
+\end{eqnarray*}$$
+
+   * Note : 정규분포 $N(\mu,\sigma^2)$ mgf= $E(e^{tx})=e^{\mu t + \frac{1}{2}\sigma^2t^2}$. 
+
+As in negative binomial GLM, variance is quadratic function of mean. If $\sigma^2=0$, get ordinal Poisson GLM. If $\sigma^2>0$, this is alternative to negative binomial GLM for handling overdispersion.
+
+   * 즉, poisson responses에 대한 generalized linear model에서, GLMM이 overdispersion을 위해 사용될 수 있다.
+   
+
+
+<br>
+<br>
+
+ 
+[back](../glm.html)

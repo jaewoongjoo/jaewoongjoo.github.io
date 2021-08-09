@@ -1,5 +1,5 @@
 ---
-title: "4.1. Models for Nominal data"
+title: "4.1. Models for Nominal Responses"
 ---
  
 <style type="text/css">
@@ -11,10 +11,12 @@ pre {
 }
 </style>
 
+<br>
+<br>
 
-##### Remark
+#### Remark
  
-Suppose categorical response has $J>2$ categories.
+Suppose categorical response has $J>2$ categories(중요: $j$는 category, $i$는 subject index).
  
 Sampling model: Independent miltinomial distribution with probabilities $\{ \pi_1(x), \ldots, \pi_J(x)\}$ at each setting $x$ of explanatory variables.
  
@@ -26,7 +28,7 @@ Then we have two cases
  
 &nbsp;&nbsp;
  
-##### Remark
+#### Remark
  
 For the unordered categories, Basiline category logit models are used.
  
@@ -43,7 +45,7 @@ $$
  
 &nbsp;&nbsp;
  
-##### Remark
+#### Remark
 1. Other logits are determined by this basic set of $J-1$ logits: For $a<b<J$,
 $$
 \log\left\{\frac{\pi_a(x)}{\pi_b(x)} \right\}=\log\left\{\frac{\pi_a(x)}{\pi_J(x)} \right\}-\log\left\{\frac{\pi_b(x)}{\pi_J(x)} \right\} = (\alpha_a-\alpha_b)+(\beta_a'-\beta_b')x.
@@ -64,8 +66,8 @@ $$
   * Note :
 $$\begin{eqnarray*}
   \log\left\{\frac{\pi_j(x_i)}{\pi_J(x_i)}\right\}&=&\log\left\{\frac{\pi_j(x_i)}{1-(\pi_1+\cdots+\pi_{J-1}(x_i))}\right\} = \alpha_j+\beta_j'x_i\\
-   \implies \exp(\eta_{ij})&=&1-\frac{\pi_j(x_i)}{1-(\pi_1(x_i)+\cdots+\pi_{J-1}(x_i))}\\
-   \implies \exp(\eta_{iJ})&=&1-\frac{\pi_J(x_i)}{1-(\pi_1(x_i)+\cdots+\pi_{J-1}(x_i))}=1.
+   \implies \exp(\eta_{ij})&=&\frac{\pi_j(x_i)}{1-(\pi_1(x_i)+\cdots+\pi_{J-1}(x_i))}\\
+   \implies \exp(\eta_{iJ})&=&\frac{\pi_J(x_i)}{1-(\pi_1(x_i)+\cdots+\pi_{J-1}(x_i))}=1.
 \end{eqnarray*}$$
  
  
@@ -94,39 +96,55 @@ So, baseline-category logit models are canonical in multivariate exponential fam
  
 &nbsp;&nbsp;
  
-##### Remark
+#### Remark
 Let $Y=(Y_1,\ldots, Y_N)$ are independent observations. Then, the joint distribution is
 $$\begin{eqnarray*}
   f(y_1,\ldots,y_n)&=&\prod_{i=1}^N \left\{\ \prod_{j=1}^J\pi_j(x_i)^{y_{ij}} \right\}\\
-  &=& \prod_{i=1}^N \left\{\ \prod_{j=1}^J\left(\frac{\exp(\alpha_j+\beta_j'x_i)}{1+\sum_{j=1}^{J-1}\exp(\alpha_j\beta_j'x_i)    }\right)^{y_{ij}} \right\}\\
-  &=&\frac{ \exp\left\{\sum_{i=1}^N\sum_{j=1}^{J-1}(y_{ij}\alpha_{j} +\sum_{k=1}^p\beta_{jk}x_{ik}y_{ij})\right\}}{\prod_{i=1}^N \left\{ 1+\sum_{j=1}^{J-1}\exp(\alpha_j+\beta_h'x_i)\right\}^{\sum_{j=1}^Jy_{ij}}}
+  &=& \prod_{i=1}^N \left\{\ \prod_{j=1}^J\left(\frac{\exp(\alpha_j+\beta_j'x_i)}{1+\sum_{j=1}^{J-1}\exp(\alpha_j+\beta_j'x_i)    }\right)^{y_{ij}} \right\}\\
+  &=&\frac{ \exp\left\{\sum_{i=1}^N\sum_{j=1}^{J-1}(y_{ij}\alpha_{j} +y_{ij}\sum_{k=1}^p\beta_{jk}x_{ik})\right\}}{\prod_{i=1}^N \left\{ 1+\sum_{j=1}^{J-1}\exp(\alpha_j+\beta_h'x_i)\right\}^{\sum_{j=1}^Jy_{ij}}}
 \end{eqnarray*}$$
 
 Let $n_j=\sum_{i=1}^Ny_{ij}=$number of response in category $j$. Then,
 $$\begin{eqnarray*}
-  f(y_1,\ldots,y_n)&=&\prod_{i=1}^N \left\{\ \prod_{j=1}^J\pi_j(x_i)^{y_{ij}} \right\}\\
-  &=& \prod_{i=1}^N \left\{\ \prod_{j=1}^J\left(\frac{\exp(\alpha_j+\beta_j'x_i)}{1+\sum_{j=1}^{J-1}\exp(\alpha_j\beta_j'x_i)    }\right)^{y_{ij}} \right\}\\
-  &=&\frac{ \exp\left\{\sum_{i=1}^N\sum_{j=1}^{J-1}(y_{ij}\alpha_{j} +\sum_{k=1}^p\beta_{jk}x_{ik}y_{ij})\right\}}{\prod_{i=1}^N \left\{ 1+\sum_{j=1}^{J-1}\exp(\alpha_j+\beta_h'x_i)\right\}^{\sum_{j=1}^Jy_{ij}}}
+  f(y_1,\ldots,y_n)&=&\frac{ \exp\left\{\sum_{i=1}^N\sum_{j=1}^{J-1}(y_{ij}\alpha_{j} +y_{ij}\sum_{k=1}^p\beta_{jk}x_{ik})\right\}}{\prod_{i=1}^N \left\{ 1+\sum_{j=1}^{J-1}\exp(\alpha_j+\beta_h'x_i)\right\}^{\sum_{j=1}^Jy_{ij}}}\\
+&=& \frac{ \exp\left\{\sum_{j=1}^{J-1}n_{j}\alpha_{j} +\sum_{k=1}^p\beta_{jk}\sum_{i=1}^Ny_{ij}x_{ik})\right\}}{\prod_{i=1}^N \left\{ 1+\sum_{j=1}^{J-1}\exp(\alpha_j+\beta_h'x_i)\right\}^{\sum_{j=1}^Jy_{ij}}}
 \end{eqnarray*}$$
 
-The sufficient statistics are $\{n_1,n_2,\ldots,n_{J-1}\}$ and $\left\{\sum_{i=1}^Nx_{ik}y_{ij},\mbox{ }j=1,\ldots,J-1, \mbox{ }k=1,\ldots,p\right\}.$
+The sufficient statistics are $\{n_1,n_2,\ldots,n_{J-1}\}$ and $\left\{\sum_{i=1}^Nx_{ik}y_{ij},\mbox{ }j=1,\ldots,J-1, \mbox{ }k=1,\ldots,p\right\}$.
 
 Log-likelihood is concave and Newton Raphson yields ML estimate. 
 
 &nbsp;&nbsp;
  
-##### Remark(Discrete-choice Models)s
-Discrete choice models describe, explain and predict choices between two or more discrete alternatives (**subject's choice of discrete set of options**).
+#### Remark(Discrete-choice Models)
+Discrete choice models describe, explain and predict choices between two or more discrete alternatives (*subject's choice of discrete set of options*).
 
   * Example: how to get to school today? $\implies$ walk, drive, bicycle.
   
 There are two types of explanatory variables:
 
-  1. "Characterisrics of the chooser" - constant across choice set for a subject(e.g. income).
+  1. "Characterisrics of the chooser" - constant across choice set for a subject(e.g. income) ($x_i$를 사용).
   
-  2. "Characterisrics of the choice" - take different value for each response choice 
+  2. "Characterisrics of the choice" - take different value for each response choice. For example, cost of getting to work and time needed($x_{ij}$를 사용).
 
 
-&nbsp;&nbsp;
+For subject $i$, let $x_{ij}$ denote values of explanatory variables for response choice $j$ and let $\pi_j(x_ij)$ denote probability of choice $j$ for subject $i$.
+
+Let $c_i=$set of possible response choices for subject $i$. Then, the model for explanatory variables of *characteristics of the choice* is,
+
+$$
+\pi_j(x_i)= \frac{\exp(\beta'x_{ij})}{\sum_{h\in C_i}\exp(\beta'x_{ih})}.
+$$
+
+  * Baseline category logit model에서는 $\eta_{ij}=\beta_j'x_i$였다. 그 말은 subject마다 각 J개의 카테고리에 대한 data가 수집되었고 그로 인해 J개 category 숫자만큼의 $\beta$(벡터) 값을 추정했었다. 
+  
+  * 하지만 Characterisrics of choice 모델에서는 $x_{ij}$가 vector이다. 즉 subject $i$의 $j$번째 카테고리가 vector(여러개)로서 subject마다 각각 벡터 안에서 다른 위치의 element를 선택할 수 있다(통근할때 시간 - 차로 가는 경우의 수, 버스를 타는 경우의 수). 
+  
+  * Baseline category model은 $\eta_{ij}=\beta_j'x_i$를, Characteristics of choice model은 $\eta_{ij}=\beta'x_{ij}$로 기억하면 된다. 
+  
+
+
+<br>
+<br>
  
 [back](../glm.html)

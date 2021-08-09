@@ -1,0 +1,153 @@
+---
+title: "4.2. Models for Ordinal Responses"
+output: html_document
+---
+ 
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Remark(Adjacent-category logit models)
+Let
+$$
+L_j=\log\left\{ \frac{\pi_j(x)}{\pi_{j+1}(x)}  \right\}=\text{logit}\{P(Y=j|Y=j \mbox{ or } Y={j+1})\}.
+$$
+ These logits are a basic set equivalent to the Baseline category logit models.
+ 
+ <br>
+ 
+ Model: 
+ $$
+ L_j=\log\left\{ \frac{\pi_j(x)}{\pi_{j+1}(x)}\right\}=\alpha_j+\beta'x, \mbox{ }j=1,\ldots,J-1
+ $$
+assumes common effect for all logits.
+
+<br>
+<br>
+
+Note that the baseline category logit model can also be used here such that
+$$\begin{eqnarray*}
+\log\left\{ \frac{\pi_j(x)}{\pi_{J}(x)}\right\}= L_j+L_{j+1}+\cdots+L_{J-1}=\sum_{h=j}^{J-1}\alpha_h+(J-j)\beta'x= \alpha_j^*+\beta'u_j.
+\end{eqnarray*}$$
+
+  * 즉 카테고리들간의 distance가 멀어질 때마다 $\alpha, \beta$ effect도 계속 비례해서 증가한다는 의미이다.   
+  
+<br>
+<br>
+
+#### Remark(Cumulative logit model)
+Let $F_j(x)=P(Y\le j|x)$, $j=1,2,\ldots,J-1$. Cumulative logits are
+$$
+L_j(x)=\log\left\{  \frac{F_j(x)}{1-F_j(x)} \right\}, \mbox{ }\mbox{ }j=1,\ldots,J-1.
+$$
+
+<br>
+
+Model:
+$$
+L_j(x)=\log\left\{  \frac{F_j(x)}{1-F_j(x)} \right\}=\alpha_j+\beta'x.
+$$
+
+  * Nominal data는 카테고리인 $j$에 기준이 없었기 때문에 모든 카테고리마다의 $\beta_j$들을 추정해야 했었다. 하지만 Ordinal data는 x에 대해서는 $\beta$만을 추정한다. 아래의 motivation을 확인하면 여기서 $\alpha_j$는 order를 의미한다(increasing on $j$).
+  
+<br>
+<br>  
+
+#### Motivation
+Let $Y=$observed responses, $Y^*=$underlying continuous response.
+
+Suppose that there are "cutpoints" $\{\alpha_j\}$ such that $Y=j$ if $\alpha_{j-1}<Y^*\le \alpha_j$.
+
+Let $F_j(x)=P(Y\le j|x)= P(Y^*\le \alpha_j |x)$.
+
+Suppose $Y^*=\beta'x+\epsilon$ has cdf $G(y^*-\beta'x)$, where $\beta'x$ is a location parameter. Then,
+$$
+P(Y^*\le \alpha_j |x)=G(\alpha_j-\beta'x)\\
+\iff G^{-1}\{ P(Y\le j |x)\}=\alpha_j-\beta'x.
+$$
+If $\epsilon\sim$normal dist., $G^{-1}=$probit;
+
+If $\epsilon\sim$logistic, $G^{-1}=$logit**(cumulative logit model)**.
+
+   * 중요 point
+   0. $Y^*$ modeling: $Y^*=\beta'x+\epsilon$이라고 처음 모델을 세운다.
+   
+   1. Cutpoint가정: 만약 $\alpha_{j-1}<Y^*\le \alpha_j$라면 $Y=j\iff Y^*\le \alpha_j$라면 $Y\le j$이다.  
+   
+   2. $\epsilon$의 cdf 분포 가정: $Y^*=\beta'x+\epsilon$ has cdf $G(y^*-\beta'x)\iff$ $Y^*$ has cdf $G(\epsilon)$, $\eta$는 location. 자세히 보이면
+   $$
+    P(Y^* \le \alpha_j |x) = P(\beta'x+\epsilon \le \alpha_j |x)=P(\epsilon \le \alpha_j-\beta'x |x) =G_\epsilon(\alpha_j-\beta'x)\\
+    \implies G^{-1}\{ P(Y\le j |x)\}=\alpha_j-\beta'x.
+   $$
+   즉 $\epsilon$의 분포에 따라 모델이 바뀐다.  
+
+<br>
+
+   * For logit link:
+   $$
+   \log\left\{\frac{P(Y\le j|x_1)/P(Y> j|x_1)}{P(Y\le j|x_2)/P(Y> j|x_2)}\right\}= (\alpha_j-\beta'x_1)-(\alpha_j-\beta'x_2)= \beta'(x_2-x_1).
+   $$
+   때문에 이 모델을 Proportional odds model이라고 부르기도 한다. 
+
+<br>
+
+#### Remark   
+For multinomial counts, $\{y_{ij};j=1,\ldots,J\}$ at setting $x_i$ assumed independent at different $x_i$, the likelihood has form
+
+$$\begin{eqnarray*}
+\prod_{i}\left[ \prod_{j=1}^j\{ P(Y_{ij}=j|x_i )^{y_{ij}} \} \right]&=&\prod_{i}\left[ \prod_{j=1}^j\left\{ P(Y_{ij}\le j|x_i)-P(Y_{ij}\le j-1|x_i) \right\}^{y_{ij}} \right] \\
+&=&\prod_{i}\left[ \prod_{j=1}^j\{F_j(x_i)-F_{j-1}(x_i)\}^{y_{ij}} \right]
+\end{eqnarray*}$$
+with
+$$
+F_j(x_i)=\frac{\exp(\alpha_j-\beta'x_i)}{1+\exp(\alpha_j-\beta'x_i)},
+$$
+$F_J(x_i)=1$, and $F_0(x_i)=0$ ($j=1,\ldots,J$이기 때문에, $P(Y\le J)=1$이고 $P(Y\le 0)=P(Y< 1)=0$이다).
+
+
+   * We can use $\{ \hat{\alpha}_j\}$, $\hat\beta$ to get $\hat F_j(x_i)$, 
+   $$
+   \hat\pi_j(x_i)=\hat F_j(x_i)-\hat F_{j-1}(x_i).
+   $$
+   
+   <br>
+   
+   *  Using fitted values $\{n_i\hat\pi_j(x_i)\}$, we calculate deviance, $G^2$ and $\chi^2$ for testing fit or conducting LR tests.    
+   
+   $\implies \hat\pi_j(x_i)$를 이용하여 likelihood를 구하고, $\tilde\pi_j(x_i)=y_{ij}$로 saturated model과의 log값의 차이를 통해 Deviance를 구한다.)
+    
+
+<br>
+
+    
+   *$P(Y\le j)= \frac{\exp(\alpha_j-\beta'x)}{1+\exp(\alpha_j-\beta'x)}$에서 For $k>j$, $P(Y\le k)$ is shifted to left by $\frac{\alpha_j-\alpha_k}{\beta}$ such that
+$$
+F_k(x)=F_j\left(  x+\frac{\alpha_j-\alpha_k}{\beta} \right)
+$$
+
+#### Remark
+1. $G= \Phi$(c.d.f of the standard normal distribution) gives cumulative probit model.
+
+2. $G^{-1}(u)=\log\{-\log(1-u)\}$ is complementary $\log-\log$ link corresponds to $G=$extreme value cdf.
+   
+   Model:
+   $$
+   \log\{-\log (1-P(Y\le j)) \}=\alpha_j-\beta'x\\
+   \implies P(Y\le j|x_1)=\{ P(Y>j|x_2)\}^{\exp\{\beta'(x_1-x_2) \}}.
+   $$
+
+  
+
+
+<br>
+<br>
+ 
+[back](../glm.html)
