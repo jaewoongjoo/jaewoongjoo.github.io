@@ -1,0 +1,365 @@
+---
+title: "3.7. Uniform Integrability"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Remark
+If $X$ is a random variable, then $|X|I(X>\alpha)\rightarrow 0$ as $\alpha\rightarrow \infty$.
+
+In addition, if $X$ is integrable, then by D.C.T
+$$
+E[|X|I(|X|>\alpha)]\rightarrow E(0)=0 \mbox{ }\mbox{ }\mbox{ as }\mbox{ }\alpha\rightarrow \infty.
+$$
+In fact, $X$ is integrable **if and only if** this condition holds.
+
+<br>
+
+   * 증명 : $(\implies)$: D.C.T
+   
+     $(\Longleftarrow)$: Note that there exists a large $\alpha_\epsilon$ s.t. $E[|X|I(|X|>\alpha_\epsilon)]<\epsilon$. Then, for $\alpha>\alpha_\epsilon$
+
+$$
+\begin{eqnarray}
+   E[|X|]&=& E[|X|I(|X|>\alpha)]+ E[|X|I(|X|\le\alpha)] \tag{*}\\
+   &<& \epsilon+E[|X|I(|X|\le\alpha+1)]<\infty.
+   \end{eqnarray}
+$$
+
+  * 즉 $E[|X|I(|X|>\alpha)]\rightarrow 0$은 integrability와 동치이다.
+
+<br>
+
+
+  * A collection of random variables $\{X_t:t\in T\}$ is said to be **uniformly integrable** if the convergence in $(*)$ is uniform in $t$.
+
+      * 즉 integrability를 판단할 때 $E[|X|I(|X|>\alpha)]\rightarrow 0$인지를 이용한다.
+   
+      * 주어진 Random variable family가 $\{X_t,t\in T\}$일 때 만약 for all $t$ 대해서 $E[|X_t|I(|X_t|>\alpha)]\rightarrow 0$이라면, uniformly integrable하다고 한다.
+   
+
+<br>
+<br>
+
+매우 중요하다
+
+#### Definition
+A family of random variables $\{X_t,t\in T\}$ is uniformly integrable (u.i) if
+$$
+\sup_{t\in T} \int_{|X_t|>\alpha} |X_t|\mbox{ }dP\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }\mbox{ }\alpha\rightarrow\infty.
+$$
+   * 즉, 이는 $\sup_{t\in T} E\left(|X_t|I_{|X_t|>\alpha}\right)\rightarrow 0$과 같다. 이는 모든 t에 대해서 만족하는지를 확인하기 위해 supremum of $t$를 사용한 것이다.
+   
+<br>
+<br>
+
+#### Remark
+If $X_t$ has distribution function $F_t,t\in T$,then the uniform integrability condition can be written as 
+
+$$
+\sup_{t\in T}\int_{(-\infty,\alpha)\cup(\alpha,\infty}|x|dF_t(x)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }\mbox{ }\alpha\rightarrow\infty.
+$$
+  * 이는 induced measure로 transformation한 것이다. Note: as $\alpha\rightarrow\infty$,
+
+$$
+\begin{eqnarray}
+ &&\sup_{t\in T}\int_{|X_t|>\alpha} |X_t|\mbox{ }dP\rightarrow0 \\
+&\iff& \sup_{t\in T} \int_\Omega |X_t(\omega)|I_{\{|X_t(\omega)|>\alpha\}}\mbox{ }dP\rightarrow 0\\
+&\iff&\sup_{t\in T} \int_\Omega |\tilde X_t(\omega)|\mbox{ }dP\rightarrow 0\mbox{ }\mbox{ }\mbox{ (Let } \tilde X_t(\omega)=X_t(\omega)I_{\{|X_t(\omega)|>\alpha\}})\\
+&\iff&\sup_{t\in T} \int_\mathbb{R}|\tilde x|dP_{X_t}\rightarrow0\\
+&\iff&\sup_{t\in T} \int_{|x|>\alpha}|x|dF_t\rightarrow0.
+\end{eqnarray}
+$$  
+   * 즉 $\omega\in \Omega$에 대한 적분에서 $x\in \mathbb{R}$에 대한 적분으로 transformation했다. 
+
+<br>
+<br>
+
+##### Example
+If $Y$ is integrable random variable and $|X_t|\le Y$ for all $t\in T$, then $\{X_t,t\in T\}$ is u.i.
+
+
+<br>
+<br>
+
+#### Example (모든 $X_n$이 integrable하지만 uniformly integrable하지 않은 경우)
+Suppose $P(X_n=n)=1/n=P(X_n=0),n\ge 1$. Then, $E(X_n)=1$ for all $n\ge 1$. But, for any $\alpha>0$
+  $$
+  |X_n|I(|X_n|>\alpha)=\begin{cases}X_n, & \mbox{ if }n>\alpha, \\0, & \mbox{ if }n\le\alpha.\end{cases}\implies E(|X_n|I(|X_n|>\alpha))=\begin{cases}E(X_n)=1, & \mbox{ if }n>\alpha, \\0, & \mbox{ if }n\le\alpha.\end{cases} 
+  $$
+   Thus, $\sup_n E(|X_n|I(|X_n|>\alpha))=1$ for all $\alpha>0$ (not u.i.).
+
+<br>
+<br>
+
+중요하다
+
+##### Theorem(Crystal Ball Condition)
+If for some $p>1$, $\sup_{t\in T}E(|X_t|^p)<\infty$, then $\{X_t,t\in T\}$ is uniformly integrable.
+
+<br>
+
+   * 증명:
+
+$$\begin{eqnarray}
+   \sup_{t\in T}\int_{|X_t|>\alpha} |X_t|\mbox{ }dP&=&\sup_{t\in T}\int_{|X_t|>\alpha} |X_t|\frac{|X_t|^{p-1}}{|X_t|^{p-1}}\mbox{ }dP\\
+   &\le&\sup_{t\in T}\int_{|X_t|>\alpha} |X_t|\left(\frac{|X_t|}{\alpha}\right)^{p-1}\mbox{ }dP\\
+   &=&\frac{1}{\alpha^{p-1}}\sup_{t\in T}\int_{|X_t|>\alpha} |X_t|^p\mbox{ }dP\\
+   &\le&\frac{1}{\alpha^{p-1}}\sup_{t\in T}\int |X_t|^p\mbox{ }dP=\frac{1}{\alpha^{p-1}}\sup_{t\in T}E(|X_t|^p)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ }\mbox{ as }\alpha\rightarrow \infty.
+\end{eqnarray}$$
+
+   * 즉 for some $p>1$에 대해 $X_t\in L^p$ $\forall$ $t$일때도, u.i가 성립한다. 
+
+
+   * $p=1$일때는 정의되지 않는다. 위 예제에서 확인했듯이 모든 $X_t$들이 integrable하다고 해도 u.i를 보장하지 못한다. 
+
+<br>
+<br>
+
+
+#### Corollary
+If for some $0<p<\infty$, 
+$$
+\sup_{t\in T}E(|X_t|^p)<\infty,
+$$
+then $\{|X_t|^q,t\in T\}$ is uniformly integrable for all $0<q<p$.
+
+<br>
+
+   * Let $X_t^*=|X_t|^q$, $p^*=p/q>1$. Then, for $1<p^*<\infty$
+   $$
+\sup_{t\in T}E(|X_t|^p)= \sup_{t\in T}E\left(|X_t|^{q \cdot\frac{p}{q}}\right)=\sup_{t\in T}E\left(|X_t^*|^{p^*} \right)<\infty. 
+   $$
+   Thus, by Crystal Ball condition, $|X_t^*|= |X_t|^q$ is u.i. for all $0<q<p$.
+   
+   * $p$를 $0<p$에서 $1<p$로 맞춰준다고 생각하면 된다. 
+   
+     
+<br>
+<br>
+
+매우 중요하고 자주 쓰인다.
+
+#### Theorem(An alternative Definition of UI)
+The family of random variables $\{X_t,t\in T\}$ is u.i. if and only if 
+
+1. $\sup_{t\in T} E(|X_t|)<\infty$ (integrability);
+
+2. for every $\epsilon>0$, there exists a $\delta>0$ such that
+
+$$
+P(A)<\delta \implies \sup_{t\in T}\int_A |X_t|dP<\epsilon.
+$$
+
+<br>
+
+  * 지금까지 확인했듯이 1번 조건(integrability)만으로는 u.i를 보일 수 없다. 때문에 2번 조건도 필요하다.
+  
+  * 증명 : 우선 $\{X_t,t\in T\}$ is u.i라 하자.그렇다면 for $\alpha$ sufficiently large,
+  $$
+  \sup_{t\in T} \int |X_t|dP=\sup_{t\in T} \left\{\int_{\{|X_t|\le \alpha\}} |X_t|dP+ \int_{\{|X_t|> \alpha\}} |X_t|dP\right\}\le \sup_{t\in T} \int_{\{|X_t|\le \alpha\}} |X_t|dP+ \sup_{t\in T}\int_{\{|X_t|> \alpha\}} |X_t|dP\le \alpha+1<\infty.
+  $$
+  Thus, the first condition holds. Also, given $\epsilon>0$, let $\alpha$ be sufficiently large that
+  $$
+  \int_{\{|X_t|> \alpha\}}|X_t|dP<\frac{\epsilon}{2} \mbox{ }\mbox{ }\mbox{ for all }t\in T,
+  $$
+  and let $\delta=\frac{\epsilon}{2\alpha}$. Then, if $P(A)<\delta$, we have, for all $t\in T$,
+  $$\begin{eqnarray*}
+  \int_A |X_t|d_P&=&\int_{A\cap\{|X_t|\le\alpha\}}|X_t|dP+\int_{A\cap\{|X_t|>\alpha\}}|X_t|dP\\
+  &\le& \int_A \alpha \mbox{ }dP+ \int_{A\cap\{|X_t|>\alpha\}}|X_t|dP \\
+  &\le& \alpha P(A)+\int_{\{|X_t|>\alpha\}}|X_t|dP\\  
+  &\le& \alpha\cdot\frac{\epsilon}{2\alpha}+\frac{\epsilon}{2}= \epsilon.
+  \end{eqnarray*}$$
+  Thus, the second condition holds.
+
+<br>
+
+  * 이젠 두 컨디션이 성립한다고 하자. And, let $M=\sup_{t\in T}E(|X_t|)<\infty$. 마코프 부등식에 의해
+  $$
+  \sup_{t\in T}P(|X_t|>\alpha)\le \frac{1}{\alpha}\sup_{t\in T}E(|X_t|)=\frac{M}{\alpha}.
+  $$
+  Now apply the second condition: given $\epsilon >0$, choose $\delta>0$ s.t. $P(A)<\delta \implies \sup_{t\in T}\int_A |X_t|dP<\epsilon$.
+
+     * $P(A)$를 $P(|X_t|>\alpha)$라 하자. 그리고  $\frac{M}{\alpha}<\delta$를 만족시키는 매우 큰 $\alpha$값을 choose하여 모든 $t$에 대해 $P(|X_t|>\alpha)<\delta$를 만족하도록 하자.
+     
+     Then, it follows that
+    $$
+    \int_{\{|X_t|> \alpha\}}|X_t|dP< \epsilon\mbox{ }\mbox{ }\mbox{ for all }t\in T.
+    $$
+<br>
+    
+  * 정리: An alternative Definition of UI에서는 두가지 조건을 통해 u.i.를 판별한다. Integrability와 함께 사용되는 컨디션은 분포의 꼬리부분의 integral값이 0에 가까운지를 보여주는 것과 같다.   
+
+<br>
+<br>
+   
+
+
+#### Lemma
+If $X_n\stackrel{L^p}\rightarrow X$ for some $0<p<\infty$, then $E(|X_n|^p)\rightarrow E(|X|^p)$.
+
+   * $1\le p$: Minkovski 부등식으로 증명할 수 있다 $(||X||_p\le ||X_n||_p+||X_n-X||_p\stackrel{\text{symmetric}}\implies \Big|||X||_p-||X_n||_p\Big|\rightarrow 0)$. 
+ 
+   * $0<p<1$: $(a+b)^p\le a^p+b^p$ (concave function이기 때문)을 이용한다. 
+     
+<br>
+<br>
+
+
+#### Lemma
+$X_n\stackrel{L^p}\rightarrow X$  if and only if
+
+1. $X_n\stackrel{\text{Pr}}\rightarrow X$;
+
+2. $\{|X_n|^p, n\ge 1\}$ is uniformly integrable.
+
+<br>
+
+   * ($\implies$) 우선 $X_n\stackrel{L^p}\rightarrow X$이면 $X_n\stackrel{\text{Pr}}\rightarrow X$임은 마코프 부등식으로 이미 보였다. 때문에 $\{|X_n|^p, n\ge 1\}$가 u.i인지만 보이면 된다. 
+   
+     우선 바로 위의 Lemma에 의해 $X_n\stackrel{L^p}\rightarrow X$라면 $E(|X_n|^p)\rightarrow E(|X|^p)<\infty$이다. 즉 $$\sup_n E(|X_n|^p)<\infty$$이다. 이는 Alternative definition of UI에서 첫번째 조건이 만족함을 보여준다. 두번째 조건이 만족하는지를 보기 위해 우선 given $\epsilon>0$과  sufficently large한 $N=N_\epsilon$에 대해 $E(|X_n-X|^p)\le \frac{\epsilon}{2^{p+1}}$ for all $n\ge N$이라고 하자. Next, let $\delta>0$ be sufficiently small that 
+   $$
+   P(A)< \delta \implies \int_A |X|^pdP<\frac{\epsilon}{2^{p+1}}\mbox{  }\mbox{  }\mbox{  and  }\mbox{  }\mbox{  }   \int_A |X_n|^pdP < \frac{\epsilon}{2^{p+1}} \mbox{ for }n=1,\ldots,N-1.
+   $$
+   ($|X|^p$와 $|X_n|^p$들이 integrable하므로 가능, 또한 유한개의 $n= 1\ldots N-1$에 대해 $\int_A |X_n|^pdP < \frac{\epsilon}{2^{p+1}}$이 성립). 
+   
+     Also, with this chose of $N,\delta$ we have, whenever $n\ge N$ and $P(A)<\delta$,
+   $$
+   \int_A|X_n|^pdP=\int_A|X+(X_n-X)|^pdP\le 2^p\left(\int_A |X|^pdP+\int_A |X_n-X|^pdP\right)\\
+   \le  2^p\left(\int_A |X|^pdP+\int_A |X_n-X|^pdP\right)\le 2^p\left(\frac{\epsilon}{2^{p+1}}+\frac{\epsilon}{2^{p+1}}\right)=\epsilon.
+   $$
+   즉 $n\ge N$ 에 대해 $\int_A |X_n|^pdP < \frac{\epsilon}{2^{p+1}}$를 보였다. 그러므로 2번째 조건이 성립함을 증명했다. 
+   
+   <br>
+   
+   * ($\Longleftarrow$): $X_n\stackrel{\text{Pr}}\rightarrow X$이고 $\{|X_n|^p, n\ge 1\}$가 u.i라고 가정하자. 그렇다면 $X_{n_k}\rightarrow X$ a.s.인 subsequence가 존재한다. Fatou's lemma에 의해
+   $$
+   E(|X|^p)=E(\lim_k|X_{n_k}|^p)\le \liminf_kE(|X_{n_k}|^p)\le \sup_k E(|X_{n_k}|^p)\le \sup_n E(|X_{n}|^p), 
+   $$
+   이고 $\{|X_n|^p, n\ge 1\}$가 u.i이기 때문에 Alternative definition of UI에 의해 $\sup_n E(|X_{n}|^p)<\infty$이다.
+   
+     즉 $X\in L^p$이다. 또한 $\epsilon>0$에 대해  $\{|X_n|^p, n\ge 1\}$가 u.i할 때, $\exists$ $\delta$ s.t.
+   $$
+   P(A)<\delta\implies \int_A |X|^p dP < \frac{\epsilon}{3\cdot 2^p}\mbox{ }\mbox{ }\mbox{ and }\mbox{ } \int_A |X_n|^p dP < \frac{\epsilon}{3\cdot 2^p},\mbox{ }\mbox{ } n\ge 1.
+   $$
+   또한, $X_n\stackrel{\text{Pr}}\rightarrow X$이기 때문에 $\exists$ $N$ s.t.
+   $$
+   P(|X_n-X|^p>\epsilon/3)=   P(|X_n-X|>(\epsilon/3)^{1/p})<\delta \mbox{ }\mbox{ }\mbox{ for all }n\ge N.
+   $$
+     즉 $A$를 $\{|X_n-X|^p>\epsilon/3\}$으로, $\delta$를 위와 같이 잡을 수 있다. Finally, for all $n\ge N$ 
+   $$\begin{eqnarray*}
+   E[|X_n-X|^p]&=& \int_{\{ |X_n-X|^p\le \epsilon/3 \}}|X_n-X|^pdP   +\int_{\{ |X_n-X|^p>\epsilon/3 \}}|X_n-X|^pdP\\
+   &\le&\frac{\epsilon}{3}+2^p\left(\int_{\{ |X_n-X|^p>\epsilon/3 \}}|X_n|^pdP+\int_{\{ |X_n-X|^p>\epsilon/3 \}}|X|^pdP\right)\\
+    &\le&\frac{\epsilon}{3}+2^p\left(\frac{\epsilon}{3\cdot 2^p}+\frac{\epsilon}{3\cdot 2^p}\right)=\epsilon,
+   \end{eqnarray*}$$
+   그러므로 $X_n\stackrel{L^1}\rightarrow X$이다.
+
+<br>
+<br>
+
+이 Chapter의 최종 목표, 중요하다.
+
+#### Theorem(Uniform Integrability Criterion)
+Suppose that $\{X_n,n\ge 1\}\subset L^p$ for some $0<p<\infty$, and $X_n\stackrel{\text{Pr}}\rightarrow X$. Then, the followings are equivalent:
+
+1. $\{|X_n|^p\}$ is uniformly integrable;
+
+2. $X_n\stackrel{L^p}\rightarrow X$;
+
+3. $E(|X_n|^p)\rightarrow E(|X|^p)<\infty$.
+
+Futhermore, if $p$ is an integer, then each of these condition implies 
+
+4. $E(X_n^p)\rightarrow E(X^p)$.
+
+<br>
+
+   * $(1\equiv 2)$: 바로 위의 Lemma에서 보였다.
+   
+   * $(2\implies 3)$: 위의 위의 Lemma에서 보였다. 
+   
+   * $(3\implies 1)$: $E(|X_n|^p)\rightarrow E(|X|^p)<\infty$라 하자. 또한 $|a-b|=a+b-2a\wedge b$임을 이미 배웠다. 때문에
+   $$
+   E(\Big||X_n|^p-|X|^p\Big|)=E[|X_n|^p+|X|^p-2(|X_n|^p\wedge |X|^p)]=E[|X_n|^p]+E[|X|^p]-2E[(|X_n|^p\wedge |X|^p)].\tag{**} 
+   $$
+   Mapping $(x,y)\mapsto |x|^p\wedge |y|^p$는 continuous $(\mathbb{R}^2\rightarrow \mathbb{R})$이고, $(X_n,X)\stackrel{\text{Pr}}\rightarrow (X,X)$이므로, continuous mapping theorem에 의해 $|X_n|^p\wedge |X|^p\stackrel{\text{Pr}}\rightarrow |X|^p\wedge |X|^p$이다. 하지만 $|X_n|^p\wedge |X|^p\le |X|^p$ for all $n\ge 1$이고 주어진 3번 가정에 의해 $E(|X|^p)<\infty$이다.  때문에 D.C.T in measure에 의해 $E[|X_n|^p\wedge |X|^p]\rightarrow E[|X|^p]$.이다. 즉 $(**)$에 의해
+   $$
+   E(\Big||X_n|^p-|X|^p\Big|)=E[|X_n|^p]+E[|X|^p]-2E[(|X_n|^p\wedge |X|^p)]\rightarrow E[|X|^p]+E[|X|^p]-2E[|X|^p]=0,
+   $$
+   i.e., $|X_n|^p\stackrel{L^1}\rightarrow|X|^p$. 따라서 바로 전 lemma에 의해 $\{|X_n|^p,n\ge 1\}$은 u.i.이다 (원래대로라면 $\{(|X_n|^p)^1,n\ge 1\}$이지만 똑같다). 
+   
+   
+   * $(1,2,3 \implies 4$, when $p$ is an integer$)$: Note that $X_n\stackrel{\text{Pr}}\rightarrow X$ implies $X_n^p\stackrel{\text{Pr}}\rightarrow X^p$ by C.M.T.
+   
+     And, by 3, 
+   $$
+   E(|X_n^p|)=   E(|X_n|^p)\rightarrow E(|X|^p)=   E(|X^p|).
+   $$
+   (등호는 p가 자연수라서 성립 가능하다. 제곱근 안에는 음수가 들어갈 수 없기 때문이다.) 
+     
+     이 때 $p^*=1, X_n^*=X_n^p, X^*=X^p$라고 하자.그렇다면 위 식은 아래와 같이 바뀐다
+   $$\begin{eqnarray*}
+    E(|X_n^*|^p)\rightarrow  E(|X_n^*|^p) &\implies& X_n^*\stackrel{L^1}\rightarrow X^* \mbox{ }\mbox{ }\mbox{ }(\because 3\implies 2)\\
+    &\implies& X_n^p\stackrel{L^1}\rightarrow X^p.
+   \end{eqnarray*}$$
+     But, this implies
+   $$
+   |E(X_n^p)-E(X^p)|=|E(X_n^p-X_n^p)|\le E(|X_n^p-X^p|)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty\mbox{  }\mbox{  }\mbox{  }\mbox{  }(\because X_n^p\stackrel{L^1}\rightarrow X^p) .
+   $$
+   마지막 부등호는 $X_n^p\stackrel{L^1}\rightarrow X^p$이기 때문에 가능하다.
+
+<br>
+<br>
+<br>
+
+##### 정리 
+1. u.i 정의: $\sup_{t\in T} \int_{|X_t|>\alpha} |X_t|\mbox{ }dP\rightarrow 0$일 때 $\{X_t\}$들은 u.i이다.
+
+
+2. 크리스탈 볼 조건: $p>1$, $\sup_{t\in T}E(|X_t|^p)<\infty\implies\{X_t,t\in T\}$ 는 u.i.
+   
+   * 여기서 $p=1$은 안된다는 것이 중요하다($P(X_n=n)=1/n=P(X_n=0),n\ge 1$이면 $\sup_nE(X_nI_{\{X_n>\alpha\}})=1$).
+
+   * 때문에 아래의 대체 정의가 탄생했다.
+
+3. u.i 대체 정의: 
+   * $X_t$ integrable: $\sup_{t\in T}E(|X_t|)<\infty$;
+      
+   * 꼬리부분은 0이다: $P(A)<\delta \implies \sup_{t\in T}\int_A |X_t|dP<\epsilon$.
+
+4. $L^p$ 수렴 $\iff$ 확률 수렴 and u.i ($X_n\stackrel{L^p}\rightarrow X\iff X_n\stackrel{\text{Pr}}\rightarrow X$ and $\{|X_n|^p,n\ge 1\}$ is u.i):
+
+   * $L^p$ 수렴 $\implies$ 확률 수렴은 전에 배웠다. 즉 확률수렴만으로는 $L^p$수렴을 보일 수 없다.
+   
+   * 그런데 $\{|X_n|^p,n\ge 1\}$가 u.i.라는 조건이 생기면 동치가 된다. 
+     
+5. Uniform Integrability Criterion:  $\{X_n,n\ge 1\}\subset L^p$ for $0<p<\infty$이고 $X_n\stackrel{\text{Pr}}\rightarrow X$라 하자. 그렇다면 아래 3개는 equivalent하다:
+
+    * ① $\{|X_n|^p\}$ is uniformly integrable;
+
+    * ② $X_n\stackrel{L^p}\rightarrow X$;
+
+    * ③ $E(|X_n|^p)\rightarrow E(|X|^p)<\infty$.
+
+    또한 $p$가 정수일 때, 1,2,3$\implies$ 4이다; 
+
+    * ④ $E(X_n^p)\rightarrow E(X^p)$.
+
+
+
+
+<br>
+<br>
+
+[back](../probability1.html)

@@ -1,0 +1,95 @@
+---
+title: "4.1. Independent Events"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+#### Definition
+Two events $A,B\in \mathcal{F}$ are **independent** if $P(A\cap B)=P(A)P(B)$.
+
+<br>
+<br>
+
+#### Definition
+Events $A_1,\ldots A_n$ are independent if
+$$
+P(A_{i_1}\cap\cdots \cap A_{i_m})=P(A_{i_1})\cdots P(A_{i_m})
+$$
+for all $2\le m\le n$ and $1\le i_1<\cdots<i_m\le n$.
+
+<br>
+<br>
+
+#### Lemma 
+Events $A_1,\ldots,A_n$ are independent if and only if
+$$
+P(B_1\cap\cdots B_n)=P(B_1)\cdots P(B_n)
+$$
+for all $B_1,\ldots,B_n$ where for each $i=1,\ldots,n$, either $B_i=A_i$ or $B_i=\Omega$.
+
+<br>
+<br>
+
+#### Definition
+Events $A_t, t\in T$ are *independent* if for every finite collection of distinct indicies $\{t_1,\ldots,t_n\}\subset T$,
+$$
+P(A_{t_1}\cap\cdots\cap A_{t_n})=P(A_{t_1})\cdots P(A_{t_n}).
+$$
+Equivalently, events $A_t,t\in T$ are independent if and only if the events in every finite subcollection are independent.
+
+<br>
+<br>
+
+#### Definition(Independent Classes of Events)
+Classes of events $\mathcal{A}_1,\ldots,\mathcal{A}_n$ are independent if for every choice of events $A_i\in \mathcal{A}_i$, $i=1,\ldots,n$, the events $A_1,\ldots,A_n$ are independent.
+
+<br>
+<br>
+
+#### Lemma
+Classes of events $\mathcal{A}_1,\ldots,\mathcal{A}_n$ are independent if and only if
+$$
+P(B_1\cap\cdots\cap B_n)=P(B_1)\cdots P(B_n) \tag{*}
+$$
+for all $B_i\in \mathcal{B}_i, i=1,\ldots,n$, where $\mathcal{B}_i=\mathcal{A}_i\cup\{\Omega\}$.
+
+<br>
+<br>
+
+#### Theorem
+If $\mathcal{A}_1,\ldots,\mathcal{A}_n$ are independent $\pi$-systems, then $\sigma(\mathcal{A}_1),\ldots,\sigma(\mathcal{A}_n)$ are independent $\sigma$-fields.
+
+   * $\pi-\lambda$ theorem으로 증명한다.
+   
+   * $\mathcal{B}_i=\mathcal{A}_i\cup \Omega$라 하자. $\mathcal{L}:=\{A\in \mathcal{F}:P(A)\cap P(B_2)\cdots\cap P(B_n)=P(A)P(B_2)\cdots P(B_n)\}$일 때 이는 $\lambda$-system이고, $\mathcal{B}_1\in \mathcal{L}$이다. $\mathcal{B}_1$은 $\pi$-system이기 때문에 때문에 $\sigma(\mathcal{A}_1)=\sigma(\mathcal{B}_1)\subset \mathcal{L}$이다. 또한 $\mathcal{L}$안에서의 $A,B_2,\ldots,B_n$은 모두 arbitrary set in each class이다. 때문에 $\sigma(\mathcal{A}_1)=\subset \mathcal{L}$이므로$\sigma(\mathcal{A}_1),\ldots,\sigma(\mathcal{A}_n)$안의 모든 초이스들에 대해서 independent하다.  
+
+<br>
+<br>
+
+#### Definition
+Classes of events $\mathcal{A}_t, t\in T$ are independent if for every finite collection of distinct indicies, $t_1,\ldots,t_n\in T$ and events $A_{t_i}\in \mathcal{A}_{t_i}, i=1,\ldots,n$, the events $A_{t_1},\ldots A_{t_n}$ are independent.
+
+   * 모든 choice들에 있어서 set들이 independent할 때, class들이 independent하다.
+
+<br>
+<br>
+
+#### Corollary
+If $\mathcal{A}_t,t\in T$ are independent $\pi$-systems, then $\sigma(\mathcal{A}_t),t\in T$ are independent $\sigma$-fields. 
+
+<br>
+<br>
+
+[back](../probability1.html)

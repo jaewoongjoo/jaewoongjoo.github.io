@@ -1,0 +1,110 @@
+---
+title: "3.5. Convergence in $L^p$"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+#### Definition
+A sequence $\{f_n:n\ge 1\}$ of $L^p$ functions, $0<p<\infty$ is said to **converge in** $L^p$ to a measurable function $f$ (written $f_n\stackrel{L^p}\rightarrow f$) if
+$$
+\int |f_n-f|^p d\mu\rightarrow 0\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+$$
+In special case, if $X_n$ and $X$ are random variables $X_n\stackrel{L^p}\rightarrow X$, 
+$$
+\int |X_n-X|^p d\mu\rightarrow 0\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty,
+$$
+then we sometimes say that $X_n$ converges to $X$ in $p$th mean.
+
+<br>
+
+For $1\le p<\infty$, $f_n\stackrel{L^p}\rightarrow f$ is equivalent to $||f_n-f||_p\rightarrow 0$, and this is also the definition for the case $p=\infty$, 
+
+i.e., a sequence $\{f_n,n\ge 1\}$ of $L^\infty$ functions is said to converge in $L^\infty$ to a measurable function $f$ if $||f_n-f||_\infty\rightarrow 0$ as $n\rightarrow \infty$.
+
+
+<br>
+<br>
+
+#### Proposition
+If $f_n\stackrel{L^p}\rightarrow f$ form some $0<p\le \infty$, then $f\in L^p$.
+
+   * 증명 idea: 
+
+$$
+   |f|^p=|(f_n-f)-f_n|^p\le (|f_n-f|+|f_n|)^p \le 2^p(|f_n-f|^p+|f_n|^p).
+$$
+<br>
+<br>
+
+매우 중요 
+
+#### Theorem
+If $f_n\stackrel{L^p}\rightarrow f$ form some $0<p\le \infty$, then $f_n\stackrel{\mu}\rightarrow f$.
+
+   * 증명 : 마코프 부등식을 이용한다.
+   
+$$
+\mu(|f_n-f|>\epsilon)=\mu(|f_n-f|^p>\epsilon^p)\le \frac{1}{\epsilon^p}\int |f_n-f|^pd\mu\rightarrow 0\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty \mbox{ }\mbox{ }\mbox{ for all }\epsilon>0 .
+$$
+
+<br>
+<br>
+
+중요
+
+#### Theorem(Riesz-Fisher)
+For $0<p\le \infty$, the space $L^p$ is complete: 
+
+a sequence of $L^p$ function converges in $L^p$ if and only if the sequence is Cauchy in $L^p$.
+
+<br>
+
+  * ($\implies$):
+  $$
+  |f_m-f_n|^p=|f_m-f+f-f_n|^p=|(f_m-f)-(f_n-f)|^p\le(|f_m-f|+|f_n-f|)^p\le 2^p(|f_m-f|^p+|f_n-f|^p). 
+  $$
+
+<br>
+
+   * ($\Longleftarrow$): Sequence $\{f_n\}$이 Cauchy in $L^p$라고 하자. 마코프 부등식에 의해
+   $$
+   \mu(|f_m-f_n|>\epsilon)=\mu(|f_m-f_n|^p>\epsilon^p)\le \frac{1}{\epsilon^p}\int |f_m-f_n|^p d\mu
+   $$
+   Thus, $\{f_n\}$은 Cauchy in measure이다. 또한 Cauchy in measure는 convergence in measure와 동치이므로 $f_n\stackrel{\mu}\rightarrow f$인 $f$가 존재한다. 그러므로 $f_{n_k}\rightarrow f$ a.e. 를 만족하는 subsequence $\{f_{n_k}\}$가 존재한다. 마지막으로 Fatou's Lemma에 의해
+   $$\begin{eqnarray*}
+   \int |f_n-f|^pd\mu&=&\int \lim_{n\rightarrow \infty}|f_n-f_{n_k}|^pd\mu \\
+   &\le& \liminf_{k}\int |f_n-f_{n_k}|^pd\mu\\
+   &\le& \limsup_{k}\int |f_n-f_{n_k}|^pd\mu  \\
+   &=&\sup_{m\ge n}\int |f_m-f_n|^pd\mu\rightarrow 0 \mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty\mbox{ }\mbox{ (Cauchy in }L^p\mbox{)}.
+   \end{eqnarray*}$$
+  
+
+<br>
+<br>
+
+#### 정리
+
+$\{f_n\}\in L^p$에 대해 $f_n\stackrel{L^p}\rightarrow f$라면
+
+1. $f\in L^p$;
+
+2. $f_n\stackrel{\mu}\rightarrow f$ ($L^p$ convergence $\implies$ convergence in measure);
+
+3. Convergenge in $L^p$ $\iff$ Cauchy in $L^p$ ($L^p$ space is complete).
+
+<br>
+<br>
+
+[back](../probability1.html)

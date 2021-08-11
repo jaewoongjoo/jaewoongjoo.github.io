@@ -1,0 +1,210 @@
+---
+title: "3.4. Convergence in Measure"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+중요
+
+#### Theorem(Almost Everywhere Convergence)
+The followings are equivalent;
+
+1. $f_n\rightarrow f$ a.e.
+
+2. $\mu(\{ \omega : |f_n(\omega)-f(\omega)|>\epsilon \mbox{ i.o.}(n) \})=0$ for all $\epsilon>0$.
+
+3. $\mu(\{ \omega : |f_n(\omega)-f(\omega)|>1/k \mbox{ i.o.}(n) \})=0$ for all integer $k\ge1$.
+
+<br>
+
+  * 증명: 2와 3은 당연히 같다. 그러므로 
+  $$\begin{eqnarray*}
+\{ \omega: f_n(\omega)\nrightarrow f(\omega)\}&=& \cup_{\epsilon>0}\cap_{n\ge1}\cup_{m\ge n}\{\omega:|f_m(\omega)-f(\omega)|>\epsilon \}\\
+&=&\cup_{k\ge 1}\cap_{n\ge1}\cup_{m\ge n}\{\omega:|f_m(\omega)-f(\omega)|>1/k\}\\
+&=&\cup_{k\ge 1} \limsup_n\{\omega:|f_m(\omega)-f(\omega)|>1/k\}\\
+&=&\cup_{k\ge 1} \{\omega:|f_m(\omega)-f(\omega)|>1/k \mbox{ }\mbox{ i.o}(n)\}.
+\end{eqnarray*}$$
+   Thus by monotonicity, 
+   $$\begin{eqnarray*}
+   \{\omega:|f_m(\omega)-f(\omega)|>1/k \mbox{ }\mbox{ i.o}(n)\}&\in& \cup_{k\ge 1} \{\omega:|f_m(\omega)-f(\omega)|>1/k \mbox{ }\mbox{ i.o}(n)\}\\
+   &=&\{ \omega: f_n(\omega)\nrightarrow f(\omega)\} \mbox{ for all } k\ge 1\\
+   \implies \mu(\{\omega:|f_m(\omega)-f(\omega)|>1/k \mbox{ }\mbox{ i.o}(n)\})&\le&\mu(\{ \omega: f_n(\omega)\nrightarrow f(\omega)\}),
+   \end{eqnarray*}$$
+   and by subadditivity,
+   $$\begin{eqnarray*}
+   \mu(\{ \omega: f_n(\omega)\nrightarrow f(\omega)\})&=& \mu\left( \cup_{k\ge 1}\{\omega:|f_m(\omega)-f(\omega)|>1/k \mbox{ }\mbox{ i.o}(n)\}\right)\\
+   &\le&  \sum_{k= 1}^\infty\mu(\{\omega:|f_m(\omega)-f(\omega)|>1/k \mbox{ }\mbox{ i.o}(n)\}).
+   \end{eqnarray*}$$
+   Thus,
+   $$\begin{eqnarray*}
+   \mu(\{ \omega: f_n(\omega)\nrightarrow f(\omega)\})=0 \iff \mu(\{\omega:|f_m(\omega)-f(\omega)|>1/k \mbox{ }\mbox{ i.o}(n)\})=0 \mbox{ for all }k\ge 1.
+   \end{eqnarray*}$$
+  
+<br>
+<br>
+
+#### Corollary
+If for each $\epsilon>0$, there exists an $n\ge 1$ such that $\sum_{k=n}^\infty \mu[|f_k-f|>\epsilon]<\infty$, then $f_n\rightarrow f$ a.e.
+
+<br>
+
+   * By Borel-Cantelli lemma, 
+   $$\begin{eqnarray*}
+   \sum_{k=n}^\infty \mu[|f_k-f|>\epsilon]<\infty&\implies& \mu(\limsup_n\{\omega: f_n(\omega)-f(\omega)|>\epsilon\})=0\\
+   &\implies&  \mu(|f_n-f|>\epsilon \mbox{ } \mbox{ } \mbox{ i.o}(n))=0\\
+   &\implies& f_n\rightarrow f \mbox{ a.e.}
+   \end{eqnarray*}$$
+
+<br>
+<br>
+
+#### Definition(Convergence in Measure)
+A sequence of measurable function $\{f_n:n\ge 1\}$ **converges in measure** to a measurable function $f$ (written $f_n\stackrel{\mu}\rightarrow f$) if
+$$
+\mu(\{\omega:|f_n(\omega)-f(\omega)|>\epsilon\})\rightarrow 0 \mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty, \mbox{ }\mbox{ for all }\epsilon>0.
+$$
+In special case of random variables, we say that $X_n$ **converges in probability** to $X$ (written $X_n\stackrel{\mu}\rightarrow X$) if
+$$
+P(|X_n-X|>\epsilon)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty, \mbox{ }\mbox{ for all }\epsilon>0.
+$$
+
+<br>
+
+   * This is **weaker** than the *Almost Everywhere convergence* (왜냐하면 a.e. convergence는 $\mu(|X_n-X|>\epsilon \mbox{ }\mbox{ }\mbox{i.o}(n))=0$인데 반해 convergence in measure는 이 값이 0으로 근사함을 나타내기 때문이다).
+
+
+<br>
+<br>
+
+
+#### Proposition
+If $f_n\stackrel{\mu}\rightarrow f$ and $f_n\stackrel{\mu}\rightarrow g$, then $f=g$ a.e.
+
+<br>
+
+  * Note that
+  $$
+  \{ \omega:|f(\omega)-g(\omega)|>\epsilon\}\subset \{ \omega:|f_n(\omega)-f(\omega)|>\epsilon/2\}\cup \{ \omega:|f_n(\omega)-g(\omega)|>\epsilon/2\}
+  $$
+  왜냐하면 만약 $\{|f_n(\omega)-f(\omega)|>\epsilon/2\}\cup \{ \omega:|f_n(\omega)-g(\omega)|>\epsilon/2\}$이라면 $\{ \omega:|f(\omega)-g(\omega)|>\epsilon\}$일 수도 있고 부호가 반대일 경우  $\{ \omega:|f(\omega)-g(\omega)|<\epsilon\}$일 수도 있기 때문이다.
+  
+  <br>
+  
+  * 증명:
+
+$$
+\mu(\{ \omega:|f(\omega)-g(\omega)|>\epsilon\})\le \mu(\{|f_n(\omega)-f(\omega)|>\epsilon/2\})+\mu(\{ \omega:|f_n(\omega)-g(\omega)|>\epsilon/2\})\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty. 
+$$
+<br>
+<br>
+
+중요
+
+#### Theorem
+If $f_n\stackrel{\mu}\rightarrow f$, then there exists a subsequence $\{f_{n_k}: k\ge 1\}$ for which $f_{n_k}\rightarrow f$ a.e.
+
+<br>
+
+   * 증명: For a sequence $n_1<n_2<\cdots$ 
+   
+$$\begin{eqnarray*}
+f_n\stackrel{\mu}\rightarrow f &\implies& f_{n_k}\stackrel{\mu}\rightarrow f \mbox{ }\mbox{ }\mbox{ }\mbox{ as }k\rightarrow \infty\\
+&\implies&\mu(|f_{n_k}-f|>\epsilon)\rightarrow 0\mbox{ }\mbox{ }\mbox{ }\mbox{ as }k\rightarrow \infty\\
+&\implies&\mu(|f_{n_k}-f|>\epsilon)<2^{-k} \mbox{ for each }k.
+\end{eqnarray*}$$
+Thus,
+$$
+\mu(|f_{n_k}-f|>\epsilon)<2^{-k}\mbox{ }\mbox{ }\mbox{ }\forall k>1/\epsilon\\
+\implies \sum_{k>1/\epsilon} \mu(|f_{n_k}-f|>\epsilon)<\infty \mbox{ }\mbox{ }\forall \epsilon>0,
+$$
+which implies that $f_{n_k}\rightarrow f$ a.e. by the second corollary in this page.
+
+<br>
+
+
+   * 포인트는 $f_n\stackrel{\mu}\rightarrow f$인 sequence $f_n$이 $f_{n_k}\rightarrow f$ a.e.를 만족하는 subsequence $n_k$를 반드시 갖는다는 것이다. 
+
+
+<br>
+<br>
+
+
+#### Theorem(Dominated Convergence in Measure)
+If $f_n\stackrel{\mu}\rightarrow f$ and if there exists an integrable function $g$ for which $|f_n|\le g$ a.e. for all $n\ge 1$, then $f_n$, and $f$ are integrable and $\int f_n\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$ as $n\rightarrow \infty$.
+
+<br>
+
+   * 증명 : 
+   1. $|f_n|\le g$이기 때문에 $f_n$들은 integrable하다. 
+   
+   2. $f_n\stackrel{\mu}\rightarrow f$기 때문에 for any subsequence  $\{ {n_k}\}$, $f_{n_k}\stackrel{\mu}\rightarrow f$이다. 때문에 이전 Theorem에 의해  $f_{{n_k}_j}\rightarrow f$ a.e.인 sub-subsequence $\{ {n_k}_j\}$가 존재한다. 
+   
+   3. 때문에 D.C.T에 의해 $\int f_{{n_k}_j}\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$이다. 이는 for any subsequence  $\{ {n_k}\}$는 이를 만족하는 sub-subsequence를 갖는다는 의미이다. 
+   
+   4. Let $a_{n}:=\int f_{n}$, $a_{{n_k}_j}:=\int f_{{n_k}_j}$,and $a:=\int f\mbox{ }d\mu$. From above results, $$a_n\rightarrow a$$ i.e., $\int f_{n}\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$.
+   
+<br>
+
+   * 기존의 Lebesgue D.C.T와 다 똑같고 $f_n\rightarrow f$ a.e.만 $f_n\stackrel{\mu}\rightarrow f$ 로 바뀌었을 뿐이다.
+   
+   * 중요한 것은 더 weaker한 condition인데도(a.e. convergence에서 convergence in measure로 바뀌었는데도) 결론은 똑같다.
+
+
+<br>
+<br>
+
+#### Definition
+A sequence of measurable functions $\{f_n:n\ge 1\}$ is **Cauchy in measure** if for all $\epsilon>0$, 
+$$
+\mu(\{\omega:|f_m(\omega)-f_n(\omega)|>\epsilon \})\rightarrow 0\mbox{ }\mbox{ }\mbox{ as }m,n\rightarrow \infty.
+$$
+In special case of random variables, we say that $X_n$ **Cauchy in probability** to if for all $\epsilon>0$,
+$$
+P(|X_m-X_n|>\epsilon)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ }\mbox{ as }m,n\rightarrow \infty.
+$$
+
+<br>
+
+#### Remark
+An equivalent formation is
+$$
+\sup_{m\ge n} \mu(\{\omega:|f_m(\omega)-f_n(\omega)|>\epsilon \})\rightarrow 0\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+$$
+Similarly,
+$$
+\sup_{m\ge n}P(|X_m-X_n|>\epsilon)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+$$
+
+   * $n$에 $m$을 태우고 supremum을 씌워도 똑같다(limit이 존재하기 때문). 
+
+
+<br>
+<br>
+
+#### Theorem(Completeness for Convergence in Measure)
+A sequence of measurable functions $\{f_n:n\ge 1\}$ is Cauchy in measure 
+
+if and only if there exists a measurable function f for which $f_n\stackrel{\mu}\rightarrow f$ as $n\rightarrow \infty$.
+
+<br>
+
+   * 즉 Cauchy in measure와 convergence in measure (say, to $f$)는 동치이다.
+   
+   * Cauchy in measure$\iff$convergence in measure.
+
+<br>
+<br>
+
+[back](../probability1.html)

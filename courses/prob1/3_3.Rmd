@@ -1,0 +1,135 @@
+---
+title: "3.3. Limit Sets"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+매우 중요하다.
+
+들어가기에 앞서, set들의 supremum(least upper bound)은 합집합(제일 큰 집합), set들의 infimum(greatest lower bound)은 교집합(제일 작은 집합)임을 염두에 두자.
+
+#### Definition
+For a sequence $\{A_n: n\ge 1\}$ of subsets of $\Omega$, we define the *limit superior* and the *limit inferior* by
+$$
+\limsup_{n\rightarrow \infty}A_n = \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k\mbox{   }\mbox{   }\mbox{   and }\mbox{   }\mbox{   } \liminf_{n\rightarrow \infty}A_n=\bigcup_{n=1}^\infty\bigcap_{k=n}^\infty  A_k.
+$$
+If $\liminf_nA_n = \limsup_nA_n=A$, then we say that the limit of $A_n$ exists and we write $\lim_n A_n=A$.
+
+<br>
+
+   * 중요 : $\bigcap_{k=n}^\infty  A_k$은 increasing function, $\bigcup_{k=n}^\infty A_k$는 decreasing function이다. 또한
+   $$
+   \bigcap_{k=n}^\infty A_k \subset A_n \subset \bigcup_{k=n}^\infty A_k
+   $$
+   이고, 만약 $\liminf_nA_n = \limsup_nA_n=A$라면
+   $$
+    \bigcap_{k=n}^\infty A_n \uparrow \lim_n A_n=A, \mbox{ }\mbox{ }\mbox{ }\mbox{ } \bigcup_{k=n}^\infty A_n \downarrow \lim_n A_n=A. 
+   $$
+
+<br>
+<br>
+
+#### Remark
+1. Note that $\omega \in \limsup_n A_n$ if and only if $\omega \in A_n$ **infinitely often(i.o)** in $n$:
+$$
+\limsup_n A_n =\{ \omega \in \Omega: \forall n\ge 1\mbox{ } \exists k\ge n \mbox{ s.t. }\omega \in A_k \}=\{\omega\in \Omega: \omega\in A_n \mbox{ i.o.}(n) \};
+$$
+and $\omega \in \liminf_n A_n$ if and only if $\omega \in A_n$ for all but finitely many(**almost all**) $n$: 
+$$
+\liminf_n A_n =\{ \omega \in \Omega: \exists n\ge 1\mbox{ } \mbox{ s.t. }\omega \in A_k \mbox{ }\forall k\ge n \}=\{\omega\in \Omega: \omega\in A_n \mbox{ a.a.}(n) \}.
+$$
+
+<br>
+
+2. From 1. it is clear that $\liminf_nA_n\subset \limsup_nA_n$ and that
+$$
+I_{\limsup_nA_n}=\limsup_nI_{A_n}\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ and }\mbox{ }\mbox{ }\mbox{ }\mbox{ } I_{\liminf_nA_n}=\liminf_nI_{A_n}
+$$
+   * Note: $I_{\limsup_nA_n}=I_{\cap_n \{\cup_{k\ge n} A_n\}}=\wedge_n I_{\cup_{k\ge n} A_n}=\wedge_n\vee_{k\ge n}I_{A_n}=\limsup I_{A_n}$.
+
+<br>
+
+3. By de Morgan's law, $(\limsup_n A_n)^c=\liminf_n A_n^c$ or equivalently $(\liminf_n A_n)^c=\limsup_n A_n^c$. 
+  
+   * Note: $(\limsup_n A_n)^c=(\cap_n\cup_{k\ge n}A_n)^c=\cup_n\cap_{k\ge n}A_n^c=\liminf_n A_n^c$.
+
+<br>
+
+4. The *limit superior* and the *limit inferior* can be expressed as monotone limits:
+
+$$
+    \bigcap_{k=n}^\infty A_n \uparrow \liminf_n A_n, \mbox{ }\mbox{ }\mbox{ }\mbox{ } \bigcup_{k=n}^\infty A_n \downarrow \limsup_n A_n\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty. 
+$$
+
+   * \bigcup_{k=n}^\infty A_n은 어차피 점점 작아지는 decreasing function이기 때문에 $\cap_{n=1}^{\infty}$를 취해도 결국은 decreasing하는 것은 똑같다고 생각할 수 있다. 때문에 $\lim_{n\rightarrow \infty}\bigcup_{k=n}^\infty A_n=\bigcap_{n=1}^{\infty}\bigcup_{k=n}^\infty A_n=\limsup_nA_n$. $\liminf$도 똑같이 생각하면 된다. 
+   
+<br>
+<br>
+
+#### Theorem
+If $(\Omega, \mathcal{F},P)$ is a probability space, and $A_n\in \mathcal{F}$, $n\ge 1$, then
+
+1. $P(\liminf_nA_n)\le \liminf_nP(A_n)\le \limsup_n P(A_n)\le P(\limsup_n A_n)$;
+
+2. if $A_n\rightarrow A$, then $P(A_n)\rightarrow P(A)$.
+
+<br>
+
+  * Note : 
+  $$\begin{eqnarray*}
+    \cap_{k=n}^\infty A_n \subset A_n\mbox{ }\mbox{ }\mbox{ }\forall n\ge 1&\stackrel{\text{monotone}}{\implies}& P(\cap_{k=n}^\infty A_n)\le P(A_n)\\
+    &\implies&\lim_nP( \cap_{k=n}^\infty A_n)\le \liminf_n P(A_n)\\
+    \cap_{k=n}^\infty A_n \uparrow \liminf_n A_n &\stackrel{\text{ctn from below}}{\implies}& P(\cap_{k=n}^\infty A_n)\uparrow P( \liminf_n A_n)\\&\implies& \lim_nP(\cap_{k=n}^\infty A_n)= P( \liminf_n A_n)\\
+\end{eqnarray*}$$  
+   $\therefore P( \liminf_n A_n)\le \liminf_n P(A_n)$. Also,
+   $$\begin{eqnarray*}
+    \cup_{k=n}^\infty A_n \supset A_n\mbox{ }\mbox{ }\mbox{ }\forall n\ge 1&\stackrel{\text{monotone}}{\implies}& P(\cup_{k=n}^\infty A_n)\ge P(A_n)\\
+    &\implies&\lim_nP( \cup_{k=n}^\infty A_n)\ge \limsup_n P(A_n)\\
+    \cup_{k=n}^\infty A_n \downarrow \limsup_n A_n &\stackrel{\text{ctn from above}}{\implies}& P(\cup_{k=n}^\infty A_n)\downarrow P( \limsup_n A_n)\\&\implies& \lim_nP(\cup_{k=n}^\infty A_n)= P( \limsup_n A_n)\\
+\end{eqnarray*}$$  
+    $\therefore \limsup_n P(A_n)\le P( \limsup_n A_n)$. 
+<br>
+<br>
+
+   * Let $A_n\rightarrow A$. Then, $\limsup_nA_n=\liminf_nA_n=A$. Then, from 1.
+   $$
+   P(\liminf_nA_n)\le \liminf_nP(A_n)\le \limsup_n P(A_n)\le P(\limsup_n A_n)\\
+   \implies P(A)\le \liminf_nP(A_n)\le \lim_nP(A_n) \le \limsup_n P(A_n)\le P(A).
+   $$
+   Thus, $\lim_nP(A_n)=P(A)$.
+  
+
+<br>
+<br>
+
+이 chapter의 핵심 Theorem
+
+#### Theorem (Borel-Cantelli lemma : convergence half)
+If $\sum_{k=n}^\infty \mu(A_k)<\infty$ for some $n\ge 1$, then $\mu(\limsup_n A_n)=0$.
+
+<br>
+
+   * 우선 $\sum_{k=n}^\infty \mu(A_k)<\infty$ for some $n$ $\implies \lim_{n\rightarrow\infty}\sum_{k=n}^\infty \mu(A_k)=0$(꼬리부분은 0이다).
+   
+   * Note that $\limsup_{n\rightarrow \infty}A_n = \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k \subset \bigcup_{k=n}^\infty A_k$ $\forall n\ge 1$. Thus, by monotonicity and subadditivity,
+   $$
+   \mu(\limsup_n A_n)\le \mu(\cup_{k=n}^\infty A_k) \le \sum_{k=n}^\infty \mu(A_k)\mbox{ }\mbox{ }\mbox{ for all }n\ge 1\\
+   \implies    \mu(\limsup_n A_n)\le \lim_{n\rightarrow \infty} \sum_{k=n}^\infty \mu(A_k)=0. 
+   $$
+
+<br>
+<br>
+
+[back](../probability1.html)
