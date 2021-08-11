@@ -144,9 +144,13 @@ which implies that $f_{n_k}\rightarrow f$ a.e. by the second corollary in this p
 #### Theorem(Dominated Convergence in Measure)
 If $f_n\stackrel{\mu}\rightarrow f$ and if there exists an integrable function $g$ for which $|f_n|\le g$ a.e. for all $n\ge 1$, then $f_n$, and $f$ are integrable and $\int f_n\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$ as $n\rightarrow \infty$.
 
+
+
+
 <br>
 
    * 증명 : 
+
    1. $|f_n|\le g$이기 때문에 $f_n$들은 integrable하다. 
    
    2. $f_n\stackrel{\mu}\rightarrow f$기 때문에 for any subsequence  $\{{n_k}\}$, $f_{n_k}\stackrel{\mu}\rightarrow f$이다. 때문에 이전 Theorem에 의해  $f_{{n_k}_j}\rightarrow f$ a.e.인 sub-subsequence $\{{n_k}_j\}$가 존재한다. 
