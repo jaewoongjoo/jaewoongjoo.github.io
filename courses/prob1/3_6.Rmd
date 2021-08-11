@@ -155,15 +155,15 @@ $\{X_n:n\ge 1\}$ converges a.s. if and only if $\sup_{m\ge n}|X_m-X_n|\stackrel{
 <br>
 
 #### Theorem
-$X_n\stackrel{\text{Pr}}\rightarrow X$ **if and only if** for every subsequence $\{X_{n_k},k\ge 1\}$ there exists a further subsequence $\{X_{{n_k}_j},j\ge 1\}$ such that $X_{{n_k}_j}\rightarrow X$ a.s.
+$X_n\stackrel{\text{Pr}}\rightarrow X$ **if and only if** for every subsequence $\{X_{n_k},k\ge 1\}$ there exists a further subsequence $\{X_{n_{kj}},j\ge 1\}$ such that $X_{n_{kj}}\rightarrow X$ a.s.
 
    * ($\implies$): 기존에 했으므로 생략
    
    * ($\Longleftarrow$): Note that
    $$\begin{eqnarray*}
    X_n \stackrel{\text{Pr}}\nrightarrow X&\implies& X_{n_k} \stackrel{\text{Pr}}\nrightarrow X\mbox{ }\mbox{ }\mbox{ for any subsequence }n_k\\
-  &\implies& X_{{n_k}_j}\nrightarrow X \mbox{ }\mbox{ a.s.}\\
-   \iff     X_{{n_k}_j}\rightarrow X &\implies&   X_n\stackrel{\text{Pr}}\rightarrow X.\mbox{ (대우명제)}
+  &\implies& X_{n_{kj}}\nrightarrow X \mbox{ }\mbox{ a.s.}\\
+   \iff     X_{n_{kj}}\rightarrow X &\implies&   X_n\stackrel{\text{Pr}}\rightarrow X.\mbox{ (대우명제)}
    \end{eqnarray*}$$
 
 <br>
@@ -176,10 +176,10 @@ If $X_n\stackrel{\text{Pr}}\rightarrow X$ and $f:\mathbb{R}\rightarrow\mathbb{R}
 
    * 바로 위의 Theorem에 의해 
    $$\begin{eqnarray*}
-   X_n\stackrel{\text{Pr}}\rightarrow X &\iff& \exists X_{{n_k}_j}\rightarrow X \mbox{ a.s. }\mbox{ }\mbox{ }\mbox{ as }j\rightarrow \infty \\
-   \implies   X_n\stackrel{\text{Pr}}\rightarrow X &\iff& f(X_{{n_k}_j})\rightarrow f(X) \mbox{ a.s. } \mbox{(a.s. convergence is pointwise convergence)}. \\
+   X_n\stackrel{\text{Pr}}\rightarrow X &\iff& \exists X_{n_{kj}}\rightarrow X \mbox{ a.s. }\mbox{ }\mbox{ }\mbox{ as }j\rightarrow \infty \\
+   \implies   X_n\stackrel{\text{Pr}}\rightarrow X &\iff& f(X_{n_{kj}})\rightarrow f(X) \mbox{ a.s. } \mbox{(a.s. convergence is pointwise convergence)}. \\
    \end{eqnarray*}$$
-   Since $f(X_{{n_k}_j})\rightarrow f(X)$, $f(X_n)\stackrel{\text{Pr}}\rightarrow f(X)$ by just the above theorem.
+   Since $f(X_{n_{kj}})\rightarrow f(X)$, $f(X_n)\stackrel{\text{Pr}}\rightarrow f(X)$ by just the above theorem.
 
 
 
@@ -223,7 +223,7 @@ If $X_n\stackrel{\text{Pr}}\rightarrow X$ and $P(X\in D_f)=0$, then $X_n\stackre
 
 4. $X_n\rightarrow X$ a.s. $\iff \sup_{m\ge n}|X_m-X_n|\stackrel{\text{Pr}}\rightarrow 0$ as $n\rightarrow \infty$
 
-5. $X_n\stackrel{\text{Pr}}\rightarrow X$ **if and only if** $\exists$ $X_{{n_k}_j}\rightarrow X$ a.s.(Continuous mapping theorem을 위해 필요)
+5. $X_n\stackrel{\text{Pr}}\rightarrow X$ **if and only if** $\exists$ $X_{n_{kj}}\rightarrow X$ a.s.(Continuous mapping theorem을 위해 필요)
 
 6. Continuous Mapping Theorem(매우 중요): $X_n\stackrel{\text{Pr}}\rightarrow X$ and $f:\mathbb{R}\rightarrow\mathbb{R}$ is continuous$\implies f(X_n)\stackrel{\text{Pr}}\rightarrow f(X)$.
 
