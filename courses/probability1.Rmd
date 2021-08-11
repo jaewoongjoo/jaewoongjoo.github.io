@@ -66,7 +66,7 @@ output: html_document
 
 [4.1. Independent Events](.prob1/4_1.html)
 
-[4.2. Independent Classes of Events](.prob1/4_1.html)
+[4.2. Independent Classes of Events](.prob1/4_2.html)
 
 
 <br>
