@@ -149,11 +149,11 @@ If $f_n\stackrel{\mu}\rightarrow f$ and if there exists an integrable function $
    * 증명 : 
    1. $|f_n|\le g$이기 때문에 $f_n$들은 integrable하다. 
    
-   2. $f_n\stackrel{\mu}\rightarrow f$기 때문에 for any subsequence  $\{ {n_k}\}$, $f_{n_k}\stackrel{\mu}\rightarrow f$이다. 때문에 이전 Theorem에 의해  $f_{{n_k}_j}\rightarrow f$ a.e.인 sub-subsequence $\{ {n_k}_j\}$가 존재한다. 
+   2. $f_n\stackrel{\mu}\rightarrow f$기 때문에 for any subsequence  $\{ {n_k}\}$, $f_{n_k}\stackrel{\mu}\rightarrow f$이다. 때문에 이전 Theorem에 의해  $f_{n_{kj}}\rightarrow f$ a.e.인 sub-subsequence $\{ n_{kj}\}$가 존재한다. 
    
-   3. 때문에 D.C.T에 의해 $\int f_{{n_k}_j}\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$이다. 이는 for any subsequence  $\{ {n_k}\}$는 이를 만족하는 sub-subsequence를 갖는다는 의미이다. 
+   3. 때문에 D.C.T에 의해 $\int f_{n_{kj}}\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$이다. 이는 for any subsequence  $\{ {n_k}\}$는 이를 만족하는 sub-subsequence를 갖는다는 의미이다. 
    
-   4. Let $a_{n}:=\int f_{n}$, $a_{{n_k}_j}:=\int f_{{n_k}_j}$,and $a:=\int f\mbox{ }d\mu$. From above results, $$a_n\rightarrow a$$ i.e., $\int f_{n}\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$.
+   4. Let $a_{n}:=\int f_{n}$, $a_{n_{kj}}:=\int f_{n_{kj}}$,and $a:=\int f\mbox{ }d\mu$. From above results, $$a_n\rightarrow a$$ i.e., $\int f_{n}\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$.
    
 <br>
 
