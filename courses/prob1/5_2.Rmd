@@ -1,0 +1,230 @@
+---
+title: "5.2. Strong Laws of Large Numbers"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+중요(자주 응용된다)
+
+#### Definition(Tail Equivalence)
+Two sequences of random variables $\{X_n,n\ge 1\}$ and $\{X_n^*,n\ge 1\}$ are **tail equivalent** if
+$$
+\sum_{n=1}^\infty P(X_n\ne X_n^*)<\infty.
+$$
+
+   * 즉 $\lim_{n\rightarrow \infty}\sum_{k=n}^\infty P(X_n\ne X_n^*)=0\implies$ 저세상 끝에서 두 변수는 같다 
+   
+     $\implies$ 꼬리에서 두 변수가 같다 $\implies$ Tail-equivalence.
+   
+<br>
+<br>
+
+매우 자주 사용된다.
+
+#### Remark
+If $\{X_n,n\ge 1\}$ and $\{X_n^*,n\ge 1\}$ are tail equivalent, then by the convergence-half of the Borel-Cantelli lemma,
+$$
+P(X_n\ne X_n^* \mbox{ }\mbox{ i.o}(n))=0,
+$$
+i.e.,
+$$
+P(X_n= X_n^* \mbox{ }\mbox{ a.a}(n))=1,
+$$
+i.e., for almost all $\omega$, there exists $N_\omega$ s.t. $X_n(\omega)=X_n^*(\omega)$ for all $n\ge N(\omega)$. From this, it follows that for tail equivalent sequences,
+
+1. $\sum_{n=1}^\infty (X_n-X_n^*)$ converges a.s.
+
+2. $\sum_{n=1}^\infty X_n$ converges a.s. $\iff$ $\sum_{n=1}^\infty X_n^*$ converges a.s.
+
+3. If $a_n\rightarrow \infty$, then
+    $$
+    \frac{1}{a_n}\sum_{i=1}^n X_i \mbox{ converges a.s.} \iff \frac{1}{a_n}\sum_{i=1}^n X_i^*\mbox{ converges a.s.} 
+    $$
+
+   
+<br>
+<br>
+
+정말 매우 반드시 중요하다.
+
+#### Theorem(Kolmogorov's Three Series Theorem)
+Suppose that $X_1,X_2,\ldots$ are **independent** random variables. Then,
+
+$\sum_{n=1}^\infty X_n$ converges a.s. $\iff$ $\exists$ $c>0$ s.t. the following holds: 
+
+1. $\sum_{n=1}^\infty P(|X_n|>c)<\infty$;
+
+2. $\sum_{n=1}^\infty E\left(X_nI_{\{|X_n|\le c\}}\right)$ converges;
+
+3. $\sum_{n=1}^\infty \text{Var}\left(X_nI_{\{|X_n|\le c\}}\right)<\infty$.
+
+Furthermore $\sum_{n=1}^\infty X_n$ converges a.s.$\implies$ 1,2,3 hold for all $c>0$(not exists, for all).
+
+<br> 
+
+  * 때문에 만약 1,2,3을 만족하는 $c>0$가 존재한다면, $\sum_{n=1}^\infty X_n$ converges a.s.이고, 때문에 for all $c>0$이다
+  
+    $(a\implies b\implies c\implies a$와 비슷$)$.
+
+<br> 
+<br>
+   
+#### Theorem(Marcinkiewicz-Zygmund Convergence Theorem)
+Suppose that $0<p<2$, and let $X_1,X_2,\ldots$ be **i.i.d** $L^p$ random variable (i.i.d임에 주목하자). Define
+$$
+Y_n=n^{-\frac{1}{p}}X_nI_{\left\{n^{-1/p}|X_n|\le 1\right\}}, \mbox{ }\mbox{ }\mbox{ }n\ge 1.
+$$
+Then,
+$$
+\sum_{n=1}^\infty \left[n^{-1/p} X_n-E(Y_n)\right]\mbox{ }\mbox{ }\mbox{ converges a.s.}
+$$
+Moreover, if either
+
+1. $0<p<1$, or
+
+2. $1<p<2$ and $E(X_1)=0$,
+
+then
+
+$$
+\sum_{n=1}^\infty n^{-1/p}X_n\mbox{ }\mbox{ }\mbox{ converges a.s.}
+$$
+
+<br>
+<br>
+
+중요하다
+
+#### Theorem (Cesaro Averages)
+If $x_n\in\mathbb{R},n\ge 0$ and $x_n\rightarrow x_0$ as $n\rightarrow \infty$, then
+$$
+\frac{1}{n}\sum_{k=1}^n x_k\rightarrow x_0\mbox{ }\mbox{ }\mbox{ }\mbox{ as }\mbox{ }n\rightarrow \infty.
+$$
+
+   * 증명 : $\epsilon>0$에 대해 $\exists$ $N=N_\epsilon$ s.t. $|x_n-x_0|<\epsilon$ for all $n\ge N$이라 하자. 그렇다면 $n\ge N$에 대해
+
+$$\begin{eqnarray*}
+\Big|\frac{1}{n}\sum_{k=1}^n x_k-x_0\Big|&=&\Big|\frac{1}{n}\sum_{k=1}^n (x_k-x_0)\Big|\\
+&\le& \frac{1}{n}\sum_{k=1}^n \Big|x_k-x_0\Big| = \frac{1}{n}\sum_{k=1}^{N-1} \Big|x_k-x_0\Big|+\frac{1}{n}\sum_{k=N}^n \Big|x_k-x_0\Big|\\
+&\le& \frac{1}{n}\sum_{k=1}^{N-1} \Big|x_k-x_0\Big|  +\epsilon\longrightarrow \epsilon\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+\end{eqnarray*}$$
+
+
+<br>
+<br>
+
+중요하다
+
+#### Lemma (Kronecker's Lemma)
+For real sequences $\{x_n,n\ge 1\}$ and $\{a_n,n\ge 1\}$, with $0<a_n\uparrow \infty$, 
+
+if
+$$
+\sum_{k=1}^\infty \frac{x_k}{a_k}\mbox{ }\mbox{ converges (to a finite limit)},
+$$
+then
+$$
+\frac{1}{a_n}\sum_{k=1}^n x_k\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }\mbox{ }n\rightarrow \infty.
+$$
+
+
+<br>
+<br>
+
+#### Theorem (Marcinkiewicz-Zygmund Strong Law)
+Suppose that $X_1,X_2,\ldots$ are **i.i.d** random variables, and $0<p<2$. Then, for some $c>0$,
+$$
+\frac{S_n-nc}{n^{1/p}}\rightarrow 0\mbox{ }\mbox{ }\mbox{ a.s.}  \iff E(|X_1|^p)<\infty.
+$$
+Moreover, 
+
+1. if $1\le p<2$, then, necessarily $c=E(X_1)$;
+
+2. if $0<p<1$, $c$ is arbitrary (could be $0$).
+
+
+<br>
+
+   * ($\implies$): Suppose $\frac{S_n-nc}{n^{1/p}}\rightarrow 0$ a.s. Then, 
+   $$\begin{eqnarray*}
+   \frac{X_n}{n^{1/p}}&=& \frac{S_n-S_{n-1}}{n^{1/p}}=\frac{S_n-nc}{n^{1/p}}-\frac{S_{n-1}-nc}{n^{1/p}}\\
+   &=&\frac{S_n-nc}{n^{1/p}}-\left(\frac{n-1}{n}\right)^{1/p}\left(\frac{S_{n-1}-(n-1)c}{(n-1)^{1/p}}-\frac{c}{(n-1)^{1/p}}\right)\longrightarrow 0-1\cdot(0-0)\rightarrow 0 \mbox{ a.s.}
+   \end{eqnarray*}$$
+     그러므로 almost everywhere convergence에서의 Theorem에 의해 $P\left(\frac{|X_n|}{n^{1/p}}>1 \mbox{ }\mbox{ }\mbox{ i.o}(n)\right)=0$이다.
+     또한 $X_n$들이 독립이기 때문에 Borel-Cantelli lemma의 divergence half(대우명제)에 의해 
+   $$
+   \sum_{n=1}^\infty P\left(\Big|\frac{X_n}{n^{1/p}}\Big|>1\right)=\sum_{n=1}^\infty P(|X_n|>n^{1/p})=\sum_{n=1}^\infty P(|X_n|^p>n)<\infty.
+   $$
+       때문에 Chapter 3.2의 2번째 Corollary에 의해 $E(|X_n|^p)<\infty$이다.
+       
+<br>
+  
+   * ($\Longleftarrow$): Suppose $E(|X_n|^p)<\infty$ a.s. Then, by the Marcinkiewicz-Zygmund convergence theorem ($X_n$들이 iid이고 $L^p$), either
+   
+   1. $0<p<1:$ $\sum_{n=1}^\infty n^{-1/p}X_n$ converges a.s.;
+   
+   2. $1<p<2:$ $\sum_{n=1}^\infty n^{-1/p}[X_n-E(X_n)]$ converges a.s.;
+   
+   3. $p=1:$ $\sum_{n=1}^\infty n^{-1}[X_n-E(X_1I_{\{|X_1|\le n\}})]$ converges a.s.
+   
+   * In the first case, by Kronecker's lemma
+   $$
+   \frac{S_n}{n^{1/p}}=\frac{1}{n^{1/p}}\sum_{i=1}^n X_i\rightarrow 0\mbox{ }\mbox{ a.s.,}
+   $$
+   and from this, it is clear that $\frac{S_n-nc}{n^{1/p}}\rightarrow 0$ a.s.$(0<p<1)$. 
+   
+   * In the second case, by Kronecker's lemma,
+   $$
+   \frac{S_n-nE(X_1)}{n^{1/p}}=\frac{1}{n^{1/p}}\sum_{i=1}^n [X_i-E(X_1)]\rightarrow 0\mbox{ }\mbox{ a.s.,}
+   $$
+   and it is clear that $\frac{S_n-nc}{n^{1/p}}\rightarrow 0$ a.s. only if $c=E(X_1)$.
+   
+   * In the third case, by Kronecker's lemma
+   $$
+\frac{S_n-\sum_{k=1}^nE(X_1I_{\{|X_1|\le k\}})}{n}=\frac{1}{n}\sum_{k=1}^n\left[X_k-E(X_1I_{\{|X_1|\le k\}})\right]\rightarrow 0\mbox{ }\mbox{ a.s.,}
+   $$
+   By D.C.T, 
+   $$
+   E(X_1I_{\{|X_1|\le k\}})\rightarrow E(X_1)\mbox{ }\mbox{ }\mbox{ as }k\rightarrow \infty,
+   $$
+   and thus, by Cesaro averages,
+   $$
+   \frac{1}{n}\sum_{k=1}^nE(X_1I_{\{|X_1|\le k\}})\rightarrow E(X_1).
+   $$
+   Hence, $S_n/n\rightarrow E(X_1)$ a.s., or equivalently
+   $$
+   \frac{S_n-nE(X_1)}{n}\rightarrow 0 \mbox{ }\mbox{ a.s.,}
+   $$
+   and it is clear that $\frac{S_n-nc}{n^{1/p}}\rightarrow 0$ holds with $c=E(X_1)$.
+
+<br>
+<br>
+
+#### Corollary (Classical Strong Law of Large Numbers)
+Let $X_1,X_2,\ldots,$ be **i.i.d** random variables. Then,
+
+1. $S_n/n\rightarrow E(X_1)$ a.s. $\iff$ $X_1\in L^1$.
+
+2. If E(X_1) exists$(-\infty,\infty$도 포함$)$, then $S_n/n\rightarrow E(X_1)$ a.s. 
+
+<br>
+
+   * 결국은 **i.i.d**면 $S_n/n\rightarrow E(X_1)$ a.s.라는 것이다.
+
+
+<br>
+<br>
+
+
+[back](../probability1.html)   

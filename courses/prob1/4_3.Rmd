@@ -1,0 +1,62 @@
+---
+title: "4.3. Convolution"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+#### Remark
+Suppose that $X$ and $Y$ are independent random variables with distribution $\mu$ and $\nu$, respectively, and let $H\in \mathcal{R}$. Then by Fubini's theorem,
+$$\begin{eqnarray*}
+P(X+Y\in H)&=& \int_{\Omega_1\times\Omega_2}I(X(\omega_1)+Y(\omega_2)\in H)d\mu\times\nu(\omega_1\times \omega_2) \\
+&=&\int_{\mathbb{R}^2}I(x+y\in H)\mbox{ }d \mu\times\nu(x\times y) \mbox{ }\mbox{ }(\mbox{basically, }\mu_X\times\mu_Y)\\
+&=&\int_{\mathbb{R}^2}I(x+y\in H)\mbox{ }d \mu(x)d\nu(y)  \\
+&=&\int_{\mathbb{R}}\left[\int_{\mathbb{R}}I(y\in H-x)\mbox{ }d\nu(y)\right]d \mu(x)\\
+&=&\int_{\mathbb{R}}\nu(H-x)d\mu(x),
+\end{eqnarray*}$$
+where $H-x=\{ z-x:z\in H\}$.
+
+<br>
+
+In more intuitive notation, for independent $X$ and $Y$, if $P_X,P_Y$ and $P_{X+Y}$ represent the distributions of $X,Y$ and $X+Y$, respectively, then
+$$
+P_{X+Y}(H)=\int_\mathbb{R}P_Y(H-x)\mbox{ }dP_X(x)
+$$
+<br>
+<br>
+
+#### Definition
+If $\mu$ and $\nu$ are probability measures on $(\mathbb{R}, \mathcal{R})$, then the measure $\mu*\nu$ defined by
+$$
+(\mu*\nu)(H)=\int_{-\infty}^\infty \nu(H-x)\mbox{ }d\mu(x), \mbox{ }\mbox{ }\mbox{ }\mbox{ }H\in \mathcal{R},
+$$
+is called the **convolution** of $\mu$ and $\nu$.
+  
+   * 즉 convolution은 두 변수의 합에 대한 적분값이다.
+
+If $F$ and $G$ are the distribution functions corresponding to $\mu$ and $\nu$, respectively, then the distribution function corresponding to $\mu\times \nu$ is given by
+$$
+(F*G)(y)=(\mu*\nu)((-\infty,y])=\int_{-\infty}^\infty\nu((-\infty,y]-x)d\mu(x)\\
+=\int_{-\infty}^\infty\nu((-\infty,y-x])d\mu(x)=\int_{-\infty}^\infty G(y-x)d\mu(x)=\int_{-\infty}^\infty G(y-x)dF(x)\\
+\implies(F*G)(y)=\int_{-\infty}^\infty G(y-x)dF(x)
+$$
+   * 정리하자면 convolution은 나중에 적분하는 변수에 대해 먼저 빼주고$(x)$ 적분한다$(y)$.
+
+   * 참고 : $\nu((-\infty,y-x])= G(y-x)-G(-\infty) =G(y-x)$ By the one-to-one correspondence between measure and probability distribution function.
+
+<br>
+<br>
+
+
+[back](../probability1.html)

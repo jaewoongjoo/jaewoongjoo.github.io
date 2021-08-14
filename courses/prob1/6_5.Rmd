@@ -1,0 +1,136 @@
+---
+title: '6.5. Total Variation: Scheffe''s Theorem'
+output: html_document
+---
+
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+#### Remark
+$(\mathbb{R}, \mathcal{R})$에서의 probability measures $\mu_n$ and $\mu$에 대해 아래의 조건은 $(3\implies 2\implies 1)$이다 (progressively stronger forms);
+
+1. $\mu_n\leadsto \mu$.
+
+2. $\mu(A)\rightarrow \mu(A)$ for all $A\in \mathcal{R}$.
+
+3. $\sup_{A\in \mathcal{R}}|\mu_n(A)-\mu(A)|\rightarrow 0$.
+
+
+<br>
+
+   * $(2\implies 1)$: Portmanteau의 마지막 condition $(\lim_n \mu_n(A)=\mu(A)$ for all $A\in \mathcal{R}$ with $\mu(\partial A)=0)$.
+
+
+   * $(3\implies 2)$: absolute convergence $\implies$ convergence.
+
+<br>
+
+   * The convergence in 3 is called **Convergence in total variation norm**:
+   $$
+   ||\mu-\nu||_{\text{TV}}=\sup_{A\in\mathcal{R}}|\mu(A)-\nu(A)|.
+   $$
+   Scheffe의 Theorem은 Convergence in total variation norm의 sufficient condition을 알려준다. 
+
+
+
+
+<br>
+<br>
+
+Scheffe's theorem을 위해 필요
+
+#### Lemma
+If $\mu$ and $\nu$ are probability measures, with densities $f$ and $g$ w.r.t some dominating measure $\gamma$, then
+
+$$
+\sup_{A\in \mathcal{F}}|\mu(A)-\nu(A)|=\frac{1}{2}\int|f-g|d\gamma.
+$$
+
+<br>
+
+  * Dominating measure는 $\mu,\nu \ll \gamma$를 의미한다. 즉 이는 Radon Nidodym에 의해 $\mu(A)=\int_A f \mbox{ }d\gamma$,  $\nu(A)=\int_A g \mbox{ }d\gamma$를 의미한다. 
+  
+<br>
+
+  * $\int(f-g)\mbox{ }d\gamma=\mu(\Omega)-\nu(\Omega)=0$
+  
+     $\implies \int_A(f-g)\mbox{ }d\gamma+ \int_{A^c}(f-g)\mbox{ }d\gamma=0$
+    
+     $\implies |\int_A(f-g)\mbox{ }d\gamma|=|\int_{A^c}(f-g)\mbox{ }d\gamma|$.
+  
+  * Thus, for any $A\in \mathcal{F}$,
+
+  $$\begin{eqnarray*}
+  |\mu(A)-\nu(A)|&=&\left| \int_A (f-g)d\gamma \right|\\
+  &=& \frac{1}{2}\left| \int_A (f-g)d\gamma \right|+ \frac{1}{2}\left| \int_{A^c} (f-g)d\gamma \right|\\
+  &\le&\frac{1}{2}\int_A \left| f-g\right|d\gamma + \frac{1}{2} \int_{A^c} \left|f-g\right|d\gamma \\
+  &=&\frac{1}{2}\int \left| f-g\right|d\gamma.
+  \end{eqnarray*}$$
+  
+
+  * Let $A=[f\ge g]=\{\omega:f(\omega)\ge g(\omega)\}$. Then, $A\in \mathcal{F}$, and as above,
+  
+  $$\begin{eqnarray*}
+  |\mu(A)-\nu(A)|&=& \frac{1}{2}\left| \int_A (f-g)d\gamma \right|+ \frac{1}{2}\left| \int_{A^c} (f-g)d\gamma \right|\\
+  &=&\frac{1}{2}\left|\int_A (f-g)d\gamma\right| + \frac{1}{2}\left|\int_{A^c} (g-f)d\gamma\right| \\
+  &=&\frac{1}{2}\int_A \left| f-g\right|d\gamma+\frac{1}{2}\int_{A^c} \left| f-g\right|d\gamma= \frac{1}{2}\int \left| f-g\right|d\gamma.
+  \end{eqnarray*}$$
+   즉, $\sup_{A\in \mathcal{F}}|\mu(A)-\nu(A)|=\frac{1}{2}\int|f-g|d\gamma$이다.
+
+
+
+<br>
+<br>
+
+중요하다
+
+#### Theorem (Scheffe's Theorem)
+$\mu_n,n\ge 1$ and $\mu$ are probability measures having densities $f_n$ and $f$, respectively, w.r.t some dominating measure $\gamma$. If
+$$
+f_n\rightarrow f\mbox{ }\mbox{ }\mbox{ } \gamma\mbox{-a.e. }\mbox{ as }n\rightarrow \infty,
+$$
+then $\mu_n$ converges to $\mu$ in total variation norm, i.e.,
+$$
+\sup_{A\in\mathcal{R}}|\mu_n(A)-\mu(A)|\rightarrow 0.
+$$
+
+<br>
+   
+  * 증명: $f_n\rightarrow f$ $\gamma$-a.e.$\implies 0\le (f-f_n)^+\le |f-f_n|\rightarrow 0$ $\gamma$-a.e.이다. 
+  
+    즉, $(f-f_n)^+\rightarrow 0$ $\gamma$-a.e.이다.
+    
+    또한 $f,f_n\ge 0$이기 때문에 $(f-f_n)^+\le f\in L^1$이다.
+    
+    때문에 D.C.T에 의해 $\int (f-f_n)^+ d\gamma\rightarrow 0$이다.
+    
+  * 또한
+  $$
+  0\stackrel{\text{prob}=1}{=}\int (f-f_n)d\gamma= \int (f-f_n)^+d\gamma- \int (f-f_n)^-d\gamma\implies  \int (f-f_n)^+d\gamma= \int (f-f_n)^-d\gamma 
+  $$
+  이다. 
+  
+  * 그러므로
+  $$
+  \int |f-f_n|d\gamma= \int (f-f_n)^+d\gamma+\int (f-f_n)^-d\gamma= 2\int (f-f_n)^+d\gamma\rightarrow 0.
+  $$
+  때문에 위의 lemma에 따르면
+  $$
+  \sup_{A\in\mathcal{R}}|\mu_n(A)-\mu(A)|=\frac{1}{2}\int|f_n-f|d\gamma \rightarrow 0.
+  $$
+
+<br>
+<br>
+
+[back](../probability1.html)   

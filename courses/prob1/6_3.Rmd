@@ -1,0 +1,152 @@
+---
+title: "6.3. Slutsky's Theorem"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+#### Definition
+A sequence of random variables $\{X_n,n\ge 1\}$ is **bounded in probability** if their associated distributions are tignt, i.e., for any $\epsilon>0$, there exists a constant $\mathcal{M}>0$ s.t.
+$$
+P(|X_n|\le \mathcal{M})>1-\epsilon\mbox{ }\mbox{ }\mbox{ for all }n\ge 1.
+$$
+<br>
+
+   * 즉 measure에서의 tight가 random variable에서는 bounded in probability로 불린다
+
+   * Note : measure의 notation인 $P_{X_n}([-\mathcal{M},\mathcal{M}])$이 결국 $P(|X_n|\le \mathcal{M})$과 같다;
+   $$
+   P(|X_n|\le \mathcal{M})= \int_\Omega I_{\{|X_n(\omega)|\le \mathcal{M}\}}dP(\omega)=\int_\mathbb{R}I_{\{|x|\le\mathcal{M}\}}dP_{X_n} = P_{X_n}([-\mathcal{M},\mathcal{M}])\stackrel{\text{Def of tight}}{>} 1-\epsilon.
+   $$
+
+<br>
+<br>
+
+#### Lemma
+
+If $\{X_n\}$ is bounded in probability and $Y_n\leadsto 0$, then $X_nY_n\leadsto 0$.
+
+<br>
+
+  * 증명: $\{X_n\}$이 bounded in prob이기 때문에 $\exists$ $\delta>0$ and $\mathcal{M}$>0 s.t.
+  $$
+  P(|X_n|>\mathcal{M})\le \delta.
+  $$
+  또한 $Y_n\leadsto 0\implies Y_n\stackrel{\text{Pr}}\rightarrow 0$이다. 때문에
+  $$\begin{eqnarray*}
+  P(|X_nY_n|>\epsilon)&=&  P(|X_nY_n|>\epsilon, |X_n|\le \mathcal{M})+P(|X_nY_n|>\epsilon, |X_n|> \mathcal{M})\\
+  &\le&P(|Y_n|>\frac{\epsilon}{\mathcal{M}})+P(|X_n|> \mathcal{M})\\
+  &\le&P(|Y_n|>\frac{\epsilon}{\mathcal{M}})+\delta \longrightarrow \delta \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+  \end{eqnarray*}$$
+        Therefore,  $X_nY_n\stackrel{\text{Pr}}\rightarrow 0\implies X_nY_n\leadsto 0$.
+  
+<br>
+<br>
+
+Slutsky 이론 증명 위해 필요
+
+#### Definition
+If $X_n\leadsto 0($or equivalently, $X_n\stackrel{\text{Pr}}\rightarrow 0)$, then we write $X_n=o_p(1)$.
+
+If $\{X_n,n\ge 1\}$ is bounded in probability, then we write $X_n=O_p(1)$.
+
+<br>
+
+   * 이전 Lemma : $X_n=O_p(1)$, $Y_n=o_p(1)$, $X_nY_n=o_p(1)$이므로 $O_p(1)o_p(1)=o_p(1)$이다.
+   
+   * $X_n \stackrel{\text{Pr}}\rightarrow 0$, $Y_n \stackrel{\text{Pr}}\rightarrow 0\implies X_n+Y_n \stackrel{\text{Pr}}\rightarrow 0$, i.e., $o_p(1)+o_p(1)=o_p(1)$이다.
+
+   * $O_p(1)+O_p(1)=O_p(1)$ : 
+   
+      $P(|X_n|>\mathcal{M}_x)<\epsilon/2$, $P(|Y_n|>\mathcal{M}_y)<\epsilon/2$
+   
+      $\implies P(|X_n+Y_n|>\mathcal{M}_x\vee\mathcal{M}_y )\le P(|X_n|>\mathcal{M}_x\vee\mathcal{M}_y)+P(|Y_n|>\mathcal{M}_x\vee\mathcal{M}_y)<\epsilon$;
+   
+   * $o_p(1)=O_p(1)$ (weak convergence $\implies$ tightness);
+   
+   * $O_p(1)\ne o_p(1)$ (모든 subsequence가 하나의 measure로 weakly converge한다는 내용이 추가로 필요하다).
+
+
+<br>
+<br>
+
+매우 중요하다
+
+#### Lemma (Converging Together Lemma)
+$X_n\leadsto X$ and $Y_n\leadsto Y \implies Y_n\leadsto X$ 
+
+   * 즉 $Y_n-X_n\leadsto 0$이라면 $X_n$과 $Y_n$은 같은 곳으로 weakly converge한다.
+  
+<br>
+<br>
+
+매우 중요하다
+
+#### Theorem (Slutsky's Theorem)
+If for all $n\ge 1$, $X_n,A_n$, and $B_n$ are random variables defined on the same probability space, with $X_n\leadsto X$, $A_n\leadsto a$, and $B_n\leadsto b$, $a,b\in \mathbb{R}$, then
+$$
+A_n X_n+ B_n \leadsto aX+b.
+$$
+<br>
+
+  * 증명
+  
+0. $X_n\leadsto X\implies \{X_n\}$ is tight(bounded in probability);  
+  
+1. $A_n-a\leadsto a-a =0$, and $B_n-b\leadsto b-b =0$;
+ 
+2. $(A_nX_n+B_n)-(aX_n+b)=(A_n-a)X_n+(B_n-b)= o_p(1)O_p(1)+o_p(1)\leadsto 0$
+
+3. $aX_n+b\leadsto aX+b$. 
+
+  * Converging Together Lemma에 의해 증명된다. 
+
+<br>
+<br>
+<br>
+
+#### 정리
+
+1. Bounded in Prob$(O_p(1))$ : $P(|X_n|\le \mathcal{M})>1-\epsilon\mbox{ }\mbox{ }\mbox{ }\mbox{ }\forall\mbox{ }n$.
+
+
+<br>
+
+
+2. $O_p(1)$, $o_p(1)$: $o_p(1)$은 $X_n\leadsto 0$를, $X_n=O_p(1)$ 은 bounded in probability를 의미.
+
+   * $o_p(1)O_p(1)=o_p(1)$; $X_n\leadsto 0$, $Y_n$ bounded in prob $\implies$ $X_nY_n\leadsto 0$.
+   
+   * $o_p(1)+o_p(1)=o_p(1)$; $X_n\leadsto 0$, $Y_n\leadsto 0\implies X_n+Y_n\leadsto 0$.   
+   
+   * $O_p(1)+O_p(1)=O_p(1)$; $X_n, Y_n$ bounded in prob$\implies X_n+Y_n$ bounded in prob.
+   
+   * $o_p(1)=O_p(1)$; Weak convergence implies bounded in prob.
+   
+   * $O_p(1)\ne o_p(1)$; bounded in prob does not implies weak convergence.
+   
+   <br>
+
+3. 함께수렴(Converging Together) : $X_n\leadsto X$ and $Y_n\leadsto Y \implies Y_n\leadsto X$ 
+
+<br>
+
+4. 슬러츠키 : $X_n\leadsto X$, $A_n\leadsto a$, $B_n\leadsto b\implies A_n X_n+ B_n \leadsto aX+b$.
+
+
+
+<br>
+<br>
+
+[back](../probability1.html)   

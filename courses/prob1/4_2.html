@@ -215,14 +215,60 @@ pre {
 <h4>Definition</h4>
 <p>Random variables (random vectors) <span class="math inline">\(X_1,\ldots X_k\)</span> are <em>independent</em> if the <span class="math inline">\(\sigma\)</span>-fields <span class="math inline">\(\sigma(X_1),\ldots,\sigma(X_k)\)</span> are independent, or equivalently, if <span class="math display">\[
 P(X_1\in H_1,\ldots X_k\in H_k)= P(X_1\in H_1)\cdots P(X_k\in H_k) \mbox{ }\mbox{ }\mbox{ for all }H_1,\ldots,H_k\in \mathcal{R}^1. 
-\]</span></p>
+\]</span> <br> <br></p>
 <ul>
 <li><p>Set과 Class들에 대한 얘기에서 Random variable과 <span class="math inline">\(\sigma\)</span>-fields of random variable에 대한 스토리로 바뀌었다.</p></li>
 <li><p>내용은 전부 같다.</p></li>
 </ul>
+<p><br> <br></p>
 </div>
 <div id="theorem-1" class="section level4">
 <h4>Theorem</h4>
+<p>Random variables <span class="math inline">\(X_1,\ldots,X_k\)</span> are independent if and only if <span class="math display">\[
+\mu=\mu_1\times\cdots\times\mu_k, \mbox{ }\mbox{ }\mbox{ (product measure)},
+\]</span> or equivalently, <span class="math display">\[
+F(x)=F_1(x_1)\cdots F_k(x_k)\mbox{ }\mbox{ }\mbox{ for all } x=(x_1,\ldots,x_k)\in \mathbb{R}^k.
+\]</span> <br> <br></p>
+</div>
+<div id="theorem-2" class="section level4">
+<h4>Theorem</h4>
+<p>If <span class="math inline">\(X_1,\ldots,X_k\)</span> are independent random variables and <span class="math inline">\(g_1,\ldots,g_k\)</span> are Borel measurable functions, then <span class="math inline">\(g_1(X_1),\ldots,g_k(X_k)\)</span> are independent random variables.</p>
+<p><br></p>
+<ul>
+<li><p><span class="math inline">\(g_i(X_i)\)</span> is measurable w.r.t the corresponding <span class="math inline">\(\sigma(X_i)\)</span>.</p>
+<p>즉, <span class="math inline">\(\omega\)</span>의 관점에서 생각할 때 <span class="math inline">\(g_i(X_i)\in \sigma(X_i)\implies\sigma(g_i(X_i))\subset \sigma(X_i)\)</span>, <span class="math inline">\(i=1,\ldots,k\)</span> (<span class="math inline">\(g_i(X_i\)</span>는 합성함수이기 때문).</p></li>
+<li><p>Because <span class="math inline">\(\sigma(X_1),\ldots,\sigma(X_k)\)</span> are independent, it follows immediately from the definition of independent classes that <span class="math inline">\(\sigma(g_1(X_1)),\ldots,\sigma(g_k(X_k))\)</span> are also independent</p>
+<p><span class="math inline">\((g_1(X_1),\ldots,g_k(X_k)\)</span>은 choices in <span class="math inline">\(\sigma(g_1(X_1)),\ldots,\sigma(g_k(X_k))\implies\)</span> choices in <span class="math inline">\(\sigma(X_1),\ldots,\sigma(X_k))\)</span>.</p></li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="theorem-3" class="section level4">
+<h4>Theorem</h4>
+<p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent random variables, either both nonnegative or both integrable, then <span class="math display">\[
+E(XY)=E(X)E(Y).
+\]</span> * 이 Theorem은 기대값을 split하는 것뿐만이 장점이 아니라, <span class="math inline">\(X,Y \in L^1\)</span>이고 <span class="math inline">\(X,Y\)</span> 가 독립이면 <span class="math inline">\(XY\in L^1\)</span>임을 보인다는 것이 놀랍다.</p>
+<ul>
+<li><p>그동안 <span class="math inline">\(XY\in L^1\)</span>를 보이기 위해서는 Holder’s inequality나 Cauchy-Schwarz inequality에서처럼 <span class="math inline">\(p,q\ge 1\)</span>이고 <span class="math inline">\(1/p+1/q=1\)</span>을 만족하는 <span class="math inline">\(X\in L^p\)</span>, <span class="math inline">\(Y\in L^q\)</span>가 요구되었다.</p></li>
+<li><p><span class="math inline">\(X,Y\)</span> : nonnegative simple r.v <span class="math inline">\(\rightarrow\)</span> nonnegative r.v <span class="math inline">\(\rightarrow\)</span> general integrable r.v 순서로 증명한다.</p></li>
+</ul>
+<p><br> <br></p>
+<p>중요하다</p>
+</div>
+<div id="theorem-4" class="section level4">
+<h4>Theorem</h4>
+<p>Suppose that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent random vectors (<span class="math inline">\(k\)</span> and <span class="math inline">\(m\)</span> dimensional, respectively) with respective distributions <span class="math inline">\(P_X\)</span> and <span class="math inline">\(P_Y\)</span>. Let <span class="math inline">\(g:\mathbb{R}^{k+m}\rightarrow \mathbb{R}\)</span> be a Borel measurable function, and let <span class="math inline">\(A\in \mathcal{R}^m\)</span>. if either <span class="math inline">\(g\)</span> is nonnegative, or <span class="math inline">\(g(X,Y)\)</span> is integrable, then <span class="math display">\[
+E[g(X,Y)I_A(Y)]=\int_A E[g(X,y)]dP_Y(y).
+\]</span> * 증명 : <span class="math inline">\(X, Y\)</span>가 독립이기 때문에 이 챕터의 4번째 theorem에 의해 joint distribution은 product of each distribution(product measure)이다. 그러므로 change of variable theorem과 Fubini’s theorem에 의해</p>
+<p><span class="math display">\[\begin{eqnarray*}
+  E[g(X,Y)I_A(Y)]  &amp;=&amp;  \int_{\Omega_1\times\Omega_2}g(X(\omega_1),Y(\omega_2))I_{Y^{-1}(A)}(\omega)\mbox{ }dP(\omega_1 \times \omega_2) \\
+  &amp;=&amp;\int_{\mathbb{R}^{k+m}}g(x,y)I_A(y)\mbox{ }dP_X \times P_Y(x \times y)\\
+    &amp;=&amp;\int_{\mathbb{R}^{m}}\int_{\mathbb{R}^{k}}g(x,y)I_A(y)\mbox{ }d P_X(x)P_Y(y)\\
+    &amp;=&amp;\int_{\mathbb{R}^{m}}I_A(y)\left[\int_{\mathbb{R}^{k}}g(x,y)\mbox{ }d P_X(x)\right]P_Y(y)\\
+    &amp;=&amp;\int_{A}E\left[g(X,y)\right]P_Y(y)\\
+\end{eqnarray*}\]</span></p>
+<ul>
+<li>즉 <span class="math inline">\(X\)</span>에 대해 Expectation한 결과는 <span class="math inline">\(\sigma(Y)\)</span>-measurable이다. 이미 <span class="math inline">\(X\)</span>에 대해 integration했으므로 남은 변수는 <span class="math inline">\(Y\)</span>밖에 없다고 생각하면 편하다.</li>
+</ul>
 <p><br> <br></p>
 <p><a href="../probability1.html">back</a></p>
 </div>

@@ -1,0 +1,53 @@
+---
+title: "4.5. Kolmogorov's Zero-One Law"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Definition(Tail Events)
+If $\{X_n,n\ge 1\}$ is a sequence of random variables on $(\Omega,\mathcal{F},P)$, then the **tail $\sigma$-field** determined by $\{X_n\}$ is given by
+$$
+\mathcal{T}=\bigcap_{n=1}^{\infty} \sigma(X_n,X_{n+1},\ldots).
+$$
+
+If $A\in \mathcal{T}$, then $A$ is called a **tail event**.
+
+   * 어떤 이벤트가 finite number of random variables들에 의해 generated된 $sigma$-field에 의해 결정되는 것이 아니라, countable number of random variables에 의해 결정된다는 것이다. 즉 좌준수 교수님의 표현을 빌려 말하면, 저세상 끝의 random variable들로 generated된 $\sigma$-field에 의해 결정된다는 것이다.
+   
+
+<br>
+<br>
+
+#### Example
+$\left\{\omega\in \Omega: \sum_{n=1}^{\infty}X_n(\omega)\mbox{ converges }\right\}\in \mathcal{T}$, because
+$$\begin{eqnarray*}
+\left\{\omega\in \Omega: \sum_{n=1}^{\infty}X_n(\omega)\mbox{ converges }\right\}=\left\{\omega\in \Omega: \sum_{n=m}^{\infty}X_n(\omega)\mbox{ converges }\right\}&\in& \sigma(X_m,X_{m+1},\ldots)\mbox{ }\forall m\ge 1\\
+\implies \left\{\omega\in \Omega: \sum_{n=1}^{\infty}X_n(\omega)\mbox{ converges }\right\}\in\bigcap_{m=1}^\infty \sigma(X_m,X_{m+1},\ldots).
+\end{eqnarray*}$$
+
+<br>
+<br>
+
+#### Theorem(Kolmogorov's Zero-One Law)
+If $\{X_n,n\ge 1\}$ is a sequence of independent random variables and $A$ is a tail event, then either $P(A)=0$ or $P(A)=1$
+
+   * 즉 tail event는 반드시 일어나거나 일어나지 않거나 둘중 하나이다. 
+
+   * 때문에 Borel Zero-One Law도 $P(A_n \mbox{ }\mbox{ i.o}(n))$도 0또는 1인 것이다$(P(A_n \mbox{ }\mbox{ i.o}(n))=P(\limsup A_n)$이기 때문에 이는 tail event이다$)$.
+   
+<br>
+<br>
+
+
+[back](../probability1.html)   

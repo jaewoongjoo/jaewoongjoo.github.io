@@ -1,0 +1,296 @@
+---
+title: "5.1. Convergence of Random Series"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+중요(조건들을 잘 기억하자)
+
+#### Theorem(Kolmogorov's Maximal Inequality)
+Suppose that $X_1,\ldots, X_n$ are **independent** random variables with **mean 0**, and let $S_n=\sum_{i=1}^n X_i, n\ge 1$. Then for any $\alpha>0$,
+$$
+P\left(\max_{1\le j\le n} \{|S_j|\ge \alpha \}\right)\le \frac{1}{\alpha^2}\text{Var}(S_n).
+$$
+<br>
+
+   * 증명 : If $\text{Var}(X_i)=\infty$ for some $1\le i\le n$, then $\text{Var}(S_n)=\sum_{i=1}^n \text{Var}(X_i)=\infty$. So, assume $X_i\in L^2, 1\le i\le n$.
+   
+     Let $A_k$ be the event that the first crossing of level $\alpha$ by $|S_j|$ occurs at time $k$, i.e.,
+     $$
+     A_k=\{\omega\in \Omega: |S_k(\omega)|\ge \alpha,\mbox{ } |S_j(\omega)|<\alpha, \mbox{ }\mbox{ }j=1,\ldots,k-1\}\in \sigma(X_1,\ldots,X_k),
+     $$
+     and let 
+     $$
+     A=\left\{\max_{1\le j\le n}\{|S_j|\ge \alpha\} \right\}= \biguplus_{k=1}^n A_k.
+     $$
+     * $A_k$가 disjoint event인 이유: 정의에 따르면  $A_k$에서는 $|S_k(\omega)|\ge \alpha$ and $|S_{k-1}(\omega)|<\alpha$이다. 하지만 $A_{k-1}$에서는 $|S_{k-1}(\omega)|\ge \alpha$ and $|S_{k-2}(\omega)|<\alpha$ 때문에 $|S_{k-1}|$부분만 본다면 disjoint이다. 또한 $A_{k-2}$와는 $|S_{k-2}|$부분으로 본다면 disjoint이다. 때문에 $A_k$들은 모두 disjoint 이다.
+     
+     <br>
+    
+     Then, 
+$$\begin{eqnarray*}
+    \text{Var}(S_n)=E(S_n^2)&\ge&\int_A S_n^2\mbox{ }dP=\sum_{k=1}^n \int_{A_k}S_n^2\mbox{ }dP\\
+    &=& \sum_{k=1}^n\int_{A_k}[S_k+(S_n-S_k)]^2\mbox{ }dP =\sum_{k=1}^n\int_{A_k}[S_k^2+2S_k(S_n-S_k)+(S_n-S_k)^2]\mbox{ }dP\\
+    &\ge& \sum_{k=1}^n\int_{A_k}[S_k^2+2S_k(S_n-S_k)]\mbox{ }dP=\sum_{k=1}^n\int_{A_k}S_k^2\mbox{ }dP+ 2\sum_{k=1}^n\int_{A_k}S_n(S_n-S_k)\mbox{ }dP.
+\end{eqnarray*}$$
+     But, $S_nI_{A_k}=I_{A_k}\sum_{i=1}^kX_i$ is a measurable function of $X_1,\ldots,X_k$, and $S_n-S_k\sum_{i=k+1}^n X_i$ is a measurable function of $X_{k+1}\ldots,X_n$. So, $S_kI_{A_k}$ and $S_n-S_k$ are independent random variables.
+     
+     Both are also in $L^2$, and thus
+     $$
+     \int_{A_k}S_n(S_n-S_k)\mbox{ }dP= E[(S_kI_{A_k})(S_n-S_k)]=E[S_kI_{A_k}]E[S_n-S_k]=0 \mbox{ }\mbox{ }\mbox{ }(\because E[S_n-S_k]=0).
+     $$
+     Therefore,
+     $$
+      \text{Var}(S_n)\ge \sum_{k=1}^n\int_{A_k}S_k^2\mbox{ }dP\stackrel{\text{Def}}{\ge} \sum_{k=1}^n\int_{A_k}\alpha^2\mbox{ }d= \alpha^2 \sum_{k=1}^nP(A_k)=\alpha^2  P(A)\implies P(A)\le \frac{1}{\alpha^2}\text{Var}(S_n).
+     $$
+     
+     
+<br>
+<br>
+
+중요(조건을 잘 기억하자)
+
+#### Theorem(Etemadi's maximal inequality)     
+If $X_1,\ldots,X_n$ are **independent** random variables, then for any $\alpha>0$,
+$$
+P(\max_{1\le j\le n}|S_j|\ge 3\alpha)\le 3\max_{1\le j\le n}P(|S_j|\ge \alpha)
+$$
+<br>
+
+   * 증명 : Let 
+    $$
+     B_k=\{\omega\in \Omega: |S_k(\omega)|\ge 3\alpha,\mbox{ } |S_j(\omega)|<3\alpha, \mbox{ }\mbox{ }j=1,\ldots,k-1\}\in \sigma(X_1,\ldots,X_k), k=1,\ldots,n
+    $$
+   Then, $B_1,\ldots B_n$ are disjoint and
+   $$\begin{eqnarray*}
+   \left\{ \max_{1\le j\le n} |S_j|\ge 3\alpha \right\}&=&\left\{ |S_n|\ge \alpha,\max_{1\le j\le n}|S_j|\ge 3\alpha\right\}\uplus
+         \left\{ |S_n|< \alpha,\max_{1\le j\le n}|S_j|\ge 3\alpha  \right\}\\
+          &=& \left\{ |S_n|\ge \alpha\right\}\uplus
+         \left\{ |S_n|< \alpha,\mbox{ }\biguplus_{k=1}^{n-1} B_k  \right\} \mbox{ }\mbox{ }(\mbox{n번째는 공집합이다.})\\
+         &=&\left\{ |S_n|\ge \alpha\right\}\uplus
+         \left\{\biguplus_{k=1}^{n-1}B_k\cap\{|S_n|< \alpha\}  \right\}\\
+         &\subset&\left\{ |S_n|\ge \alpha\right\}\uplus
+         \left\{\biguplus_{k=1}^{n-1} \left(B_k\cap\{|S_n-S_k|>2\alpha \}\right)\right\}.
+    \end{eqnarray*}$$
+    
+   * Note:  $B_k\cap\{|S_n|< \alpha\}=\{|S_n|\ge 3\alpha\}\cap\{|S_n|< \alpha\} \subset \{|S_n-S_k|>2\alpha\}$.   왜냐하면 $\{|S_n|\ge 3\alpha\}\cap\{|S_n|< \alpha\}$에서 부호에 따라 4가지의 경우의 수를 다 따져봐도 $\{|S_n-S_k|>2\alpha\}$일 수밖에 없지만, $\{|S_n-S_k|>2\alpha\}$는 $\{S_n=-4\alpha\}\cap\{S_n=5\alpha\}$이어도 성립하기 때문이다.
+   
+   
+     또한 $B_k\in \sigma(X_1,\ldots,X_k)$ and $\{|S_n-S_k|>2\alpha\}\in \sigma(X_{k+1},\ldots,X_n)$ 가 독립이기 때문에,
+  $$\begin{eqnarray*}
+P\left( \max_{1\le j\le n} |S_j|\ge 3\alpha \right) &\le&   P(|S_n|\ge \alpha)+\sum_{k=1}^{n-1}P\left(|S_n-S_k|>2\alpha \right)\\
+         &\le&  P(|S_n|\ge \alpha)+\sum_{k=1}^{n-1}P\left(B_k\cap\{|S_n-S_k|>2\alpha\} \right)\\
+         &\le&  P(|S_n|\ge \alpha)+\sum_{k=1}^{n-1}P(B_k)P\left(|S_n-S_k|>2\alpha\right)\\
+         &\le&  P(|S_n|\ge \alpha)+\max_{1\le j\le n}P\left(|S_n-S_j|>2\alpha\right)\sum_{k=1}^{n-1}P(B_k)\\
+        &\le&  P(|S_n|\ge \alpha)+\max_{1\le j\le n}P\left(|S_n-S_j|>2\alpha\right)\\
+        &\le&  P(|S_n|\ge \alpha)+\max_{1\le j\le n}[P\left(|S_n|>\alpha\right)+P(|S_j|>\alpha)]\\
+        &\le&  2P(|S_n|\ge \alpha)+\max_{1\le j\le n}P(|S_j|>\alpha)\le 3P(|S_n|\ge \alpha)
+    \end{eqnarray*}$$
+
+   * 마지막 부등호에서 $\{|S_n-S_j|>2\alpha\}\subset\{|S_n|>\alpha\}\cup\{|S_j|>\alpha\}$이다. 예시로 $S_n=3\alpha$, $S_k=2\alpha$면 우변은 성립하지만 좌변은 성립하지 않는다. 
+
+   * 숫자 3과 $\max$가 밖으로 빠져나온다고 기억하면 쉽다. 
+
+<br>
+<br>
+<br>
+<br>
+
+매우 중요하다.
+
+#### Theorem(Kolmogorov's Convergence Criterion)
+If $X_1, X_2,\ldots$ are **independent mean 0** random variables with $\sum_{n=1}^\infty \text{Var}(X_n)<\infty$, then $\sum_{n=1}^\infty X_n$ converges a.s. and in $L^2$. Moreover, $E(\sum_{n=1}^\infty X_n)=0$ and $\text{Var}(\sum_{n=1}^\infty X_n)=  \sum_{n=1}^\infty  \text{Var}(X_n)$.
+
+<br>
+  
+   * 우선 independent, mean 0 조건이기 때문에 Kolmogorov의 inequality를 쓴다는 것을 기억하자.
+   
+   * 이전에 배웠던 Theorem 중에 $X_n$ converges a.s. (to a real-valued r.v) $\iff\sup_{m\le n}|X_m-X_n|\stackrel{\text{Pr}}\rightarrow 0$ 를 기억하자.
+   
+   * 증명 : Note that for all $k\ge 1$
+   $$
+   P(\max_{1\le j\le k}|S_{n+j}-S_n|>\epsilon)\stackrel{\text{Etamadi}}{\le}\frac{1}{\epsilon^2}\text{Var}(S_{n+k}-S_n)\stackrel{\text{indep}}= \frac{1}{\epsilon^2}\sum_{i=n+1}^{n+k}\text{Var}(X_i)\le\frac{1}{\epsilon^2}\sum_{i=n+1}^{\infty}\text{Var}(X_i).
+   $$
+   Also, note that
+   $$
+   \left\{\max_{1\le j\le k}|S_{n+j}-S_n|>\epsilon \right\} \uparrow    \left\{\sup_{m\ge n}|S_{m}-S_n|>\epsilon \right\}\stackrel{\text{cty from below}}{\implies}     P\left(\max_{1\le j\le k}|S_{n+j}-S_n|>\epsilon \right) \uparrow    P\left(\sup_{m\ge n}|S_{m}-S_n|>\epsilon \right).
+   $$
+   Thus,
+   $$
+   P\left(\sup_{m\ge n}|S_{m}-S_n|>\epsilon \right)\le \frac{1}{\epsilon^2}\sum_{i=n+1}^{\infty}\text{Var}(X_i)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+   $$
+   Therefore, $\exists$ a r.v $S_\infty$ s.t. $S_n\rightarrow S_\infty$ a.s.
+   
+     Moreover, since
+   $$\begin{eqnarray*}
+   \sup_{m\ge n}E[(S_m-S_n)^2]&=&\sup_{m\ge n}E\left[\left(\sum_{k=n+1}^m X_k\right)^2 \right]\\
+   &\stackrel{\text{mean 0}}=&\sup_{m\ge n}\text{Var}\left(\sum_{k=n+1}^m X_k \right)\stackrel{\text{indep}}{=}\sup_{m\ge n}\sum_{k=n+1}^m\text{Var}\left( X_k \right)\\
+   &=&\sum_{k=n+1}^\infty\text{Var}\left( X_k \right)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty,
+   \end{eqnarray*}$$
+   the sequence $\{S_n,n\ge 1\}$ is Cauchy in $L^2$ and hence converges in $L^2$, say  to $S'_\infty\in L^2$.
+   
+       * Cauchy in $L^p$: $\int |f_m-f_n|^p\mbox{ }d\mu\rightarrow 0$ as $m,n\rightarrow \infty\iff \sup_{m\ge n}\int |f_m-f_n|^p\mbox{ }d\mu\rightarrow 0$ as $n\rightarrow \infty$.
+
+<br>   
+    
+  * But,
+   $$
+   \begin{cases}S_n\stackrel{\text{a.s.}}\rightarrow S_\infty\\S_n\stackrel{L^2}\rightarrow S'_\infty \end{cases}\implies 
+   \begin{cases}S_n\stackrel{\text{Pr}}\rightarrow S_\infty\\S_n\stackrel{\text{Pr}}\rightarrow S'_\infty \end{cases}\implies S'_\infty=S_\infty \text{ a.s.}   
+   $$
+  <br>
+  
+   * To see $E(S_\infty)=E(\sum_{n=1}^\infty X_n)=0$, note that $S_n\stackrel{L^1}\rightarrow S_\infty$($L^2$ convergence $\implies$ $L^1$ convergence, by Lyapounov). Thus by part 4 of uniform integrability criterion $(p=1)$, $E(S_n)\rightarrow E(S_\infty)=\lim_n E(S_n)=0$. Similarly, $S_n\stackrel{L^2}\rightarrow S_\infty$ implies that $\text{Var}(S_n)\rightarrow \text{Var}(S_\infty)\implies \text{Var}(S_\infty)=\lim_n \text{Var}(S_n)=\lim_n \sum_n \text{Var}(X_n)=\sum_{n=1}^\infty \text{Var}(X_n)$.
+   
+<br>
+<br>
+
+#### Theorem(Levy's Theorem)
+If $X_1,X_2,\ldots$ are **independent** random variables, then as $n\rightarrow \infty$, 
+
+$S_n\rightarrow S_\infty$ a.s. $(\exists$ a r.v. $S_\infty)$ $\iff S_n\stackrel{\text{Pr}}\rightarrow S_\infty$.   
+
+<br>
+
+   * $(\implies)$: Chapter 3.6에서 다루었던 $X_n\rightarrow X$ a.s. $\implies X_n \stackrel{\text{Pr}}\rightarrow X$를 기억하자
+   
+   * $(\Longleftarrow)$: Suppose $S_n \stackrel{\text{Pr}}\rightarrow S_\infty\implies S_n$ is Cauchy in probability (Chap 3.6) s.t.
+   $$
+   \sup_{m\ge n}P(|S_m-S_n|>\epsilon)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty \mbox{ }\mbox{ (Chap 3.4의 정의)}.
+   $$
+   But by Etemadi's with $\alpha=\epsilon/3$,
+   $$
+   P\left(\max_{1\le j\le k}|S_{n+j}-S_n|>\epsilon \right)\le 3\max_{1\le j\le k}P\left(|S_{n+j}-S_n|>\frac{\epsilon}{3}\right)\le 3\sup_{m\ge n} P\left(|S_{m}-S_n|>\frac{\epsilon}{3}\right) \mbox{ }\mbox{ }\mbox{ }(\mbox{upper bound } \forall\mbox{ } k\ge 1)
+   $$
+   and since
+   $$
+   \left\{\max_{1\le j\le k}|S_{n+j}-S_n|>\epsilon\right\}\uparrow \left\{\sup_{m\ge n}|S_m-S_n|>\epsilon \right\},
+   $$
+   we have
+   $$
+   P\left(\sup_{m\ge n} |S_{m}-S_n|>\epsilon\right)\le 3\sup_{m\ge n} P\left(|S_{m}-S_n|>\frac{\epsilon}{3}\right) \rightarrow 0\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+   $$
+
+   * 이전에 배웠던 Theorem 중에 $X_n$ converges a.s. (to a real-valued r.v) $\iff\sup_{m\le n}|X_m-X_n|\stackrel{\text{Pr}}\rightarrow 0$ 를 기억하자. 
+   
+     Thus,  $\exists$ a r.v. $S_\infty'$ s.t. $S_n\rightarrow S_\infty'$ a.s. $\implies S_n \stackrel{\text{Pr}}\rightarrow S_\infty'$ 
+     
+     But, $S_n \stackrel{\text{Pr}}\rightarrow S_\infty$ and $S_n \stackrel{\text{Pr}}\rightarrow S_\infty'$ together implies $S_\infty=S_\infty'$. So $S_n\rightarrow S_\infty$. 
+   
+<br>
+<br>
+
+#### Corollary
+If $X_1,X_2,\ldots$ are **independent, mean 0, uniformly bounded** random variables, then
+
+$\sum_{n=1}^\infty X_n$ converges a.s. $\iff$ $\sum_{n=1}^\infty \text{Var}(X_n)<\infty$.
+  
+<br>
+
+   * Kolmogorov's Convergence criterion에 따르면 $\Longleftarrow$만 성립한다.
+    
+   * 하지만 uniformly bounded 조건이 추가되면 동치가 된다는 것을 기억하자.
+    
+<br>
+<br>
+
+#### Lemma
+If $X_1,X_2,\ldots,$ and $X_1^*,X_2^*\ldots$ are sequensces of random variables with identical finite dimensional distributions, i.e., with
+$$
+(X_1,\ldots,X_n)\sim (X_1^*,\ldots,X_n^*)\mbox{ }\mbox{ }\mbox{ }\forall \mbox{ }n\ge 1,
+$$
+then $X_n$ converges a.s. $\iff$ $X_n^*$ converges a.s.   
+
+<br>
+
+   * 두 random variable $X_n$과 $X_n^*$가 identical finite dimemsional distribution을 갖는다면, 하나가 수렴하면 다른 하나도 수렴한다.
+
+<br>
+<br>
+
+#### Lemma
+For **independent, uniformly bounded** random variables $X_n,n\ge 1$, 
+
+if $\sum_{n=1}^\infty X_n$ converges a.s., then $\sum_{n=1}^\infty E(X_n)$ converges.
+    
+   * 증명 : 우선, $\{X_n,n\ge 1\}$과 독립이고 identical한 distribution을 갖는 r.v. $\{Y_n,n\ge 1\}$이 있다고 하자 $(Y_n\sim X_n, n\ge 1)$.
+   
+     또한 $Z_n=X_n-Y_n,n\ge 1$이라 하자. 그렇다면 $Z_1,Z_2,\ldots$들은 각각 독립이고 모든 $Z_n$은 symmetrically distributed되어있다, i.e.,
+   $$
+   -Z_n\sim Z_n, \mbox{ }\mbox{ }\mbox{ }\mbox{ }n\ge 1.
+   $$
+     또한, $c>0$에 대해 $|X_n|<c$ for all $n\ge 1$이라면,
+   $$
+   |Z_n|=|X_n-Y_n|\le|X_n|+|Y_n|\le 2c\mbox{ }\mbox{ }\mbox{ a.s.}\mbox{ }\forall\mbox{ }n\ge1. 
+   $$
+   ($Z_n$은 uniformly bounded되어있다)
+   
+     그리고 $\{X_n\}$, $\{Y_n\}$이 same finite identical distribution을 갖고 있기 때문에, $\{S_{X,n}= \sum_{i=1}^nX_n\}$, $\{S_{Y,n}=\sum_{i=1}^nY_n\}$도 같은 distribution을 갖는다. 그러므로 바로 위의 lemma에 의해  
+   $$
+   \sum_{i=1}^nX_n\mbox{ converges a.s. } \implies    \sum_{i=1}^nY_n\mbox{ converges a.s. } \\
+   \implies\sum_{i=1}^nZ_n=   \sum_{i=1}^nX_n-   \sum_{i=1}^nY_n\mbox{ }\mbox{ }\mbox{ converges a.s. }
+   $$
+   또한 $E(Z_n)=0$, and $|Z_n|\le 2c$ 이기 때문에 직전의 Corollary에 의하여(independent, mean 0, uniformly bounded)
+   $$
+   \sum_n \text{Var}(Z_n)<\infty \implies 2\sum_n \text{Var}(X_n)<\infty.
+   $$
+   때문에 Kolmogorov's Convergence Criterion에 의해
+   $$
+   \sum_{n=1}^\infty [X_n-E(X_n)] \mbox{ converges a.s.}
+   $$
+    ($\{X_n-E(X_n),n\ge 1\}$ 은 independent, mean 0 ranndom variable이고 variance $\text{Var}(X_n)$을 갖는다.) Finally,
+   $$
+   \begin{cases} \sum_{n=1}^\infty X_n \mbox{ converges a.s.}\\ \sum_{n=1}^\infty [X_n-E(X_n)] \mbox{ converges a.s.} \end{cases}\implies \sum_{n=1}^\infty E(X_n)\mbox{ converges.}
+   $$
+   
+<br>
+<br>
+<br>
+<br>
+
+#### 정리
+
+1. Kolmogorov's 수렴정리 : $\{X_n\}$들이 독립이고 평균이 0인 변수일 때 $\sum_{n=1}^\infty \text{Var}(X_n)<\infty$라면 
+
+   * ① $\sum_{n=1}^\infty X_n$ converges a.s이다(저세상 끝의 변수는 variance가 0$\implies$a.s. 수렴이라고 생각할 수 있다).
+
+   * ② $L^2$ 수렴한다 (Sum of variance가 finite하기 때문에 당연한 결과일수도 있다). 
+   
+   * ③ $E(\sum_{n=1}^\infty X_n)=0$ and $\text{Var}(\sum_{n=1}^\infty X_n)=  \sum_{n=1}^\infty  \text{Var}(X_n)$.
+
+<br>
+
+
+2. Levy's 이론 : $\{X_n\}$들이 독립일 때 a.s.수렴과 확률수렴은 동치이다(매우 자주 쓰인다).
+       
+   * $S_n \rightarrow S_\infty$ a.s. $\iff S_n\stackrel{\text{Pr}}\rightarrow S_\infty$
+
+<br>
+
+
+3. $\{X_n\}$ 독립, 평균 0, uniformly bounded : $\sum_{n=1}^\infty X_n$ converges a.s.$\iff$ $\sum_{n=1}^\infty\text{Var}(X_n)<\infty.$  
+ 
+   * 원래 Kolmogorov's 수렴정리에 따르면 $\Longleftarrow$만 성립했지만, uniformly bounded조건이 추가되면 동치가 된다. 
+
+<br>
+
+
+4. $\{X_n\}$ 독립, uniformly bounded :  $\sum_{n=1}^\infty X_n$ converges a.s.$\implies\sum_{n=1}^\infty E(X_n)$ converges.
+
+
+<br>
+<br>
+
+
+[back](../probability1.html)   

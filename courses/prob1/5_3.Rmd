@@ -1,0 +1,39 @@
+---
+title: "5.3. Glivenko-Cantelli Theorem"
+output: html_document
+---
+
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Theorem (Glivenko-Cantelli Theorem)
+Let $X_1,X_2,\ldots$ be **i.i.d(finite-valued)** r.vs with common distribution function $F$, and let $F_n$ be the empirical distribution function based on $X_1,\ldots, X_n$, i.e.,
+$$
+F_{n,\omega}(x)=\frac{1}{n}\sum_{k=1}^nI_{\{X_k\le x\}}(\omega), \mbox{ }\mbox{ }\mbox{ }-\infty<x<\infty,\mbox{ } \omega\in \Omega.
+$$
+Then,
+$$
+\sup_{-\infty<x<\infty}|F_n(x)-F(x)|\rightarrow 0 \mbox{ }\mbox{ }\mbox{ a.s.,}
+$$
+i.e., for almost all $\omega$, $F_{n,\omega}$ converges uniformly to $F$ as $n\rightarrow \infty$.
+
+<br>
+  
+  * 즉 $X_1,X_2\ldots$으로 만들어진 empirical distribution은 변수의 개수 $n$이 무한대로 감에 따라 유니폼하게 true distribution으로 수렴한다.
+
+
+<br>
+<br>
+
+
+[back](../probability1.html)   

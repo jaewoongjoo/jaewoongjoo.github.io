@@ -1,0 +1,122 @@
+---
+title: "7.4. Levy Continuity Theorem"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+Levy continuity theorem을 위해 필요
+
+#### Lemma
+If $\mu$ is a probability measure with characteristic function $\phi$, then for any $u>0$,
+$$
+\frac{1}{u}\int^u_{-u}[1-\phi(t)]dt\ge \mu(\{x:|x|\ge 2/u\}).
+$$
+
+   * 증명은 생략 (Fubini를 이용해 증명한다.)
+
+
+<br>
+<br>
+
+중요하다
+
+#### Theorem (Levy Continuity Theorem)
+Let $\mu_n,n\ge 1$ be probability measures with characterisric functions $\phi_n$. Then,
+
+1. $\mu_n\leadsto \mu\iff \phi_n(t)\rightarrow \phi(t)$ for all $t\in \mathbb{R}$ where $\phi(t)$ is char.func of $\mu$.
+
+2. $\phi_n(t)\rightarrow g(t)$ for all $t\in \mathbb{R}$ and $g$ is continuous at $t=0\implies g$ is the characterisric function of $\mu$, and $\mu_n\leadsto \mu$. 
+
+
+<br>
+
+   * 1번 증명$(\implies)$:  $\mu_n\leadsto \mu$라 하자. cos과 sin은 또한 continuous and bounded function이다. 그러므로, general definition of weak convergence에 의해
+   $$
+   \mu_n\leadsto \mu \iff \int g\mbox{ }d\mu_n\rightarrow \int g\mbox{ }d\mu \mbox{ }\mbox{ }\mbox{ }\forall\mbox{ }g\in C_b(\mathbb{R}). 
+   $$
+   때문에
+
+   $$
+   \phi_n(t)=\int e^{itx}\mbox{ }d\mu_n = \int \cos(tx)\mbox{ }d\mu_n + i \int \sin(tx)\mbox{ }d\mu_n \longrightarrow \int \cos(tx)\mbox{ }d\mu + i \int \sin(tx)\mbox{ }d\mu=\phi(t).
+   $$
+<br>
+
+   * 2번 증명: $t=0$에서 연속인 $g$에 대해, $\phi_n(t)\rightarrow g(t)$라 하자. 
+     또한 $|1-\phi_n(t)|\le 2$이기 때문에, 바로 위의 lemma와 bounded convergence theorem에 의해  
+     $$
+     0\le \mu_n(\{x:|x|\ge 2/u\})\le \frac{1}{u}\int_{-u}^u[1-\phi_n(t)]dt\rightarrow \frac{1}{u}\int_{-u}^u[1-g(t)]dt\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty. 
+     $$
+    그리고 $g(t)$는 $t=0$에서 연속이기 때문에 $g(0)=\lim_n \phi_n(0)=1$이다. 그렇기 때문에
+    $$
+     \frac{1}{u}\int_{-u}^u[1-g(t)]dt\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }\mbox{ }u\downarrow 0. 
+    $$
+    그렇기 때문에 given $\epsilon>0$, $\frac{1}{u}\int_{-u}^u[1-g(t)]dt<\frac{\epsilon}{2}$를 만족시키는 매우 작은 $u>0$가 존재한다. 또한 $n\ge N$에 대해 $\frac{1}{u}\int_{-u}^u[1-\phi_n(t)]dt<\epsilon$를 만족시키는 $N>0$이 존재한다. 그러므로 매우 작은 $u>0$와 $n\ge N$에 대해 
+    $$
+    \mu_n(\{x:|x|\ge 2/u\})\le \frac{1}{u}\int_{-u}^u[1-\phi_n(t)]dt \le \frac{1}{u}\int_{-u}^u[1-g(t)]dt+\frac{\epsilon}{2}< \epsilon. 
+    $$
+    여기서 $\mathcal{M}=2/u$라고 하자. 그렇다면 위 식은 $\mu_n(\{x:|x|\ge \mathcal{M}\})< \epsilon$ for all $n\ge N$이 된다.  
+    또한 finite collection of probability measures는 tight하기 때문에, 모든 $\mathcal{M}$에 대해 위 식이 성립하도록 $\mathcal{M}$을 매우 크게 잡는다면 $\{\mu_n,n\ge 1\}$은 tight하다. 
+    
+      Prohorov에 따라 $\{\mu_n,n\ge 1\}$이 tight하면, $\mu_{n_k}\leadsto \mu$인 subsequence of measure $\{\mu_{n_k}\}$가 존재한다.
+   그렇다면  1번 증명$(\implies)$에 의해 아래를 만족한다
+   $$
+   \phi_{n_k}(t)\longrightarrow \phi(t)\mbox{ }\mbox{ }\mbox{ }\forall \mbox{ }t\in \mathbb{R}.
+   $$
+    또한 주어진 가정에 의해 다음을 얻는다
+    $$
+    \phi_{n_k}(t)\longrightarrow g(t)\mbox{ }\mbox{ }\mbox{ }\forall \mbox{ }t\in \mathbb{R}.
+    $$
+    때문에 $\phi(t)=g(t)$이고, $g$는 $\mu$의 특성함수이다.
+    하지만 만약 어떠한 다른 subsequence에 $\{\mu_{n_k'},k'\ge 1\}$대해 $\mu_{n_k'}\leadsto \nu$라면, 위와 똑같은 방식으로 $\phi_\nu=g$를 얻을 수 있다. 하지만 probability measure on $(\mathbb{R},\mathcal{R})$은 characteristic function에 의해 unique하게 determine되므로 $\nu=\mu$이다. 때문에 모든 subsequence가 동일한 measure로 weakly converge하고, Prohorov Theorem에 의해 $\mu_n\leadsto \mu$이다.
+  
+<br>    
+    
+  * 1번 증명$(\Longleftarrow)$: Basic properties of characteristic function (Chapter 7.2)에 의해 $\phi$는 uniformly continuous function(continuous at 0)이다. 때문에 2번 조건에 의해서 $\mu_n\leadsto \mu$이다. 
+
+<br>
+<br>
+
+매우 중요하고 자주 출제되는 내용이다.
+
+#### Corollary
+Suppose that $g(t)=\lim_{n\rightarrow \infty}\phi_n(t)$ exists for each $t\in \mathbb{R}$, and that $\{\mu_n,n\ge 1\}$ is tight. Then there exists a prob measure $\mu$ s.t. $\mu_n\leadsto \mu$ and $\mu$ has characteristic function $g$.
+
+<br>
+
+   * $\{\mu_n,n\ge 1\}$이 tight하기 때문에 Prohorov에 의해 $\exists$ $\{\mu_{n_k},k\ge 1\}$ s.t. $\mu_{n_k}\leadsto \mu$ for a prob measure $\mu$. 그렇다면 $\phi$를 $\mu$의 characteristic function이라고 한다면 general definition of weak convergence에 의해 
+   $$
+   \phi_{n_k}(t)\rightarrow \phi(t) \mbox{ } \mbox{ } \mbox{ }\forall  \mbox{ }t\in \mathbb{R}
+   $$
+   이고, 하지만 주어진 가정에 의해
+   $$
+   \phi_{n_k}(t)\rightarrow g(t) \mbox{ } \mbox{ } \mbox{ }\forall  \mbox{ }t\in \mathbb{R}
+   $$
+   이다. 때문에 $\phi(t)=g(t)$ for all $t$이다.
+   또한 만약 $\exists$ $\mu_{n_k'}\leadsto\nu$인 sequence of measures $\{\mu_{n_k'},k'\ge 1\}$가 존재한다고 하자. 그렇다면
+   $\phi_\nu=g$이고, measure는 characteristic function에 의해 unique하게 결정되므로, $\nu=\mu$이다. 때문에 모든 subsequence가 동일한 measure $\mu$로 converge하기 때문에, Prohorov에 의해해 $\mu_n\leadsto \mu$이다.
+   
+   
+<br>
+
+   * Tightness가 주어졌기 때문에 0에서 연속인 조건은 필요없다. 
+   
+   * 매우 중요한 technique이니 꼭 숙달하자.
+
+<br>
+<br>
+
+
+
+[back](../probability1.html)   

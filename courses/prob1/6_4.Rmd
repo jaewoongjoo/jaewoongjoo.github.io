@@ -1,0 +1,99 @@
+---
+title: "6.4. Convergence of Moments"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+이 파트는 Uniform integrability와 많이 연결된다.
+
+<br>
+<br>
+
+#### Theorem
+$X_n\leadsto X\implies E[|X|]\le \liminf_n E[|X_n|].$
+
+<br>
+
+   * 증명 : Skorohod에 의해, $\exists$ $Y_n\sim X_n$, $Y\sim X$ s.t. $Y_n\rightarrow Y$ a.s. $\implies$ $|Y_n|\rightarrow|Y|$ a.s. Then,
+   $$
+   E[|X|]=E[|Y|]=E[\lim_n|Y_n|]\le \liminf_nE[|Y_n|]=\liminf_nE[|X_n|].
+   $$
+   
+
+<br>
+<br>
+
+중요(Skorohod + u.i + u.i criterion)
+
+#### Theorem
+If $X_n\leadsto X$ and $\{X_n,n\ge 1\}$ is **uniformly integrable**, then $X$ is integrable and $E[X_n]\rightarrow E[X]$.
+
+<br>
+
+   * 증명
+
+1.  $X_n\leadsto X$이기 때문에 Skorohod에 의해, $\exists$ $Y_n\sim X_n$, $Y\sim X$ s.t. $Y_n\rightarrow Y$ a.s.이다.
+   
+2.  uniformly integrability는 marginal distribution의 특징이기 때문에 $\{Y_n\}$도 u.i.이다.
+   
+3.  u.i.의 대체정의에 의해 $\{Y_n\}$이 u.i라면 $\{Y_n\}\in L^1$(integrable)이다. 
+
+   * 즉  $\{Y_n\}\in L^1$ and $Y_n\rightarrow Y\implies Y_n\stackrel{\text{Pr}}\rightarrow Y$이고 이미 $\{Y_n\}$이 u.i이기 때문에, Uniform Integrability Criterion$(p=1)$에 의해
+
+1. $Y_n\stackrel{L^1}\rightarrow Y$
+
+2. $E[|Y_n|]\rightarrow E[|Y|]$; 
+
+3. $E[Y_n]\rightarrow E[Y]$
+
+
+  * Thus, $E[X_n]=E[Y_n]\rightarrow E[Y]=E[X]$.
+
+<br>
+<br>
+
+#### Corollary
+If $X_n\leadsto X$ and if $\sup_{n\ge 1}E\left[|X_n|^{k+\epsilon}\right]<\infty$ for some integer $k\ge 1$, and some $\epsilon>0$, then $X^k$ is integrable and $E[X_n^k]\rightarrow E[X^k]$.
+
+<br>
+
+   1. 크리스탈 볼에 의해 $\{X_n^k\}$ is u.i.이다. 
+   
+   2. 위 Theorem과 똑같이 $Y_n\rightarrow Y$ a.s.인 $Y_n\sim X_n^k$, $Y\sim X^k$가 존재 $\implies Y_n\stackrel{\text{Pr}}\rightarrow Y$.
+   
+   3. $\{X_n^k\}$가 u.i.이므로 $\{Y_n\}$도 u.i.
+   
+   * 즉 $\{Y_n\}\in L^1$(integrable, since u.i.) and $Y_n\stackrel{\text{Pr}}\rightarrow Y$이고 $\{Y_n\}$은 u.i이기 때문에
+   
+   1. $Y_n\stackrel{L^1}\rightarrow Y\implies Y\in L^1$;
+   
+   2. $E(|Y_n|)\rightarrow E(|Y|)$;
+   
+   3. $E(Y_n)\rightarrow E(Y)$
+
+   * 그러므로 3번 조건에 의해  $E(X_n^k)\rightarrow E(X^k)$이다.
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+[back](../probability1.html)   

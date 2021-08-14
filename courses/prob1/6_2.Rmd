@@ -1,0 +1,203 @@
+---
+title: "6.2. Tightness"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+Prohorov의 증명에서 사용된다.
+
+#### Theorem (Portmanteau Theorem)
+For probability measures $\mu_n,n\ge 1$ and $\mu$ on $(\mathbb{R},\mathcal{R})$, the following are equivalent:
+
+1. $\mu_n\leadsto \mu$;
+ 
+2. $\liminf_n \mu_n(B)\ge \mu(B)$ for all open $B\in \mathbb{R}$;
+
+3. $\limsup_n \mu_n(C)\le \mu(C)$ for all closed $C\in \mathbb{R}$;
+
+4. $\lim_n \mu_n(A)=\mu(A)$ for all $\mu$-continuity sets, i.e., for all $A\in \mathcal{R}$ with $\mu(\partial A)=0$.
+
+
+<br>
+<br>
+
+#### Theorem (Helly's selection theorem)
+For any sequence of distribution functions $\{F_n, n\ge 1\}$, there exists a subsequence, $\{F_{n_k},k\ge 1\}$, and a *subdistribution* function $F$ (nondecreasing, right-continuous, $0\le F(x)\le 1$ for all $x\in \mathbb{R}$) such that
+$$
+F_{n_k}(x)\rightarrow F(x)\mbox{ }\mbox{ }\mbox{ for all }x\in C_F.
+$$
+ 
+   * 이전에 sequence $f_n$의 subsequence $f_{n_k}$ 내용과 비슷하다(subdistribution function $F$인 것만 제외하고). 
+
+
+   * Proper distribution이 아니라 subdistribution이라서 $\leadsto$를 쓰지 않는다.
+   
+<br>
+
+   * Note: $F_n$이 probability distribution이라 $[0.1]$에 bounded 되어있다 때문에 converge하는 subsequence $F_{n_k}$가 반드시 존재한다. 수렴하는 distribution을 $F$라고 하자. 그렇다면 $0\le F(x) \le 1$ for all $x$(subdistribution)이고 이는 nondecreasing and right-continuous이다(Exercise). 
+
+<br>
+<br>
+
+매우 중요하고 자주 쓰인다.
+
+#### Definition (Tightness)
+A sequence of probability measures $\{\mu_n, n\ge 1\}$ on $(\mathbb{R},\mathcal{R})$ is **tight** if for every $\epsilon>0$, there exists $\mathcal{M}=\mathcal{M}_\epsilon>0$ s.t. 
+$$
+\mu_n([-\mathcal{M}, \mathcal{M}])>1-\epsilon\mbox{ }\mbox{ for all }n\ge 1.
+$$
+<br>
+
+   <!-- * "꼬리부분은 0이다"의 또다른 내용이다. -->
+
+   * Tightness는 $\mu_n([-\mathcal{M}, \mathcal{M}])\rightarrow 1$ uniformly as $n\rightarrow \infty$를 의미한다. 즉
+
+   $$
+   \inf_{n\ge 1}\mu_n([-\mathcal{M},\mathcal{M}])\rightarrow 1\mbox{ }\mbox{ as }\mathcal{M}\rightarrow \infty\\
+   \iff \sup_{n\ge 1}\mu_n([-\mathcal{M},\mathcal{M}]^c)\rightarrow 0\mbox{ }\mbox{ as }\mathcal{M}\rightarrow \infty.
+   $$
+
+<br>
+<br>
+
+#### Proposition
+A finite collection of probability measures on $(\mathbb{R},\mathcal{R})$ is tight.
+
+<br>
+<br>
+
+아주 중요하다
+
+#### Theorem (Prohorov's theorem)
+A sequence of probability measures $\{\mu_n,n\ge 1\}$ is tight 
+
+$\iff$ for every subsequence $\{\mu_{n_k},k\ge 1\}$, $\exists$ a further subsequence $\{\mu_{n_{kj}},j\ge 1\}$ and a probability measure $\mu$ s.t.  $\mu_{n_{kj}}\leadsto \mu$.
+
+<br>
+
+
+   * $(\implies)$: $\{\mu_n\}$이 tight하다고 하자.
+   
+      $F_n$을 $\mu_n$에 상응하는 확률분포라고 하자. 그렇다면 Helly's selection theorem에 의해 for any subsequence $F_{n_k},k\ge 1$에 대해 $F_{n_{kj}}\rightarrow F$인 sub-subsequence $F_{n_{kj}}$가 존재한다.
+      
+      또한 $\epsilon>0$에 대해 만약 $\{\mu_n\}$이 tight하다면, $F_n(a)<\epsilon$, $F_n(b)>1-\epsilon$을 만족하는 $a,b\in \mathbb{R}$이 존재한다.
+      
+      Continuity point in $\mathbb{R}$은 dense하기 때문에 $a,b\in \mathbb{R}$를 continuity points of $F$로 choose한다면
+  $$
+   F(x)\le F(a)=\lim_{j\rightarrow \infty} F_{n_{kj}}(a)\le \epsilon \mbox{ }\mbox{ }\mbox{ }\forall\mbox{ }x\le a,\\
+   F(x)\ge F(b)=\lim_{j\rightarrow \infty} F_{n_{kj}}(b)\ge 1-\epsilon \mbox{ }\mbox{ }\mbox{ }\forall\mbox{ }x\ge b.\\
+  $$
+  
+       또한 $\epsilon>0$은 arbitrary하기 때문에, $\lim_{x\rightarrow -\infty}F(x)= 0$ $\lim_{x\rightarrow \infty}F(x)= 1$을 얻는다. 때문에 $F$는 proper distribution이다.
+       
+       즉, $F_{n_{kj}}\leadsto F$이고, $\mu_{n_{kj}}\leadsto \mu$이다. 
+
+<br>       
+       
+  * $(\Longleftarrow):$ $\mu_{n_{kj}}\leadsto \mu$라 하자$(\mu$는 probability measure$)$.
+  
+
+      Claim: $\{\mu_n\}$이 tight하지 않다고 하자. 
+   
+     그렇다면 for some $\epsilon>0$과 for all $\mathcal{M}>0$에 대해 $\mu_n([-\mathcal{M},\mathcal{M}])\le 1-\epsilon$ for infinitely many $n\ge 1$이다. 때문에 $\exists$ $n_k, k\ge 1$ s.t. 
+   $$
+   \mu_{n_k}([-k,k])\le 1-\epsilon.
+   $$
+   
+     가정에 의해 $\mu_{n_{kj}}\leadsto \mu$하고$(\mu$는 probability measure$)$, finite collection of probability measure는 tight하기 때문에, $\mu((-a,a))>1-\epsilon$이다. 때문에 portmanteau theorem (2번째 조건)에 의해
+  $$
+  \liminf_{j\rightarrow \infty}\mu_{n_{kj}}((-a,a))\ge \mu((-a,a))>1-\epsilon. 
+  $$
+     하지만
+   $$
+   \mu_{n_{kj}}((-a,a))\le \mu_{n_{kj}}([-k_j,k_j])\le 1-\epsilon\mbox{ }\mbox{ }\mbox{ }\forall \mbox{ }k_j\ge a \implies \limsup_{j\rightarrow \infty}\mu_{n_{kj}}((-a,a))\le 1-\epsilon\mbox{ }\mbox{ }\mbox{ (contradiction).}
+   $$
+   
+     $\therefore\{\mu_n\}$은 tight하다.
+
+<br>
+<br>
+
+
+#### Corollary
+the sequence of measures $\{\mu_n,n\ge 1\}$ converges weakly $\implies$ it is tight.
+
+
+<br>
+
+  * $\{\mu_n,n\ge 1\}$ converges weakly $\implies$ $\exists$ $\mu_{n_{kj}}\leadsto \mu$.
+   
+  * Prohorov에서의 $\Longleftarrow$를 의미한다.
+ 
+<br>
+<br>
+
+
+   
+#### Corollary
+If $\{\mu_n,n\ge 1\}$ is tight, and if each weakly convergent subsequence converges to the same probability measure, then $\mu_n\leadsto \mu$.
+
+<br>
+
+   * 증명: Prohorov에 의해 $\{\mu_n,n\ge 1\}$ is tight $\iff$ $\exists$ $\mu_{n_{kj}}$ converges weakly.
+   
+   
+     주어진 가정에 의해 $\mu_{n_{kj}}\leadsto \mu$.
+     
+     즉, general definition of weak convergence에 의해
+     $$
+          \mu_{n_{kj}}\leadsto \mu \iff \int g\mbox{ }d\mu_{n_{kj}}\rightarrow \int g\mbox{ }d\mu \mbox{ }\mbox{ }\forall\mbox{ }g\in C_b(\mathbb{R}).
+     $$
+     여기서 $a_{n_{kj}}:=\int g\mbox{ }d\mu_{n_{kj}}$, $a:=\int g\mbox{ }d\mu$라고 하자. 
+     
+     이는 sequence $a_n:=\int g\mbox{ }d\mu_{n}$에 대해 for any subsequence $a_{n_k}$, $a_{n_{kj}}\leadsto a$를 만족하는 sub-subsequence $a_{n_{kj}}:=\int g\mbox{ }d\mu_{n_{kj}}$를 갖는다는 말과 같다. 이는 convergence of series의 이론에 의해
+    $a_n\rightarrow a$를 보여주고, 결국
+    $$
+    \int g\mbox{ }d\mu_{n}=a_n\rightarrow a=\int g\mbox{ }d\mu \implies \mu_{n}\leadsto \mu.
+    $$
+<br>
+<br>     
+<br>
+
+#### 정리
+
+
+1. Helly : $\{F_n, n\ge 1\}$ 중 $F_{n_k}(x)\rightarrow F(x)$를 만족하는 subsequence $F_{n_k}$가 존재한다 $(F$는 subdistribution$)$.
+
+<br>
+
+ 
+2. Tightness : $\{\mu_n,n\ge1\}$이 모든 $n$에 대해 $\mu_n([-\mathcal{M}, \mathcal{M}])>1-\epsilon$을 만족한다.
+
+<br>
+
+
+3. Prohorov : $\{\mu_n\}$ is tight $\iff$ for any $\mu_{n_k}$, $\exists$ $\mu_{n_{kj}}\leadsto \mu$.
+
+<br>
+
+4. 유한개의 probability measure는 tight.
+
+<br>
+
+5. $\mu_n\leadsto \mu\implies\{\mu_n\}$ is tight $($Prohorov에서의 $\Longleftarrow)$.
+
+<br>
+
+6. $\{\mu_n\}$ is tight, each subsequence converges to the same measure$\implies\mu_n\leadsto \mu($Prohorov에서의 $\implies)$
+
+<br>
+<br>
+
+[back](../probability1.html)   

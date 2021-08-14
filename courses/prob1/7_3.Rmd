@@ -1,0 +1,46 @@
+---
+title: "7.3. Fourier Inversion Theorem"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+매우 중요하다
+
+#### Theorem (Fourier Inversion Theorem)
+Suppose that $\mu$ is a probability measure with probability distribution function $F$ and characteristic function $\phi$.
+If 
+$$
+\int_{-\infty}^\infty |\phi(t)|dt<\infty
+$$
+then $\mu$ has a bounded, uniformly continuous density given by
+$$
+f(x)=F'(x)=\frac{1}{2\pi}\int_{-\infty}^\infty e^{-itx}\phi(t)dt.
+$$
+
+   * 즉 Characteristic function을 알고 있다면, distribution function을 구할 수 있다.   
+
+<br>
+<br>
+
+#### Example
+Standard normal distribution의 characteristic function은 $\phi(t)=e^{-t^2/2}$이다. 당연히 이는 integrable function이다. $(\because \int_{-\infty}^\infty e^{-t^2/2}dt= \sqrt{2\pi}<\infty)$.
+때문에,
+$$
+f(x)=\frac{1}{2\pi}\int_{-\infty}^\infty e^{-itx}e^{-\frac{t^2}{2}}dt= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{i(-x)t}\frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}dt= \frac{1}{\sqrt{2\pi}}E(e^{-ixT})=\frac{1}{\sqrt{2\pi}}\phi(-x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}.
+$$
+
+<br>
+<br>
+
+[back](../probability1.html)   

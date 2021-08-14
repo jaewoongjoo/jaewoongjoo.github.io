@@ -1,0 +1,119 @@
+---
+title: "7.1. Integrals of Complex-Valued Functions"
+output: html_document
+---
+
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Remark
+Let $\mathbb{C}$ represent the field of complex numbers. If $z=x+iy\in \mathbb{C}$, where $x,y\in \mathbb{R}$, then $x=\text{Real}(z)$ and $y=\text{Image}(z)$ are called the real and imaginary parts of $z$, and $|z|=\sqrt{x^2+y^2}$ and $\bar z=x-iy$ are called the modulus and the complex conjucate of $z$, respectively. 
+
+Recall that in its polar representation, $z$ is written in the form
+$$
+z=|z|e^{i\theta}=|z|(\cos \theta+ i\sin \theta),
+$$
+and the angle $\theta=\arg z$, measured in radians, is called the argument of $z$. Of course, $\theta$ is determined by the equations $\cos \theta=x/|z|$ and $\sin \theta=y/|z|$.
+
+<br>
+
+   * Note: $\theta$가 angle일 때 
+  
+   $$
+   \begin{cases}x=\text{Real}(z)&\implies x=|z|\cos \theta,\\ y=\text{Image}(z) &\implies y=|z| \sin \theta. \end{cases}\implies z=x+iy= |z|(\cos\theta+i\sin\theta).
+   $$ 
+   
+   ![ ](http://www.physics-in-a-nutshell.com/img/content/mathematical-methods/complex-plane-polar-rectangular.svg)
+
+<br>
+
+  * 여기서 절대값 $|z|$는, $xy$-plane에서 원점으로부터 좌표 $z$에서의 길이를 나타낸다. 때문에 complex axis를 포함한 공간 $\mathbb{C}$라 할지라도 $|z|\in\mathbb{R}$이다.
+  
+  * 공식유도: 테일러전개 at $\theta=0$ 에 의해
+  $$\begin{eqnarray*}
+  \sin(\theta)&=& \sin(0)+ \theta\sin'(0)+\frac{\theta^2}{2!}\sin''(0)+\cdots\\
+  &=& \theta-\frac{\theta^3}{3!}+\frac{\theta^5}{5!}\cdots=\sum_{k=0}^\infty(-1)^{k}\frac{\theta^{2k+1}}{(2k+1)!},\\
+  \cos(\theta)&=& \cos(0)+ \theta\cos'(0)+\frac{\theta^2}{2!}\cos''(0)+\cdots\\
+  &=& 1-\frac{\theta^2}{2!}+\frac{\theta^4}{4!}\cdots=\sum_{k=1}^\infty(-1)^{k+1}\frac{\theta^{2k}}{(2k)!} \\
+  \end{eqnarray*}$$
+  때문에
+  $$\begin{eqnarray*}
+  e^{i\theta}&=& \sum_{k=0}^\infty \frac{(i\theta)^k}{k!}=1+i\theta+\frac{i^2\theta^2}{2!}+\frac{i^3\theta^3}{3!}+\cdots\\
+  &=& \left(1-\frac{\theta^2}{2!}+\frac{\theta^4}{4!}-\cdots\right) +i\left(\theta-\frac{\theta^3}{3!}+\frac{\theta^5}{5!}-\cdots\right)\\
+  &=&\cos\theta+i\sin\theta
+  \end{eqnarray*}$$
+  그러므로,
+  $$
+  z=|z|e^{i\theta}=|z|(\cos\theta+i\sin\theta).
+  $$
+
+<br>
+
+   * 중요 : $e^{-i\theta}$는 위 그림에서 반지름이 1인 좌표평면 상의 단위원의 한 점(각도 $\theta$)이므로, $|e^{-i\theta}|=1$이다. 
+
+<br>
+<br>
+
+#### Remark
+For a measure space $(\Omega,\mathcal{F},\mu)$, and a function $f:\Omega\rightarrow \mathbb{C}$, with $f=g+ih$, where $g,h:\Omega\rightarrow \mathbb{R}$, the function $f$ is (Borel) measurable if and only if both its real and imagenary parts $g$ and $h$ are measurable, and we define
+$$
+  \int f \mbox{ }d\mu=  \int g \mbox{ }d\mu+i  \int h \mbox{ }d\mu,
+$$
+as long as both integrals on the right hand side exists. Similarly we say that $f$ is **integrable** if
+
+$$
+\int |f|\mbox{ }d\mu<\infty,
+$$
+and since $|f|=(g^2+h^2)^{1/2}\le |g|+|h|$ while both $|g|\le |f|$ and $|h|\le |f|$, we see that $f$ is integrable if and only if both its real and imaginary parts are integrable.
+
+<br>
+
+   * 즉 $f$는 real part와 imaginary part가 모두 integrable할 때 integrable하다.
+
+   
+<br>
+<br>
+매우 중요하다.
+
+#### Remark (Modulus Inequality)
+If $f$ is integrable w.r.t $\mu$, then for any $\theta\in \mathbb{R}$, we have
+$$
+\left|\int f\mbox{ }d\mu\right|\le \int|f|\mbox{ }d\mu.
+$$
+
+<br>
+
+  * 증명: Note
+  $$\begin{eqnarray*}
+  \left|\text{Re}\left\{e^{-i\theta}\cdot \int f\mbox{ }d\mu\right\}\right|&=&  \left|\text{Re}\left\{\int e^{-i\theta}\cdot f\mbox{ }d\mu\right\}\right|\\
+  &=& \left|\int \text{Re}\left\{e^{-i\theta}\cdot f\right\}\mbox{ }d\mu\right|\\
+  &\le&\int \left|\text{Re}\left\{e^{-i\theta}\cdot f\right\}\right|\mbox{ }d\mu\\
+  &\le&\int \left|e^{-i\theta}\cdot f\right|\mbox{ }d\mu= \int |e^{-i\theta}|\cdot |f|\mbox{ }d\mu=\int|f|\mbox{ }d\mu.
+  \end{eqnarray*}$$
+   With $\theta=\arg\left\{\int f\mbox{ }d\mu \right\}$, we have
+   $$
+   e^{-i\theta}\int f\mbox{ }d\mu= e^{-i\theta} \cdot \left|\int f\mbox{ }d\mu\right|e^{i\theta}=\left|\int f\mbox{ }d\mu\right|\in \mathbb{R}.
+   $$
+
+   * 즉, $e^{-i\theta}\int f\mbox{ }d\mu$는 원래 real value이다.
+   
+     Thus, we have
+    $$
+    \left|\int f\mbox{ }d\mu\right|\le \int|f|\mbox{ }d\mu.
+    $$
+
+
+<br>
+<br>
+
+[back](../probability1.html)   

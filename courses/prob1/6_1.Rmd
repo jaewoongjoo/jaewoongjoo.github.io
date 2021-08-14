@@ -1,0 +1,177 @@
+---
+title: "6.1. Weak Convergence of Probability Distributions"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Definition (Weak Convergence)
+A sequence of distribution functions $\{F_n, n\ge 1\}$ **converges weakly** to a distribution function $F$ if 
+$$
+F_n(x)\rightarrow F(x)
+$$
+for all continuity point $x$ of $F$ $($written $F_x \leadsto F)$. 
+
+<br>
+
+If $\mu_n$ and $\mu$ are probability measures on $(\mathbb{R},\mathcal{R})$, with distribution functions $F_n$ and $F$, respectively, then $\mu_n$ *converges weakly* to $\mu$ if $F_n\leadsto F$ $($written $\mu_n\leadsto\mu)$. 
+
+<br>
+
+Finally suppose $X_n$ and $X$ are r.vs with distribution functions $F_n$ and $F$, respectively. If $F_n \leadsto F$, then we say
+$X_n$ **converges in distribution** to $X($written $X_n\leadsto X)$.
+
+<br>
+<br>
+
+#### Proposition
+If $F_n\leadsto F$ and $F_n\leadsto G$, then $F=G$.
+
+
+<br>
+<br>
+
+#### Proposition
+$X_n\leadsto X\nRightarrow X_n\stackrel{\text{Pr}}\rightarrow X$.
+
+<br>
+
+   * 예제 : 변수 $X$가 $P(X=0)=P(X=1)=\frac{1}{2}$라고 하자. 또한 $X_n=1-X,n\ge1$이라고 하자. 그렇다면 $X_n\sim X$ for all $n\ge 1$이고 때문에 당연히 $X_n\leadsto X$이다. 하지만 $|X_n-X|=|1-2X|=1$ w.p.1 for all $n\ge 1$이다. 때문에 $P(|X_n-X|\ge1)=1\nrightarrow 0$이므로 $X_n\stackrel{\text{Pr}}\nrightarrow X$이다.
+
+
+<br>
+<br>
+
+#### Theorem
+If $X_n\leadsto c$ for some real constant $c$, then $X_n\stackrel{\text{Pr}}\nrightarrow c$.
+
+  * 일반적으로 분포수렴은 확률수렴을 imply하지 않지만 분포가 상수로 수렴할때는 imply한다.
+  
+<br>
+<br>
+
+매우 중요하다
+
+#### Theorem (Skorohod Representation Theorem)
+Suppose that $\mu_n,n\ge 1$ and $\mu$ are probability measures on $(\mathbb{R},\mathcal{R})$ with $\mu_n\leadsto \mu$. 
+
+Then, there exists a probability space $(\Omega, \mathcal{F},P)$ and random variables $Y_n,n\ge 1$ and $Y$, defined on $(\Omega, \mathcal{F},P)$ such that $Y_n$ has distribution $\mu_n$ for all $n\ge 1$, $Y$ has distribution $\mu$, and $Y_n\rightarrow Y$ a.s.
+
+<br>
+
+   * 정리하자면 만약 $\mu_n\leadsto \mu$인 두 measure $\mu_n$, $\mu$가 존재한다면 $\mu_n$을 measure로 갖는 변수 $Y_n$, $\mu$를 measure로 갖는 $Y$가 존재하고 $Y_n\rightarrow Y$ a.s. 이다. 
+
+   * 매우 자주 쓰이므로 반드시 기억해야 한다. 
+   
+<br>
+<br>
+
+매우 중요하다.
+
+#### Theorem (General Definition of Weak Convergence)
+Let $C_b(\mathbb{R})$ denote the space of **bounded, continuous** real-valued functions on $\mathbb{R}$.
+
+For real-valued random variables $X_n,n\ge 1$, and $X$,
+$$
+X_n\leadsto X \iff E[g(X_n)]\rightarrow E[g(X)]\mbox{ }\mbox{ }\mbox{ }\forall\mbox{ }g \in C_b(\mathbb{R}).
+$$
+Equivalently, 
+$$
+\mu_n\leadsto \mu \iff \int g \mbox{ }d\mu_n\rightarrow \int g \mbox{ }d\mu \mbox{ }\mbox{ }\mbox{ }\forall\mbox{ }g \in C_b(\mathbb{R}).
+$$
+For probability distribution functions on $(\mathbb{R},\mathcal{R})$, and for distribution functions,
+$$
+F_n\leadsto F \iff\int g \mbox{ }dF_n\rightarrow \int g \mbox{ }dF \mbox{ }\mbox{ }\mbox{ }\forall\mbox{ }g \in C_b(\mathbb{R}).
+$$
+
+<br>
+
+   * Bounded convergence theorem: $\mu$가 finite measure이고 $f_n\rightarrow f$ a.e이고, 또한 $f_n$이 uniformly bounded일 때
+     $\int f_n\mbox{ }d\mu\rightarrow \int f\mbox{ }d\mu$.
+     
+   * 이 Theorem에서 $\mu$는 probability measure이기 때문에 finite measure이고, $g(Y_n),n\ge 1$과 $g(Y)$은 uniformly bounded이다. 
+
+<br>
+
+   * $(\implies)$: $X_n\leadsto X$ 라고 하자$(\mu_n\leadsto \mu).$ 그렇다면 Skorohod Theorem에 의해 변수 $Y_n,n\ge 1$, $Y_n\sim X_n$과  $Y$, $Y\sim X$가 존재하고 $Y_n\rightarrow Y$ a.s.를 만족한다. 또한 $g \in C_b(\mathbb{R})$에 대해  $g(Y_n)\sim g(X_n)$이고 $g(Y)\sim g(X)$이고, $g$가 연속이기 때문에 $g(Y_n)\rightarrow g(Y)$ a.s.이다. 때문에, bounded convergence Theorem에 의해 $E[g(X_n)]\rightarrow E[g(X)]$이다.
+   
+   
+   * $(\Longleftarrow)$: Exercise.
+   
+   
+#### Corollary 
+$X_n\stackrel{\text{Pr}}\rightarrow X\implies X_n\leadsto X$.
+
+<br> 
+
+   * 그동안 흔하게 알고 있던 내용이고 역은 일반적으로 성립하지 않는다. 
+   
+   * 증명 : 만약 $X_n\stackrel{\text{Pr}}\rightarrow X$라면 $g(X_n)\stackrel{\text{Pr}}\rightarrow g(X)$ for $g\in C_b(\mathbb{R})$이다. 때문에 D.C.T(또는 bounded convergence theorem)에 의해
+   $$
+   E(g(X_n))\rightarrow E(g(X)),
+   $$
+   이고, General Definition of weak Convergence에 의해 $X_n\leadsto X$이다. 
+   
+
+<br>
+<br>
+
+매우 중요하다.
+
+#### Theorem (Continuous Mapping Theorem for Convergence in Distribution)
+If $X_n\leadsto X$ and if $g:\mathbb{R}\rightarrow \mathbb{R}$ is Borel measurable with $P(X\in D_g)=0$, then $g(X_n)\leadsto g(X)$.
+
+<br>
+
+   * 확률수렴에서의 continuous mapping theorem과 분포수렴 빼고는 다 똑같다.
+   
+   * 증명 : Skorohod Theorem에 의해 $Y_n\sim X_n$, $Y\sim X$, $Y_n(\omega)\rightarrow Y(\omega)$ a.s인 $Y_n, Y$가 존재한다. 그렇다면 Borel measurable function $g$에 대해 
+   $$
+   g(Y_n(\omega))\rightarrow Y(\omega) \mbox{ for all }$\omega$ \mbox{ s.t. } Y(\omega)\notin D_g
+   $$
+   이다. 하지만 주어진 가정에 의해 $P(Y\in D_g)=P(X\in D_g)=0$이다. 이는 $g(Y_n(\omega))\stackrel{\text{Pr}}\rightarrow Y(\omega)$을 imply하고 또한 이는 $g(Y_n(\omega))\leadsto Y(\omega)$하고 이는 $g(X_n(\omega))\leadsto X(\omega)$를 의미한다. 
+
+
+   * Weak Convergence의 정의에 보면 $F_n(x)\rightarrow F(x)$ for all continuity point of $x$ of $F$이다. 때문에 $Y(\omega)\notin D_g$에 대해서만 짚으면 된다. 
+
+<br>
+<br>
+
+포트만투 theorem을 위한 정의
+
+#### Definition (interior and closure of a set)
+
+
+<br>
+<br>
+<br>
+
+
+#### 정리
+
+1. 분포수렴: 만약 true distribution $F$의 **모든 연속점** $x$들에 대해 $F_n(x)\rightarrow F(x)$라면 $F_n\leadsto F$이다.
+
+2. $F_n\leadsto F$ and $F_n\leadsto G\implies F=G$.
+
+3. 확률수렴 $\implies$ 분포수렴, But 분포수렴 $\nRightarrow$ 확률수렴(상수로 수렴한다면 동치).
+
+4. Skorohod: $X_n\leadsto X$라면 $Y_n\sim X_n$, $Y\sim X$, $Y_n\rightarrow Y$ a.s. 인 $Y_n, Y$가 존재한다. 
+
+5. 분포수렴의 일반정의 : $g$가 Bounded, continuous func이라 하면, $X_n\leadsto X \iff E[g(X_n)]\rightarrow E[g(X)]$(동치).
+
+6. C.M.T : $g$가 Borel measurable이고 continuous func이라면 $X_n\leadsto X \implies g(X_n)\leadsto g(X)$.
+
+<br>
+<br>
+
+[back](../probability1.html)   

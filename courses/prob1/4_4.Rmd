@@ -1,0 +1,77 @@
+---
+title: "4.4. Borel-Cantelli Lemma"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+복습
+
+#### Lemma (Borel-Cantelli: convergence half)
+Let $A_n,n\ge 1$ be a sequence of events in a probability space $(\Omega, \mathcal{F},P)$. 
+
+If $\sum_{n=1}P(A_n)<\infty$, then $P(A_n \mbox{ }\mbox{ i.o}(n))=0$.
+
+
+<br>
+<br>
+
+매우 중요하다
+
+#### Lemma (Borel-Cantelli: divergence half)
+Let $A_n,n\ge 1$ be a sequence of **independent** events. 
+
+If $\sum_{n=1}P(A_n)=\infty$, then $P(A_n \mbox{ }\mbox{ i.o}(n))=1$.
+
+   * 증명 : $P(A_n \mbox{ }\mbox{ i.o}(n))=1$를 보이려면 $P(A_n^c \mbox{ }\mbox{ i.o}(n))=0$을 보이면 된다. 
+   
+     Recall
+   $$
+   (\limsup_nA_n)^c=\liminf_n A_n^c= \cup_{n=1}^{\infty} \cap_{k=n}^\infty A_n^c.
+   $$
+   때문에 모든 $n$에 대해 $P(\cap_{k=n}^\infty A_n^c)$을 보이면 된다. 
+   
+     $A_n$들이 independent하기 때문에 $A_1^c,A_2^c \ldots$들도 independent하다 (독립의 정의에 의해 귀납법으로 보일 수 있다). 때문에
+   $$\begin{eqnarray*}
+   P\left(\bigcap_{k=n}^{n+j}A_k^c \right)&=&\prod_{k=n}^{n+j}P(A_k^c)=\prod_{k=n}^{n+j}\left[1-P(A_k)\right]\\
+   &\le& \prod_{k=n}^{n+j} e^{-P(A_k)} \mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }(1-x\le e^{-x} \mbox{ }\mbox{ }\forall x\in \mathbb{R})\\
+   &=&\exp\left\{-\sum_{k=n}^{n+j} P(A_k) \right\}\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }j\rightarrow \infty.
+   \end{eqnarray*}$$
+   But,
+   $$
+   \bigcap_{k=n}^{n+j}A_k^c \downarrow \bigcap_{k=n}^{\infty}A_k^c\mbox{ }\mbox{ }\mbox{ as }j\rightarrow \infty, 
+   $$
+    so
+    $$
+    P\left(\bigcap_{k=n}^{\infty}A_k^c\right)= \lim_{j\rightarrow\infty}P\left(\bigcap_{k=n}^{\infty}A_k^c\right)=0.
+    $$
+<br>
+<br>
+
+####  Corollary(Borel's Zero-One Law)
+Let $A_n,n\ge 1$ be independent events. Then, if
+$$
+\sum_{n=1}^{\infty}P(A_n)<\infty  \mbox{ } \mbox{ } \mbox{ }\mbox{ or }   \sum_{n=1}^{\infty}P(A_n)=\infty,
+$$
+then,
+$$
+P(A_n\mbox{ }\mbox{ i.o}(n))= 0 \mbox{ }\mbox{ or }\mbox{ }1, \mbox{ }\mbox{ respectively}. 
+$$
+
+   * 그냥 Borel-Cantelli Lemma 두가지를 섞어놓은 것이다.
+   
+<br>
+<br>
+
+
+[back](../probability1.html)   

@@ -1,0 +1,244 @@
+---
+title: "5.4. Weak Laws of Large Numbers"
+output: html_document
+---
+
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+$L^2$조건과 little "o" variance 조건 
+
+#### Theorem(ChebyShev Weak Law of Large Numbers)
+Let $S_n=\sum_{i=1}^n X_i, n\ge 1$, where $X_1,X_2,\ldots$ are $L^2$ random variables **(not necessarily i.i.d)**. If $b_n,n\ge 1$, are positive constants satisfying $\text{Var}(S_n)=o(b_n^2)$, then
+$$
+\frac{S_n-E(S_n)}{b_n}\stackrel{L^2}\rightarrow 0 \mbox{ }\mbox{ }\mbox{ and consequently }\mbox{ }\mbox{ }\frac{S_n-E(S_n)}{b_n}\stackrel{\text{Pr}}\rightarrow 0.
+$$
+<br>
+
+   * **i.i.d**조건은 필요없고 $L^2$조건과 $\text{Var}(S_n)=o(b_n^2)$조건만 필요하다. 증명은 아래와 같다.
+   
+$$
+   E\left[\left(\frac{S_n-E(S_n)}{b_n}-0\right)^2\right]= \frac{\text{Var}(S_n)}{b_n^2}\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty\\
+   \implies \frac{S_n-E(S_n)}{b_n}\stackrel{L^2}\rightarrow 0.
+$$
+
+<br>
+<br>
+<br>
+
+uncorrelated, $L^2$, uniformly bounded variance 조건
+
+#### Corollary ($L^2$ Weak Law)
+Let $X_1,X_2,\ldots$ are **uncorrelated $L^2$** random variables, with $E(X_n)=\mu$, and $\text{Var}(X_n)\le C<\infty$ for all $n\ge 1$. Then
+$$
+\frac{S_n}{n}\stackrel{L^2}\rightarrow \mu \mbox{ }\mbox{ }\mbox{ and consequently }\mbox{ }\mbox{ }\frac{S_n}{n}\stackrel{\text{Pr}}\rightarrow \mu.
+$$
+
+   * 증명 : 우선 uncorrelated이기 때문에 $\text{Var}(S_n)=\sum_{i=1}^n \text{Var}(X_i)\le nC=o(n^2)$이다. 때문에 이전 체비셰프 WLLN에 의해 (with $b_n=n$)
+
+   $$
+   \frac{S_n-E(S_n)}{n}\stackrel{L^2}\rightarrow 0\implies \frac{S_n}{n}\stackrel{L^2}\rightarrow \mu\implies \frac{S_n}{n}\stackrel{\text{Pr}}\rightarrow \mu.
+   $$
+<br>
+<br>
+<br>
+
+#### Theorem (Chevyshev WLLN for Random Arrays)
+Suppose $X_{n,i}$, $1\le i\le m_n, n\ge 1$, are $L^2$ random variables(defined on the samme probability space), and let $S_n=\sum_{i=1}^{m_n}X_{n,i}$, $n \ge 1$. If for some sequence of positive constants $(b_n)$,
+$$
+\frac{\text{Var}(S_n)}{b_n^2}\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty,
+$$
+then
+$$
+\frac{S_n-E(S_n)}{b_n}\stackrel{L^2}\rightarrow 0\mbox{ }\mbox{ }\mbox{ and consequently}\mbox{ }\mbox{ }\frac{S_n-E(S_n)}{b_n}\stackrel{\text{Pr}}\rightarrow 0.
+$$
+
+<br>
+
+   * $X_{n,i}$, $1\le i\le m_n, n\ge 1$에서 $n$이 row index(예: subject)이고 $i$가 column index(예: 반복 측정)이다.  
+
+<br>
+<br>
+<br>   
+   
+#### 예제(쿠폰뽑기)
+우리가 $n$개의 각기 다른 쿠폰을 복원추출한다고 하자. 그리고, $S_{n,m}$을 총 $n$개 쿠폰 중 $m$개의 각기 다른 쿠폰을 뽑을 때 까지의 추출 횟수라고 하자$($즉, $0\le m\le n)$. 그렇다면
+
+$$
+X_{n,i}=S_{n,i}-S_{n,i-1}\sim \text{Geometric}\left(p=\frac{n-(i-1)}{n}=1-\frac{i-1}{n}\right), \mbox{ }\mbox{ }\mbox{ }1\le i\le n,
+$$
+i.e., $n$개 중에 $i$번째로 distinct한 쿠폰을 뽑기위한 추출횟수는 $(i)$번째 득 하기까지의 추출횟수$- (i-1)$번째까지의 추출횟수이고 이는 기하분포를 따른다.
+
+성공확률 $p\in(0,1]$인 기하분포의 평균은 $\frac{1}{p}$, 분산은 $\frac{(1-p)}{p^2}\le \frac{1}{p^2}$임을 기억하자.
+
+그렇다면 우리가 complete set $n$개를 전부 뽑는 데 걸린 추출 횟수는
+$$
+S_n=\sum_{i=1}^n X_{n,i}
+$$
+이다. 때문에
+$$
+E(S_n)=\sum_{i=1}^nE(X_{n,i})=\sum_{i=1}^n\frac{n}{n-(i-1)}=n\sum_{m=1}^n m^{-1}\implies \frac{E(X_n)}{n}=\sum_{m=1}^n m^{-1},
+$$
+이고
+$$
+\text{Var}(S_n)=\sum_{i=1}^n\text{Var}(X_{n,i})\le \sum_{i=1}^n\left(\frac{n}{n-(i-1)}\right)^2=n^2\sum_{m=1}^n m^{-2}\le n^2\sum_{m=1}^\infty m^{-2}.
+$$
+이다. 
+
+   * 참고: $(X_n,i$들이 uncorrelated(독립) 되어있고, $\text{Var}(X_{n,i})=\sum_{m=1}^{\infty}m^{-2}<\infty$이므로 $L^2$ Weak Law의 조건이다.$)$
+
+   * 참고: $\log n\le \sum_{m=1}^nm^{-1}\le 1+\log n\implies 1 \le \frac{\sum_{m=1}^nm^{-1}}{\log n}\le \frac{1}{\log n}+1$임을 기억하자. 이로 인해
+    $$
+    \frac{E(S_n)}{n\log n}= \frac{\sum_{m=1}^n m^{-1}}{\log n}\rightarrow 1 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+    $$
+    
+또한 바로 위의 theorem에서 $m_n=n$으로 잡고 $b_n=n\log n$으로 잡으면
+$$
+\frac{\text{Var}(S_n)}{b_n^2}\le \frac{n^2\sum_{m=1}^\infty m^{-2}}{(n\log n)^2}= \frac{\sum_{m=1}^\infty m^{-2}}{(\log n)^2}\rightarrow 0 \mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty, 
+$$
+때문에 체비셰프 WLLN에 의해
+$$
+\frac{S_n-E(S_n)}{b_n}=\frac{S_n-n\sum_{m=1}^n m^{-1}}{n \log n}\stackrel{\text{Pr}}\rightarrow 0.
+$$
+결국
+$$
+\frac{S_n}{n\log n}= \frac{S_n-n\sum_{m=1}^n m^{-1}}{n \log n}+ \frac{n\sum_{m=1}^n m^{-1}}{n \log n}\stackrel{\text{Pr}}\rightarrow 0+1=1.
+$$
+예를 들어 $n=500$이면, complete set을 갖기 위한 예상 추출 회수를 $500\log 500\approx 3107$정도로 예측할 수 있다.
+
+<br>
+<br>
+<br>
+
+독립
+
+#### Theorem (A Weak Law for Triangular Arrays)
+For each $n\ge 1$, suppose that $X_{n,i},1\le i\le m_n$ are **independent** random variables, and let $S_n=\sum_{i=1}^{m_n} X_{n,i}$. Suppose further that $0<b_n\rightarrow \infty$ and define
+$$
+X_{n,i}^*=X_{n,i} I_{\{|X_{n,i}|\le b_n\}},\mbox{ }\mbox{ }\mbox{ and }\mbox{ }\mbox{ } a_n=\sum_{i=1}^{m_n}E(X_{n,i}^*),\mbox{ }\mbox{ }n\ge 1.
+$$
+If both
+
+1. $\sum_{i=1}^{m_n}P(|X_{n,i}|>b_n)\rightarrow 0$ as $n\rightarrow \infty$, and
+
+2. $\frac{1}{b_n^2}\sum_{i=1}^{m_n}E({X_{n,i}^*}^2)\rightarrow 0$ as $n\rightarrow \infty$,
+
+then
+$$
+\frac{S_n-a_n}{b_n}\stackrel{\text{Pr}}{\rightarrow}0\mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+$$
+
+<br>
+
+   * 증명: 우선 $S_n^*=\sum_{i=1}^{m_n}X_{n,i}^*$라고 하자. 그렇다면 $\epsilon>0$에 대해
+   $$\begin{eqnarray*}
+   P\left(\left| \frac{S_n-a_n}{b_n}\right|>\epsilon\right)&=& P\left(\left\{\left| \frac{S_n-a_n}{b_n}\right|>\epsilon\right\}\cap \{S_n\ne S_n^*\}\right)+ P\left(\left\{\left| \frac{S_n-a_n}{b_n}\right|>\epsilon\right\}\cap \{S_n= S_n^*\}\right)\\
+   &\le&P(S_n\ne S_n^*)+ P\left(\left\{\left| \frac{S_n^*-a_n}{b_n}\right|>\epsilon\right\}\right) .
+   \end{eqnarray*}$$
+         하지만 주어진 1번 조건에 의해
+          $$
+   P(S_n \ne S_n^*)\le P\left(\bigcup_{i=1}^{m_n}\{X_{n,i}\ne X_{n,i}^*\}\right) \le \sum_{i=1}^{m_n}P\left(X_{n,i}\ne X_{n,i}^*\right)=\sum_{i=1}^{m_n}P(|X_{n,i}|>b_n)\rightarrow 0 \mbox{ }\mbox{ as }n\rightarrow \infty.
+          $$
+         또한 $a_n=E[S_n^*]$이기 때문에 체비셰프 부등식(또는 마코프 부등식)에 의해
+          $$\begin{eqnarray*}
+   P\left(\left| \frac{S_n^*-a_n}{b_n}\right|>\epsilon\right)&=&   P\left(\left| \frac{S_n^*-E(S_n^*)}{b_n}\right|>\epsilon\right)\\
+   &=&P\left(\left| S_n^*-E(S_n^*)\right|>\epsilon b_n\right)\\
+   &\le& \frac{\text{Var}(S_n^*)}{\epsilon^2b_n^2}\le   \frac{1}{\epsilon^2b_n^2}\sum_{i=1}^{m_n}\text{Var}(X_n^*)\le\frac{1}{\epsilon^2b_n^2}\sum_{i=1}^{m_n}E({X_n^*}^2)\rightarrow 0\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+           \end{eqnarray*}$$
+            그러므로
+     $$\begin{eqnarray*}
+   P\left(\left| \frac{S_n-a_n}{b_n}\right|>\epsilon\right)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow\infty.\end{eqnarray*}$$
+ 
+
+
+<br>
+<br>
+<br>
+
+i.i.d조건(보통은 Weak Law에서는 i.i.d 조건이 없는데 Feller의 WLLN에는 존재한다)
+
+#### Theorem (Feller's Weak Law of Large Numbers)
+Let $X_1,X_2,\ldots$ be **i.i.d** random variables with
+$$
+nP(|X_1|>n)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+$$
+Let $\mu_n=E(X_1 I_{\{|X_1|\le n\}})$. Then,
+$$
+\frac{S_n}{n}-\mu_n \stackrel{\text{Pr}}\rightarrow 0.
+$$
+<br>
+
+  * 증명 : 증명의 목적은 Weak Law for triangular array의 조건 2가지를 성립하는지 점검하는 것이다.
+  
+     우선 $m_n=n$, $X_{n,i}=X_i$(즉 row가 하나이고 반복이 n개인 array)이고 $b_n=n$이라고 가정하자. 그렇다면 $\sum_{i=1}^{m_n}P(|X_{n,i}|>b_n)=\sum_{i=1}^{n}P(|X_{i}|>n)=nP(|X_1|>n)\rightarrow 0$에 의해 Weak Law for triangular array의 첫번째 조건이 성립한다.
+  
+     두번째 조건이 성립하는지 확인하기 위해 $\frac{1}{n^2}\sum_{i=1}^{n}E({X_{n}^*}^2)\rightarrow 0$ where $X_{n}^*=X_nI_{\{|X_n|\le n\}}$를 증명해야 한다,
+     
+     i.e., $\frac{1}{n^2}\sum_{i=1}^{n}E({X_n}^2I_{\{|X_n|\le n\}})\rightarrow 0\implies \frac{1}{n}E({X_1}^2I_{\{|X_1|\le n\}})\rightarrow 0$을 보여야 한다.
+   
+  * 참고: $Y\ge 0,p>0$ 에 대해 $E(Y^p)=\int_{0}^\infty py^{p-1}P(Y>y)dy(Y^p=\int_0^y px^{p-1}dx$과 Fubini를 이용$)$.
+  
+     때문에 $p=2$, $Y=|X_n|I_{\{|X_n|\le n\}}$으로 놓는다면
+     $$
+  E({X_1}^2I_{\{|X_1|\le n\}})=\int_{0}^\infty 2y\mbox{ }P(|X_1|I_{\{|X_1|\le n\}}>y)\mbox{ }dy\le\int_{0}^n 2y\mbox{ }P(|X_1|I_{\{|X_1|\le n\}}>y)\mbox{ }dy\le \int_{0}^n 2y\mbox{ }P(|X_1|>y)\mbox{ }dy.
+     $$
+      이고 결국 $\frac{1}{n}\int_{0}^n y\mbox{ }P(|X_n|>y)\mbox{ }dy\rightarrow 0$임을 보이면 된다.
+      여기서, $g(y)=yP(|X_1|>y)$라고 하자. 그렇다면 주어진 가정에 의해 $g(y)\rightarrow 0$ as $y\rightarrow \infty$이다. 때문에 given $\epsilon$, $\exists$ $N_\epsilon$ s.e. $g(y)<\epsilon$ for $y> N_\epsilon$. Then, for $n> N$,
+        $$
+   \frac{1}{n}\int_0^n g(y)\mbox{ }dy=    \frac{1}{n}\int_0^N g(y)\mbox{ }dy+\frac{1}{n}\int_N^{n} g(y)\mbox{ }dy \le\frac{N^2}{n}+ \frac{(n-N)\epsilon}{n}\rightarrow \epsilon\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+        $$
+        때문에 2번째 조건도 성립하므로 $\frac{S_n}{n}-\mu_n \stackrel{\text{Pr}}\rightarrow 0$이다.
+
+
+
+
+<br>
+<br>
+<br>
+
+##### 정리
+
+1. 체비셰프 WLLN : $\{X_n\}$이 $L^2$이고 $\text{Var}(S_n)=o(b_n^2)$일 때 
+$$
+\frac{S_n-E(S_n)}{b_n}\stackrel{\text{Pr}}\rightarrow 0.
+$$
+
+<br>
+
+2. $L^2$ WLLN: $\{X_n\}$들이 독립(uncorrelated)이고 variance가 uniformly bounded되어있을 때
+$$
+\frac{S_n}{n}\stackrel{\text{Pr}}\rightarrow \mu.
+$$
+<br>
+
+3. WLLN for Triangular Arrays:  $\{X_{n,i}\}$들이 독립이고 $X_{n,i}^*=X_{n,i}I_{\{|X_{n,i}|\le b_n\}}$라 하자.
+
+   * $\sum_{i=1}^{m_n}P(|X_{n,i}|>b_n)\rightarrow 0$이고
+   
+   * $\frac{1}{b_n^2}\sum_{i=1}^{m_n}E({X_{n,i}^*}^2)\rightarrow 0$일 때
+   
+   $$\frac{S_n-E(X_n^*)}{b_n}\stackrel{\text{Pr}}{\rightarrow}0$$
+
+<br>
+
+4. Feller WLLN: $\{X_n\}$들이 i.i.d이고 $nP(|X_1|>n)\rightarrow 0$라 하자. 또한 $\mu_n=E(X_1 I_{\{|X_1|\le n\}})$라 하면
+
+$$
+\frac{S_n}{n}-\mu_n \stackrel{\text{Pr}}\rightarrow 0.
+$$
+
+<br>
+<br>
+<br>
+
+[back](../probability1.html)   
