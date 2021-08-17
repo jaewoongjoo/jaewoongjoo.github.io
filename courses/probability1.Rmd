@@ -126,10 +126,6 @@ output: html_document
 
 [9.2. Properties of Conditional Expectation](./prob1/9_2.html)
 
-[9.3. Conditional Expectations as Projections](./prob1/9_3.html)
-
-
-
 <br>
 <br>
 
