@@ -1,0 +1,254 @@
+---
+title: "9.2. Properties of Conditional Expectation"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+Recall
+
+#### Definition(Conditional Expectation)
+
+Let $X$ be an **integrable random variable** on a probability space $(\Omega, \mathcal{F},P)$ and let $\mathcal{G}$ be a $\sigma$-filed with $\mathcal{G}\subset \mathcal{F}$. Then, the **conditional expectation of** $X$ given $\mathcal{G}$, denoted $E(X|\mathcal{G})$ is defined to be that random variable, unique up to almost sure equality, satsfying two conditions:
+
+1. $E(X|\mathcal{G})$ is $\mathcal{G}$-measurable, and
+
+2. $\int_A E(X|\mathcal{G})=\int_A X dP$ for all $A\in \mathcal{G}$.
+
+Any random variable $Y$ satisfying 1,2 is said to be a version of $E(X|\mathcal{G})$.
+
+<br>
+<br>
+
+#### Proposition (Basic Properties of Conditional Expectation)
+
+1. $E[E(X|\mathcal{G})]=E(X)$.
+
+   * 조건부 기대값 정의의 2번째에 $A=\Omega$를 대입하면 다음과 같다:
+  $$
+  \int_\Omega E(X|\mathcal{G})\mbox{ }dP=\int_\Omega X\mbox{ }dP=E[X].
+  $$
+  
+2. If $X$ is $\mathcal{G}$-measurable, then $E(X|\mathcal{G})=X$.
+
+   * 정의에 따르면 $E(X|\mathcal{G})$는 $\mathcal{G}$-measurable하고 $\int_\Omega E(X|\mathcal{G})\mbox{ }dP=\int_\Omega X\mbox{ }dP$일 때 conditional expectation이라 한다. 만약 $X$가 $\mathcal{G}$-measurable이라면 두 조건을 모두 충족한다.
+
+<br>  
+
+3. If $X$ is independent of $\mathcal{G}$ (i.e., $\sigma(X)$ and $\mathcal{G}$ are independent), then $E(X|\mathcal{G})=E(X)$(version).   
+
+   * $E(X)$는 상수이기 때문에 당연히 $\mathcal{G}$-measurable하고 때문에 조건부 기대값의 정의 2번째 조건을 만족하는지만 보면 된다. Note that
+   
+   * $\mathcal{G}$와 $\sigma(X)$는 독립이기 때문에 $I_A,A\in \mathcal{G}$와 $X$도 독립이다. 따라서
+   $$
+   \int_A X\mbox{ }dP=\int X IA\mbox{ }dP= E(X)E(I_A)=E(X)P(A)=E(X)\int_A dP= \int_A E(X) \mbox{ }dP.
+   $$
+   즉 $E(X)=E(X|\mathcal{G})$, $E(X)$는 version of $E(X|\mathcal{G})$이다.
+
+<br>
+
+4. For any constant $a\in\mathbb{R}$, $E(a|\mathcal{G})=a$.
+
+   * $a$는 당연히 $\mathcal{G}$-measurable하다. 2번째 정의는 trivial하게 만족한다. 
+
+<br>
+
+5. (Linearity) For constant $a,b\in \mathbb{R}$, $E(aX+bY|\mathcal{G})= aE(X|\mathcal{G})+bE(Y|\mathcal{G})$.
+
+
+   * 조건부 기댓값의 정의에 따르면 $E(X|\mathcal{G}),E(Y|\mathcal{G})$ 둘 다 $\mathcal{G}$ measurable이다. 때문에 linear combination of $\mathcal{G}$-measurable fucntion은 $\mathcal{G}$-measurable이므로 조건 1번째를 충족한다.
+   
+   * for $A\in\mathcal{G}$, $\int_A E(aX+bY|\mathcal{G})\mbox{ }dP=\int_A aE(X|\mathcal{G})+bE(Y|\mathcal{G})\mbox{ }dP$임을 보이면 된다. Note that
+   $$
+    \int_A aE(X|\mathcal{G})+bE(Y|\mathcal{G})\mbox{ }dP= \int_A aE(X|\mathcal{G})dP+ \int_A bE(Y|\mathcal{G})dP\stackrel{\text{Def}}{=} \int_A aX\mbox{ }dP+  \int_A bY\mbox{ }dP\\ = \int_A aX+bY \mbox{ }dP\stackrel{\text{Def}}= \int_A E(aX+bY|\mathcal{G})\mbox{ }dP\\
+    \implies \int_A aE(X|\mathcal{G})+bE(Y|\mathcal{G})=\int_A aX+bY \mbox{ }dP = \int_A E(aX+bY|\mathcal{G})\mbox{ }dP
+   $$
+   즉 $aE(X|\mathcal{G})+bE(Y|\mathcal{G})=E(aX+bY|\mathcal{G})$ $(aE(X|\mathcal{G})+bE(Y|\mathcal{G})$는 version of $E(aX+bY|\mathcal{G}$이다$)$.
+   
+<br>
+
+6. If $X\ge 0$ a.s., then $E(X|\mathcal{G})\ge 0$. 
+
+   * 정의 2번째 조건에 따르면, $\int_A E(X|\mathcal{G})\mbox{ }dP=\int_A X\mbox{ }dP\ge 0$ for all $A\in \mathcal{G}$이다. $E(X|\mathcal{G})$가 $\mathcal{G}$-measurable하기 때문에, $A=\{\omega: E(X|\mathcal{G})<0\}$로 잡을 수 있다. 그렇다면 
+   $$
+    0\stackrel{\text{monotone}}\le\int_A X\mbox{ } dP \stackrel{\text{Def}}{=}\int_A E(X|\mathcal{G})\mbox{ }dP<0\mbox{ (contradiction)}.
+   $$
+   즉 $A=\phi$이므로 $E(X|\mathcal{G})\ge 0$ a.s.이다. 
+
+<br>
+
+7. (Monotonicity) If $X\le Y$, then $E(X|\mathcal{G})\le E(Y|\mathcal{G})$.
+
+   * $X\le Y\implies Y-X\ge 0$이다. 때문에 5번 property에서 $a=-1,b=1$로 잡는다면
+   
+   $$
+   E(Y|\mathcal{G})-E(X|\mathcal{G})\mbox{ }dP\stackrel{\text{by 5}}{=}  E(Y-X|\mathcal{G}) \stackrel{\text{by 6}}\ge 0\\
+   \implies E(Y|\mathcal{G})\mbox{ }\ge  E(X|\mathcal{G})\mbox{ }.
+   $$
+<br>
+
+8. Modulus inequality: $\Big|E(X|\mathcal{G})\Big|\le E(|X|\mbox{ } |\mathcal{G})$.
+
+   * $-X\le |X|\stackrel{\text{monotone}}\implies -E(X|\mathcal{G})=E(-X|\mathcal{G})\le E(X|\mathcal{G})$이다. 또한
+   
+   * $X\le |X|\implies {\text{monotone}}\implies E(X|\mathcal{G})\le E(X|\mathcal{G})$이다.
+   
+   * 종합하면 $|E(X|\mathcal{G})|=\max\{E(X|\mathcal{G}),-E(X|\mathcal{G})\}\le E(X|\mbox{ }\mathcal{G}))$이다.
+
+<br>
+<br>
+
+#### Remark
+
+지금부터는 기존 Limit and Integration 파트에서 적용되었던 Lemma들이 Conditional Expectation에도 다 적용된다. 
+
+  * 왜냐하면 정의에 의해 $\int_A E(X_n|\mathcal{G})\mbox{ }dP=\int_A X_n \mbox{ }dP$고 $X_n$은 $\mathcal{G}$-measurable고, 때문에 integral에서의 기본 properties가 전부 적용되기 때문이다.
+
+<br>
+<br>
+
+
+#### Theorem (Monotone Convergence Theorem for Conditional Expectation)
+If $0\ge X_n\uparrow X$, then $E(X_n|\mathcal{G})\uparrow E(X|\mathcal{G})$.
+
+<br>
+
+   * 기존 M.C.T에서 contidional on $\mathcal{G}$만 붙었고 다 똑같다.
+
+<br>
+<br>
+
+#### Theorem (Fatou's Lemma for Conditional Expectation)
+Assume that $X_n\ge 0,n\ge 1$ are integrable, and that $\liminf_n X_n$ is integrable. Then
+
+$E(\liminf_n X_n|\mathcal{G})\le \liminf_n E(X_n|\mathcal{G})$.
+
+
+<br>
+<br>
+
+#### Theorem (Dominated COnvergence Theorem for Conditional Expectation)
+If $X_n\rightarrow X$ a.s., $|X_n|\le Y$ for all $n\ge 1$, and $E(Y)<\infty$, then $E(X_n|\mathcal{G})\rightarrow E(X|\mathcal{G})$ a.s.
+
+<br>
+<br>
+
+중요하다
+
+#### Theorem
+If $\mathcal{G}_1\subset \mathcal{G}_2$, then 
+$$
+E[E(X|\mathcal{G}_1)|\mathcal{G_2}]= E(X|\mathcal{G}_1)=E[E(X|\mathcal{G}_2)|\mathcal{G}_1].
+$$
+
+<br>
+
+  * 증명 : 정의에 의해 $E(X|\mathcal{G}_1)$은 $\mathcal{G}_1$-measurable하면서 동시에 $\mathcal{G}_1\subset \mathcal{G}_2$이기 때문에 $\mathcal{G}_2$-measurable하다. 그렇다면 Basic properties의 2번째 성질 (2. If $X$ is $\mathcal{G}$-measurable, then $E(X|\mathcal{G})=X$)에 따라서 첫번째 등호는 성립한다. 
+  
+    2번째 등호를 보이기 위해 정의 2번째에서 $X$를 $\int_A E(X|\mathcal{G}_2)$로, $\mathcal{G}$를 $\mathcal{G}_1$으로 바꿔보자.     그렇다면 $A\in\mathcal{G}_1$에 대하여 ($A\in\mathcal{G}_1\implies A\in\mathcal{G}_2$)
+    $$
+    \int_A E(E(X|\mathcal{G}_2)|\mathcal{G}_1) \mbox{ }dP =\int_A E(X|\mathcal{G}_2)\mbox{ }dP
+    $$
+   이고 $A$는  $A\in\mathcal{G}_1$이면서 $A\in\mathcal{G}_2$이기 때문에
+   $$
+    \int_A E(X|\mathcal{G}_1)\mbox{ }dP= \int_A X \mbox{ }dP =    \int_A E(X|\mathcal{G}_2)\mbox{ }dP
+   $$
+   이다 .즉 $A\in \mathcal{G}_1$에 대해  
+   $$
+   \int_A E(E(X|\mathcal{G}_2)|\mathcal{G}_1) \mbox{ }dP =\int_A E(X|\mathcal{G}_1)\mbox{ }dP=\int_A X\mbox{ }dP
+   $$
+   이고 이는 $E(E(X|\mathcal{G}_2)\mathcal{G}_1)$은 version of $E(X|\mathcal{G}_1)$이다.
+
+
+<br>
+<br>
+
+#### Theorem
+If $X$ and $XY$ are integrable and $Y$ is $\mathcal{G}$-measurable, then $E(XY|\mathcal{G})=E(X|\mathcal{G})Y$
+
+<br>
+
+   * 1번 정의: $E(X|\mathcal{G})$와 $E(XY|\mathcal{G})$은 정의에 의해, $Y$는 가정에 의해 $\mathcal{G}$-measurable이다. 때문에 
+   $E(X|\mathcal{G})Y$는 $\mathcal{G}$-measurable function들의 곱이기 때문에 역시 $\mathcal{G}$-measurable하다.
+   
+   * 2번 정의: $E(XY|\mathcal{G})=E(X|\mathcal{G})Y$, i.e., $E(X|\mathcal{G})Y$가 $E(XY|\mathcal{G})$의 version인지를 보이려면
+   아래를 보여야 한다:
+   $$
+   \int_A E(XY|\mathcal{G}) \mbox{ }dP= \int_A XY \mbox{ }dP= \int_A E(X|\mathcal{G})Y \mbox{ }dP.
+   $$
+   우선 $Y$를 simple function으로, $Y=I_B$라 하자.
+   그렇다면 $A\in\mathcal{G}$에 대해
+   $$
+    \int_A E(X|\mathcal{G})Y \mbox{ }dP =     \int_{A\cap B}  E(X|\mathcal{G}) \mbox{ }dP=\int_{A\cap B} X \mbox{ }dP \mbox{ }\mbox{ }\mbox{ }\because A\cap B\in \mathcal{G}. 
+   $$
+   and $\int_{A\cap B} X \mbox{ }dP=\int_A XY\mbox{ }dP$이므로 $\int_A E(XY|\mathcal{G}) \mbox{ }dP= \int_A XY \mbox{ }dP= \int_A E(X|\mathcal{G})Y \mbox{ }dP$이다.
+   
+   다음으로 $Y=\sum_{i=1}^n b_iI_{B_i}$라고 하자. 그렇다면
+   $$
+   E\left(XY|\mathcal{G} \right)=   E\left(X\sum_{i=1}^nb_iI_{B_i} |\mathcal{G}\right)=\sum_{i=1}^nb_i E\left(XI_{B_i} |\mathcal{G}\right)= \sum_{i=1}^nb_iI_{B_i}E(X|\mathcal{G})=YE(X|\mathcal{G}).
+   $$
+   이제는 $X,Y\ge 0$ 이고 $Y_n,n\ge1$을 $\mathcal{G}$-measurable simple function으로, $0\le Y_n\uparrow Y$라 하자. 그렇다면 
+   $0\le XY_n\uparrow XY$이고, M.C.T of conditional expectation에 의해
+   $$
+   E(XY_n|\mathcal{G})\rightarrow E(XY|\mathcal{G}).
+   $$
+   또한 $Y_n$이 simple function이므로, $E(XY_n|\mathcal{G})=Y_nE(X|\mathcal{G})$이므로
+   $$
+   E(XY_n|\mathcal{G})=Y_nE(X|\mathcal{G})\rightarrow YE(X|\mathcal{G}).
+   $$
+   즉 $E(XY|\mathcal{G})=YE(X|\mathcal{G})$.
+
+<br>
+
+  * 정리하자면 $E(XY|\mathcal{G})$ 안에서 한 변수 $Y$가 $\mathcal{G}$-measurable하면 밖으로 나올 수 있다. 위의 Basic property에서 $E(X|\mathcal{G})=X$ when $X$ is $\mathcal{G}$-measurable였던 것을 기억하면 같은 원리라고 할 수 있다.
+    
+   
+<br>
+<br>
+
+복습
+
+#### Theorem
+Suppose that $X$ and $Y$ are independent random vectors with distribution $P_X$, $P_Y$. Let $g:\mathbb{R}^{k+m}\rightarrow \mathbb{R}$ be a Borel measurable function, and let $A\in\mathcal{R}^m$. If eather $g$ is nonnegative or g(X,Y) is integrable, then
+$$
+E[g(X,Y)I_A(Y)]=\int_A g(X,y)dP_Y(y).
+$$
+
+<br>
+<br>
+
+중요
+
+#### Theorem
+If $X$ and $Y$ are independent and $g(X,Y)$ is integrable, then $E[g(X,Y)|Y]=h(Y)$, where $h(Y)=E[g(X,y)]$(integrated w.r.t $X$).
+
+<br>
+
+   * 이 Theorem의 결론은 $Y$가 given되어 있으면, $X$에 대한 expectation이라는 것이다(Y는 변수가 아니다). 
+
+<br>
+
+   * 증명: 우선 $\mu$를 $X$의 distribution, $\nu$를 $Y$의 distribution이라고 하자. 그렇다면 $X,Y$는 joint distribution $\mu\times\nu$를 갖고 독립이기 때문에 이는 두 distribution의 곱과 같다.
+   
+   또한 Fubini's Theorem의 증명 파트에서 보았던 것처럼 $h(y)=\int E[g(X,y)]d\mu(x)$는 Borel measurable function이다.
+   
+   그러므로 바로 위의 Theorem에 의해서, for all Borel set $A$, 
+    $$
+    E[g(X,Y)I_A(Y)]=\int_AE[g(X,y)]d\nu(y)=\int_A h(y)d\nu(y)=E[h(Y)I_A(Y).
+    $$
+   
+   
+<br>
+<br>
+
+[back](../probability1.html)   

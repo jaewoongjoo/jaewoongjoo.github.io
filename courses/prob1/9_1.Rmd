@@ -1,0 +1,136 @@
+---
+title: "9.1. Conditional Expectation"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+
+#### Theorem
+If $X$ is an integrable random variable on $(\Omega, \mathcal{F}, P)$, and $\mathcal{G}$ is a sub-$\sigma$-field of $\mathcal{F}$, then there exists a $\mathcal{G}$-measurable random variable $Y$, **unique** up to almost sure equality, which satisfies
+$$
+\int_A Y dP = \int_A X dP \mbox{ }\mbox{ }\mbox{ for all }A\in \mathcal{G}.
+$$
+<br>
+
+   * 증명: 우선 $X\ge 0$이라 하자. 또한 $(\Omega, \mathcal{G})$에서의 finite measure $\nu$를 아래와 같이 정의하자:
+   $$
+   \nu(A)=\int_A X dP, \mbox{ }\mbox{ }\mbox{ }A\in \mathcal{G}.
+   $$
+   또한 만약 $P|_\mathcal{G}$를 measure restricted to $\mathcal{G}$라고 한다면 당연히 $\nu \ll P|_\mathcal{G}$이다, i.e., 즉, Radon Nikodym에 의해 $\nu$는 density $d \nu/d  P_\mathcal{G}$를 갖는다$\left(\nu(A)=\int_A\frac{d \nu}{d  P_\mathcal{G}}\mbox{ } dP_\mathcal{G}  \right)$. $Y$를 이 density로 잡으면 당연히 $Y$는 $\mathcal{G}$-measurable$(Y:\Omega\rightarrow \mathbb{R})$이고 그러므로,
+   $$
+   \int_A Y dP=\int_A Y dP|_\mathcal{G}= \nu(A)=\int_A X dP,\mbox{ }\mbox{ }\mbox{ }\mbox{ for all }A\in\mathcal{G}. 
+   $$
+   (General $Y$에 대한 증명은 생략)
+   
+<br>   
+    
+   * 결론은 sub-$\sigma$-field $\mathcal{G}\subset\mathcal{F}$가 존재할 때, $\mathcal{G}$안에서는 $\mathcal{F}$-measurable한 $X$와  $\mathcal{G}$-measurable한 $Y$가 $P$-a.e.한다는 것이다.
+    
+
+<br>
+<br>
+
+#### Definition(Conditional Expectation)
+Let $X$ be an **integrable random variable** on a probability space $(\Omega, \mathcal{F},P)$ and let $\mathcal{G}$ be a $\sigma$-filed with $\mathcal{G}\subset \mathcal{F}$. Then, the **conditional expectation of** $X$ given $\mathcal{G}$, denoted $E(X|\mathcal{G})$ is defined to be that random variable, unique up to almost sure equality, satsfying two conditions:
+
+1. $E(X|\mathcal{G})$ is $\mathcal{G}$-measurable, and
+
+2. $\int_A E(X|\mathcal{G})=\int_A X dP$ for all $A\in \mathcal{G}$.
+
+Any random variable $Y$ satisfying 1,2 is said to be a version of $E(X|\mathcal{G})$.
+
+<br>
+
+   * 즉 conditional expectation(조건부 기대값) $E(X|\mathcal{G})$는 random variable$(\mathcal{G}$-measurable$)$이고, 위의 Theorem에서 $Y$가 $E(X|\mathcal{G})$와 같은 적분값$(P$-a.e$)$을 갖는다면 version of $E(X|\mathcal{G})$이라고 한다.
+
+<br>
+
+   * 위의 2번 조건은 $E[E(X|\mathcal{G})I_{A}]=E[XI_A]$ for all $A\in \mathcal{G}$와 같다.
+   
+   
+<br>
+<br>
+
+#### 예제
+1. $\mathcal{G}=\{\phi,\Omega\}$라 하자. 이는 당연히 $\sigma$-field이다. 또한 constant mapping $\omega\mapsto E(X)$는 $\mathcal{G}$-measurable이고, $A\in \mathcal{G}=\{\phi,\Omega\}$에 대해 $\int_AE(X)dP=\int_A X dP$이다. 때문에 $E(X)$ 는 version of $E(X|\mathcal{G})$이다. 
+
+  * 만약 $\mathcal{G}=\mathcal{F}$라면, $X$자체가 version of $E(X|\mathcal{F})$이다.
+
+<br>
+
+2. $B\in \mathcal{F}$, $0<P(B)<1$이라고 하자. 또한 $\mathcal{G}=\{\phi,\Omega,B,B^c\}$라고 하자. 그렇다면
+  $$
+  E(X|\mathcal{G})(\omega)=\begin{cases}\frac{1}{P(B)}\int_B X\mbox{ }dP,& \mbox{ if }\omega\in B,\\ \frac{1}{P(B^c)}\int_{B^c} X\mbox{ }dP,& \mbox{ if }\omega\in B^c, \end{cases} =\left( \frac{1}{P(B)}\int_B X \mbox{ }dP\right)I_B(\omega)+ \left( \frac{1}{P(B^c)}\int_{B^c} X \mbox{ }dP\right)I_{B^c}(\omega)
+  $$
+  는 위의 정의에서의 2가지 조건을 만족한다(즉 조건부 기댓값을 이와 같이 elaboration할 수 있고 이는 version of $E(X|\mathcal{G})$이다). 
+
+<br>
+
+  * 우변에서의 괄호 안의 값은 상수이고 두개의 indicator function들은 모두 $\mathcal{G}$-measurable이므로 linear combination of $\mathcal{G}$-measurable function $\implies$ $\mathcal{G}$-measurable이다.
+  
+  * Note:
+  $$
+      \int_A  E(X|\mathcal{G}) dP = \left( \frac{1}{P(B)}\int_B X \mbox{ }dP\right)P(A\cap B)+ \left( \frac{1}{P(B^c)}\int_{B^c} X \mbox{ }dP\right)P(A\cap B^c)=\int_A\mbox{ } XdP \mbox{ }\mbox{ }\mbox{ }\mbox{ for all } A\in \mathcal{G},
+  $$
+  왜냐하면 $A$가 $\phi$면 당연히 $0=0$이므로 성립하고, $\Omega$면   
+  $$
+  \int_\Omega E(X|\mathcal{G})dP=\left( \frac{1}{P(B)}\int_B X \mbox{ }dP\right)P(B) + \left( \frac{1}{P(B^c)}\int_{B^c} X \mbox{ }dP\right)P({B^c})=\int_\Omega X dP
+  $$
+  이다. 또한 $A=B$이면 $\int_B E(X|\mathcal{G})dP=\left( \frac{1}{P(B)}\int_B X \mbox{ }dP\right)P(B) =\int_B X dP$이고 $B^c$도 이와 같이 할 수 있다. 
+  
+     
+<br>
+<br>
+
+#### Definition
+If $\mathcal{G}$ is a sub-$\sigma$-field of $\mathcal{F}$ and $A\in \mathcal{F}$, then the conditional probability of $A$ given $\mathcal{G}$, denoted $P(A|\mathcal{G})$ is defined to be $P(A|\mathcal{G})=E(I_A|\mathcal{G})$.
+
+<br>
+
+  * 이 정의를, 위의 조건부 기댓값의 정의 2번째 조건에 맞추어보면,
+  $$
+  \int_B P(A|\mathcal{G}) \mbox{ }dP= \int_B E(I_A|\mathcal{G})\mbox{ }dP\stackrel{\text{Def}}{=} \int_B I_A\mbox{ }dP= P(A\cap B) \mbox{ } \mbox{ } \mbox{ } \mbox{ for all }B\in\mathcal{G}
+  $$
+  이고 이는 그동안 elementary courses에서 자주 보던 교집합의 내용이다(Event $B$ 안에서 $A$가 발생할 확률).
+
+<br>
+
+  * $X=I_A$라면 위의 예제가 아래와 같이 바뀔 수 있고 이는 우리가 자주 보면 조건부 확률이다: 
+  
+  $$
+   P(A|\mathcal{G})= E(I_A|\mathcal{G})(\omega)=\begin{cases}\frac{P(A\cap B)}{P(B)},& \mbox{ if }\omega\in B,\\ \frac{P(A\cap B^c)}{P(B^c)},& \mbox{ if }\omega\in B^c.\end{cases}
+  $$  
+  즉, $\mathcal{G}$의 set $B$에 대해서는 $P(A|B)=\frac{P(A\cap B)}{P(B)}$, $B^c$에 대해서는 $P(A|B^c)= \frac{P(A\cap B^c)}{P(B^c)}$라는 표현이 $P(A|\mathcal{G})$로부터 비롯된다.
+
+
+<br>
+<br>
+
+#### Definition
+If $X$ is an integrable r.v and $Y$ is a random vector, both defined on a common probability space $(\Omega, \mathcal{F}, P)$, then the **conditional expectation of $X$ given $Y$**, denoted $E(X|Y)$ is defined to be $E[X|\sigma(Y)]$. 
+  
+<br>
+
+Similarly, if $\{Y_t,t\in T\}$ is any collection of r.vs defined on $(\Omega, \mathcal{F},P)$, then the **conditional expectation of $X$ given $\{Y_t,t\in T\}$**, denoted $E(X|Y_t,t\in T)$ is defined to be $E[X|\sigma(Y_t,t\in T)]$.
+
+<br>
+
+   * 우선 $\sigma(Y)\in\mathcal{F}$이다. 
+ 
+   * 두 변수에 대한 조건부 기댓값 $E(X|Y)$는 $Y$가 $\mathcal{F}$-measurable이기 때문에, $Y^{-1}(H)\in \sigma(Y)$ for all $H\in \mathcal{R}$이다. 즉 $E(X|Y)$는 모든 event $A\in \sigma(Y)$에 대한 조건부 기댓값을 의미하므로 $E(X|\sigma(Y))$와 같다.
+   
+<br>
+<br>
+
+[back](../probability1.html)   
