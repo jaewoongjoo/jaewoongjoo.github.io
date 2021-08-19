@@ -4,15 +4,51 @@ output: html_document
 ---
 
 
-### Index
+## Index
 
+### 1. Decision Theory and Bayesian Analysis
 
+[1.1. General Non-Sequential Decision Problem](./decision/1_1.html)
 
-##### 1. TBD
+[1.2. Finding Bayes Rules](./decision/1_2.html)
 
-[1.1 TBD](./decision/1_1.html)
+[1.3. Convex Loss and Non-randomized Decision Rules](./decision/1_3.html)
 
-[1.2. TBD](./decision/1_2.html)
+[1.4. Minimax Decision Rules](./decision/1_4.html)
 
+[1.5. Admissibility](./decision/1_5.html)
+
+<br>
+
+### 2. Multi-Parameter Estimation
+
+[2.1. James-Stein Estimators](./decision/2_1.html)
+
+[2.2. Inadmissibility Proofs](./decision/2_2.html)
+
+[2.3. One Way Analysis of Variance](./decision/2_3.html)
+
+[2.4. General $\Sigma$](./decision/2_5.html)
+
+<br>
+
+### 3. Asymptotic Theory of Estimation
+
+[3.1. MLE-Consistency](./decision/3_1.html)
+
+[3.2. MLE-Asymptotic Normality](./decision/3_3.html)
+
+[3.3. MLE-Asymptotic Efficiency](./decision/3_4.html)
+
+<br>
+
+### 4. Generalized Likelihood Ratio Tests(GLRT's)
+
+[4.1. Generalized Likelihood Ratio Tests](./decision/4_1.html)
+
+[4.2. Asymptotic Null Distributions of GLRT; Wald & Rao Statistics](./decision/4_2.html)
+
+<br>
+<br>
 
 [back](./)

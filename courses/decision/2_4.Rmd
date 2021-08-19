@@ -1,0 +1,86 @@
+---
+title: "2.4.  General Sigma"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Theorem
+Let $X\sim N(\theta, \Sigma)$, where $\lambda_{\text{max}}(\Sigma)$ denote the largest eigenvalue of $\Sigma$. Then, writing $S=||X||^2$, the estimator $\delta(X)=\left(1-\frac{\tau(S)}{S}\right)X$ dominates $X$ under $L(\theta,a)=||\theta-a||^2$ if
+
+1. $\tau(\cdot)$ is differentiable, non-decreasing;
+
+2. $0<\tau(S)<2\{tr(\Sigma)-2\lambda_{\text{max}}(\Sigma)\}$ and $\lambda_{\text{max}}(\Sigma)\}<\frac{tr(\Sigma)}{2}$.
+
+<br>
+
+   * 증명: Note $E\left[tr(||X-\theta||^2)\right]=tr\left[E(||X-\theta||^2)\right]=tr(\Sigma)$. 그러므로
+
+  $$\begin{eqnarray*}
+   E\left[ \left|\left|\left(X-\frac{\tau(S)}{S}X  \right)-\theta\right|\right|^2\right]&=&E[||X-\theta||^2]+E\left[\frac{\tau^2(S)}{S}\right]-2E\left[\frac{\tau(S)}{S}X^T(X-\theta)\right]\\
+   &=&tr(\Sigma)+E\left[\frac{\tau^2(S)}{S}\right]-2E\left[\frac{\tau(S)}{S}X^T(X-\theta)\right].
+  \end{eqnarray*}$$
+   여기서 $Y=\Sigma^{-\frac{1}{2}}X$, $\phi=\Sigma^{-\frac{1}{2}}\theta$라고 하자. 그렇다면 $Y\sim N(\phi,I)$이다. 또한
+   $$
+   E\left[\frac{\tau(S)}{S}X^T(X-\theta)\right]= E\left[ \frac{\tau(S)}{S} Y^T\Sigma(Y-\phi)\right],\mbox{ }\mbox{ }\mbox{ where }S=Y^T\Sigma Y.
+   $$
+   또한,
+   $$
+   Y^T\Sigma (Y-\phi)=\left(\sum_{j=1}^p\sigma_{1j}Y_j\cdots\sum_{j=1}^p\sigma_{pj}Y_j\right)
+\begin{pmatrix}Y_1-\phi_1\\Y_2-\phi_2\\ \vdots \\Y_p-\phi_p   \end{pmatrix}=\sum_{i=1}^p\sum_{j=1}^p \sigma_{ij}Y_j(Y_i-\phi_i).
+   $$
+    그러므로, Stein's Identity 에 의해서
+    $$\begin{eqnarray*}
+   E\left[\frac{\tau(S)}{S}X^T(X-\theta)\right]&=& E\left[ \frac{\tau(S)}{S} Y^T\Sigma(Y-\phi)\right]\\
+   &=& E\left[ \frac{\tau(S)}{S} \sum_{i=1}^p\sum_{j=1}^p \sigma_{ij}Y_j(Y_i-\phi_i)\right]\\
+   &=& \sum_{i=1}^p E\left[ (Y_i-\phi_i)\frac{\tau(S)}{S} \sum_{j=1}^p \sigma_{ij}Y_j\right]=\sum_{i=1}^p E\left[ (Y_i-\phi_i)h(Y)\right]\\
+   &=&\sum_{i=1}^p E\left[ \frac{dh(Y)}{dY_i}\right]=\sum_{i=1}^p E\left[ \frac{d}{dY_i}\left(\frac{\tau(S)}{S} \sum_{j=1}^p \sigma_{ij}Y_j\right) \right].
+   \end{eqnarray*}$$
+     또한 $S=Y^T\Sigma Y$에 대해 $\frac{dS}{dY_i}=2Y^T\Sigma_{(i)}=2\sum_{k=1}^p \sigma_{ik}Y_k$이므로
+   $$\begin{eqnarray*}
+   E\left[ \frac{d}{dY_i}\left(\frac{\tau(S)}{S} \sum_{j=1}^p \sigma_{ij}Y_j\right) \right]&=& E\left[ \frac{d}{dY_i}\left(\frac{\tau(S)}{S} \sum_{j=1}^p \sigma_{ij}Y_j\right) \right]\\
+    &=&E\left[ \left(\frac{\tau'(S)}{S}-\frac{\tau(S)}{S^2} \right)\left(2\sum_{k=1}^p \sigma_{ik}Y_k\right)\left(\sum_{j=1}^p \sigma_{ij}Y_j\right)+\frac{\tau(S)}{S}\sigma_{ii}\right].
+   \end{eqnarray*}$$
+    그러므로
+    $$\begin{eqnarray*}
+E\left[\frac{\tau(S)}{S}X^T(X-\theta)\right]&=& \sum_{i=1}^p E\left[ \frac{d}{dY_i}\left(\frac{\tau(S)}{S} \sum_{j=1}^p \sigma_{ij}Y_j\right) \right]\\
+&=&\sum_{i=1}^pE\left[ \left(\frac{\tau'(S)}{S}-\frac{\tau(S)}{S^2} \right)\left(2\sum_{k=1}^p \sigma_{ik}Y_k\right)\left(\sum_{j=1}^p \sigma_{ij}Y_j\right)+\frac{\tau(S)}{S}\sigma_{ii}\right]\\
+&=&2E\left[ \left(\frac{\tau'(S)}{S}-\frac{\tau(S)}{S^2} \right)\sum_{k=1}^p \sum_{i=1}^pY_kY_j \left( \sum_{j=1}^p\sigma_{ik}\sigma_{ij}\right)\right]+tr(\Sigma)E\left[\frac{\tau(S)}{S}\right]\\
+&=&2E\left[ \left(\frac{\tau'(S)}{S}-\frac{\tau(S)}{S^2} \right)\sum_{k=1}^p \sum_{i=1}^pY_kY_j \left( \sum_{j=1}^p\sigma_{ik}\sigma_{ij}\right)\right]+tr(\Sigma)E\left[\frac{\tau(S)}{S}\right]\\
+&=&2E\left[ \left(\frac{\tau'(S)}{S}-\frac{\tau(S)}{S^2} \right)Y^T\Sigma^2Y\right]+tr(\Sigma)E\left[\frac{\tau(S)}{S}\right]\\
+&=&2E\left[ \left(\frac{\tau'(S)}{S}-\frac{\tau(S)}{S^2} \right)X^T\Sigma X\right]+tr(\Sigma)E\left[\frac{\tau(S)}{S}\right]\\
+   \end{eqnarray*}$$
+   종합하면
+    $$\begin{eqnarray*}
+    E\left[ \left|\left|\left(X-\frac{\tau(S)}{S}X  \right)-\theta\right|\right|^2\right]&=&E[||X-\theta||^2]+E\left[\frac{\tau^2(S)}{S}\right]-2E\left[\frac{\tau(S)}{S}X^T(X-\theta)\right]\\
+   &=&tr(\Sigma)+E\left[\frac{\tau^2(S)}{S}\right]-2E\left[\frac{\tau(S)}{S}X^T(X-\theta)\right].\\
+   &=&tr(\Sigma)+E\left[\frac{\tau^2(S)}{S}\right]-4E\left[ \left(\frac{\tau'(S)}{S}-\frac{\tau(S)}{S^2} \right)X^T\Sigma X\right]-2tr(\Sigma)E\left[\frac{\tau(S)}{S}\right]\\
+   &\le&tr(\Sigma)+E\left[\frac{\tau^2(S)}{S}\right]+4E\left[ \left(\frac{\tau(S)}{S} \right)\frac{X^T\Sigma X}{S}\right]-2tr(\Sigma)E\left[\frac{\tau(S)}{S}\right].
+  \end{eqnarray*}$$
+  또한, $X^T \Sigma X\le\lambda_{\text{max}}(\Sigma)X^TX=\lambda_{\text{max}}(\Sigma)S$이므로, 
+  <!-- 즉, spectral decomposition에 의해 -->
+  <!-- $$ -->
+  <!-- X^T\Sigma X=X^T\left(\sum_{i=1}^p\lambda_iq_iq_i^T\right)X=\sum_{i=1}^p \lambda_i X^T(q_iq_i^T)X\le\sum_{i=1}^p \lambda_{\text{max}}(\Sigma) X^T(q_iq_i^T)X= -->
+  <!-- $$ -->
+    $$\begin{eqnarray*}
+    E\left[ \left|\left|\left(X-\frac{\tau(S)}{S}X  \right)-\theta\right|\right|^2\right]\
+   &\le&tr(\Sigma)-4E\left[\frac{\tau(S)}{S} (2tr(\Sigma)-4\lambda_{\text{max}}(\Sigma)-\tau(S)) \right]\\
+   &<&tr(\Sigma)=E[||X-\theta||^2]\mbox{ }\mbox{ }\mbox{ }\mbox{ by the second assumption}
+  \end{eqnarray*}$$
+
+
+<br>
+<br>
+
+
+[back](../decision.html)

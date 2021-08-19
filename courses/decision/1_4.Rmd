@@ -1,0 +1,184 @@
+---
+title: "1.4. Minimax Decision Rules"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+Notation: $\theta$의 range를 $\Theta$, $\Theta^*$를 the class of all prior distributions on $\Theta$라 하자. 
+
+또한 $\delta_0^*$를 minimax, i.e., $\delta_0^*=\inf_{\delta^*\in D}\sup_{\theta\in\Theta}R(\theta,\delta^*)$라 하자.
+
+#### Lemma
+For the case of randomized decision rules,
+$$
+\sup_{\theta\in \Theta} R(\theta, \delta^*)=\sup_{\xi\in\Theta^*}\int_\Theta R(\theta, \delta^*)d\xi\stackrel{\text{Def}}= \sup_{\xi\in\Theta^*}r(\xi,\delta^*).
+$$
+<br>
+
+   * 증명: 
+   
+   $$
+   r(\xi,\delta^*)= \int_{\Theta^*} R(\theta,\delta^*)d\xi\le \int_{\Theta^*} \sup_{\theta\in \Theta}R(\theta,\delta^*)d\xi=\sup_{\theta\in \Theta}R(\theta,\delta^*)\int_{\Theta^*} d\xi=\sup_{\theta\in \Theta}R(\theta,\delta^*)\\
+   \implies \sup_{\xi\in\Theta^*} r(\xi,\delta^*)\le \sup_{\theta\in \Theta}R(\theta,\delta^*).
+   $$
+    우변이 $\xi$에 depend하지 않기 때문에, $\sup_{\theta}R(\theta,\delta^*)=R(\theta',\delta^*)$라고 놓고, $\xi'$를 $\theta'$의 prior라고 하자$(\xi'(\{\theta'\})=1)$. 그렇다면
+    $$
+    R(\theta',\delta^*)=\int_{\Theta^*} R(\theta,\delta^*)d\xi'\le \sup_{\xi'\in\Theta^*}\int_{\Theta^*}R(\theta,\delta^*)d\xi'
+    $$
+    i.e.,
+    $$
+    \sup_{\theta\in\Theta}R(\theta,\delta^*)\le \sup_{\xi\in\Theta}r(\xi,\delta^*).
+    $$
+<br>
+
+   * 즉 $\sup_{\theta\in \Theta} R(\theta, \delta^*)= \sup_{\xi\in\Theta^*}r(\xi,\delta^*)$이다.
+
+<br>
+<br>
+
+#### Remark 
+Note that
+$$
+\inf_{\delta^*\in D^*}\sup_{\xi\in\Theta^*}r(\xi,\delta^*)= \sup_{\xi\in\Theta^*}\inf_{\delta^*\in D^*}r(\xi,\delta^*).
+$$
+
+Thus, we have
+$$
+\sup_{\xi\in\Theta^*}\inf_{\delta^*\in D^*}r(\xi,\delta^*)=\inf_{\delta^*\in D^*}\sup_{\theta\in\Theta}R(\theta,\delta^*)=\mbox{minimax }\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{(by above lemma)}
+$$
+
+<br>
+
+  * 결론은 minimax를 이렇게 구할 수 있다는 것이다.
+
+<br>
+<br>
+
+#### Definition
+
+A distribution $\xi_0\in\Theta^*$ is said to be **least favorable** if
+$$
+\inf_{\delta^*\in D^*}r(\xi_0,\delta^*)=\sup_{\xi\in\Theta^*}\inf_{\delta^*\in D^*}r(\xi,\delta^*).
+$$
+<br>
+
+   * $\xi_0$가 $\inf_{\delta^*}r(\xi,\delta^*)$(favorable)를 maximize(least)할 때 $\xi_0$를 least favorable하다고 한다.
+
+   * Least favorable한 prior distribution $\xi_0$에 대응하는 Bayes estimator $\delta^*$는 minimax이다.
+
+   * $\xi\in\Theta^*$에서의 $\Theta^*$는 여러 개의 distribution, 즉 distribution family, 또는 class of distributions이다.
+   
+<br>
+<br>
+
+
+#### Theorem (The Bayes Method)
+Suppose that there is a distribution $\xi$ over $\Theta^*$ s.t.
+$$
+r(\xi,\delta_\xi)=\int_{\Theta^*} R(\theta,\delta_\xi)d\xi=\sup_{\theta\in \Theta}R(\theta,\delta_\xi).
+$$
+Then,
+
+1. $\delta_\xi$ is minimax;
+
+2. If $\delta_\xi$ is unique Bayes estimator w.r.t $\xi$, then it is the unique minimax procedure;
+
+3. $\xi$ is least favorable.
+
+
+<br>
+
+   * 증명:
+   
+   1. Note: $\delta^*$를 any decision rule이라 하자. 그렇다면 주어진 가정에 의해
+   $$\begin{eqnarray*}
+   \sup_{\theta\in\Theta}R(\theta,\delta_\xi)&=&\int_{\Theta^*}R(\theta,\delta_\xi)d\xi\\
+   &\le& \int_{\Theta^*}R(\theta,\delta^*)d\xi \mbox{ }\mbox{ (since } \delta_\xi \mbox{ is Bayes w.r.t }\xi)\\
+   &\le& \sup_{\theta\in \Theta} R(\theta,\delta^*)
+   \end{eqnarray*}$$
+   즉 $\delta_\xi$는 minimax이다.
+   
+   2. 1번에서의 첫 $\le$를 $<$로 바꿔주면 된다.
+   
+   3. $\xi^*$를 또다른 distribution으로, $\delta_{\xi^*}$를 그에 대응하는 Bayes estimator라 하자. 그렇다면
+   $$\begin{eqnarray*}
+   r(\xi^*,\delta_{\xi^*})&=&\int_{\Theta^*}R(\theta,\delta_{\xi^*})d\xi^*\\
+   &\le&\int_{\Theta^*}R(\theta,\delta_{\xi})d\xi^* \mbox{ }\mbox{ (since } \delta_{\xi*} \mbox{ is Bayes w.r.t }\xi^*)\\
+   &\le&\sup_{\theta\in\Theta} R(\theta,\delta_{\xi})\\
+   &=& r(\xi,\delta_\xi).
+   \end{eqnarray*}$$  
+   $\xi^*$는 any distribution without $\xi$이기 때문에 $\xi$는 least favorable이다. 
+   
+<br>
+
+  * 즉 어떤 distribution과 그에 대응하는 Bayes estimator가, Risk를 maximize시킬 때 그 distribution은 least favorable하다.
+
+  * Minimax $\delta_\xi$와 least favorable $\xi$는 한 쌍이다.
+
+<br>
+<br>
+
+매우 중요
+
+#### Corollary
+If a Bayes rule $\delta_\xi$ w.r.t. a prior $\xi$ has constant risk $R(\theta,\delta_\xi)=r$ for all $\theta\in \Theta$, then $\delta_\xi$ is minimax and $\xi$ is least favorable.
+
+<br>
+
+   * Constant risk라서 $r(\xi,\delta_\xi)=\int_{\Theta^*} R(\theta,\delta_\xi)d\xi=\sup_{\theta\in \Theta}R(\theta,\delta_\xi)$를 만족하기 때문이다.
+
+<br>
+<br>
+
+
+
+#### Example
+$X_1,\ldots X_n\stackrel{\text{iid}}{\sim}N(\theta,1)$일 때 $\bar X_n$은 $\theta$의 불편추정량이다. 하지만 $E[(\bar X_n-\theta)^2]=\frac{1}{n}$이다. 때문에 Squared error loss를 가정했을 때, $\bar X_n$의 Bayes risk는 prior가 어떤 것이든지간에 $\frac{1}{n}\ne 0$이다. 때문에 $\bar X_n$은 Bayes estimator가 될 수 없다. 
+
+<br>
+
+하지만 $R(L(\theta,\bar X_n))= E[(\bar X_n-\theta)^2]=\frac{1}{n}$로 constant risk를 갖기 때문에 $\bar X_n$은 minimax이다(Bayes estimator는 아니지만 minimax는 된다). 
+
+<br>
+<br>
+
+
+#### Theorem
+Let $\{\xi_1,\xi_2,\ldots\}$ be a sequence of prior distributions on $\Theta$. Let $\delta_m=\delta_{\xi_m}$ be a Bayes estimator w.r.t $\xi_m$ having Bayes risk $r_m=r(\xi_m,\delta_{\xi_m})$. If $\delta_0$ is a rule with $\sup_{\theta\in \Theta}R(\theta,\delta_0)=r$ and $\lim_{m\rightarrow \infty}r_m\ge r$, then $\delta_0$ is Minimax.
+
+<br>
+
+  * 증명: For any rule $\delta^*\in D^*$,
+  $$\begin{eqnarray*}
+  r_m&=&\int_{\Theta^*}R(\theta,\delta_m)d\xi_m\\
+  &\le& \int_{\Theta^*}R(\theta,\delta^*)d\xi_m\\
+  &\le& \sup_{\theta\in\Theta}R(\theta,\delta^*).
+  \end{eqnarray*}$$  
+  또한, 주어진 가정에 의해
+  $$
+  r=\sup_{\theta\in\Theta}R(\theta,\delta_0)\le \lim_{m\rightarrow \infty}r_m\le \sup_{\theta\in\Theta}R(\theta,\delta^*).
+  $$
+  때문에 $\delta_0$는 minimax이다.
+
+<br>
+ 
+  * 만약 제시된 문제에서 위와 같이 sequence of prior distribution을 주고, minimax를 구하라고 한다면, 위 Theorem을 사용해야 한다. 
+
+<br>
+<br>
+
+
+
+
+[back](../decision.html)

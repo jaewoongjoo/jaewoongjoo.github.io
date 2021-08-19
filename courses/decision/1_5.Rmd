@@ -1,0 +1,142 @@
+---
+title: "1.5. Admissibility"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Definition
+1. A decision rule $\delta_1$ is **at least as good as** $\delta_2$ if $R(\theta,\delta_1)\le R(\theta,\delta_2)$ for all $\theta$.
+  
+2. A decision rule $\delta_1$ is **better than** $\delta_2$ if $R(\theta,\delta_1)\le R(\theta,\delta_2)$ for all $\theta$, with strict inequality for some $\theta\in\Theta$.
+  
+3. A decision rule $\delta_1$ is **risk equivalent** to $\delta_2$ if $R(\theta,\delta_1)= R(\theta,\delta_2)$ for all $\theta$.
+  
+
+<br>
+<br>
+
+#### Definition
+
+A decision rule $\delta_0$ is **Admissible** if there does not exist any decision rule $\delta$ s.t. $R(\theta,\delta)\le R(\theta,\delta_0)$ for all $\theta\in \Theta$ with strict inequality for some $\theta\in\Theta$, i.e., there does not exist any rule better than $\delta_0$.
+
+  * $\delta_0$보다 더 작거나 같은 risk를 갖게 하는 decision rule이 없을 때, $\delta_0$를 admissible(받아들여질 수 있는)이라 한다. 
+
+<br>
+<br>
+
+#### Remark
+$\delta_0$ admissible does not mean that $\delta_0$ dominates every decision rule $\delta$. What it mean is, $\delta_0$ is NOT dominated by any decision rule $\delta$.
+
+   * 모든 $\theta$에 대해서는 inequality including equal sign이고 strict inequality only for some $\theta\in\Theta$이기 때문에 dominate하진 않는다.
+
+<br>
+<br>
+
+#### Definition
+
+1. A class $C(\subset D^*)$ of decision rules is **complete** if given any $\delta\in D^*$ and $\delta\notin C$, there exists a rule $\delta_0\in C$ which is **better than** such $\delta$. 
+
+
+2. A class $C(\subset D^*)$ of decision rules is **essentially complete** if given any $\delta\in D^*$ and $\delta\notin C$, there exists a rule $\delta_0\in C$ which is **at least as good as** such $\delta$.
+
+
+  * better than은 for some $\theta$에 대해서 strict inequality를 가진다
+  
+  * 즉 class $C(\subset D^*)$안에 $C$ 밖에 있는 $\delta$들보다 better than 한 $\delta_0$가 존재할 때 complete, at least as good as한 $delta_0$가 존재할 때 essentially complete하다.
+  
+<br>
+<br>
+
+#### Lemma
+If $C$ is a complete class, and $A$ denote the class of admissible rules, then $A\subset C$ 
+
+<br>
+
+   * Admissible은 for some $\delta$에 대해 다른 class of $\delta$에게 dominate 되지 않는다는 것이고, complete는 dominate for some $\theta$라는 의미이기 때문에 $A\subset C$이다.
+
+<br>
+<br>
+
+#### Lemma
+If $C$ is an essentially complete class, and there exists an admissible $\delta\notin C$, then $\exists \delta'\in C$ which is risk equivalent to $\delta$.
+
+<br>
+
+  * $C$가 essentially complete하다는 건 $\exists\delta\in C$ s.t. $\delta$ is at least as good as any $\delta'\in C^c$라는 의미이고, 
+  
+    admissible $\delta\notin C$의 의미는 $\nexists\delta$ s.t. $R(\theta,\delta)\le R(\theta,\delta_0)$ for all $\theta\in \Theta$이기 때문에 
+  
+    두 statement의 교집합은 $\exists \delta'\in C, \delta\in C$ which are risk equivalent이다.  
+
+<br>
+<br>
+
+#### Theorem (Finite case)
+Assume that $\Theta=\{\theta_1,\ldots,\theta_k\}$, and that a Bayes rule $\delta_\xi$ w.r.t a prior $\xi=\{\xi_1,\ldots,\xi_k\}$ exists, where $\xi_i$ is the prior probability assined to $\theta_i$. If $\xi_i>0$ for all $1\le i\le k$, then $\delta_\xi$ is admissible.
+
+<br>
+
+  * 증명: $\delta_\xi$가 admissible하지 않다고 하자. 그렇다면 모든 $\theta\in\Theta$에 대해 $R(\theta,\delta)\le R(\theta,\delta_\xi)$, and strict inequality holds for some $\theta\in\Theta$를 만족하는 $delta$가 존재한다. 그러므로
+   $$
+   r(\xi,\delta)=\sum_{i=1}^kR(\theta_i,\delta)\xi_i<\sum_{i=1}^kR(\theta_i,\delta_\xi)\xi_i=r(\xi,\delta_\xi)\mbox{ }\mbox{ }\mbox{ }\mbox{ (contradiction)}
+   $$
+   따라서 $\delta_\xi$는 admissible하다.
+  
+   * 만약 $\xi_i>0$ for all $1\le i\le k$조건이 없다면 성립하지 않는다. strict inequality가 성립하는 $i$에 probability를 0을 주면 되기 때문이다.
+
+<br>
+<br>
+
+#### Definition (Generalized Bayes estimator)
+A rule $\delta_0$ is **Generalized Bayes** w.r.t a prior (proper or improper) $\xi$ if for every $x\in X$, $\int_\Theta L(\theta, \delta(x))P(\theta|x)d\theta$ takes on a finite minimum value when $\delta=\delta_0$.
+
+<br>
+
+   * 즉 improper prior를 이용하여 구해진 Bayes estimator를 Generalized Bayes estimator라고 한다.   
+   
+<br>
+<br>
+
+#### 예제
+$X_1,\ldots X_n\stackrel{\text{iid}}{\sim}B(1,\theta)$(베르누이)라고 가정하자. 또한 improper prior $\xi$ on $(0,1)$을 pdf $g(\theta)=\frac{1}{\theta(1-\theta)},\theta\in (0,1)$이라고 하자. 그렇다면
+$$
+P(\theta|x)=\theta^{\sum x_i-1}(1-\theta)^{n-\sum x_i-1}
+$$
+이다. 이 때 Generalized Bayes estimator(posterior mean)은 $a=\bar x$이다.
+
+<br>
+<br>
+
+
+#### 예제
+
+Suppose $X_1,\ldots,X_n\stackrel{\text{iid}}\sim N(\theta,\sigma^2)$ where both $\theta\in \mathbb{R}$ and $\sigma^2>0$ are known. Assuming squared error loss, we want to prove admissibility of $\bar X$.
+
+  * First observe that if $\sigma^2>0$ were known, $\bar X$ is an admissible estimator of $\theta$ under squared error loss. 
+  To prove, suppose $\bar X$ is an inadmissible estimator of $\theta$. Then, there exists $\delta=\delta(X_1,\ldots,X_n)$ s.t.
+  $$
+  R((\theta,\sigma^2), \delta)\le   R((\theta,\sigma^2), \bar X)\mbox{ }\mbox{ }\mbox{ for all }(\theta,\sigma^2),
+  $$
+  with strict inequality for some $(\theta_0,\sigma_0^2)$. Then for the restricted problem when $\theta\in \mathbb{R}$ and $\sigma^2=\sigma_0^2$,
+  $$
+  R((\theta,\sigma_0^2),\delta)\le R((\theta,\sigma_0^2),\bar X) \mbox{ for all }\theta\mbox{ with strict inequality at }\theta=\theta_0.
+  $$
+  This contradicts the admissibility of $\bar X$ as an estimator $\theta$ under squared error loss when $X_1,\ldots,X_n\stackrel{\text{iid}}{\sim}N(\theta,\sigma^2),$ $\theta\in\mathbb{R}$.
+
+
+<br>
+<br>
+
+
+[back](../decision.html)

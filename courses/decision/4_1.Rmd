@@ -1,0 +1,99 @@
+---
+title: "4.1. General Likelihood Ratio Tests"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Definition
+Suppose $X$ is a r.v. with pdf $p_\theta(x)$. We want to test $H_0:\theta\in \Theta_0$ against $H_a:\theta\in \Theta_0^c$.
+
+Let $L(\theta,x)$ denote the likelihood function. The **Generalized Likelihood Ratio Test (GLRT)** criterion $\lambda$ is defined by
+$$
+\lambda=\lambda(x)=\frac{\sup_{\theta\in\Theta_0}L(\theta,x) }{\sup_{\theta\in\Theta}L(\theta,x) }.
+$$
+
+Then, reject $H_0$ if $\lambda\le \lambda_0$ where $\lambda_0$ is some specified constant in $[0,1]$.
+
+<br>
+
+   * 즉 $\frac{\text{Null Range에서의 likelihood 최대값}}{\text{모든 Range에서의 likelihood 최대값} }$이다.
+
+<br>
+ 
+   * 분자가 분모와 차이가 많이 나도록 작다면, $\theta\in\Theta_0^c$라고 판단한다. 거꾸로 생각했을 때 만약 분자 분모가 차이가 나지 않는다면 Likelihood를 최대로 하는 $\theta$가 $\Theta_0^c$에 있다는 대립가설을 받아들이기 어렵다. 
+
+
+<br>
+<br>
+
+#### Remark
+In general, the exact distribution of the GLRT test statistics $\lambda$ cannot be obtained in a closed form. However, in most of these cases, asymptotic distribution of $-\log \lambda(x)$ can be found.
+
+Typically, under certain regularity conditions, $-\log\lambda(x)$ is distributed as a central chi-square under $H_0$, and as a non-central chi-square under $H_1$.
+
+<br>
+
+   * 즉 Test를 위해 $\lambda$의 closed form 분포를 찾기는 어렵지만, $-\log\lambda$의 분포는 central chi-square under $H_0$이기 때문에 이용하기 편리하다는 것이다.
+
+<br>
+<br>
+
+#### Remark (Foutz's Assumptions)
+Foutz's assumption when it is generalized to the multiparameter case are as follows:
+
+1. The second order partials $\frac{d^2\log p_\theta(x)}{d\theta_jd\theta_m}$ all exists;
+
+2. $E\left[\frac{d\log p_\theta(x)}{d\theta_j}\right]=0$ for all $j$;
+
+3. The matrix $I(\theta)=\{I_{j,m}(\theta)\}$ where $I_{j,m}(\theta)=E\left[-\frac{d^2\log p_\theta(x)}{d\theta_jd\theta_m}\right]$ is positive definite, and is continuous in $\theta$ for all $\theta\in \Theta$;
+
+4. $\sup_{\phi\in U_\delta}\left|\frac{1}{n}\sum_{i=1}^n \frac{d^2\log p_\theta(x)}{d\theta_jd\theta_m}  \Big|_{\theta=\phi}+I_{j,m}(\phi)\right| \stackrel{\text{Pr}}\rightarrow 0$ for some $\delta>0$, where $U_\delta=\{\phi:||\phi-\theta||<\delta\}$ for all $j,m$ and $\theta\in\Theta$.
+
+<br>
+
+   * 일반적으로 우리가 만나는 문제들은 성립한다고 가정하고 시작한다.
+
+<br>
+<br>
+
+#### Theorem
+Assume 1-4 in above Foutz's assumptions hold. Then, there exists a seqneuce $\{\hat \theta_n\}$ of solutions to $T_n(\theta)=0$ s.t. $\hat \theta_n\stackrel{\text{Pr}}\rightarrow \theta_0$. Also, this solution is unique.
+
+<br>
+ 
+  * 즉 Foutz's assumption이 만족할 때 MLE는 consistent하고 unique하다.
+
+<br>
+<br>
+
+#### Theorem
+Assume 1-4 in above Foutz's assumptions hold. Then,
+
+1. $\sqrt{n}\left(\hat\theta_n-\theta_0-I^{-1}(\theta_0)T_n(\theta_0)\right)\stackrel{\text{Pr}}\rightarrow 0$;
+
+2. $\sqrt{n}\left(\hat\theta_n-\theta_0\right)\stackrel{d}\rightarrow N(0,I^{-1}(\theta_0))$.
+
+
+<br>
+
+  * 즉 Foutz's assumption이 만족할 때 MLE는 Asymptotic normal하다.
+
+<br>
+
+  * 우리가 다루는 대부분의 경우는 만족한다고 가정하고 시작한다.
+
+<br>
+<br>
+
+[back](../decision.html)

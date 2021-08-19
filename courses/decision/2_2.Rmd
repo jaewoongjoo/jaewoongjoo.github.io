@@ -1,0 +1,141 @@
+---
+title: "2.2. Inadmissibility Proofs"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+이 챕터에서는 Stein's Identity가 제일 중요하다.
+
+<br>
+<br>
+
+
+#### Lemma
+Suppose $Y\sim N(0,1)$. Then, if $E[g'(Y)]<\infty$, one has
+$$
+E[g'(Y)]=E[Yg(Y)].
+$$
+   * 증명: Note that $\phi(y)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2}$. Then $\phi'(y)=-y\phi(y)$. Thus,
+   
+   $$\begin{eqnarray*}
+   E[g'(Y)]&=& \int_{-\infty}^\infty g'(y)\\
+   &=& \int_{0}^\infty g'(y)\phi(y)dy +\int_{-\infty}^0 g'(y)\phi(y)dy\\
+   &=& \int_{0}^\infty g'(y)\left(\int_y^\infty z\phi(z)dz\right)dy +\int_{-\infty}^0 g'(y)\left(\int_{-\infty}^0 -z\phi(z)dz\right)dy\\
+   &=& \int_{0}^\infty g'(y)\left(\int_y^\infty -\phi'(z)dz\right)dy +\int_{-\infty}^0 g'(y)\left(\int_{-\infty}^0 \phi'(z)dz\right)dy\\
+   &=& \int_{0}^\infty\left(\int_0^z g'(y)dy\right) z\phi(z)dz +\int_{-\infty}^0 \left(\int_{z}^0g'(y)dy\right)(-z\phi(z))dz\\
+   &=& \int_{0}^\infty\left(g(z)-g(0)\right) z\phi(z)dz +\int_{-\infty}^0 \left(g(0)-g(z)\right)(-z\phi(z))dz\\
+  &=& \int_{-\infty}^\infty\left(g(z)-g(0)\right) z\phi(z)dz  \\
+    &=& \int_{-\infty}^\infty g(z) z\phi(z)dz -g(0)\int_{-\infty}^\infty z\phi(z)dz 
+    &=&E[Yg(Y)]-0=E[Yg(Y)].
+   \end{eqnarray*}$$
+   
+<br>
+<br>
+
+매우 중요하다
+
+#### Lemma (Stein's Identity)
+Let $X\sim N(\theta,\sigma^2)$. Then, if $E_{\theta,\sigma^2}[|h'(X)|]<\infty$, one has
+$$
+E_{\theta, \sigma^2}[h'(X)]=\frac{1}{\sigma^2}E_{\theta,\sigma^2}[(X-\theta)h(X)].
+$$
+<br>
+
+  * 증명: $g(x):=h(\theta+\sigma x)$라고 정의하자. 그렇다면
+ 
+   $$\begin{eqnarray*}
+  h(x)=g\left( \frac{x-\theta}{\sigma}\right)\mbox{ }\mbox{ and }\mbox{ }h'(x)=\frac{1}{\sigma}g'\left( \frac{x-\theta}{\sigma}\right).
+   \end{eqnarray*}$$
+   또한 $Y= \frac{x-\theta}{\sigma}$라 하자. 그렇다면 $Y\sim N(0,1)$이다. 따라서,
+   $$\begin{eqnarray*}
+  E_{\theta,\sigma^2}[h'(X)]&=&\frac{1}{\sigma^2}E_{\theta,\sigma^2}\left[g'\left(\frac{X-\theta}{\sigma}\right)\right]\\
+  &=&\frac{1}{\sigma}E[g'(Y)]\\
+  &=&\frac{1}{\sigma}E[Yg(Y)]\\
+  &=&\frac{1}{\sigma}E\left[\frac{X-\theta}{\sigma}g\left(\frac{X-\theta}{\sigma}\right)\right]\\
+  &=&\frac{1}{\sigma^2}E[(X-\theta)h(X)].
+   \end{eqnarray*}$$
+
+<br>
+<br>
+
+#### Lemma (Multivariate result of Stein's Identity)
+Let $X\sim N(\theta,I_p)$. Then, if $E_\theta\left[\Big|\frac{dh(X)}{d X_i}\Big| \right]<\infty$, $\forall i$, one has
+ $$\begin{eqnarray*}
+E_\theta\left[\Big| \frac{dH(X)}{dX_i} \Big|\right]= E\left[(X_i-\theta_i)h(X) \right].
+   \end{eqnarray*}$$
+
+<br>
+<br>
+
+중요하다
+
+#### Remark    
+Consider now the rival estimator $\delta^*(X)=(X_1+\phi_1(X),\ldots,X_p+\phi_p(X))=X+\phi(X)$ of $\delta^{**}=X$ for estimating $\theta$. Assuming the sum of squared loss $(*)$ and assuming that $E_\theta\left[\Big|\frac{d\phi_i(X)}{d X_i}\Big|\right]<\infty$ for all $i$, one has the risk difference given by
+
+
+$$\begin{eqnarray*}
+R(\theta,\delta^*)-R(\theta,\delta^{**})&=&E_\theta\left[\sum_{i=1}^p(X_i+\phi_i(X)-\theta_i)^2-\sum_{i=1}^p(X_i-\theta_i)^2 \right]\\
+&=&E_\theta\left[2\sum_{i=1}^p\phi_i(X)(X_i-\theta_i)+\sum_{i=1}^p\phi_i^2(X) \right]\\
+&=&E_\theta\left[2\sum_{i=1}^p\frac{d\phi_i(X)}{dX_i}+\sum_{i=1}^p\phi_i^2(X) \right] \mbox{ }\mbox{ }\mbox{ by above lemma}\\
+   \end{eqnarray*}$$
+  
+<br>
+
+   * 그러므로 만약 $R(\theta,\delta^*)$가 $R(\theta,\delta^{**})$보다 작다는 것을 보이고 싶다면
+   $$
+   \Delta(x)=2\sum_{i=1}^p \frac{d\phi_i(x)}{d x_i}+\sum_{i=1}^p \phi_i^2(x)<0
+   $$
+   을 만족하는 solution을 찾으면 된다.
+  
+<br>
+<br>
+
+#### 예제
+$S=\sum_{i=1}^p(x_i-\mu_i)^2$, $\phi_i(x)=-\frac{\tau(S)}{S}(x_i-\mu_i)$라 하자. 또한 아래 세가지 조건을 만족한다:
+
+1. $0<\tau(S)<2(p-2)$;
+
+2. $\tau\uparrow$ in $S$ and $\tau(S)$: differentiable in $S$;
+
+3. $E[\tau'(S)]<\infty$.
+
+<br>
+
+위 Lemma처럼 $\theta$의 estimator를 $\delta^*(X)=(X_1+\phi_1(X),\ldots,X_p+\phi_p(X))=X+\phi(X)$라고 하고 rival estimator를 $\delta^{**}=X$라고 하자. Sum of squared loss를 가정하고 $E_\theta\left[\Big|\frac{d\phi_i(X)}{d X_i}\Big|\right]<\infty$ for all $i$라고 하자. 그렇다면 위와 같이
+$$\begin{eqnarray*}
+R(\theta,\delta^*)-R(\theta,\delta^{**})&=&E_\theta\left[\sum_{i=1}^p(X_i+\phi_i(X)-\theta_i)^2-\sum_{i=1}^p(X_i-\theta_i)^2 \right]\\
+&=&E_\theta\left[2\sum_{i=1}^p\phi_i(X)(X_i-\theta_i)+\sum_{i=1}^p\phi_i^2(X) \right]\\
+&=&E_\theta\left[2\sum_{i=1}^p\frac{d\phi_i(X)}{dX_i}+\sum_{i=1}^p\phi_i^2(X) \right] \mbox{ }\mbox{ }\mbox{ by above lemma}\\
+   \end{eqnarray*}$$
+   의 결과를 얻는다. 또한
+$$\begin{eqnarray*}
+\frac{d\phi_i(x)}{dx_i}&=&-\frac{d\phi_i(x)}{dx_i}\frac{\tau(S)}{S}(x_i-\mu_i)\\
+&=& -\left(\frac{\tau(S)}{S}+(x_i-\mu_i)\left(\frac{\tau'(S)}{S}-\frac{\tau(S)}{S^2}\right)\frac{dS}{dx_i} \right)\\
+&=& -\frac{\tau(S)}{S}+2(x_i-\mu_i)^2\left(-\frac{\tau'(S)}{S}+\frac{\tau(S)}{S^2}\right).
+\end{eqnarray*}$$
+Thus,
+$$\begin{eqnarray*}
+\Delta(x)&=&2\sum_{i=1}^p \frac{d\phi_i(x)}{d x_i}+\sum_{i=1}^p \phi_i^2(x)\\
+&=&-2p\frac{\tau(S)}{S}+4\left(-\frac{\tau'(S)}{S}+\frac{\tau(S)}{S^2}\right)\sum_{i=1}^p(x_i-\mu_i)^2+\frac{\tau(S)^2}{S^2}\sum_{i=1}^p(x_i-\mu_i)^2\\
+&=&-2p\frac{\tau(S)}{S}+4\left(-\tau'(S)+\frac{\tau(S)}{S}\right)+\frac{\tau(S)^2}{S}\\
+&=& -4\tau'(S)+\frac{\tau(S)}{S}(4-2p+\tau(S))=-4\tau'(S)-\frac{\tau(S)}{S}(2(p-2)+\tau(S))<0 \mbox{ }\mbox{ }\mbox{ }\because \mbox{ }\tau'(S)>0,\mbox{ }  0<\tau(S)<2(p-2).
+\end{eqnarray*}$$
+
+   * 때문에, $R(\theta,\delta^*)<R(\theta,\delta^{**})$이다. 
+   
+<br>
+<br>
+
+
+[back](../decision.html)

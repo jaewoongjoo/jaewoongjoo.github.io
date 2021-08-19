@@ -1,0 +1,65 @@
+---
+title: "3.3. MLE-Asymptotic Efficiency"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Remark(Cramer-Rao Lower Bound)
+Let $T_n$ be an unbiased estimator of $g(\theta)$ based on a random sample of size $n$. Under certain regularity conditions, the Cramer-Rao lower bound gives
+$$
+V_\theta[T_n]\ge\frac{(g'(\theta))^2}{nI(\theta)},
+$$
+where
+$$
+I(\theta)=E\left[\left( \frac{d\log f_{\theta}(x)}{d\theta}\right)^2\right]=-E\left[-\frac{d^2\log f_{\theta}(x)}{d\theta^2}\right]
+$$
+is the Fisher Information.
+
+<br>
+
+   * Asymptotic Efficiency of MLE는 $n$이 커짐에 따라 MLE의 분산이 Fisher Information의 역수로 수렴한다는 내용이다(Asymptotic variance).
+
+<br>
+<br>
+
+#### Remark (Consistent Asymptotically Normal (CAN) Estimators)
+A sequence  of estimators $\{T_n,n\ge1\}$ is **CAN estimators** of $g(\theta)$ if the asymptotic distribution of $\sqrt{n}(T_n-g(\theta))$ is normal.
+
+It was thought that when i.i.d observations were considered, the variance of the limiting distribution of $\sqrt{n}(T_n-g(\theta))$ has the lower bound $\frac{(g'(\theta))^2}{nI(\theta)}$(CRLB). 
+
+An estimator $T_n$ for which the stated lower bound is attained for the asymptotic distribution, is said to be **efficient**.
+
+<br>
+
+   * 즉 정리하자면 $g(\theta)$의 estimator $T_n$이 Cramer-Rao Lower Bound를 asymptotic variance 로 갖는다면 efficient하다.
+
+<br>
+<br>
+
+#### Remark (Bias of the MLE)
+Let $X_1,\ldots,X_n\stackrel{\text{iid}}\sim f_\theta(x)$. Let $L_n(\theta)=\prod_{i=1}^nf_\theta(x_i)$ and let $\hat\theta_n$ denote the MLE of $\theta$. We know that $\sqrt{n}(\hat \theta_n-\theta)\stackrel{d}\rightarrow N(0,I^{-1}(\theta))$(Asymptotic normality of MLE). So, one might expect $E[\hat\theta_n]=\theta+o_p(n^{-\frac{1}{2}})$. However, it is not true in general.
+
+
+<br>
+
+  * MLE는 under certain regularity conditions, Consistency(확률수렴), Asymptotic Normality(점근정규분포수렴), Asymptotic Efficiency(점근효율분산) 3가지 특징을 갖는다.
+
+<br>
+
+  * 하지만 MLE는 항상 unbiased estimator는 아니다.
+
+<br>
+<br>
+
+[back](../decision.html)

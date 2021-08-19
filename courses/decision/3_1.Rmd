@@ -1,0 +1,142 @@
+---
+title: "3.1. MLE-Consistency"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+매우 중요하다.
+
+#### Definition (Consistent Estimator)
+A sequence $\{Y_n,n\ge 1\}$ of estimators is said to be **consistent** for $\theta$ if
+$$
+Y_n\stackrel{\text{Pr}}\rightarrow \theta\mbox{ }\mbox{ }\mbox{ as }\mbox{ }\mbox{ }n\rightarrow \infty.
+$$
+
+<br>
+<br>
+
+#### Definition (Maximum Likelihood Estimator(MLE))
+Suppose $X_1,\ldots,X_n$ have joint pdf $f_\theta(x_1,\ldots,x_n)$ where $\theta\in\Theta$. An estimator $\hat \theta_n(X_1,\ldots,X_n)$ is said to be a **Maximum Likelihood Estimator(MLE)** of $\theta$ if
+
+1. $P_\theta\left(\hat \theta_n(X_1,\ldots,X_n)\in\Theta\right)=1$ for all $\theta\in\Theta$;
+
+2. $f_{\hat \theta_n}(x_1,\ldots,x_n)\ge f_{\theta}(x_1,\ldots,x_n)$ for all $\theta\in\Theta$ and for all $x\in \mathcal{X}$.
+
+Then, we write $L(\theta)=L(\theta|x_1,\ldots,x_n)$ for $f_\theta(x_1,\ldots,x_n)$ and call it the **Likelihood Function**.
+
+<br>
+<br>
+
+#### Remark
+The MLE is always a function of the **minimal sufficient statistic**. If, for example, $T$ is minimal sufficient for $\theta$, using the factorization theorem, one can write $f_\theta(x_1,\ldots,x_n)=g_\theta(t)h(x_1,\ldots,x_n)$ and maximization of $f_\theta(x_1,\ldots,x_n)$ w.r.t $\theta$ accounts to the maximization of $g_\theta(t)$ w.r.t $\theta$ which leads $T=t$ the desired conclusion. 
+
+<br>
+<br>
+
+#### Example (Non-uniqueness of MLE)
+Let $X_1,\ldots,X_n\stackrel{\text{iid}}\sim \text{Uniform}(\theta,\theta+1)$, $\theta\in\mathbb{R}$. Here
+$$
+\mathcal{X}=\{(x_1,\ldots,x_n):0\le \max x_i-\min x_i\le 1\}.\\
+L(\theta)=1\left(\theta\le \min_{1\le i\le n} x_i\right)1 \left(\theta\ge \max_{1\le i\le n} x_i-1\right).
+$$
+Therefore, element in the interval $(\max_{1\le i\le n}x_i-1, \min_{1\le i\le n}x_i)$ is a MLE of $\theta$.
+
+
+<br>
+<br>
+
+
+#### 예제 (MLE는 항상 consistent하지 않다.)
+Let $(X_{i1},X_{i2})^T$, $i=1,\ldots,n$ be independent with
+$$
+{X_{i1} \choose X_{i2}}\sim N\left( {\mu_{i} \choose \mu_{i}}, \sigma^2I_2\right), \mbox{ }\mbox{ }i=1,\ldots,n,
+$$
+where $\mu_i\in\mathbb{R}$, $\sigma^2>0$ are **all unknown**. We first find the MLE of $\sigma^2$ based on $(X_{i1},X_{i2})^T$, $i=1,\ldots,n$.
+
+$$\begin{eqnarray*}
+L(\mu_1,\ldots,\mu_n,\sigma^2)&=& (2\pi\sigma^2)^{-\frac{2n}{2}}\exp\left(-\frac{1}{2\sigma^2}\sum_{i=1}^n\sum_{j=2}^n(x_{ij}-\mu_i)^2 \right)\\
+&=&(2\pi\sigma^2)^{-\frac{2n}{2}}\exp\left(-\frac{1}{2\sigma^2}\left(\sum_{i=1}^n\sum_{j=2}^n(x_{ij}-\bar x_i)^2+2\sum_{i=1}^n (\bar x_i -\mu_i)^2 \right)\right), \mbox{ }\bar x_i=\frac{x_{i1}+X_{i2}}{2}.
+\end{eqnarray*}$$
+Thus, MLE's are
+$$
+\hat \mu_i=\bar x_i, i=1,\ldots,n\\
+\hat \sigma_n^2=\frac{1}{2n}\sum_{i=1}^n \sum_{j=1}^2 (x_{ij}-\bar x_i)^2= \frac{1}{4n}\sum_{i=1}^n (x_{i1}-x_{i2})^2,
+$$
+because
+
+$$
+\sum_{j=1}^2(x_{ij}-\bar x_i)=\left(x_{i1}-\frac{x_{i1}+x_{i2}}{2}\right)^2+\left(x_{i2}-\frac{x_{i1}+x_{i2}}{2}\right)^2=\frac{1}{2}(x_{i1}-x_{i2})^2.
+$$
+Note that
+$$
+\frac{X_{i1}-X_{i2}}{\sqrt{2}}\stackrel{\text{iid}}\sim N(0,\sigma^2)\implies \frac{(X_{i1}-X_{i2})^2}{2}\stackrel{\text{iid}}\sim \sigma^2\chi_1^2\implies E\left(\frac{(X_{i1}-X_{i2})^2}{2}\right)=\sigma^2
+$$
+Thus by WLLN,
+$$
+\frac{1}{n}\sum_{i=1}^n\frac{(X_{i1}-X_{i2})^2}{2}\stackrel{\text{Pr}}\rightarrow \sigma^2
+$$
+Thus,
+$$
+\hat\sigma_j^2=\frac{1}{2}\left(\frac{1}{n}\sum_{i=1}^n\frac{(X_{i1}-X_{i2})^2}{2} \right)\stackrel{\text{Pr}}\rightarrow\frac{\sigma^2}{2}\ne \sigma^2.
+$$
+
+Therefore, $\hat \sigma_n^2$ is not consistent estimator of $\sigma^2$.
+
+<br>
+<br>
+
+#### Remark(Identifiability)
+For $\theta\in\mathbb{R}$, let
+$$
+f_\theta(x)=\frac{1}{2}\left\{\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{1}{2}(x-\theta)^2\right)+ \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{1}{2}(x+\theta)^2\right)\right\}.
+$$
+It lacks identifiability since $f_\theta(x)=f_{-\theta}(x)$, for all $\theta\in \mathbb{R}$.
+
+<br>
+
+   * Identifiability를 충족시키려면, parameter를 다른 값으로 주었을 때, 분포값도 다르게 나와야 한다.
+
+<br>
+<br>
+
+#### Theorem (Finite numbers of parameters)
+Let $X_1,\ldots, X_n\stackrel{\text{iid}}\sim f_\theta (x)$. Suppose $\hat\theta_n$ is the MLE of $\theta$ based on $X_1,\ldots, X_n$. It is assumed that $\theta\in \Theta=\{\theta_1,\ldots \theta_r\}$, i.e., the parameter spaces contains exactly $r$ elements.
+
+If $P_{\theta_i}(f_{\theta_i}(X_1)=f_{\theta_l}(X_1))<1$ for all $i\ne l$, then
+$$
+\hat \theta_n\stackrel{\text{Pr}}\rightarrow \theta\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty, \mbox{ }\mbox{ }\mbox{ }i=1,\ldots,r.
+$$
+
+<br>
+
+   * 증명: $\log$는 concave함수이기 때문에 Jensen's Inequality에 의해
+   $$\begin{eqnarray*}
+   E_{\theta_i}\left[ \log \left(\frac{f_{\theta_l}(X_1)}{f_{\theta_i}(X_1)}\right)\right]&<& \log \left(E_{\theta_i}\left[\frac{f_{\theta_l}(X_1)}{f_{\theta_i}(X_1)}   \right] \right)\\
+   &=&\log\left(\int_{\Theta_i}\frac{f_{\theta_l}(x_1)}{f_{\theta_i}(x_1)}  f_{\theta_i}(x_1)dx_1 \right)\\
+   &=&\log\left(\int_{\Theta_i}f_{\theta_l}(x_1)dx_1 \right)<0 \mbox{ }\mbox{ }\mbox{ }\because \int_{\Theta_i}f_{\theta_l}(x_1)dx_1<1.\\
+\implies  E_{\theta_i}\left[ \log \left(\frac{f_{\theta_i}(X_1)}{f_{\theta_l}(X_1)}\right)\right]&>&0.
+   \end{eqnarray*}$$
+   때문에 WLLN에 의해
+   $$
+   \frac{1}{n}\sum_{i=1}^n \log \left(\frac{f_{\theta_i}(X_j)}{f_{\theta_l}(X_j)}\right)\stackrel{\text{Pr}}\rightarrow E_{\theta_i}\left[ \log \left(\frac{f_{\theta_i}(X_1)}{f_{\theta_l}(X_1)}\right)\right]>0 \mbox{ }\mbox{ }\mbox{ for all }i\ne l.
+   $$
+   때문에 sufficiently large $n$에 대해서 $P\left( \frac{1}{n}\sum_{i=1}^n \log \frac{f_{\theta_i}(X_j)}{f_{\theta_l}(X_j)}>0\right)= P_{\theta_i}\left( \prod_{j=1}^n f_{\theta_i}(X_1)>\prod_{j=1}^n  f_{\theta_l}(X_j)\right)$ can be made arbitrarily close to 1 for all $i\ne l$.
+   $$
+   \therefore \mbox{ }\lim_{n\rightarrow\infty}P_{\theta_i}(\hat \theta_n \ne \theta_i)=0 \mbox{, }\mbox{ }\mbox{ i.e., }\mbox{ }\mbox{ }\hat \theta_n\stackrel{\text{Pr}}\rightarrow \theta_i.
+   $$
+
+<br>
+<br>
+
+[back](../decision.html)

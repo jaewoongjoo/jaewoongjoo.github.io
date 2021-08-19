@@ -1,0 +1,161 @@
+---
+title: "1.2. Finding Bayes Rules"
+#output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+요약:
+
+1. Weighted squared error loss에서의 Bayes estimator은 **weighted posterior mean**이다
+
+    (squared error loss에서의 bayes action은 posterior mean이다).
+    
+2. squared error loss에서, 주어진 action $a$가 unbiased estimator of $\theta$이고 Bayes risk$=0$라면 Bayes estimator이다.
+
+   - 문제에서 $\theta$에 unbiased한 action을 주고, Bayes estimator인지를 보이라고 묻는다면 Bayes risk가 0임을 보이면 된다.  
+
+<br>
+<br>
+
+
+##### Remark(Squared Error Loss)
+
+Assume that the prior distribution has *finite* second moment. Let $m=\int_\theta\theta g(\theta)d\theta$ (prior mean of $\xi)$, $g$ being a prior pdf. Then, for no-data problem,
+
+$$
+r(\xi,a)=\int_\theta (\theta-a)^2g(\theta)d\theta=\int_\theta (\theta-m+m-a)^2g(\theta)d\theta=\int_\theta (\theta-m)^2g(\theta)d\theta + (m-a)^2 \ge \int_\theta (\theta-m)^2g(\theta)d\theta,
+$$
+ with equality iff $a=m$.
+
+
+ Thus, for the no-data problem, the **Bayes estimator** of $\theta$ is  $a=m=\int_\theta\theta g(\theta)d\theta$, the prior mean.
+ 
+ If $X=x$ is available, the **Bayes estimator** of $\theta$ is $\delta(x)=\int_\theta\theta P(\theta|X=x)d\theta$, the posterior mean.
+ 
+ &nbsp;
+ 
+   * 증명 : [Chapter 3를 확인](https://web.stanford.edu/class/ee378a/lecture-notes/lecture7.pdf)
+ 
+   * 앞장에서 배웠다시피 Bayes risk를 minimize하는 action을 Bayes (또는 Bayes solution)라 하고 이는 $r(\xi, \delta_\xi)=\inf_{\delta\in D}r(\xi,\delta)$를 만족시키는 $\delta_\xi$이다. 
+
+   * 여기서 Bayes *'estimator'*라고 불리는 이유는 위의 Bayes solution (infimum)을 구하는데 있어, 주어진 data가 쓰이기 때문이다. 
+
+&nbsp;&nbsp;
+
+매우 중요
+
+#### Example
+$X_1,\ldots,X_n\stackrel{\text{iid}}{\sim}N(\theta,\sigma^2)$ where $\theta\in \mathbb{R}$ is unknown, but $\sigma^2>0$ is known.
+$$
+f_\theta(x_1,\ldots,x_n)\propto e^{-\frac{1}{2\sigma^2}\sum(x_i-\theta)^2}=e^{-\frac{1}{2\sigma^2}\sum(x_i-\bar x+ \bar x-\theta)^2}=e^{-\frac{1}{2\sigma^2}\sum(x_i-\bar x)^2-\frac{n}{2\sigma^2}(\bar x-\theta)^2}\propto e^{-\frac{n}{2\sigma^2}(\bar x-\theta)^2}  
+$$
+Suppose the prior pdf is $N(\mu,\tau^2)$. Then,
+$$
+P(\theta|x_1,\ldots x_n)\propto e^{-\frac{1}{2\sigma^2}n(\bar x-\theta)^2- \frac{1}{2\tau^2}(\theta-\mu)^2}= e^{-\frac{1}{2}\left\{\frac{n(\bar x-\theta)^2}{\sigma^2}- \frac{(\theta-\mu)^2}{\tau^2}\right\}}
+$$
+Note that
+$$\begin{eqnarray*}
+\frac{n(\bar x-\theta)^2}{\sigma^2}- \frac{(\theta-\mu)^2}{\tau^2}&\propto&  \left( \frac{n}{\sigma^2}+\frac{1}{\tau^2}  \right) \left(\theta-\frac{\frac{n\bar x_n}{\sigma^2}+ \frac{\mu}{\tau^2}}{\frac{n}{\sigma^2}+ \frac{1}{\tau^2}}\right)  \\
+\implies  P(\theta|x_1,\ldots x_n) &\propto&\exp\left\{-\frac{1}{2}\left( \frac{n}{\sigma^2}+\frac{1}{\tau^2}  \right)\left(\theta-\frac{\frac{n\bar x_n}{\sigma^2}+ \frac{\mu}{\tau^2}}{\frac{n}{\sigma^2}+ \frac{1}{\tau^2}}\right) \right\}
+\end{eqnarray*}$$
+
+The posterior pdf is 
+$$
+\theta|x_1,\ldots,x_n\sim N\left(\frac{\frac{n\bar x_n}{\sigma^2}+ \frac{\mu}{\tau^2}}{\frac{n}{\sigma^2}+ \frac{1}{\tau^2}}, \frac{1}{\frac{n}{\sigma^2}+\frac{1}{\tau^2} }\right)
+$$
+Let $B=\frac{\frac{\sigma^2}{n}}{\frac{\sigma^2}{n}+\tau^2}=\frac{\text{sample var}}{\text{sample var+prior var}}$. Then,
+$$
+\theta|x_1,\ldots,x_n\sim N\left(\frac{\frac{n\bar x_n}{\sigma^2}+ \frac{\mu}{\tau^2}}{\frac{n}{\sigma^2}+ \frac{1}{\tau^2}}, \frac{1}{\frac{n}{\sigma^2}+\frac{1}{\tau^2} }\right)\equiv N(B\mu+(1-B)\bar x_n, B\tau^2) 
+$$
+
+<br>
+<br>
+
+매우 중요하다.
+
+#### Remark (Quadratic Loss (Weighted Squared Error Loss))
+Suppose
+$$
+L(\theta,a)=w(\theta)(\theta-a)^2
+$$
+where $w(\theta)>0$ $\forall \theta\in \Theta$. Assuming the prior pdf $g(\theta)$ for the no-data problem, the Bayes estimate of $\theta$ is obtained by minimizing $\int w(\theta)(\theta-a)^2g(\theta)d\theta$ w.r.t $a$, i.e., bayes risk. Now
+$$
+\int w(\theta)(\theta-a)^2 g(\theta)d\theta=a^2\int w(\theta)g(\theta)d\theta-2a\int \theta w(\theta)g(\theta)d\theta+\int \theta^2 w(\theta)g(\theta)d\theta.
+$$
+This is minimized w.r.t. $a$ for $a=a_0$ where
+$$
+a_0=\frac{\int \theta w(\theta)g(\theta)d\theta}{\int  w(\theta)g(\theta)d\theta}.
+$$
+
+<br>
+
+  * $a$에 대해 미분하면 구할 수 있다)
+
+  * 만약 $v(\theta)=\frac{w(\theta)g(\theta)}{\int w(\theta)g(\theta)d\theta}$(weight)라고 한다면, $a_0$는 mean이다.  
+
+
+<br>
+
+If $X$ is observed, $r(\xi,a)=E[E(L(\theta,a)|X)]=\int w(\theta)(\theta-a)^2P(\theta|X)d\theta dx$ is minimized w.r.t $a$ for $a=a_0$ where 
+$$
+a_0=\frac{\int \theta w(\theta)P(\theta|X)d\theta}{\int  w(\theta)P(\theta|X)d\theta}.
+$$
+
+<br>
+
+  * $w(\theta)$가 1이라면 기존의 Squared error loss의 경우와 같다.
+
+  * 즉 weighted squared error loss에서의 bayes estimator은 **weighted posterior mean**이다(squared error loss에서의 bayes action은 posterior mean).
+  
+<br>
+<br>
+
+#### Remark (Absolute Error Loss)
+$$
+L(\theta,a)=|\theta-a|
+$$
+If the loss is absolute error, for the no-data problem, $\int |\theta-a|g(\theta)d\theta$ minimized w.r.t $a$ if $a$ is a median of the prior distribution. When $X=x$ is observed, the Bayes estimator is a median of the posterior distribution. 
+
+<br>
+
+   * Absolute error loss 에서의 bayes action은 **posterior median**이다.
+
+<br>
+<br>
+
+#### Theorem (Blackwell and Girshick)
+Let $\Theta$ be an open or closed interval in the real line, and let $L(\theta,a)=w(\theta)(\theta-a)^2$ for all $\theta\in \Theta$. If a Bayes estimator $\delta_\xi(x)$ of $\theta$ w.r.t. a prior $\xi$ is also an unbiased estimator of $\theta$, then the Bayes risk of $\delta_\xi$ w.r.t $\xi$ is $r(\xi,\delta_\xi)=0$. 
+
+
+<br>
+
+   * 이는 만약 $w(\theta)=1$이라면(Squared error loss 상황), Bayes estimator가 $\theta$의 unbiased estimator일 때, its Bayes risk는 0임을 의미한다.
+
+<br>
+
+   * 하지만 unbiased estimator라고 해서 항상 Bayes estimator가 되는 것은 아니다. 예를 들어 $X_1,\ldots X_n\stackrel{\text{iid}}{\sim}N(\theta,1)$일 때 $\bar X_n$은 $\theta$의 불편추정량이다. 하지만 $E[(\bar X_n-\theta)^2]=\frac{1}{n}$이다. 때문에 Squared error loss를 가정했을 때, $\bar X_n$의 Bayes risk는 prior가 어떤 것이든지간에 $\frac{1}{n}\ne 0$이다. 때문에 $\bar X_n$은 Bayes estimator가 될 수 없다. 
+   
+<br>
+
+   * 이번에는 $X_1,\ldots X_n\stackrel{\text{iid}}{\sim}B(1,\theta)$(베르누이)라고 가정해보자. 물론 $\bar X_n$은 똑같이 $\theta$의 불편추정량이다. 그리고 $E[(\bar X_n - \theta)^2]=\frac{\theta(1-\theta)}{n}$이다. Squared error loss를 가정한다면 $\bar X_n$은 오직 prior $\xi$가 $\theta=0$ 또는 $\theta=1$ w.p 1일 때 zero Bayes risk를 갖는다. 만약 그렇지 않다면 Bayes estimator가 아니다. 
+
+<br>
+
+   * 즉 만약 squared error loss상황에서, $\delta$가 unbiased estimator of $\theta$이고 Bayes risk$=0$ $\implies$ Bayes estimator이다. 
+
+<br>
+<br>
+
+[back](../decision.html)

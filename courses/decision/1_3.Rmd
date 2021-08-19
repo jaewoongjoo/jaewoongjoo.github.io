@@ -1,0 +1,84 @@
+---
+title: "1.3. Convex Loss and Non-Randomized Decision Rules"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+요약: action $a$가 $\{$complete sufficient statistic of $\theta=T$$\}$의 함수라면, Bayes estimator이다. 
+
+<br>
+<br>
+
+
+#### Definition
+A real valued function $f(x)$ defined on a convex subset $S$ of $\mathbb{R}^k$ is said to be convex if for $x\in S$, $y\in S$ and for any $\alpha\in [0,1]$,
+$$
+f(\alpha x+(1-\alpha)y)\le \alpha f(x)+(1-\alpha)f(y).
+$$
+
+<br>
+
+   * $f(x)=||x||^r$ is a convex function, where $||\cdot||$ denote the Euclidean norm.
+
+<br>
+<br>
+
+#### Remark
+Typically the loss function we consider is of the form 
+$$
+L(\theta,a)=||\theta-a||^r,\mbox{ }\mbox{ }\mbox{ } r\le 1,
+$$
+which for fixed $\theta$ are convex function of $a$.
+
+<br>
+
+  * 앞으로 이를 Convex Loss라고 부를 것이다. 
+  
+  * 이를 이용하여 위의 Jensen 부등식을 통해 Convex Loss일 때(fixed $\theta$), randomized rule은 항상 언제나(in terms of risk) by a non-randomized rule로 풀어낼 수 있음을 보일 것이다. 
+
+  * 미리 말하자면 어떤 action $a$가 $\theta$의 완비충분통계량 $T$의 function일 때, $\theta$의 Bayes estimator가 된다.  
+  
+<br>
+<br>
+
+#### Theorem
+Let $\gamma(\theta)$ be a parametric function, not necessary estimable. Let $T$ be a complete sufficient statistic for $\theta$. Then, there exists a unique estimator $\gamma(\theta)$ based on $T$ which has the smallest risk under any convex loss among all estimators of $\gamma(\theta)$.
+
+<br>
+
+   * $g(X)$를 $\gamma(\theta)$의 estimator라고 하자. 또한 $h(T)=E(g(X)|T)$라 하자. 그렇다면 Convex Loss $L(\gamma(\theta), a)$에 대해 with fixed $\gamma(\theta)$,
+  
+   $$\begin{eqnarray*}
+R(\gamma(\theta),g(X))&=&E_\theta[L(\gamma(\theta),g(X) )]   \\
+&=& E_\theta\left[\mbox{ }E[L(\gamma(\theta),g(X))|T]\mbox{ }\right]\\
+&\ge& E_\theta\left[\mbox{ }L[E(\gamma(\theta),g(X))|T]\mbox{ }\right]\mbox{ }\mbox{ (}L\mbox{  is convex loss)}\\
+&=& E_\theta\left[\mbox{ }L\left(\gamma(\theta),E[g(X)|T]\right)\mbox{ }\right]\mbox{ }\mbox{ (}\gamma(\theta)\mbox{  is fixed)}\\
+&=& E_\theta\left[\mbox{ }L\left(\gamma(\theta),h(T)\right)\mbox{ }\right].
+\end{eqnarray*}$$
+  
+  
+  * 즉 $a=h(T)=E(g(x)|T)$일 때 smallest risk를 갖는다.
+
+  * 결론은 complete sufficient statistics for $\theta$인 $T$가 주어졌을 때, Bayes estimator는 그 완비충분통계량의 함수이고 unique하다는 것이다. 
+
+<br>
+
+  * 바꾸어 말하면 $\gamma(\theta)$의 주어진 action $a$가 c.s.s of $\theta$의 함수라면, Bayes estimator라는 것이다. 
+  
+
+
+<br>
+<br>
+
+[back](../decision.html)

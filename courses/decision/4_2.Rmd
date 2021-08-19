@@ -1,0 +1,43 @@
+---
+title: '4.2. Asymptotic Null Distributions of GLRT; Wald & Rao Statistics'
+output: html_document
+---
+
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Theorem
+Assume the Foutz's assumption holds. Let
+
+  * $W_n=(\hat\theta_n-\theta_0)^TI(\theta_0)(\hat\theta_n-\theta_0)$(Wald);
+
+  * $V_n=nT_n(\theta_0)^TI(\hat\theta_n)T_n(\theta_0)$(Rao);
+
+Then,
+
+1. $-2\log\lambda_n\stackrel{d}\rightarrow \chi_k^2$;
+
+2. $W_n\stackrel{d}\rightarrow \chi_k^2$;
+
+3. $V_n\stackrel{d}\rightarrow \chi_k^2$.
+
+
+<br>
+
+   * 즉 GLRT와 Wald, Rao 모두 $\chi^2$로 점근수렴하기 때문에 large $n$일 경우 카이스퀘어 테스트를 할 수 있다다.
+
+
+<br>
+<br>
+
+[back](../decision.html)

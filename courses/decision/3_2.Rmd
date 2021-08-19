@@ -1,0 +1,51 @@
+---
+title: "3.2. MLE-Asymptotic Normality"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Theorem (Foutz's Theorem)
+Let $X_1,X_2,\ldots$ be i.i.d with common pdf $f_\theta(x)$. Very often, the MLE is a solution of the likelihood equation
+$$
+T_n(\theta)=\frac{1}{n}\sum_{i=1}^n \frac{d\log f_\theta(X_i)}{d\theta}=0,
+$$
+based on the following assumptions:
+
+1. $\frac{d^2}{d\theta^2}\log f_{\theta}(x)$ exists for all $\theta$, and is continuous in $\theta$;
+
+2. $E_{\theta_0}\left[\frac{d}{d\theta_0}\log f_\theta(x)\Big|_{\theta=\theta_0} \right]=0$;
+
+3. $0<I(\theta)=E\left[-\frac{d^2}{d\theta^2}\log f_{\theta}(x)\right]<\infty$ for all $\theta\in U_{\delta}$;
+
+4. For every $\epsilon>0$, $\exists\delta>0$ s.t. $P(\sup_{\theta\in U_\delta}|T_n'(\theta)+I(\theta)|>\epsilon)\rightarrow 0$ as $n\rightarrow \infty$.
+
+
+<br>
+<br>
+
+#### Theorem (Asymptotic Normality)
+
+Let $X_1,\ldots,X_n\stackrel{\text{iid}}\sim f_\theta(x)$ w.r.t some $\sigma$-finite measure $\mu$, where $\theta\in \Theta$, some open interval in the real line.
+
+Assume the above conditions 1-4. Suppose $\{\hat \theta_n\}$ is a consistent sequence of solutions to the likelihood equation. Then
+$$
+\sqrt{n}(\hat \theta_n-\theta_0)\stackrel{d}\rightarrow N(0,I^{-1}(\theta_0))
+$$
+
+   * 즉 위의 Foutz's Theorem에서의 Likelihood equation $T_n$의 solution은 $n$이 커짐에 따라서(asymptotically) normal distribution으로  분포수렴한다는 것이다.
+
+<br>
+<br>
+
+[back](../decision.html)

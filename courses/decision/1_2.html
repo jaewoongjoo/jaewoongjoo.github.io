@@ -361,7 +361,17 @@ pre {
   font-size: 15px
 }
 </style>
-<p>  </p>
+<p><br> <br></p>
+<p>요약:</p>
+<ol style="list-style-type: decimal">
+<li><p>Weighted squared error loss에서의 Bayes estimator은 <strong>weighted posterior mean</strong>이다</p>
+<p>(squared error loss에서의 bayes action은 posterior mean이다).</p></li>
+<li><p>squared error loss에서, 주어진 action <span class="math inline">\(a\)</span>가 unbiased estimator of <span class="math inline">\(\theta\)</span>이고 Bayes risk<span class="math inline">\(=0\)</span>라면 Bayes estimator이다.</p>
+<ul>
+<li>문제에서 <span class="math inline">\(\theta\)</span>에 unbiased한 action을 주고, Bayes estimator인지를 보이라고 묻는다면 Bayes risk가 0임을 보이면 된다.</li>
+</ul></li>
+</ol>
+<p><br> <br></p>
 <div id="remarksquared-error-loss" class="section level5">
 <h5>Remark(Squared Error Loss)</h5>
 <p>Assume that the prior distribution has <em>finite</em> second moment. Let <span class="math inline">\(m=\int_\theta\theta g(\theta)d\theta\)</span> (prior mean of <span class="math inline">\(\xi)\)</span>, <span class="math inline">\(g\)</span> being a prior pdf. Then, for no-data problem,</p>
@@ -379,16 +389,80 @@ r(\xi,a)=\int_\theta (\theta-a)^2g(\theta)d\theta=\int_\theta (\theta-m+m-a)^2g(
 <p>  </p>
 <p>매우 중요</p>
 </div>
-<div id="example" class="section level5">
-<h5>Example</h5>
-<p>Let <span class="math inline">\(X_1, \ldots,X_n \stackrel{\text{iid}}{\sim} N(\theta,\sigma^2)\)</span>, where <span class="math inline">\(\theta\in \mathbb{R}\)</span> is unknown, but <span class="math inline">\(\sigma^2&gt;0\)</span> is known. Then, <span class="math display">\[
-f_\theta(x_1,\ldots,x_n)\propto e^{-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\theta)^2} \propto e^{-\frac{n}{2\sigma^2} (\bar{x_n}-\theta)^2}.
-\]</span> Suppose we have prior <span class="math inline">\(N(\mu, \tau^2)\)</span>. Then, <span class="math display">\[
-P(\theta|x_1,\ldots,x_n)= \propto e^{-\frac{1}{2} \left\{ \frac{(\bar{x_n}-\theta)^2}{\sigma^2}+\frac{(\theta-\mu)^2}{\tau^2} \right\}}.
-\]</span> Note that <span class="math display">\[
-TBD...
+<div id="example" class="section level4">
+<h4>Example</h4>
+<p><span class="math inline">\(X_1,\ldots,X_n\stackrel{\text{iid}}{\sim}N(\theta,\sigma^2)\)</span> where <span class="math inline">\(\theta\in \mathbb{R}\)</span> is unknown, but <span class="math inline">\(\sigma^2&gt;0\)</span> is known. <span class="math display">\[
+f_\theta(x_1,\ldots,x_n)\propto e^{-\frac{1}{2\sigma^2}\sum(x_i-\theta)^2}=e^{-\frac{1}{2\sigma^2}\sum(x_i-\bar x+ \bar x-\theta)^2}=e^{-\frac{1}{2\sigma^2}\sum(x_i-\bar x)^2-\frac{n}{2\sigma^2}(\bar x-\theta)^2}\propto e^{-\frac{n}{2\sigma^2}(\bar x-\theta)^2}  
+\]</span> Suppose the prior pdf is <span class="math inline">\(N(\mu,\tau^2)\)</span>. Then, <span class="math display">\[
+P(\theta|x_1,\ldots x_n)\propto e^{-\frac{1}{2\sigma^2}n(\bar x-\theta)^2- \frac{1}{2\tau^2}(\theta-\mu)^2}= e^{-\frac{1}{2}\left\{\frac{n(\bar x-\theta)^2}{\sigma^2}- \frac{(\theta-\mu)^2}{\tau^2}\right\}}
+\]</span> Note that <span class="math display">\[\begin{eqnarray*}
+\frac{n(\bar x-\theta)^2}{\sigma^2}- \frac{(\theta-\mu)^2}{\tau^2}&amp;\propto&amp;  \left( \frac{n}{\sigma^2}+\frac{1}{\tau^2}  \right) \left(\theta-\frac{\frac{n\bar x_n}{\sigma^2}+ \frac{\mu}{\tau^2}}{\frac{n}{\sigma^2}+ \frac{1}{\tau^2}}\right)  \\
+\implies  P(\theta|x_1,\ldots x_n) &amp;\propto&amp;\exp\left\{-\frac{1}{2}\left( \frac{n}{\sigma^2}+\frac{1}{\tau^2}  \right)\left(\theta-\frac{\frac{n\bar x_n}{\sigma^2}+ \frac{\mu}{\tau^2}}{\frac{n}{\sigma^2}+ \frac{1}{\tau^2}}\right) \right\}
+\end{eqnarray*}\]</span></p>
+<p>The posterior pdf is <span class="math display">\[
+\theta|x_1,\ldots,x_n\sim N\left(\frac{\frac{n\bar x_n}{\sigma^2}+ \frac{\mu}{\tau^2}}{\frac{n}{\sigma^2}+ \frac{1}{\tau^2}}, \frac{1}{\frac{n}{\sigma^2}+\frac{1}{\tau^2} }\right)
+\]</span> Let <span class="math inline">\(B=\frac{\frac{\sigma^2}{n}}{\frac{\sigma^2}{n}+\tau^2}=\frac{\text{sample var}}{\text{sample var+prior var}}\)</span>. Then, <span class="math display">\[
+\theta|x_1,\ldots,x_n\sim N\left(\frac{\frac{n\bar x_n}{\sigma^2}+ \frac{\mu}{\tau^2}}{\frac{n}{\sigma^2}+ \frac{1}{\tau^2}}, \frac{1}{\frac{n}{\sigma^2}+\frac{1}{\tau^2} }\right)\equiv N(B\mu+(1-B)\bar x_n, B\tau^2) 
 \]</span></p>
-<p>  </p>
+<p><br> <br></p>
+<p>매우 중요하다.</p>
+</div>
+<div id="remark-quadratic-loss-weighted-squared-error-loss" class="section level4">
+<h4>Remark (Quadratic Loss (Weighted Squared Error Loss))</h4>
+<p>Suppose <span class="math display">\[
+L(\theta,a)=w(\theta)(\theta-a)^2
+\]</span> where <span class="math inline">\(w(\theta)&gt;0\)</span> <span class="math inline">\(\forall \theta\in \Theta\)</span>. Assuming the prior pdf <span class="math inline">\(g(\theta)\)</span> for the no-data problem, the Bayes estimate of <span class="math inline">\(\theta\)</span> is obtained by minimizing <span class="math inline">\(\int w(\theta)(\theta-a)^2g(\theta)d\theta\)</span> w.r.t <span class="math inline">\(a\)</span>, i.e., bayes risk. Now <span class="math display">\[
+\int w(\theta)(\theta-a)^2 g(\theta)d\theta=a^2\int w(\theta)g(\theta)d\theta-2a\int \theta w(\theta)g(\theta)d\theta+\int \theta^2 w(\theta)g(\theta)d\theta.
+\]</span> This is minimized w.r.t. <span class="math inline">\(a\)</span> for <span class="math inline">\(a=a_0\)</span> where <span class="math display">\[
+a_0=\frac{\int \theta w(\theta)g(\theta)d\theta}{\int  w(\theta)g(\theta)d\theta}.
+\]</span></p>
+<p><br></p>
+<ul>
+<li><p><span class="math inline">\(a\)</span>에 대해 미분하면 구할 수 있다)</p></li>
+<li><p>만약 <span class="math inline">\(v(\theta)=\frac{w(\theta)g(\theta)}{\int w(\theta)g(\theta)d\theta}\)</span>(weight)라고 한다면, <span class="math inline">\(a_0\)</span>는 mean이다.</p></li>
+</ul>
+<p><br></p>
+<p>If <span class="math inline">\(X\)</span> is observed, <span class="math inline">\(r(\xi,a)=E[E(L(\theta,a)|X)]=\int w(\theta)(\theta-a)^2P(\theta|X)d\theta dx\)</span> is minimized w.r.t <span class="math inline">\(a\)</span> for <span class="math inline">\(a=a_0\)</span> where <span class="math display">\[
+a_0=\frac{\int \theta w(\theta)P(\theta|X)d\theta}{\int  w(\theta)P(\theta|X)d\theta}.
+\]</span></p>
+<p><br></p>
+<ul>
+<li><p><span class="math inline">\(w(\theta)\)</span>가 1이라면 기존의 Squared error loss의 경우와 같다.</p></li>
+<li><p>즉 weighted squared error loss에서의 bayes estimator은 <strong>weighted posterior mean</strong>이다(squared error loss에서의 bayes action은 posterior mean).</p></li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="remark-absolute-error-loss" class="section level4">
+<h4>Remark (Absolute Error Loss)</h4>
+<p><span class="math display">\[
+L(\theta,a)=|\theta-a|
+\]</span> If the loss is absolute error, for the no-data problem, <span class="math inline">\(\int |\theta-a|g(\theta)d\theta\)</span> minimized w.r.t <span class="math inline">\(a\)</span> if <span class="math inline">\(a\)</span> is a median of the prior distribution. When <span class="math inline">\(X=x\)</span> is observed, the Bayes estimator is a median of the posterior distribution.</p>
+<p><br></p>
+<ul>
+<li>Absolute error loss 에서의 bayes action은 <strong>posterior median</strong>이다.</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="theorem-blackwell-and-girshick" class="section level4">
+<h4>Theorem (Blackwell and Girshick)</h4>
+<p>Let <span class="math inline">\(\Theta\)</span> be an open or closed interval in the real line, and let <span class="math inline">\(L(\theta,a)=w(\theta)(\theta-a)^2\)</span> for all <span class="math inline">\(\theta\in \Theta\)</span>. If a Bayes estimator <span class="math inline">\(\delta_\xi(x)\)</span> of <span class="math inline">\(\theta\)</span> w.r.t. a prior <span class="math inline">\(\xi\)</span> is also an unbiased estimator of <span class="math inline">\(\theta\)</span>, then the Bayes risk of <span class="math inline">\(\delta_\xi\)</span> w.r.t <span class="math inline">\(\xi\)</span> is <span class="math inline">\(r(\xi,\delta_\xi)=0\)</span>.</p>
+<p><br></p>
+<ul>
+<li>이는 만약 <span class="math inline">\(w(\theta)=1\)</span>이라면(Squared error loss 상황), Bayes estimator가 <span class="math inline">\(\theta\)</span>의 unbiased estimator일 때, its Bayes risk는 0임을 의미한다.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>하지만 unbiased estimator라고 해서 항상 Bayes estimator가 되는 것은 아니다. 예를 들어 <span class="math inline">\(X_1,\ldots X_n\stackrel{\text{iid}}{\sim}N(\theta,1)\)</span>일 때 <span class="math inline">\(\bar X_n\)</span>은 <span class="math inline">\(\theta\)</span>의 불편추정량이다. 하지만 <span class="math inline">\(E[(\bar X_n-\theta)^2]=\frac{1}{n}\)</span>이다. 때문에 Squared error loss를 가정했을 때, <span class="math inline">\(\bar X_n\)</span>의 Bayes risk는 prior가 어떤 것이든지간에 <span class="math inline">\(\frac{1}{n}\ne 0\)</span>이다. 때문에 <span class="math inline">\(\bar X_n\)</span>은 Bayes estimator가 될 수 없다.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>이번에는 <span class="math inline">\(X_1,\ldots X_n\stackrel{\text{iid}}{\sim}B(1,\theta)\)</span>(베르누이)라고 가정해보자. 물론 <span class="math inline">\(\bar X_n\)</span>은 똑같이 <span class="math inline">\(\theta\)</span>의 불편추정량이다. 그리고 <span class="math inline">\(E[(\bar X_n - \theta)^2]=\frac{\theta(1-\theta)}{n}\)</span>이다. Squared error loss를 가정한다면 <span class="math inline">\(\bar X_n\)</span>은 오직 prior <span class="math inline">\(\xi\)</span>가 <span class="math inline">\(\theta=0\)</span> 또는 <span class="math inline">\(\theta=1\)</span> w.p 1일 때 zero Bayes risk를 갖는다. 만약 그렇지 않다면 Bayes estimator가 아니다.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>즉 만약 squared error loss상황에서, <span class="math inline">\(\delta\)</span>가 unbiased estimator of <span class="math inline">\(\theta\)</span>이고 Bayes risk<span class="math inline">\(=0\)</span> <span class="math inline">\(\implies\)</span> Bayes estimator이다.</li>
+</ul>
+<p><br> <br></p>
 <p><a href="../decision.html">back</a></p>
 </div>
 

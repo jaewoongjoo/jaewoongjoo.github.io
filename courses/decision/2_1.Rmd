@@ -1,0 +1,140 @@
+---
+title: "2.1. James-Stein Estimator"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+Suppose $X_1,\ldots,X_n\stackrel{\text{iid}}\sim N(\theta_i,1)$(multiparameters). 
+
+#### Remark
+Suppose now one considers simultaneous estimation of $p(\ge 2)$ independent normal means. The sample mean is once again the natural estimator. However, while the estimator is admissible for $p=2$ it is inadmissible for $p\ge 3$ for a wide class of losses.
+
+<br>
+
+First, note that **sum of squared error loss** is
+$$
+L(\theta,a)=||\theta-a||^2=\sum_{i=1}^n(\theta_i-a_i)^2.\tag{*}
+$$
+Note that $||X||^2\sim \chi_p^2\left(\frac{1}{2}||\theta||^2\right)$. Hence
+$$
+E_\theta [||X||^2]= E_\theta\left[\sum_{i=1}^p X_i^2 \right]=\sum_{i=1}^p (1+\theta_i^2)=p+||\theta||^2.
+$$
+Thus, for large $p$, $||X||^2$ overestimates $||\theta||^2$. 
+
+Indeed, for large $p$, $||X||$ is observed, one would expect $||\theta||^2$  to be close to $||X||^2-p$. 
+
+This suggests *shrinking* in some way the usual estimator $X$ of $\theta$. 
+
+
+<br>
+<br>
+
+
+<!-- #### Definition -->
+<!-- An estimator $\delta(X)$ of $\theta$ is **spherically symmetric** if and only if $\delta(X)$ has the form  -->
+<!-- $$ -->
+<!-- \delta(X)=h(||X||^2)X. -->
+<!-- $$ -->
+
+<!-- <br> -->
+<!-- <br> -->
+
+
+#### Theorem
+Note that $X$ is a generalized Bayes estimator of $\theta$ under the loss $L(\theta,a)=||\theta-a||^2$. Then, there exists $a,b\in \mathbb{R}$ s.t. $\left(1-\frac{b}{a+||X||^2}\right)X$ dominates $X$ for $p\ge 3$. in the explicit manner, the **James-Stein estimator** is
+$$
+\delta(X)=\left(1-\frac{p-2}{||X||^2} \right)X
+$$
+which dominates $X$ for $p\ge 3$.
+
+<br>
+
+  * James와 Stein이 경험적으로 알아냈다.
+
+<br>
+<br>
+
+#### Remark
+The restriction to one observation does not involve any loss of generality since if $X_1,\ldots,X_n\stackrel{\text{iid}}\sim N(\theta,I_p)$, the minimal sufficient staitstic $\bar X_n\sim N(\theta,\frac{1}{n}I_p)$. For $n$ observations, the James-Stein estimator of $\theta$ is
+$$
+\delta(\bar X_n)= \left(1-\frac{p-2}{n||\bar X_n||^2}\right)\bar X_n.
+$$
+
+   * Note: $\bar X_n \sim N(\theta, \frac{1}{n}I_p)\implies \sqrt{n}\bar X_n\sim N(\sqrt{n}\theta,I_p)$. Thus, by the above theorem, $\delta'(\bar X_n)= \left(1-\frac{p-2}{n||\bar X_n||^2}\right)\sqrt{n}\bar X_n$ dominates $\sqrt{n}\bar X_n$. Thus, we have $\delta(\bar X_n)= \left(1-\frac{p-2}{n||\bar X_n||^2}\right)\bar X_n$ dominates $\bar X_n$.
+
+<br>
+<br>
+
+#### Remark
+Let $X_n\sim N(\theta,I_p)$. Assume $\theta\sim N(0,\tau^2I_p)$ where $\tau^2>0$. Then, 
+$$
+\theta|X=x\sim N((1-B)x, B\tau^2I), \mbox{ where }B=\frac{1}{1+\tau^2}.
+$$
+Now assuming the loss $(*)$, the Bayes estimator of $\theta_i$ is 
+$$
+E[\theta_i|X_i=x_i]=(1-B)x_i, \mbox{ }1\le i\le p.
+$$
+Suppose now $\tau^2$ is unknown, and it has to be estimated from the data. Note first that marginally(after integrating out $\theta$), $X\sim N(0,(1+\tau^2)I_p)$. Thus, marginally
+$$
+||X||^2=\sum_{i=1}^2X_i^2\sim (1+\tau^2)\chi_p^2.
+$$
+For $p\ge 3$,
+$$
+E\left[ \frac{1}{||X||^2}\right]=\frac{1}{(1+\tau^2)(p-2)},\mbox{ }\mbox{ i.e., }\mbox{ } E\left[ \frac{p-2}{||X||^2}\right]=\frac{1}{1+\tau^2}.
+$$
+Substituting the estimator $\frac{p-2}{||X||^2}$ for $B=\frac{1}{1+\tau^2}$, one gets the James-Stein estimator
+$$
+\delta^0(X)=\left(1-\frac{p-2}{||X||^2}\right)X\mbox{ }\mbox{ }\mbox{ of }\theta.
+$$
+
+
+Suppose now the prior distribution for $\theta\sim N(\mu, \tau^2I_p)$ instead of $N(0,\tau^2I_p)$, i.e., 
+$$
+\theta|X=x\sim N((1-B)x+B\mu, B\tau^2I_p),\mbox{ }\mbox{ }\mbox{ where }B=\frac{1}{1+\tau^2}.
+$$
+Again, assuming the loss $(*)$, the Bayes estimator of $\theta_i$ is given by
+$$
+E(\theta_i|X_i=x_i)=\frac{x_i+\frac{\mu_i}{\tau^2}}{1+\frac{1}{\tau^2}}=B\mu_i+(1-B)x_i=\frac{\tau^2}{\tau^2+1}x_i+\frac{1}{1+\tau^2}\mu_i=\mu_i+\left(1-\frac{1}{1+\tau^2}\right)(x_i-\mu_i)
+$$
+Suppose that $\mu$ is known, but $\tau^2>0$ is unknown and it has to be estimated from the data. Note that marginally, 
+$$
+X\sim N(\mu,(1+\tau^2)I_p).
+$$
+Hence, marginally, $||X-\mu||^2\sim (1+\tau^2)\chi_p^2$. Thus,
+$$
+E\left[ \frac{p-2}{||X-\mu||^2} \right]=\frac{1}{1+\tau^2}.
+$$
+Substituting this estimator for $B=\frac{1}{1+\tau^2}$, one gets the estimator
+$$
+\delta^1(X)=\mu+\left(1- \frac{p-2}{||X-\mu||^2}\right)(X-\mu)\mbox{ }\mbox{ }\mbox{ for }\theta.
+$$
+<br>
+
+
+   * 정리하자면, 우리는 $\tau^2$를 모르는 상황이다$(B=\frac{1}{1+\tau^2}$를 모른다$)$. 때문에 Moment estimator 를 이용하여 $B=\frac{1}{1+\tau^2}$를 추정하고 그를 이용해 $X$의 shrinked estimator를 구해낸다.
+   
+
+
+<br>
+<br>
+
+#### Remark
+이 예제에서 squared error loss일 때 $X$는 constant risk $\frac{1}{n}$을 가지므로 Minimax였다. 때문에 James Stein estimator는 X를 dominating하므로, 이 또한 minimax이다. 
+
+
+<br>
+<br>
+
+
+[back](../decision.html)

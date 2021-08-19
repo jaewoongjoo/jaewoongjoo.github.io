@@ -1,0 +1,126 @@
+---
+title: "2.3. One Way Analysis of Variance"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 15px;
+  }
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+카이 스퀘어 Identity만 잘 기억하자.
+
+#### Remark
+Let $Y_{ij}=\theta_i+e_{ij}$, $(j=1,\ldots,n$,  $i=1,\ldots,p)$, where $\theta_i$'s are unknown and $e_{ij}\stackrel{\text{iid}}\sim N(0,\sigma_0^2)$, where $\sigma_0^2$ is unknown. 
+
+The minimal sufficient statistic for $\theta=\left((\theta_1,\ldots,\theta_p)^T,\sigma_0^2\right)$ is
+$$
+S=\left((\bar Y_1,\ldots, \bar Y_p)^T, \sum_{i=1}^p\sum_{j=1}^n(Y_{ij}-\bar Y_i)^2\right),
+$$
+where $\bar Y_i=\frac{1}{n}\sum_j Y_{ij}$, $i=1,\ldots,p$. Now writing $X_i=\bar Y_i$, $X\sim N(\theta, \sigma^2I_p)$ where $\sigma^2=\frac{\sigma_0^2}{n}$. Also, the usual within mean squared error estimator of $\sigma^2$ is
+$$
+\hat \sigma^2=\frac{\sum_i \sum_j (Y_{ij}-\bar Y_i)}{n\cdot (n-1)p},
+$$
+and $\hat \sigma^2$ is distributed independent of $X$. Let $S=||X||^2$ and $F=\frac{S}{\frac{m\hat \sigma^2}{m+2}}$, where $m=p(n-1)$.
+
+<br>
+
+Suppose
+
+1. $0<\tau(F)<2(p-2)$, $p\ge 3$;
+
+2. $\tau(F)\uparrow$ in $F$;
+
+3. $E[\tau'(F)]<\infty$.
+
+Then, by defining $\phi_i(X)=-\frac{\tau(F)}{F}X_i$, $1\le i \le p$, $\left(\left(1-\frac{\tau(F)}{F}\right)X_1,\ldots,\left(1-\frac{\tau(F)}{F}\right)X_p \right)$ dominates $X$ under the loss $L(\theta,a)=\frac{||X-\theta||^2}{\sigma^2}$. 
+
+
+<br>
+<br>
+
+
+#### Lemma (A Chi-Square Identity)
+Let $W\sim b \chi_m^2$, $b\ge 0$. Then
+$$
+E[Wh(W)]=bE[mh(W)+2Wh'(W)],
+$$
+provided $E[|h'(W)|]<\infty$.
+
+<br>
+
+  * 증명: Note $W\sim b \chi_m^2\equiv\Gamma(\frac{m}{2},2b)$
+  
+  $$\begin{eqnarray*}
+  E[Wh'(W)] &=& \int_0^\infty wh'(w)\exp\left(-\frac{w}{2b}\right)\frac{w^{\frac{m}{2}-1}}{(2b)^\frac{m}{2}\Gamma(\frac{m}{2})}dw\\
+  &=& \int_0^\infty h'(w)\exp\left(-\frac{w}{2b}\right)\frac{w^{\frac{m}{2}}}{(2b)^\frac{m}{2}\Gamma(\frac{m}{2})}dw\\
+  &=&  \left[h(w)\exp\left(-\frac{w}{2b}\right)\frac{w^{\frac{m}{2}}}{(2b)^\frac{m}{2}\Gamma(\frac{m}{2})}dw\right]_{w=0}^{w=\infty}-\int_0^\infty h(w)\left\{-\frac{1}{2b}\exp\left(-\frac{w}{2b}\right)\frac{w^{\frac{m}{2}}}{(2b)^\frac{m}{2}\Gamma(\frac{m}{2})}+\frac{m}{2} \exp\left(-\frac{w}{2b}\right)\frac{w^{\frac{m}{2}-1}}{(2b)^\frac{m}{2}\Gamma(\frac{m}{2})}  \right\}dw\\
+ &=&0 + \frac{1}{2b}E[Wh(W)]-\frac{m}{2}E[h(W)].
+  \end{eqnarray*}$$
+  Hence, $E[Wh(W)]=bE[mh(W)+2Wh'(W)]$.
+
+<br>
+<br>
+
+#### Remark (Efron-Morris Result)
+Suppose $X\sim N(\theta, \sigma^2I_p)$ distributed independently of $\hat \sigma^2\sim\frac{\sigma^2}{m+2}\chi_m^2$. Then, under the loss $L(\theta,a)=\frac{||\theta-a||^2}{\sigma^2}$, the estimator of $\theta$ defined by 
+$$
+\hat \theta= \left(1-\frac{\tau(F)}{F}\right)X
+$$
+dominate $X$ where $F=\frac{||X||^2}{\hat\sigma^2}$ if
+
+1. $0<\tau(F)<2(p-2)$, $p\ge 3$;
+
+2. $\tau(F)$ is differentiable and non-decreasing.
+
+3. $E[\tau'(F)]<\infty$.
+
+<br>
+
+   * 증명: $S=||X||^2$, $F=\frac{S}{\hat \sigma^2}$이라 하자. 그렇다면
+   
+  $$\begin{eqnarray*}
+   E\left[ \frac{||\hat\theta-\theta||^2}{\sigma^2} \right]&=&   E\left[ \frac{||X-\theta-\frac{\tau(F)}{F}X||^2}{\sigma^2} \right]\\
+   &=& E\left[ \frac{1}{\sigma^2}||X-\theta||^2\right]-\frac{2}{\sigma^2}E\left[\frac{\tau(F)}{F}X^T (X-\theta) \right]+E\left[ \frac{\tau^2(F)}{F^2}\frac{||X||^2 }{\sigma^2}\right]\\
+   &=& p-\frac{2}{\sigma^2}E\left[\frac{\tau(F)}{F}X^T (X-\theta) \right]+E\left[ \frac{\tau^2(F)}{F}\frac{\hat \sigma^2 }{\sigma^2}\right]\\
+   E\left[\frac{\tau(F)}{F}X^T (X-\theta) \right]&=&E\left[E\left[\frac{\tau(F)}{F}X^T (X-\theta) \Big|\hat\sigma^2\right]\right]\\
+   &=&E\left[E\left[\sigma^2\sum_{i=1}^p\frac{d}{dX_i}\left\{\frac{\tau(F)}{F}X \right\} \Big|\hat\sigma^2\right]\right] \mbox{ }\mbox{ }\mbox{ by Stein's Identity}\\
+   &=&\sigma^2E\left[p\frac{\tau(F)}{F}+\left\{\frac{\tau'(F)}{F}-\frac{\tau(F)}{F^2}\right\}\sum_{i=1}^p\frac{dF}{dX_i}X_i\Big| \hat \sigma^2  \right]\\
+   &=& p\sigma^2E\left[\frac{\tau(F)}{F}\right]+\sigma^2 E\left[ \left\{\frac{\tau'(F)}{F}-\frac{\tau(F)}{F^2}\right\}\left(\sum_{i=1}^p\frac{2X_i}{\hat \sigma^2}X_i\right) \Big|\hat\sigma^2\right]\\
+   &=& p\sigma^2E\left[\frac{\tau(F)}{F}\right]+2\sigma^2 E\left[ \tau'(F)-\frac{\tau(F)}{F} \Big|\hat\sigma^2\right]\\
+   &=& \sigma^2E\left[2\tau'(F)+(p-2)\frac{\tau(F)}{F}\Big|\hat\sigma^2\right].
+  \end{eqnarray*}$$
+  Finally, since $\hat \sigma^2 \sim \frac{\sigma^2}{m+2}\chi_m^2$, by the chi-square identity,
+  $$
+  E\left[\frac{\tau^2(F)}{F}\hat\sigma^2 \right]=\frac{\sigma^2}{m+2}  E\left[m\frac{\tau^2(F)}{F}+2\hat\sigma^2\frac{d}{d\hat\sigma^2}\left\{\frac{\tau^2(F)}{F} \right\} \right]\tag{**}
+  $$ 
+  with $W=\hat\sigma^2$ and $h(W)=\frac{\tau^2(F)}{F}$ in the lemma.
+  
+  But, 
+  $$
+  \frac{d}{d\hat\sigma^2}\left\{\frac{\tau^2(F)}{F}\right\}=\left(2  \frac{\tau(F)\tau'(F)}{F}-\frac{\tau^2(F)}{F^2} \right)\frac{dF}{d\hat\sigma^2}=\left(2  \frac{\tau(F)\tau'(F)}{F}-\frac{\tau^2(F)}{F^2} \right)\left(-\frac{||X||^2}{d\hat\sigma^4}\right).
+  $$
+  Hence from $(**)$,
+  $$\begin{eqnarray*}
+    E\left[\frac{\tau^2(F)}{F}\hat\sigma^2 \right]&=&\frac{\sigma^2}{m+2}  E\left[m\frac{\tau^2(F)}{F} -2\left(2\tau(F)\tau'(F)-\frac{\tau^2(F)}{F}  \right) \right]\\
+    &=&\frac{\sigma^2}{m+2}  E\left[(m+2)\frac{\tau^2(F)}{F} -4\tau(F)\tau'(F)\right].
+  \end{eqnarray*}$$
+  Combining all,
+ $$\begin{eqnarray*}
+ E\left[ \frac{||\hat\theta-\theta||^2}{\sigma^2} \right]&=&p-\{2(p-2)-\tau(F)\}\frac{\tau(F)}{F}-\tau'(F)\left(4+\frac{4}{m+2}\tau(F)\right)\\
+ &\le& p-\{2(p-2)-\tau(F)\}\frac{\tau(F)}{F}\mbox{ }\mbox{ }\mbox{ since }\tau(F)\uparrow \mbox{ in F}\\ 
+ &<&p \mbox{ }\mbox{ }\mbox{ for }0<\tau(F)<2(p-2). 
+  \end{eqnarray*}$$
+ 
+<br>
+<br>
+
+
+[back](../decision.html)
