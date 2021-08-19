@@ -1,0 +1,348 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={3.6. Convergence of Random Variables},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{3.6. Convergence of Random Variables}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+이 파트부터는 a.e.를 a.s.(Almost Sure Convergence)로 바꿔서 사용한다.
+
+\hypertarget{theoremborel-cantelli-lemma-convergence-half}{%
+\paragraph{Theorem(Borel-Cantelli Lemma: convergence
+half)}\label{theoremborel-cantelli-lemma-convergence-half}}
+
+If \(\sum_{n=1}^{\infty}P(A_n)<\infty\), then \(P(\limsup_nA_n)=0\).
+
+\begin{itemize}
+\item
+  확률 공간이라서 (probability는 0부터 1사이 값을 가지므로) summation의
+  범위가 1부터로 바뀌었다.
+\item
+  증명 방법은 똑같다:
+  \(\sum_{n=1}^{\infty}P(A_n)<\infty\implies \sum_{k=n}^\infty P(A_k)\rightarrow 0\)
+  as \(n\rightarrow\infty\)(꼬리부분은 0이다).
+\end{itemize}
+
+\hypertarget{theorem}{%
+\paragraph{Theorem}\label{theorem}}
+
+The followings are equivalent:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(X_n\rightarrow X\) a.s.
+\item
+  \(P(|X_n-X|>\epsilon\mbox{ }\mbox{ }\mbox{ i.o}(n))=0\) for all
+  \(\epsilon >0\).
+\item
+  \(P(|X_n-X|>1/k\mbox{ }\mbox{ }\mbox{ i.o}(n))=0\) for all(integer)
+  \(k\ge 1\).
+\end{enumerate}
+
+\hypertarget{corollary}{%
+\paragraph{Corollary}\label{corollary}}
+
+If \(\sum_{n=1}^\infty P(|X_n-X|>\epsilon)<\infty\) for all
+\(\epsilon>0\), then \(X_n\rightarrow X\) a.s.
+
+\hypertarget{theorem-1}{%
+\paragraph{Theorem}\label{theorem-1}}
+
+If \(X_n\stackrel{\text{Pr}}\rightarrow X\), then there exists a
+subsequence \(\{X_{n_k}:k\ge 1\}\) for which \(X_{n_k}\rightarrow X\)
+a.s.
+
+\hypertarget{theorem-2}{%
+\paragraph{Theorem}\label{theorem-2}}
+
+A sequence of random variables \(\{X_n:n\ge 1\}\) is Cauchy in
+probability if and only if there exists a random variable \(X\) for
+which \(X_n\stackrel{\text{Pr}}\rightarrow X\) as
+\(n\rightarrow \infty\).
+
+\begin{itemize}
+\tightlist
+\item
+  Completeness for convergence in measure.
+\end{itemize}
+
+\hypertarget{theorem-3}{%
+\paragraph{Theorem}\label{theorem-3}}
+
+If \(X_n\stackrel{L^p}\rightarrow X\) for some \(0<p\le \infty\), then
+\(X_n\stackrel{\text{Pr}}\rightarrow X\).
+
+\begin{itemize}
+\tightlist
+\item
+  \(L^p\) convergence \(\implies\) convergence in measure.
+\end{itemize}
+
+\hypertarget{theoremriesz-fisher}{%
+\paragraph{Theorem(Riesz-Fisher)}\label{theoremriesz-fisher}}
+
+For \(0<p\le\infty\), the space \(L^p\) is complete: a sequence
+\(\{X_n,n\ge 1\}\) of random variables converges in \(p\)th mean(i.e.,
+there exists an \(X\in L^p\) s.t. \(||X_n-X||_p\rightarrow 0\)) if and
+only if the sequence is Cauchy in \(L^p\)(i.e.,
+\(||X_m-X_n||_p\rightarrow 0\) as \(m,n\rightarrow \infty\)).
+
+\begin{itemize}
+\tightlist
+\item
+  Convergenge in \(L^p\) \(\iff\) Cauchy in \(L^p\) (\(L^p\) space is
+  complete).
+\end{itemize}
+
+\hypertarget{theorem-4}{%
+\paragraph{Theorem}\label{theorem-4}}
+
+\(X_n\rightarrow X\) a.s. if and only if
+\(\sup_{m\ge n}|X_m-X|\stackrel{\text{Pr}}\rightarrow 0\) as
+\(n\rightarrow \infty\).
+
+\begin{itemize}
+\tightlist
+\item
+  Note that \(X_n\rightarrow X\) a.s.\(\iff\)
+  \(P(|X_n-X|>\epsilon \mbox{ }\mbox{ }\mbox{ i.o}(n))=0\) for all
+  \(\epsilon>0\). Then
+\end{itemize}
+
+\[
+  \sup_{m\ge n}\left\{|X_m-X|>\epsilon\right\}=  \bigcup_{m= n}^\infty\left\{|X_m-X|>\epsilon\right\}\downarrow \bigcap_{n=1}^\infty \bigcup_{m= n}^\infty\{|X_m-X|>\epsilon  \}=\{|X_n-X|>\epsilon\mbox{ }\mbox{ }\mbox{ i.o}(n)\},\\
+\implies  P\left(\sup_{m\ge n}\left\{|X_m-X|>\epsilon\right\}\right)\downarrow P(|X_n-X|>\epsilon\mbox{ }\mbox{ }\mbox{ i.o}(n)),\\
+  \implies   \lim_{n\rightarrow\infty} P\left(\sup_{m\ge n}\left\{|X_m-X|>\epsilon\right\}\right)=P(|X_n-X|>\epsilon\mbox{ }\mbox{ }\mbox{ i.o}(n)).
+\] Thus, \(X_n\rightarrow X\) a.s. if and only if
+\(P\left(\sup_{m\ge n}\left\{|X_m-X|>\epsilon\right\}\right)\rightarrow 0\iff \sup_{m\ge n}|X_n-X|\stackrel{\text{Pr}}\rightarrow 0\).
+
+매우 중요하다.
+
+\hypertarget{corollary-1}{%
+\paragraph{Corollary}\label{corollary-1}}
+
+If \(X_n\rightarrow X\) a.s., then
+\(X_n\stackrel{\text{Pr}}\rightarrow X\)
+
+\begin{itemize}
+\tightlist
+\item
+  바로 전 Theorem에 의해 \(X_n\rightarrow X\) a.s.일 때 \[
+    P(|X_n-X|>\epsilon)\le P(\sup_{m\ge n}\{|X_m-X|>\epsilon\})\rightarrow 0\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+    \]
+\end{itemize}
+
+\hypertarget{theorem-5}{%
+\paragraph{Theorem}\label{theorem-5}}
+
+\(\{X_n:n\ge 1\}\) converges a.s. if and only if
+\(\sup_{m\ge n}|X_m-X_n|\stackrel{\text{Pr}}\rightarrow 0\) as
+\(n\rightarrow \infty\).
+
+\begin{itemize}
+\item
+  (\(\implies\)): \(X_n\) converges a.s.라 하자.
+
+  그렇다면 for every \(\omega\), \(\{X_n(\omega),n\ge 1\}\)은 Cauchy
+  sequence이다, i.e., \(\forall\) \(\omega\),
+  \(|X_m(\omega)-X_n(\omega)|\rightarrow 0\) as
+  \(m,n\rightarrow \infty\). Thus, \[
+  \sup_{m\ge n}|X_m(\omega)-X_n(\omega)|\rightarrow 0 \mbox{ }\mbox{ }\mbox{  a.s. } \mbox{ }\mbox{ } \mbox{ as } n\rightarrow \infty.
+  \] Because almost sure convergence implies convergence in probability,
+  it follows that \[     
+   \sup_{m\ge n}|X_m(\omega)-X_n(\omega)|\stackrel{\text{Pr}}\rightarrow 0 \mbox{ }\mbox{ }\mbox{ }\mbox{ as } n\rightarrow \infty.
+   \]
+\item
+  (\(\Longleftarrow\)):
+  \(\sup_{m\ge n}|X_m(\omega)-X_n(\omega)|\stackrel{\text{Pr}}\rightarrow 0\)
+  as \(n\rightarrow \infty\)라고 하자. 그렇다면 For any \(m\ge n\), \[
+     P(|X_m-X_n|>\epsilon)\le P\left(\sup_{m\ge n}\{|X_m-X_n|>\epsilon\}\right)\\
+     \implies \sup_{m\ge n}P(|X_m-X_n|>\epsilon) \le P\left(\sup_{m\ge n}\{|X_m-X_n|>\epsilon\}\right)\rightarrow 0\mbox{ }\mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty.
+     \] Thus, \(\{X_n,n\ge 1\}\) is cauchy in probability \(\iff\)
+  \(\exists\) a random variable \(X\) s.t
+  \(X_n\stackrel{\text{Pr}}\rightarrow X\) as \(n\rightarrow \infty\).
+
+  Note that \(|X_m-X|\le |X_m-X_n|+|X_n-X|\) for all \(m\ge n\), so that
+  \[
+     \sup_{m\ge n}\{|X_m-X|\}\le    \sup_{m\ge n}\{|X_m-X_n|+ |X_n-X|\}.
+     \] Thus, \[\begin{eqnarray*}
+     P\left( \sup_{m\ge n}|X_m-X|>\epsilon\right)&\le&P\left(\sup_{m\ge n}\{|X_m-X_n|+ |X_n-X|>\epsilon\}\right)\\
+     &\le&P(\sup_{m\ge n}\{|X_m-X_n|>\epsilon/2\})+P(|X_n-X|>\epsilon/2)\rightarrow 0 \mbox{ }\mbox{ }\mbox{ as }n\rightarrow \infty. 
+     \end{eqnarray*}\] Thus, \(X_n\rightarrow X\) a.s.
+\end{itemize}
+
+\hypertarget{theorem-6}{%
+\paragraph{Theorem}\label{theorem-6}}
+
+\(X_n\stackrel{\text{Pr}}\rightarrow X\) \textbf{if and only if} for
+every subsequence \(\{X_{n_k},k\ge 1\}\) there exists a further
+subsequence \(\{X_{n_{kj}},j\ge 1\}\) such that
+\(X_{n_{kj}}\rightarrow X\) a.s.
+
+\begin{itemize}
+\item
+  (\(\implies\)): 기존에 했으므로 생략
+\item
+  (\(\Longleftarrow\)): Note that \[\begin{eqnarray*}
+     X_n \stackrel{\text{Pr}}\nrightarrow X&\implies& X_{n_k} \stackrel{\text{Pr}}\nrightarrow X\mbox{ }\mbox{ }\mbox{ for any subsequence }n_k\\
+    &\implies& X_{n_{kj}}\nrightarrow X \mbox{ }\mbox{ a.s.}\\
+     \iff     X_{n_{kj}}\rightarrow X &\implies&   X_n\stackrel{\text{Pr}}\rightarrow X.\mbox{ (대우명제)}
+     \end{eqnarray*}\]
+\end{itemize}
+
+\hypertarget{theoremcontinuous-mapping-theorem-for-convergence-in-probability-first-version}{%
+\paragraph{Theorem(Continuous Mapping Theorem for convergence in
+probability: first
+version)}\label{theoremcontinuous-mapping-theorem-for-convergence-in-probability-first-version}}
+
+If \(X_n\stackrel{\text{Pr}}\rightarrow X\) and
+\(f:\mathbb{R}\rightarrow\mathbb{R}\) is continuous, then
+\(f(X_n)\stackrel{\text{Pr}}\rightarrow f(X)\).
+
+\begin{itemize}
+\tightlist
+\item
+  바로 위의 Theorem에 의해 \[\begin{eqnarray*}
+     X_n\stackrel{\text{Pr}}\rightarrow X &\iff& \exists X_{n_{kj}}\rightarrow X \mbox{ a.s. }\mbox{ }\mbox{ }\mbox{ as }j\rightarrow \infty \\
+     \implies   X_n\stackrel{\text{Pr}}\rightarrow X &\iff& f(X_{n_{kj}})\rightarrow f(X) \mbox{ a.s. } \mbox{(a.s. convergence is pointwise convergence)}. \\
+     \end{eqnarray*}\] Since \(f(X_{n_{kj}})\rightarrow f(X)\),
+  \(f(X_n)\stackrel{\text{Pr}}\rightarrow f(X)\) by just the above
+  theorem.
+\end{itemize}
+
+\hypertarget{lemma}{%
+\paragraph{Lemma}\label{lemma}}
+
+Let \(f:\mathbb{R}\rightarrow \mathbb{R}\). Then, the set
+\(D_f=\{x\in\mathbb{R} : \mbox{ f is discontinuous at }x\}\) is a Borel
+set.
+
+\begin{itemize}
+\item
+  \(D_f=\{x\in\mathbb{R} : \mbox{ f is discontinuous at }x\}\)도 어떤
+  실선 안에서의 interval이므로 쉽게 Borel set이라고 생각할 수 있다
+  (\(\phi\)또한 Borel set이다).
+\item
+  한 discontinuity point, say \(\{a\}\) 또한 Borel set이다. Chapter
+  1.1에서 마지막 Borel set에서의 예제를 확인하면 \(\mathcal{I}_0\)에서의
+  \(a=b\)일 때와 같다. \(\{a\}\)와 이 set의 여집합의 합은
+  \(\mathbb{R}\)이다.
+\end{itemize}
+
+\hypertarget{theoremcontinuous-mapping-theorem-for-convergence-in-probability-first-version-1}{%
+\paragraph{Theorem(Continuous Mapping Theorem for convergence in
+probability: first
+version)}\label{theoremcontinuous-mapping-theorem-for-convergence-in-probability-first-version-1}}
+
+Let \(f:\mathbb{R}\rightarrow \mathbb{R}\) be Borel measurable, and let
+\(D_f\) be the set of discontinuity points of \(f\).
+
+If \(X_n\stackrel{\text{Pr}}\rightarrow X\) and \(P(X\in D_f)=0\), then
+\(X_n\stackrel{\text{Pr}}\rightarrow X\).
+
+\begin{itemize}
+\item
+  Discontinuity point가 없다는 뜻이 아니라, measure가 0라는 뜻이다.
+\item
+  즉 interval안에서 point 하나만 discontinuous한 경우(좌극한과 우극한이
+  같다) continuous mapping theorem을 사용할 수 있다.
+\end{itemize}
+
+\hypertarget{uxc694uxc57d}{%
+\paragraph{요약}\label{uxc694uxc57d}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  BC-lemma(매우 중요) :
+  \(\sum_{n=1}^{\infty}P(A_n)<\infty\implies P(\limsup_nA_n)=0\).
+\item
+  Riesz-Fisher(중요하다) : \(\{X_n,n\ge 1\}\): Convergenge in \(L^p\)
+  \(\iff\) Cauchy in \(L^p\) (\(L^p\) space is complete).
+\item
+  \(X_n\rightarrow X\) a.s.
+  \(\iff \sup_{m\ge n}|X_m-X|\stackrel{\text{Pr}}\rightarrow 0\)
+\item
+  \(X_n\rightarrow X\) a.s.
+  \(\iff \sup_{m\ge n}|X_m-X_n|\stackrel{\text{Pr}}\rightarrow 0\) as
+  \(n\rightarrow \infty\)
+\item
+  \(X_n\stackrel{\text{Pr}}\rightarrow X\) \textbf{if and only if}
+  \(\exists\) \(X_{n_{kj}}\rightarrow X\) a.s.(Continuous mapping
+  theorem을 위해 필요)
+\item
+  Continuous Mapping Theorem(매우 중요):
+  \(X_n\stackrel{\text{Pr}}\rightarrow X\) and
+  \(f:\mathbb{R}\rightarrow\mathbb{R}\) is
+  continuous\(\implies f(X_n)\stackrel{\text{Pr}}\rightarrow f(X)\).
+\end{enumerate}
+
+\href{../probability1.html}{back}
+
+\end{document}

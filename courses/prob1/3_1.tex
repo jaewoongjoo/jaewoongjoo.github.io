@@ -1,0 +1,316 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={L\^{}p-spaces and Inequalities},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{\(L^p\)-spaces and Inequalities}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{definition}{%
+\paragraph{Definition}\label{definition}}
+
+For \(0<p<\infty\), \(L^p(\Omega, \mathcal{F}, \mu)\) is defined to be
+the space of all measurable, extended real-valued functions \(f\) for
+which \(|f|^p\) is integrable, i.e., \[
+L^p(\Omega,\mathcal{F},\mu)= \left\{f:\int |f|^p\mbox{ } d\mu<\infty,\mbox{ }f\mbox{ measurable} \right\}.
+\] When the measure space is understood,
+\(L^p(\Omega, \mathcal{F}, \mu)\) is often abbreviated to \(L^p\). For
+\(1\le p<\infty\), the \textbf{\(p-\)norm} of \(f\in L^p\) is given by
+\[
+||f||_p=\left[ \int |f|^p\mbox{ } d\mu     \right]^{1/p}.
+\] For \(p=\infty\), the infinity norm of \(f\) is defined as \[
+||f||_\infty=\inf\left\{\alpha:\mu(\{\omega:|f(\omega)|>\alpha\})=0\right\},
+\] where \(\inf\phi:=\infty\). If \(||f||_\infty<\infty\), then \(f\) is
+said to be \emph{essentially bounded} and
+\(L^\infty=L^\infty(\Omega, \mathcal{F},\mu)\) is defined to be the
+space of all essentially bounded functions \(f\).
+
+\begin{itemize}
+\item
+  \(L^p\) space는 \(|f|^p\) 가 integrable한 measurable function
+  \(f\)들의 집합체이다.
+\item
+  \(p\)-norm은 유한한 \(|f|^p\)의 적분값에 \(1/p\) power를 한
+  것이다(Standardized와 비슷한 개념이다).
+\item
+  Infinity norm은 \(\mu(\{\omega:|f(\omega)|>\alpha\})=0\)에 대한
+  \(\alpha\)의 infimum 으로 이는 \(|f|<||f||_\infty\)을 의미한다. 만약
+  이 infinity norm이 finite하다면, \(|f|<||f||_\infty<\infty\) a.e.이고
+  \(f\)가 essentially bounded 되어 있다고 한다. 또한 만약 이를 만족하는
+  \(\alpha\)가 없다면 \(\inf\phi=\infty\)가 되기 때문에, 만약 이
+  infinity norm이 존재한다면 이는 finite하고 the space는 essentially
+  bounded이다.
+\end{itemize}
+
+\hypertarget{lemma}{%
+\paragraph{Lemma}\label{lemma}}
+
+If \(0\le a,b<\infty\) and \(0\le \lambda\le 1\), then
+\(a^\lambda b^{1-\lambda}\le \lambda a + (1-\lambda)b\), where we take
+\(0^0=1\).
+
+\begin{itemize}
+\item
+  우선 \(-\log\)는 convex function임을 기억하자.
+\item
+  양변에 \(-\log\)를 씌우면 증명된다.
+\end{itemize}
+
+\hypertarget{lemma-1}{%
+\paragraph{Lemma}\label{lemma-1}}
+
+If \(c,d\ge 0\), \(1\le p,q<\infty\), and \(\frac{1}{p}+\frac{1}{q}=1\),
+then \[
+cd\le \frac{c^p}{p}+\frac{d^q}{q}.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  위 lemma에 \(\lambda=\frac{1}{p}\), \(1-\lambda=\frac{1}{q}\),
+  \(a=c^p\), \(b=d^q\) 대입.
+\end{itemize}
+
+\hypertarget{theoremholders-inequality}{%
+\paragraph{Theorem(Holder's
+Inequality)}\label{theoremholders-inequality}}
+
+If \(f\in L^p\) and \(g\in L^q\), where \(1\le p,q\le \infty\) and
+\(\frac{1}{p}+\frac{1}{q}=1\), then \(fg\in L^1\) and \[
+||fg||_1\le ||f||_p||g||_q
+\]
+
+\begin{itemize}
+\item
+  \(p=1\) and \(q=\infty\)일 때: \[
+     |fg|=|f||g|\le|f|||g||_{\infty}\implies  ||fg||_1 = \int|fg|\mbox{ }d\mu \le ||g||_q\int|f|\mbox{ }d\mu=||f||_1||g||_\infty.
+     \] (Similarly, \(p=\infty\) and \(q=1\)도 성립한다.)
+\item
+  \(1<p,g<\infty\)일 때: 만약 \(||f||_p=0\)이라면, \(f=0\) a.e.이다.
+  때문에 \(fg=0\) a.e.이다(\(||g||_p=0\)일 때도 마찬가지). 때문에
+  \(||f||_p,||g||_p>0\)으로 가정한다. 바로 위의 lemma에서
+  \(c=|f(\omega)|/||f||_p\) and \(d=|g(\omega)|/||g||_q\)를 대입하면
+\end{itemize}
+
+\[\begin{eqnarray*}
+cd\le \frac{c^p}{p}+\frac{d^q}{q} &\implies& \frac{|f(\omega)g(\omega)| }{||f||_p ||g||_q}\le \frac{|f(\omega)|^p}{p||f||_p^p} +\frac{|g(\omega)|^q}{q||g||_q^q}\mbox{ }\mbox{ }\mbox{ }\forall \omega\in \Omega\\
+&\stackrel{\text{Monotonicity}}\implies& \int \frac{|f(\omega)g(\omega)| }{||f||_p ||g||_q}d\mu\le\int\frac{|f(\omega)|^p}{p||f||_p^p}d\mu +\int\frac{|g(\omega)|^q}{q||g||_q^q}d\mu\\
+&\implies& \frac{||fg||_1}{||f||_p ||g||_q}\le \frac{1}{p}+\frac{1}{q} =1 \\
+&\implies& ||fg||_1\le ||f||_p ||g||_q.  
+\end{eqnarray*}\]
+
+\hypertarget{corollary-cauchy-schwarz-inequality}{%
+\paragraph{Corollary (Cauchy-Schwarz
+Inequality)}\label{corollary-cauchy-schwarz-inequality}}
+
+If \(f,g\in L^2\), then \(fg\in L^1\) and
+\(||fg||_1\le ||f||_2||g||_2\).
+
+\hypertarget{lemma-2}{%
+\paragraph{Lemma}\label{lemma-2}}
+
+For any \(a,b\ge 0\) and \(0<p<\infty\), \[
+(a+b)^p\le 2^p(a^p+b^p).
+\]
+
+\hypertarget{theorem}{%
+\paragraph{Theorem}\label{theorem}}
+
+If \(f,g\in L^p\), \(0<p\le\infty\), then \(f+g\in L^p\).
+
+\begin{itemize}
+\item
+  \(p=\infty\)일 때: \(|f|<||f||_\infty\) a.e. and \(|g|<||g||_\infty\)
+  a.e.이다. 때문에 \[
+     |f(\omega)+g(\omega)|\stackrel{\Delta}{\le} |f(\omega)|+|g(\omega)|\le ||f||_\infty+||g||_\infty \mbox{ for }\mu\mbox{-almost all }\omega.
+     \] 즉 모든 \(\omega\)에 대해서 \(|f+g|\)의 값이 bounded from
+  \(||f||_\infty+||g||_\infty\)되어있다. 때문에
+  \(||f+g||_\infty\le||f||_\infty+||g||_\infty\)가 존재한다.
+\item
+  \(0<p<\infty\)일 때: 위의 lemma에 따르면 \[
+     |f+g|^p\stackrel{\Delta}{\le}(|f|+|g|)^p\le 2^p(|f|^p+|g|^p)\implies \int|f+g|^pd\mu\le 2^p(\int|f|^pd\mu+\int|g|^pd\mu) <\infty.
+     \]
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  결론: \(L^p\) space는 \textbf{closed under addition}이다.
+\end{itemize}
+
+\hypertarget{theoremminkowskis-inequality}{%
+\paragraph{Theorem(Minkowski's
+Inequality)}\label{theoremminkowskis-inequality}}
+
+If \(f,g\in L^p\), \(1\le p\le \infty\), then \[
+||f+g||_p\le ||f||_p+||g||_p.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(L^p\) space에서 Triangle inequality라고 생각하자.
+\end{itemize}
+
+\hypertarget{proposition}{%
+\paragraph{Proposition}\label{proposition}}
+
+If \(c\in\mathbb{R}\) and \(f\in L^p\) for some \(1\le p\le \infty\),
+then \(cf\in L^p\) and \[
+||cf||_p=|c|||f||_p.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(L^p\) space에서 \(p\)-norm안에 있는 상수는 절대값으로 빠져나올 수
+  있다.
+\end{itemize}
+
+Theorem도 증명도 매우 중요하다.
+
+\hypertarget{theorem-markovs-inequality}{%
+\paragraph{Theorem (Markov's
+Inequality)}\label{theorem-markovs-inequality}}
+
+For any \(\alpha>0\) \[
+\mu(\{\omega:|f(\omega)|\ge \alpha \})\le \frac{1}{\alpha}\int|f|\mbox{ }d\mu.
+\]
+
+\begin{itemize}
+\item
+  증명: \[
+     \int |f|\mbox{ }d\mu=\int_{[|f|\ge \alpha]} |f|\mbox{ }d\mu+ \int_{[|f|< \alpha]} |f|\mbox{ }d\mu\ge \int_{[|f|\ge \alpha]} |f|\mbox{ }d\mu\ge \int_{[|f|\ge \alpha]} \alpha\mbox{ }d\mu= \alpha\mu(|f|\ge \alpha)\\
+     \implies   \frac{1}{\alpha} \int |f|\mbox{ }d\mu\ge \mu(|f|\ge \alpha).
+  \]
+\item
+  증명으로부터 아래와 같은 finer Inequality를 얻을 수 있다. \[
+    \int_{[|f|\ge \alpha]} |f|\mbox{ }d\mu\ge \int_{[|f|\ge \alpha]} \alpha\mbox{ }d\mu= \alpha\mu(|f|\ge \alpha)\\
+     \implies  \mu(|f|\ge \alpha) \le  \frac{1}{\alpha} \int_{[|f|\ge \alpha]} |f|\mbox{ }d\mu.
+  \]
+\end{itemize}
+
+나중에 증명에 사용되니 참고하자.
+
+\begin{itemize}
+\tightlist
+\item
+  우리는 이를 지금까지 elementary course에서
+  \(P(|X|\ge \alpha)\le \frac{1}{\alpha}E[|X|]\)로 배웠다. 이를 변형하여
+  아래와 같이 얻을 수 있다. \[
+    P(|X|\ge \alpha)= P(|X|^k\ge \alpha^k)\le \frac{1}{\alpha^k}E[|X|^k].
+     \]
+\end{itemize}
+
+\hypertarget{theorem-lyapounovs-inequality}{%
+\paragraph{Theorem (Lyapounov's
+Inequality)}\label{theorem-lyapounovs-inequality}}
+
+If \(0<\alpha\le\beta\) and \(X\in L^{\beta}\), then \(X\in L^\alpha\)
+and
+\(\left\{E(|X|^\alpha) \right\}^{1/\alpha}\le \left\{E(|X|^\beta) \right\}^{1/\beta}\).
+
+\begin{itemize}
+\item
+  \(\alpha=\beta\)일 때 : trivial
+\item
+  \(0<\alpha<\beta\)일 때 : Take \(p=\beta/\alpha\),
+  \(q=1/(1-1/p)=\beta/(\beta-\alpha)\), \(f=|X|^\alpha\), and
+  \(g=Y\equiv 1\).
+
+  여기서 \(f=|X|^\alpha \in L^p\)이다. 왜냐하면
+  \(\int (|X|^\alpha)^p\mbox{ }d\mu=\int (|X|^\alpha)^\frac{\beta}{\alpha}\mbox{ }d\mu=\int |X|^{\beta}\mbox{ }d\mu<\infty\)이기
+  때문이다. \(g\equiv 1 \in L^q\)는 trivial하다. 또한 \(p,q \ge 1\),
+  \(1/p+1/q=1\)이다.
+
+  그러므로, Holder's Inequality에 의해 \[
+    E(|X|^\alpha)= \int|X|^\alpha d\mu= \int |fg| \mbox{ }d\mu= ||fg||_1 \le ||f||_p||g||_q=({E\left\{|X|^\alpha\right\}^p})^{1/p}= \left\{E(|X|^\beta )\right\}^{\alpha/\beta}\\
+    \implies
+    \left\{E(|X|^\alpha) \right\}^{1/\alpha}\le \left\{E(|X|^\beta) \right\}^{1/\beta}.
+    \]
+\end{itemize}
+
+매우 자주 쓰인다.
+
+\hypertarget{theorem-jensens-inequality}{%
+\paragraph{Theorem (Jensen's
+Inequality)}\label{theorem-jensens-inequality}}
+
+If \(f\) is convex on an interval \(I\subset \mathbb{R}\) containing the
+range of the random variable \(X\), and if \(X\) is integrable, then \[
+f(E(X))\le E(f(X)).
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  2차 함수를 생각하면 쉽다.
+\end{itemize}
+
+\href{../probability1.html}{back}
+
+\end{document}

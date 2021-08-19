@@ -1,6 +1,8 @@
 ---
 title: "3.6. Convergence of Random Variables"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 <style type="text/css">
