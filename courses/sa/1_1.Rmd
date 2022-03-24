@@ -1,0 +1,74 @@
+---
+title: "1.1. Mathematical Model for Right-Censored Data"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 13px;
+  }
+  pre {
+  font-size: 13px;
+}
+  .math {
+  font-size: 12px
+}
+</style>
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 1px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+
+<br>
+<br>
+
+<div class="alert alert-info">
+이번 첫 챕터에서는 survival data수집 과정에서 가장 흔하게 발견되는 censoring과 censored data의 특징에 대해 소개하고 다룰 것이다. 구체적으로 censoring의 종류는 무엇인지, 또 이런 censoring이 있을 때 Survival function을 어떻게 구하는지를 다룰 것이다. 이 내용들을 이해하기 위해서는 기본적인 학부 수준의 survival analysis의 지식과 이해가 필요하다.
+</div>
+
+
+
+<br>
+<br>
+
+우리는 이 챕터 전반에서 아래 Remark에 있는 notation을 사용할 것이다.
+
+##### Remark (mathematical model for right-censored data)
+We have random variables
+
+$$\begin{eqnarray*}
+X_1\ldots, X_n&\stackrel{\text{iid}}{\sim}&F;\\
+Y_1\ldots, Y_n&\stackrel{\text{iid}}{\sim}&G.
+\end{eqnarray*}$$
+We assume that $X_i$ is independent of $Y_i$. Let $Z_i=\min\{X_i,Y_i\}$, $\delta_i=I(X_i\le Y_i).$ For each $i$, we observe only $(Z_i,\delta_i)$.
+
+  * 여기서 $X_i$는 $i$번째의 환자의 event발생 타임을 나타낸다(우리가 조사하고있는 질병으로 인한 die, relapse 등). $Y_i$는 $i$번째 환자의 censoring 타임을 나타낸다(자동차 사고로 인한 열외, 자발적 열외, move out, 다른 기타 질병으로 인한 사망, clinical trial에 대한 변심 등). 현재 우리가 오로지 가지고 있는 데이터는 $Z_i=\min\{X_i,Y_i\}$, $\delta_i=I(X_i\le Y_i)$ for all $i$ 이다. 
+
+
+  * Censoring은 여러 종류가 있지만 99퍼센트의 censoring이 전부 right censoring이기 때문에 우리는 거의 right censoring만 다룰 것이다.
+  
+<br>
+<br>
+
+##### Remark (the self-consistency approach to estimating $S$)
+Let $t>0$. Begin with the naive estimator 
+$$
+N(t)= \frac{1}{n}\sum_{i=1}^n I(Z_i>t).
+$$
+Now, each of the censored observations to the left of $t$ potentially could have been greater than $t$. 
+
+Suppose $Z_i<t$ and $\delta_i=0$. 
+
+We estimate the probability that the $X$ corresponding to $Z_i$ was greater than $t$ by $\frac{N(t)}{N(Z_i)}$
+
+                    
+   
+[back](../sa.html)

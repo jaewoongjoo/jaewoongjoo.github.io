@@ -1,0 +1,186 @@
+---
+title: "2.4. Doob-Meyer Decomposition"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 13px;
+  }
+  pre {
+  font-size: 13px;
+}
+  .math {
+  font-size: 12px
+}
+</style>
+
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 1px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+
+<br>
+<br>
+
+<div class="alert alert-info">
+소챕터 2.3에서 Predictability에 대해 학습했다. Predictability는 결국 $t-$시점에서 $t$시점의 데이터를 예측할 수 있다는 의미이다. 즉 $Y_t\in \mathcal{F}_{t-}$이기 때문에 $\mathcal{F}_{t-}$가 given되어있을 때  $Y_t$는 더이상 random variable이 아니다. 또한 이와 함께 left-continuous한 adapted process들은 모두 predictable하고, martingale이면서 predictable한 process들은 constant하다는 두 가지 Fact들을 학습했다. 이를 통해 궁극적으로 이번 챕터에서는 초반부의 가장 중요한 Theorem인 Doob-Meyer Decomposition에 대해 학습할 것이다. 요약하자면 Doob-Meyer Decomposition은 미래의 결과가 현재보다 더 큰 특징을 가지는 Submartingale이 Martingale process와 어떠한 nondecreasing한 predictable function으로 decompose될 수 있음을 보여준다. 
+</div>
+
+<br>
+<br>
+
+아주 중요하다 
+
+##### Theorem 1 (Doob-Meyer decomposition)
+If $(S(t),\mathcal{F}_t)$, $t\in [0,T]$ is a submartingale $(t<\infty)$, then it can be decomposed as
+$$
+S(t)=M(t)+P(t)
+$$
+where $(M(t), \mathcal{F}_t)$, $t\in [0,T]$ is a martingale, and $P(t)$ is a nondecreasing, $\mathcal{F}_t$-predictable process. Moreover, this decomposition is unique. 
+
+The process $P(t)$ is called the compensator.
+The proof for the case of discrete time is trivial.
+
+<br>
+    
+  *  **Proof for the discrete case:** Suppose the submartingale is $(S_n,\mathcal{F}_n)$, $n=1,2,\ldots$. Let $\mathcal{F}_0$ be the trivial $\sigma$-field$(\mathcal{F}_0=\{\phi, \Omega\})$. Without loss of generality, assume that $E(S_1|\mathcal{F}_0)=0$. Define $S_0=0$ write
+   $$\begin{eqnarray*}
+   S_n&=&\sum_{j=1}^n(S_j-S_{j-1})\\
+   &=&\sum_{j=1}^n \left[(S_j-S_{j-1})-E(S_j-S_{j-1}|\mathcal{F}_{j-1})\right]+\sum_{j=1}^nE(S_j-S_{j-1}|\mathcal{F}_{j-1})\\
+   &=:& \sum_{j=1}^n m_j+\sum_{j=1}^np_j.
+   \end{eqnarray*}$$
+   Now note: 
+     1. $E(m_j|\mathcal{F}_{j-1})=0$,
+     2. $p_j\in \mathcal{F}_{j-1}$ and $p_j\ge 0$.
+   So we let $M_n=\sum_{j=1}^n m_j$ and $P_n=\sum_{j=1}^n p_j$.
+   
+  <br>
+
+  * 1번은 너무 당연하다 ($m_j=S_j-S_{j-1}-E(S_j-S_{j-1}|\mathcal{F}_{j-1})$양변에 conditional expectation을 씌우면 된다. 
+
+  * 2번에 대해서는 우선 $E(S_j|\mathcal{F}_{j-1})\ge S_{j-1}$ (Submartingale이기 때문). 또한  $E(S_{j-1}|\mathcal{F}_{j-1})= S_{j-1}$ (random이 아니기 때문). 때문에 $p_j=E(S_j-S_{j-1}|\mathcal{F}_{j-1})\ge 0$. 또한 $p_j=E(S_j-S_{j-1}|\mathcal{F}_{j-1})\in \mathcal{F}_{j-1}$ by the definition of conditional expectation. 즉 $P(t)$는 nondecreasing하고 predictable하다. 
+  
+  * **중요:** $M_n=\sum_{j=1}^n m_j$ is a martingale?
+    * 우리는 4번 컨디션을 확인해야 한다 ($S_n$이 이미 Submartingale이기 때문에 1,2,3번 조건을 이미 만족한다). Note that
+    $$
+    E(m_j|\mathcal{F}_{j-1})=E(S_j-S_{j-1}-E(S_j-S_{j-1}|\mathcal{F}_{j-1}))=0. \mbox{ (1번의 내용)}
+    $$
+    Thus,
+    $$
+    E(M_n|\mathcal{F}_{n-1})= E(m_n+M_{n-1}|\mathcal{F}_{n-1})= E(m_n|\mathcal{F}_{n-1})+M_{n-1}=M_{n-1}.
+    $$
+    
+  *  **Proof for the uniqueness:** Heuristic하게 증명할 것이다. Suppose $S(t)=M_1(t)+P_1(t)=M_2(t)+P_2(t)$. Then, 
+  $$
+  M_1(t)-M_2(t)=P_2(t)-P_1(t).
+  $$
+  여기서 왼쪽은 martingale이고 오른쪽은 predictable하다. 때문에 Fact 2에 의해 $M_1(t)-M_2(t)$는 martingale이면서 predictable하여 constant이다. 하지만 $P_1=0$라고 한다면 $P_2(t)$는 nondecreasing이기 때문에 왼쪽이 $M_1-M_2$가 martingale이 되기 위해서는 $P_2=0$이 되어야만 한다 (by condition 4). 그렇지 않다면 $M_1-M_2$또는 $M_2-M_1$이 increasing하는 submartingale이 되기 때문이다. (done) 
+  
+  
+  <br>
+  <br>
+  
+##### Remark
+In continuous time, the compensator $P(t)$ is obtained heuristically as the process whoce increments are given by
+$$
+dP(t)= E(S(t+dt)-S(t-)|\mathcal{F}_{t-}).
+$$
+
+  * 위에서 $dt$는 아주 작은 small interval을 의미한다. 또한 $dP(t)$에 대해 $\mathcal{F}_{t-}$가 given되어있는 이유는 $P(t)$가 predictable하기 때문이다. 
+  
+  * 즉, $P(t)$는 submartingale $S(t)$의 increment를 의미한다.
+  
+  * 이 정의는 앞으로 계속 쓰일 것이니 반드시 기억해야 한다. 
+  
+
+<br>
+<br>
+
+여기선 주어진 submartingale process에서 compensator를 derivation하는 것에 대해 다룬다. 
+
+##### 예제 1 (Poisson process)
+Consider a poisson process with rate $\lambda>0$. Let $N(t)$ denote the number of points in the process that occur before or at time $t$. Let $\mathcal{F}_t=\sigma(N(s),s\le t)$. Then, $(N(t),\mathcal{F}_t)$ is (trivially) a submartingale. 
+
+Q. What is the compensator?
+
+
+   * 우선 Poisson process에 대한 이해가 필요하다. 아래의 그래프를 참고하자. 주어진 그래프에서의 grid처럼 현재 interval $(0,1]$ 안에서 $n$개의 grid point가 존재한다고 하자. 또한 위의 $(0,1]$안의 interval $l_1$에서 존재하는 point들의 개수를 $I_1$이라고 하고 이 point들이 모두 i.i.d Bernoulli($p=\frac{\lambda}{n}$)을 따른다고 하자. 즉 $I_1\sim \text{Bin}\left( m=l_1n, p=\frac{\lambda}{n}\right)$이다 ($m$은 $(0,1]$안에서의 점의 갯수(proportion)이고, $p$는 parameter이다). 이 때 $I_1$은 $n\rightarrow\infty$일 때 아래와 같이 수렴한다.
+   $$\begin{eqnarray*}
+   I_1\sim \text{Bin}\left(m=l_1n, p=\frac{\lambda}{n} \right) \stackrel{n\rightarrow\infty}\rightarrow \text{poisson}\left(mp=l_1n\frac{\lambda}{n}\right)\equiv \text{poisson}(l_1\lambda).    
+   \end{eqnarray*}$$
+  이를 poisson process라고 이해할 수 있다 (heuristically).
+  
+  
+  * 우선 $(N(t),\mathcal{F}_t)$가 submartingale인지를 살펴보면, condition 1, 2은 $\mathcal{F}_t=\sigma(N(s),s\le t)$에 의해 만족한다. condition 3는 poisson process가 occur before or at the finite timepoint $t$이기 때문에 $N(t)<\infty$ at time $t$이다. Condition 4에 대해서는 아래와 같다. For $s\le t$
+  $$\begin{eqnarray*}
+  E(N(t)|\mathcal{F}_s)&=& E(N(s) +N(t)-N(s)|\mathcal{F}_s) \\
+  &=&   E(N(s)|\mathcal{F}_s) +E(N(t)-N(s)|\mathcal{F}_s) \\
+  &\ge&  N(s) (\because E(N(t)-N(s)|\mathcal{F}_s)\ge 0).
+  \end{eqnarray*}$$
+  
+  * For compensator $P(t)$, note that  
+  $$
+  E(N(t)-N(s)|\mathcal{F}_s)= \lambda(t-s).
+  $$
+  Thus, we get the compensator $P(t)=\lambda t$, which is nondecreasing and predictable(not even random). Also, we can use the definition of the compensator in continuous time case such that
+  $$
+  dP(t)=E(N(t+dt)-N(t-)|\mathcal{F}_{t-})=\lambda dt
+  $$
+  Thus, we have
+  $$
+  P(t)=\int_{0}^t dP(t)= \int_{0}^t \lambda ds = \lambda t.
+  $$
+  * Also, $N(t)-\lambda t$ is a martingale. Note that by the memoryless property of the poisson process,
+  $$\begin{eqnarray*}
+  E(N(t+1)-\lambda (t+1)|\mathcal{F}_t)&=&  E(N(t)-\lambda t |\mathcal{F}_t)+E(N(t+1)-N(t)-\lambda  |\mathcal{F}_t)\\
+  &=& N(t)-\lambda t + E(N(1)-\lambda  |\mathcal{F}_t) \\
+  &=&  N(t)-\lambda t+\lambda-\lambda= N(t)-\lambda.
+  \end{eqnarray*}$$
+  
+##### 예제 2 (counting process, without censoring)
+The counting process formed from a single, uncensored random variable. Let $X\sim F$ where $F(0)=0$. Initially, assume that $F$ is absolutely continuous. Let $\alpha$ be the hazard function and $A$ be the cumulative hazard function. Let
+$$
+N(t)=I(X\le t),\mbox{ }\mbox{ }\mbox{ and }\mbox{ }\mbox{ } \mathcal{F}_t=\sigma(I(X\le s),s\le t).
+$$
+Then, $(N(t),\mathcal{F}_t)$ is a submartingale.
+
+What is the compensator?
+
+<br>
+<br>
+
+   * 우선 $(N(t),\mathcal{F}_t)$가 submartingale인지부터 확인하자. 우선 $\mathcal{F}_t=\sigma(I(X\le s),s\le t)$이기 때문에 $N(t)\in \mathcal{F}_t$이고, ${F}_s\subset\mathcal{F}_t$ for $s\le t$이어서 condition 1,2는 만족한다. Condition 3에 대해서는 $N(t)=0 \mbox{ or } 1$이기 때문에 $\sup_{t>0} E(N(t))=1$이므로 condition 3도 만족한다. 마지막으로 4번 condition은 $E(N(t)-N(s)|\mathcal{F}_s)\ge 0$이기 때문에 아래와 같이 만족한다; for $s< t$
+   $$\begin{eqnarray*}
+   E(N(t)|\mathcal{F}_s)&=&E(N(t)-N(s)+N(s)|\mathcal{F}_s)\\
+   &=&E(N(t)-N(s)|\mathcal{F}_s) +N(s)\ge N(s).
+   \end{eqnarray*}$$
+
+   * Compensator: $\Lambda(t)$를 compensator라고 하자. 그렇다면 우선 위의 공식에 의해 아래와 같이 구할 수 있다; with $dN(t)=N(t+dt)-N(t-)$, 
+   $$
+   d\Lambda(t)= E(dN(t)|\mathcal{F}_{t-})=P(dN(t)=1|\mathcal{F}_{t-}).
+   $$
+   이는 만약 주어진 condition처럼 $X<t$라면$(\mathcal{F}_{t-})$, $t$ 이전시점에서 이미 relapsed되었기 때문에, $d\Lambda(t)=P(dN(t)=1|\mathcal{F}_{t-})=0$이다.
+   그렇다면 반대쪽 conditional expectation을 계산해보면 아래와 같다;
+   
+   $$
+   P(dN(t)|X\ge t)=\frac{P(X\in[t,t+dt])}{P(X\ge t)}=\alpha(t)dt\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }(\mbox{by the def of  }\alpha(t)).
+   $$
+   즉 다음과 같이 compensator를 구할 수 있다;
+   $$\begin{eqnarray*}
+   d\Lambda(t)&=& I(X\ge t)\alpha(t)dt\\
+   \therefore\Lambda(t)&=&\int_0^t I(X\ge s)\alpha(s)ds.
+   \end{eqnarray*}$$
+   
+<br>
+<br>
+
+[back](../sa.html)

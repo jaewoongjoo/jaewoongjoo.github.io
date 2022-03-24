@@ -1,0 +1,160 @@
+---
+title: "2.2. Martingales"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 13px;
+  }
+  pre {
+  font-size: 13px;
+}
+  .math {
+  font-size: 12px
+}
+</style>
+
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 1px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+
+<br>
+<br>
+
+<div class="alert alert-info">
+소챕터 2.1에서는 Filtration과 Counting Process에 대해 배웠다. 이번 소챕터에서는 Martingale에 대해 다룰 것이다. Martingale은 소위 말하면 random walk와 같은 모습을 보인다 (generalization of mean 0 random walk). 이를 이해하기 위해 Probability Theory에서의 conditional expectation에 대한 예습이 필요하다. 
+</div>
+
+
+
+<br>
+<br>
+
+특히 4번이 매우 중요하다. 
+
+#### Definition (Martingale and Submartingale in descrete time)
+The sequence of random variables and $\sigma$-fields $(X_n,\mathcal{F}_n)$, $n=1,2,\ldots$ is a martingale if for each $n$
+
+  1. $X_n\in \mathcal{F}_n$,
+  2. $\mathcal{F}_n\subset\mathcal{F}_{n+1}$,
+  3. $E(|X_n|)<\infty$,
+  4. $X_n=E(X_{n+1}|\mathcal{F}_n)$ almost surely.
+
+The sequence $(X_n,\mathcal{F}_n)$, $n=1,2,\ldots$ is a submartingale if in (4) the equality is replaced by "$\le$".
+
+For a discrete-time martingale, we have
+$$E(X_n|\mathcal{F}_m)=X_m\mbox{ }\mbox{ }\mbox{ }\mbox{ for all }\mbox{ }m<n. \mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ (이를 condition 4.2 라고 하자) }$$ 
+<br>  
+<br>
+
+   * 1번과 **adapted**(to the Filtration)의 정의로 $\mathcal{F}_n$은 only upto time $n$ 까지 정보를 갖는다는 의미이다 (이전 2.1에서 $U(t)\in\mathcal{F}_t$를 통해 설명했다).
+   
+   * 2번은 increasing의 의미이다.
+   
+   * 4번이 매우 중요하다. 그 의미는 말하자면 "Information for tomorrow with information for now is the information for now, e.g., just average by now"이다.
+ 
+   * 또한, You are doing better in submartingales than martingales (Submatingale은 시간에 대해 nondecreasing한 성격을 가진다).
+   
+   * $4\iff 4.2$를 증명하기 위해 conditional expectation에 대한 Theorem을 이해해야 한다 (probability theory 9-2 참고): if $\mathcal{G}_1,\mathcal{G}_2\subset\mathcal{F}$, $\mathcal{G}_1 \subset \mathcal{G}_2$이고 $X$가 random variable일 때
+   $$
+   E(E(X|\mathcal{G}_1)|\mathcal{G}_2) =E(X|\mathcal{G}_1) =     E(E(X|\mathcal{G}_2)|\mathcal{G}_1).
+   $$
+   
+      * e.g) Let $\mathcal{G}\subset\mathcal{F}$. Let $Z$ be the random variable such that $Z:\Omega\rightarrow \mathbb{R}$. Let $L^2=\{\mbox{vector space spanned by all r.v } Z \mbox{ such that } E(Z^2)<\infty\}$ (Hilbert space). Let $V=\{\mbox{space of all r.v's which are } \mathcal{G} \mbox{-measurable in } L^2 \}$. Then,
+      $$
+      E(X|\mathcal{G})=\prod_V X.
+      $$
+      * 아래 그림 참고(notation은 좀 다르다).
+    
+        ![](https://www.researchgate.net/profile/Alexis-Roche/publication/239061834/figure/fig2/AS:651944846708756@1532447172438/Geometric-interpretation-of-the-conditional-expectation-It-is-the-orthogonal-projection.png){width=500}
+
+   * 4 $\implies$ 4.2 : $E(X_n|\mathcal{F}_{n-2})=E(E(X_n|\mathcal{F}_{n-1})|\mathcal{F}_{n-2})=E(X_{n-1}|\mathcal{F}_{n-2})=X_{n-2}.$ Let $m=n-2$ (done).
+   
+<br>
+<br>
+
+##### 예제 1 (Random walk)
+Let $\xi_1,\xi_2,\ldots$ i.i.d with mean 0. Let $X_n=\sum_{i=1}^n \xi_i$, $\mathcal{F}_n=\sigma(\xi_1,\ldots,\xi_n)$. The series $X_n$ is called a **random walk**. Note that $\mathcal{F}_n=\sigma(\xi_1,\ldots,\xi_n)$ means in $(\Omega,\mathcal{F},P)$, $X_1,\ldots,X_n\in\mathcal{F}_n$, $X_{n+1}\notin \mathcal{F}_n$.
+
+  * **Claim:** $(X_n,\mathcal{F}_n)$ is a martingale
+  
+  * **Proof**: Condition 1,2,3 is trivial. For proving 4, note that 
+  $$
+  E(X_{n+1}|\mathcal{F}_n)=\sigma(\xi_1,\ldots,\xi_n))=E(\xi_{n+1}+X_n|\xi_1,\ldots,\xi_n)=X_n+E(\xi_{n+1})=X_n.
+  $$
+
+<br>
+<br>
+
+
+##### 예제 2 
+Let $\{\mathcal{F}_n,n=1,2,\ldots\}$ be a filtration, and let $Y$ be an integrable random variable. Then, $E(Y|\mathcal{F}_n)$ is a martingale. 
+
+  * **Claim:** Let $X_n=E(Y|\mathcal{F}_n)$. Then, $(X_n,\mathcal{F}_n)$ is a martingale.
+  
+  * **Proof:** Condition 1 is true by the definition of conditional expectation ($X_n=E(Y|\mathcal{F}_n)$ is $\mathcal{F}_n$-measurable, i.e., $X_n\in\mathcal{F}_n$). Condition 2 is true because $\{\mathcal{F}_n,n=1,2,\ldots\}$ is filtrations. Condition 3 is such that $E(|X_n|)=E(E(|Y||\mathcal{F}_n))= E(|Y|)<\infty$. Condition 4 can be proved
+  $$
+  E(X_{n+1}|\mathcal{F}_n)=E(E(Y|\mathcal{F}_{n})|\mathcal{F}_{n+1})= E(Y|\mathcal{F}_{n})=X_n.
+  $$
+  
+<br>
+<br>
+
+##### Definition (Martingale and Submartingale in continuous time)
+Let $\mathcal{T}$ be an interval of the form $[0,\tau)$ or $[0,\tau]$, where $\tau$ is finite. Given a filtration $\{\mathcal{F}_t,t\in\mathcal{T}\}$, a martingale is a process $M(\cdot)$ which is "cadlag" such that; 
+
+   * $M(\cdot)$ is adapted,
+   * $M(\cdot)$ is integrable, i.e., $E(|M(t)|)<\infty$ for all $t\in \mathcal{T}$,
+   * $M(\cdot)$ satisfies the martingale property such that
+   $$
+   E(M(t)|\mathcal{F}_s)=M(S)\mbox{ }\mbox{ }\mbox{ }\mbox{ for all }\mbox{ }s<t.
+   $$
+   The process is called the submartingale if, as before, the equality is replaced by an inequality.
+   The martingale is called square integrable if $$\sup_{t\in\mathcal{T}}E(M(t)^2)<\infty$$.
+
+<br>
+
+
+  * a function is "cadlag" if it is continuous from the right, and has the left limit (cadlag 조건을 거는 이유는 $M(\cdot)$이 어떠한 small interval에서 too wiggly함을 방지하기 위함이다).
+
+<br>
+
+  * e.g) Is $N_i(t)=I(X_i\le t)$  martingale? No, by the martingale property.
+
+<br>
+<br>
+
+##### Lemma 1 
+If $\{(X_n,\mathcal{F}_n), n=1,2,\ldots\}$ is a submartingale, and if $\varphi$ is a nondecreasing convex function such that $\varphi(X_n)$ is integrable for all $n$, then $\{(\varphi(X_n),\mathcal{F}_n),n=1,2,\ldots\}$ is again a submartingale. 
+
+Also, if $\{(X_n,\mathcal{F}_n), n=1,2,\ldots\}$ is a martingale, then we do not need $\varphi$ to be nondecreasing.
+
+
+<br>
+
+  * **Proof** (A): start with $X_n\le E(X_{n+1}|\mathcal{F}_n)$ (미래가 현재보다 낫다 $\leftarrow$ submartingale의 정의). Apply $\varphi$ to both sides such that
+  $$\begin{eqnarray*}
+  \varphi(X_n)&\le& \varphi(E(X_{n+1}|\mathcal{F}_n))\mbox{ }\mbox{ }\mbox{ }(\varphi\mbox{ is nondecreasing})\\
+  &\le& E(\varphi(X_{n+1}|\mathcal{F}_n)).\mbox{ }\mbox{ }\mbox{ }(\mbox{Jensen's Inequality})
+  \end{eqnarray*}$$
+   
+  * **Proof** (B): start with $X_n= E(X_{n+1}|\mathcal{F}_n)$. Apply $\varphi$ to both sides such that
+  $$\begin{eqnarray*}
+  \varphi(X_n)&=& \varphi(E(X_{n+1}|\mathcal{F}_n))\\
+  &\le& E(\varphi(X_{n+1}|\mathcal{F}_n)).\mbox{ }\mbox{ }\mbox{ }(\mbox{Jensen's Inequality, }\varphi \mbox{ is convex})
+  \end{eqnarray*}$$
+
+
+<br>
+<br>
+[back](../sa.html)

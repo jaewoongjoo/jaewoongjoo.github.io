@@ -1,0 +1,104 @@
+---
+title: "2.3. Predictability"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 13px;
+  }
+  pre {
+  font-size: 13px;
+}
+  .math {
+  font-size: 12px
+}
+</style>
+
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 1px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+
+<br>
+<br>
+
+<div class="alert alert-info">
+소챕터 2.2에서는 Martingale과 Submartingale에 대해 살펴보았다. Martingale의 condition 중 4번째인 Martingale Property의 의미는 (Condition 4.2의 의미) 결국 현재$(n)$ 갖고 있는 정보를 통해 추정하는 미래$(n+1)$의 기대값 $E(X_{n+1}|\mathcal{F}_n)$은 현재의 값과 같다는 것이다, i.e., $E(X_{n+1}|\mathcal{F}_n)=X_n$. 그런데 Submartingale은 미래에 기대되는 값이 현재보다 더 나은 상황을 의미한다. 이번 챕터에선 궁극적으로 다음 챕터에서 배울 Doob-Meyer decomposition을 위한 Predictability에 대해 알아보고 학습할 것이다. 
+</div>
+
+<br>
+<br>
+
+##### Definition (predictability)
+Let $\{Y(t)\}$ be a family of random variables, and $\{\mathcal{F}_t\}$ be a filtration (with the same index set). Then, "$\{Y(t)\}$ is predictable with respect to $\{\mathcal{F}_t\}$" essentially means that
+$$
+Y(t)\in \mathcal{F}_{t-}.
+$$
+<br>
+   
+  * Predictability의 의미는 시점 $t-$에서 $\epsilon$만큼 이후(아주 조금 후)의 값은 현재의 값과 큰 차이가 나지 않게 예측이 가능하다는 의미이다. 즉 $\mathcal{F}_{t-}$정보가 있을 때, $Y(t)$는 더이상 random variable이 아니다.  아래의 Fact 1, Fact 2를 통해 충분히 보충 설명한다.
+
+<br>
+<br>
+
+##### Fact 1
+All left-continuous adapted processes are predictable. 
+
+   * Note that this is very intuitive, given our definition.
+   
+
+In the case of a process in discrete time, predictability is the condition
+$$
+Y_n\in \mathcal{F}_{n-1} \mbox{ }\mbox{ }\mbox{ }\mbox{ for all }n.
+$$
+
+
+<br>
+
+   * 즉 $t$ 시점의 정보는 정의 $Y(t)\in \mathcal{F}_{t-}$에 따라 $t-$시점의 값으로 predict할 수 있기 때문에 이는 left continuity로 설명된다.
+
+   * 아래의 이미지와 같이 left-continuous한 counting process를 생각해보자. 여기서 jump가 이루어지는 시점을 $t-$라고 하자. 또한 현재 $\mathcal{F}_{t-}$까지의 정보를 우리가 갖고 있을 때(left-continuous adapted) 당연히 $t$시점의 값 $Y(t)$는 현재 주어진 정보에서 Predict하다, i.e., $Y_n\in \mathcal{F}_{n-1}$. 때문에 All left-continuous adapted processes are predictable하다. 
+   
+<center>![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Left-continuous.svg/1200px-Left-continuous.svg.png){width=300}
+
+<br>
+<br>
+
+##### Fact 2
+Any process that is both a martingale and is *finite variation* predictable must be constant
+
+ <br>
+ 
+  * 우선 이를 이해하려면 finite variation에 대한 이해가 필요하다
+     
+     * **Definition(total variation):** Suppose $f:[0,\infty)\rightarrow \mathbb{R}$. The total variation of $f$ over the interval $[0,t]$ is defined as follows. Pick $N\in \{1,2,\ldots\}$, make a partition (mesh), call it $S_1,\ldots,S_N$. The total variation of $f$ over the interval $[0,t]$ is $$V_f(t)= \sup_N \sum_i |f(S_{i+1})-f(S_{i})|. $$
+  
+     * 즉 total varialtion이 finite일 때 우리는 finite variation이라고 한다. 아래의 그림을 참고하자. 이 그래프를 y축을 $f(S_i)$의 value, $i=1,2,\ldots$, $x$축을 $i=1,2,\ldots$라고 할 때, $f(S_1),f(S_2)$ 두 value에 대해서 생각해보자 ($f$는 discontinuous일 수도, 엄청 복잡한 함수일 수도 있다). variance는 0이지만 total variation은 supreme 값을 가질 때 까지 mesh를 늘려가기 때문에 0에서 0.5까지의 함수값 증가량의 절대값, 0.5에서 1까지의 함수값 감소량의 절대값을 모두 더해서 계산한다. 때문에 0이 아니다.  결국 아주 작은 interval 안에서 $f$가 매우 wiggly할 수도 있지만, finite한 range안에 존재한다는 의미이다. 자세하게 설명하면 다음과 같다;
+     $$
+     f \in \text{BV}(0,t) \mbox{ if } V_f(s)<\infty\mbox{ }\mbox{ }\mbox{ for all } s\le t  \mbox{ }\mbox{ }\mbox{(BV is bounded variation)}. 
+     $$
+     Note that 
+       * **Theorem:** if $f\in \text{BV}[0,1)$, then there exist function $f_+$ and $f_-$ fhat are non-decreasing s.t $f=f_+-f_-$.
+       
+<center>![](https://demonstrations.wolfram.com/FindTheTotalVariationOfAFunction/img/popup_3.png){width=300}</center>
+     
+     
+   
+  * 즉 Fact 2 *Any process that is both a martingale and is finite variation predictable must be constant*의 의미는 다음과 같다 
+       * Predictabilility의 정의에 의해 $Y_t\in \mathcal{F}_{t-}$이다. 즉 $\mathcal{F}_{t-}$의 정보가 given되어있을 때 $Y_t$는 더이상 random이 아니다 (Martingale에서는 random variable which is $\mathcal{F}_{t-}$-measurable). 
+       
+       * Martingale property에 의해 $E(Y_t|\mathcal{F}_{t-})=Y_t$이다. 또한 $Y_{t+}=E(Y_{t+}|\mathcal{F}_{t})=E(E(Y_{t+}|\mathcal{F}_{t})|\mathcal{F}_{t-})=E(E(Y_{t+}|\mathcal{F}_{t-})|\mathcal{F}_{t})=E(Y_t|F_{t})=Y_t$이다. 즉, $\epsilon$만큼 계속 늘려나간다고 생각한다면 Martingale $(Y_t, \mathcal{F}_t)$는 constant이다. 
+
+<br>
+<br>
+
+[back](../sa.html)
