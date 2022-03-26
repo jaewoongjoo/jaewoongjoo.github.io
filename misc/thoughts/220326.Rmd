@@ -1,0 +1,21 @@
+---
+title: "220326"
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+
+[Emacs](https://www.gnu.org/software/emacs/) is truly incredible. It will never be enough to use the term "incredible". It is "unquestionably golden".
+
+<br>
+
+[back](./thoughts.html)
