@@ -14,7 +14,7 @@ pre {
 
 <br>
 
-[Emacs](https://www.gnu.org/software/emacs/) is truly incredible. It will never be enough to use the term "incredible". It is "unquestionably golden".
+[Emacs](https://www.gnu.org/software/emacs/) is truly incredible. 
 
 <br>
 
