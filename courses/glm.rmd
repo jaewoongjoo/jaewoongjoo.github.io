@@ -78,7 +78,7 @@ pre {
 
 [5.1. Models for Multivariate Respnses](./glm/5_1.html)
 
-[5.2. Conditional Models](./glm/5_1.html)
+[5.2. Conditional Models](./glm/5_2.html)
 
 [5.3. Generalized Linear Mixed Models](./glm/5_3.html)
 
