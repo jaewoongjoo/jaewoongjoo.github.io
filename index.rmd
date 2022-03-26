@@ -15,7 +15,7 @@ pre {
 
 
 
-Hello, and welcome to my blog. I am Jaewoong Joo, a Ph.D student in Department of Statistics.
+Hello and welcome to my home page. I am a Ph.D student in the Department of Statistics at the University of Florida. 
 
 
 &nbsp;&nbsp;
