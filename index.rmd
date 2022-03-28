@@ -14,9 +14,7 @@ pre {
 </style>
 
 
-
-Hello and welcome to my home page. I am a Ph.D student in the Department of Statistics at the University of Florida. 
-
+Hello and welcome to my website. I am a doctoral student in the Department of Statistics at the University of Florida. Now, I am working with Dr. Hani Doss and Dr. Bikram Karmakar. My study is mainly focused on the meta-analysis.
 
 &nbsp;&nbsp;
 
