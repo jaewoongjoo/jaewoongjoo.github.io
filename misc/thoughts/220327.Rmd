@@ -1,0 +1,21 @@
+---
+title: "220327"
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+
+I really really need to change my lifestyle from being a night owl to an earlybird.
+
+<br>
+
+[back](./thoughts.html)
