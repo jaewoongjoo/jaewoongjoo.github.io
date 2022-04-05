@@ -1,0 +1,64 @@
+---
+title: '3.2 A Martingale Approach to Generating Tests'
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 13px;
+  }
+  pre {
+  font-size: 13px;
+}
+  .math {
+  font-size: 12px
+}
+</style>
+
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 1px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+
+<br>
+<br>
+<div class="alert alert-info">
+이전 챕터에서 우리는 $k$개의 population의 Hazard가 모두 같은지에 대해 Hypothesis testing을 하는 일반적인 이론에 대해서 공부했다. 즉, 각 population들의 counting process $N_1, \ldots N_k$에 대해, pooled sample을 통해 구한 hazard $\hat A$와, 각 counting processes들에 대한 hazard $\hat A_h$,  $h=1,\ldots k$를 비교하는 방법을 관찰했다. 이 두 hazard의 차이에 대한 (weight sum)$^2$를 quadratic form으로 마치 ANOVA와 비슷하게 test statistic을 construct하여 비교한다고 볼 수 있다. 이번 챕터에서는 이 두개의 estimate들의 차이가 어떻게 martingale이 되는지를 보이고, 또한 어떻게 Martingale property를 사용할 수 있는지 살펴볼 것이다. 
+</div>
+
+<br>
+<br>
+
+##### Remark
+ Here, we want to compare $\hat A_h$ and $\hat A$ only on the set where $Y_h(s)>0$. So, we define
+ $$
+ \tilde{A}_h(t)= \int_0^t J_h(s)d\hat A(s)= 
+ $$
+where $J_h(s)=I(Y_h(s)>0)$ and $J(s)=I(Y_\cdot(s)>0)$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+[back](../sa.html)

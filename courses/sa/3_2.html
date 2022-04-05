@@ -11,7 +11,7 @@
 
 
 
-<title>3.1. General Framework for k-Sample Tests</title>
+<title>3.2 A Martingale Approach to Generating Tests</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,7 +361,8 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">3.1. General Framework for <span class="math inline">\(k\)</span>-Sample Tests</h1>
+<h1 class="title toc-ignore">3.2 A Martingale Approach to Generating
+Tests</h1>
 
 </div>
 
@@ -389,126 +390,28 @@ font-style: italic;
 </style>
 <br> <br>
 <div class="alert alert-info">
-<p>지금까지 우리는 <span class="math inline">\(\hat{S}(t)\)</span>가
-Brownian motion로 converge in distribution하는 것에 대해 배웠고 이를
-증명하기 위해 Martingale central limit theorem을 이용했다. 지금까지
-우리의 관심사는 어떠한 하나의 population에서 온 sample data의 survival
-curve가 어떻게 수렴하는지 분포를 알고자 하는 것이었다면, 이번 챕터부터는
-<span class="math inline">\(k\)</span>개의 각기 다른 population이 존재할
-때 그것들을 어떻게 비교하는지, 또 그러기 위해 어떠한 test를 사용하는지를
-살펴볼 것이다.</p>
+<p>이전 챕터에서 우리는 <span class="math inline">\(k\)</span>개의
+population의 Hazard가 모두 같은지에 대해 Hypothesis testing을 하는
+일반적인 이론에 대해서 공부했다. 즉, 각 population들의 counting process
+<span class="math inline">\(N_1, \ldots N_k\)</span>에 대해, pooled
+sample을 통해 구한 hazard <span class="math inline">\(\hat A\)</span>와,
+각 counting processes들에 대한 hazard <span class="math inline">\(\hat
+A_h\)</span>, <span class="math inline">\(h=1,\ldots k\)</span>를
+비교하는 방법을 관찰했다. 이 두 hazard의 차이에 대한 (weight sum)<span class="math inline">\(^2\)</span>를 quadratic form으로 마치 ANOVA와
+비슷하게 test statistic을 construct하여 비교한다고 볼 수 있다. 이번
+챕터에서는 이 두개의 estimate들의 차이가 어떻게 martingale이 되는지를
+보이고, 또한 어떻게 Martingale property를 사용할 수 있는지 살펴볼
+것이다.</p>
 </div>
 <p><br> <br></p>
-<div id="remark-common-framework" class="section level5">
-<h5>Remark (Common Framework)</h5>
-<p>We have random variables</p>
-<p><span class="math inline">\(X_1^{(1)}, \ldots X_{n_1}^{(1)}
-\stackrel{\text{iid}}{\sim} F^{(1)}, \mbox{ }\mbox{ }\mbox{ }\mbox{
-}Y_1^{(1)}, \ldots Y_{n_1}^{(1)} \stackrel{\text{iid}}{\sim}
-G^{(1)}\)</span> (population 1)</p>
-<p><span class="math inline">\(X_1^{(2)}, \ldots X_{n_2}^{(2)}
-\stackrel{\text{iid}}{\sim} F^{(2)}, \mbox{ }\mbox{ }\mbox{ }\mbox{
-}Y_1^{(2)}, \ldots Y_{n_2}^{(2)} \stackrel{\text{iid}}{\sim}
-G^{(2)}\)</span> (population 2)</p>
-<p><span class="math inline">\(\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{
-}\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{
-}\mbox{ }\vdots\)</span></p>
-<p><span class="math inline">\(X_1^{(k)}, \ldots X_{n_k}^{(k)}
-\stackrel{\text{iid}}{\sim} F^{(k)}, \mbox{ }\mbox{ }\mbox{ }\mbox{
-}Y_1^{(k)}, \ldots Y_{n_k}^{(k)} \stackrel{\text{iid}}{\sim}
-G^{(k)}\)</span> (population <span class="math inline">\(k\)</span>)</p>
-<p><br></p>
-<ul>
-<li><p>여기서 우리는 <span class="math inline">\(H_0:F_1=F_2=\cdots=F_k\)</span>를 test하고 싶다고
-하자. 즉 모든 <span class="math inline">\(k\)</span>개의 population이 다
-같은 survival curve를 갖고 있는지를 알고 싶다. 하지만 이것보다 우리는
-Hazard를 아래와 같이 비교하는게 더욱 편하다: <span class="math display">\[
-H_0: A_1=A_2=\cdots =A_k \mbox{ }\mbox{ }\mbox{ }\mbox{ which is
-equivalent to }\mbox{ }\mbox{ }\mbox{ } H_0:F_1=F_2=\cdots=F_k.
-\]</span> 이 두 테스트는 사실 같은 test이다. 왜냐하면 Hazard와 Failure
-function은 초반에 살펴보았다시피 one-to-one relationship을 갖고 있기
-때문이다.</p></li>
-<li><p>Hazard를 비교하는 것이 더 쉬운 이유는 다음에서 다룰 것이지만
-Martingale property를 이용할 수 있기 때문이다.</p></li>
-</ul>
-<p><br></p>
-</div>
 <div id="remark" class="section level5">
 <h5>Remark</h5>
-<p>We assume that we have <span class="math inline">\(k\)</span>
-functions <span class="math inline">\(A_1,\ldots,A_k\)</span> and for
-each <span class="math inline">\(h\)</span> <span class="math inline">\((h=1,\ldots,k)\)</span> we have a counting process
-<span class="math inline">\(N_h\)</span> satisfying the Aalen model,
-i.e., <span class="math display">\[
-N_h(t)-\int_0^t Y_h(s)dA_h(s)\mbox{ }\mbox{ }\mbox{ }\mbox{ is a
-martingale},
-\]</span> where <span class="math inline">\(Y_h\)</span> is predictable
-with respect to some filtration.</p>
-<ul>
-<li>Counting process는 “Filtration”과 항상 같이 등장한다는 것을 기억해야
-한다.</li>
-</ul>
-<p>We want to test the null hypothesis <span class="math display">\[
-H_0: A_1=\cdots =A_k.
-\]</span> We assume that the vector <span class="math inline">\((N_1\ldots,N_k)\)</span> forms a <span class="math inline">\(k\)</span>-dimensional counting process. That is,
-we assume that the counting processes never jump at the same time, and
-that the counting processes and predictable processes are all defined
-with respect to the same filtration.</p>
-<ul>
-<li><p>즉, <span class="math inline">\(k\)</span>개의 counting
-processes에 대한 joint(higher) filtration 한 개가 존재한다는
-것이다.</p></li>
-<li><p>이 가정이 필요한 이유는 앞으로 우리가 이전에 배웠던 <span class="math inline">\(\mathcal{F}_t\)</span>-orthogonality를 사용하기
-위해서다.</p></li>
-<li><p>사실 같은 시점에 jump가 여러번 이루어지지 않는다는 가정은
-필요하지 않고, 모든 counting processes들이 independent하다는 가정만
-있으면 충분하다.</p></li>
-</ul>
-<p><br></p>
-<p>For each <span class="math inline">\(h\)</span>, let <span class="math inline">\(\hat{A}_h\)</span> be the Nelson-Aalen estimator
-of <span class="math inline">\(A_h\)</span>, and let <span class="math inline">\(\hat A\)</span> be the Nelson-Aalen estimator
-based on the <strong>pooled sample</strong>, i.e., <span class="math display">\[\begin{equation}
-\hat A(t)= \int_0^t \frac{I(Y_\cdot (s)&gt;0)}{Y_\cdot (s)}dN_\cdot (s)
-\end{equation}\]</span> where <span class="math display">\[
-N_\cdot (s)= \sum_{h=1}^k N_h(s)\mbox{ }\mbox{ }\mbox{ and }\mbox{
-}\mbox{ } Y_\cdot (s)= \sum_{h=1}^k Y_h(s)
-\]</span> - pooled sample은 결국 모든 샘플들을 한꺼번에 다 합쳐놓은
-것이다.</p>
-<ul>
-<li>여기서부터 ANOVA랑 굉장히 비슷해지는데, <span class="math inline">\(\hat A(t)\)</span>는 ANOVA에서의 <span class="math inline">\(X_{\cdot \cdot}\)</span>(grand mean)과 유사하다고
-생각하면 편하다.</li>
-</ul>
-<p><br></p>
-<p>Assume <span class="math inline">\(H_0\)</span> is true. Let <span class="math inline">\(A\)</span> be the common value of the <span class="math inline">\(A_h\)</span>’s. Let <span class="math display">\[
-M_h(t)=N_h(t)-\int_0^t Y_h(s)dA(s)
-\]</span> and <span class="math display">\[
-M_\cdot(t)=N_\cdot(t)-\int_0^tY_\cdot(s)dA(s) \mbox{ }\mbox{ }\mbox{
-}\mbox{ }\left( =\sum_{h=1}^k M_h(t) \right).
-\]</span> Then, <span class="math inline">\(M_\cdot(t)\)</span> is a
-martingale, since the sum of martingale is again a martingale. Hence,
-the common value <span class="math inline">\(A\)</span> may be estimated
-by <span class="math inline">\(\hat A(t)= \int_0^t \frac{I(Y_\cdot
-(s)&gt;0)}{Y_\cdot (s)}dN_\cdot (s)\)</span> (처음에 배웠던 Nelson
-Aalen공식으로 바로 구한다).</p>
-<p>The general approach is to compare <span class="math inline">\(\hat
-A_h\)</span> with <span class="math inline">\(\hat A\)</span> through a
-weight process, then combine the <span class="math inline">\(k\)</span>
-comparisons via quadratic form.</p>
-<ul>
-<li><p>즉 <span class="math inline">\(H_0\)</span>이 true라고 한다면,
-<span class="math inline">\(A_1=\cdots =A_k=A\)</span>이기 때문에 <span class="math inline">\(\hat A_h(t)= \int_0^t
-\frac{I(Y_h(s)&gt;0)}{Y_h(s)}dN_h(s)\)</span>와 pooled sample을 통해
-구한 <span class="math inline">\(\hat A(t)\)</span>의 차의 (weighted
-sum)<span class="math inline">\(^2\)</span>가 값이 커서는 안된다는
-논리이다. 즉 predictable weight process <span class="math inline">\(W(t)\)</span> 에 대해 다음과 같이 weight sum을
-앞으로 고려할 것이다: <span class="math display">\[
-  \int_0^t W(s)\left(d\hat A(s)-d\hat A_h(s)\right).
-  \]</span> 만약 <span class="math inline">\(\hat A\)</span>와 <span class="math inline">\(\hat A_h\)</span>가 모두 martingale이라면, 이
-weight sum 또한 martingale이다.</p></li>
-<li><p>나중에 다루겠지만, weight가 어떤 것이냐에 따라서 test의 종류가
-달라진다. Mantel-Haenszel인지 Gehan인지 등으로 나누어지는데 매우
-중요하다.</p></li>
-</ul>
+<p>Here, we want to compare <span class="math inline">\(\hat
+A_h\)</span> and <span class="math inline">\(\hat A\)</span> only on the
+set where <span class="math inline">\(Y_h(s)&gt;0\)</span>. So, we
+define <span class="math display">\[
+\tilde{A}_h(t)= \int_0^t J_h(s)d\hat A(s)=
+\]</span> where <span class="math inline">\(J_h(s)=I(Y_h(s)&gt;0)\)</span> and <span class="math inline">\(J(s)=I(Y_\cdot(s)&gt;0)\)</span></p>
 <p><br> <br></p>
 <p><a href="../sa.html">back</a></p>
 </div>
