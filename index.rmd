@@ -24,7 +24,7 @@ Hello and welcome to my website. I am a doctoral student in the Department of St
 
 
 
-[1. Course Reviews](./courses/id/courses.html)
+[1. Course Reviews](./courses/bbcf5cfe989d3d5aa7721c0ae9d0b870cdd0e0f0/index.html)
 
 [2. Researches](./researches/researches.html)
 
