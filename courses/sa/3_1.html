@@ -11,7 +11,7 @@
 
 
 
-<title>Courses</title>
+<title>3.1. Doob-Meyer Decomposition</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,28 +361,55 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Courses</h1>
+<h1 class="title toc-ignore">3.1. Doob-Meyer Decomposition</h1>
 
 </div>
 
 
 <style type="text/css">
-
-body, td {
-   font-size: 15px;
+  body, td {
+    font-size: 13px;
+  }
+  pre {
+  font-size: 13px;
 }
-pre {
-  font-size: 15px
+  .math {
+  font-size: 12px
 }
 </style>
-<div id="index" class="section level2">
-<h2>Index</h2>
-<p><a href="./probability1.html">Probability Theory</a></p>
-<p><a href="./decision.html">Decision Theory</a></p>
-<p><a href="./glm.html">Generalized Linear Models</a></p>
-<p><a href="./lm.html">Linear Models</a></p>
-<p> </p>
-<p><a href="../index.html">back</a></p>
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 1px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+<br> <br>
+<div class="alert alert-info">
+<p>지금까지 우리는 <span class="math inline">\(\hat{S}(t)\)</span>가
+Brownian motion로 converge in distribution하는 것에 대해 배웠고 이를
+증명하기 위해 Martingale central limit theorem을 이용했다. 지금까지
+우리의 관심사는 어떠한 하나의 population에서 온 sample data의 survival
+curve가 어떻게 수렴하는지 분포를 알고자 하는 것이었다면, 이번 챕터부터는
+<span class="math inline">\(k\)</span>개의 각기 다른 population이 존재할
+때 그것들을 어떻게 비교하는지, 또 그러기 위해 어떠한 test를 사용하는지를
+살펴볼 것이다.</p>
+</div>
+<p><br> <br></p>
+<div id="remark-common-framework" class="section level5">
+<h5>Remark (Common Framework)</h5>
+<p>We have random variables</p>
+<span class="math inline">\(X_1^{(1)}, \ldots X_{n_1}^{(1)}
+\stackrel{\text{iid}}{\sim} F^{(1)},\)</span>
+<p>
+<p>
+<p><span class="math inline">\(Y_1^{(1)}, \ldots Y_{n_1}^{(1)}
+\stackrel{\text{iid}}{\sim} G^{(1)}\)</span> (population 1)</p>
+<p><br> <br></p>
+<p><a href="../sa.html">back</a></p>
 </div>
 
 

@@ -24,6 +24,8 @@ pre {
 
 [Linear Models](./lm.html)
 
+[Survival Analysis](./sa.html)
+
 &nbsp;
 
 [back](../index.html)

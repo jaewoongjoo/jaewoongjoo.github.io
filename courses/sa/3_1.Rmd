@@ -1,0 +1,50 @@
+---
+title: "3.1. Doob-Meyer Decomposition"
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 13px;
+  }
+  pre {
+  font-size: 13px;
+}
+  .math {
+  font-size: 12px
+}
+</style>
+
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 1px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+
+<br>
+<br>
+<div class="alert alert-info">
+지금까지 우리는 $\hat{S}(t)$가 Brownian motion로 converge in distribution하는 것에 대해 배웠고 이를 증명하기 위해 Martingale central limit theorem을 이용했다. 지금까지 우리의 관심사는 어떠한 하나의 population에서 온 sample data의 survival curve가 어떻게 수렴하는지 분포를 알고자 하는 것이었다면, 이번 챕터부터는 $k$개의 각기 다른 population이 존재할 때 그것들을 어떻게 비교하는지, 또 그러기 위해 어떠한 test를 사용하는지를 살펴볼 것이다. 
+</div>
+
+<br>
+<br>
+
+
+##### Remark (Common Framework)
+We have random variables
+
+$X_1^{(1)}, \ldots X_{n_1}^{(1)} \stackrel{\text{iid}}{\sim} F^{(1)},$   <p><p> $Y_1^{(1)}, \ldots Y_{n_1}^{(1)} \stackrel{\text{iid}}{\sim} G^{(1)}$  (population 1)
+
+
+<br>
+<br>
+
+[back](../sa.html)
