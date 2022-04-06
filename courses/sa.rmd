@@ -22,25 +22,27 @@ pre {
 
 ### 1. Basics of Survival Analysis
 
-[1.1 Mathematical Model for Right-Censored Data](./sa/1_1.html)
+[1.1. Mathematical Model for Right-Censored Data](./sa/1_1.html)
 
 &nbsp;&nbsp;
 
 ### 2. 
 
-[2.1 Filtrations and Counting Processes](./sa/2_1.html)
+[2.1. Filtrations and Counting Processes](./sa/2_1.html)
 
-[2.2 Martingales](./sa/2_2.html)
+[2.2. Martingales](./sa/2_2.html)
 
-[2.3 Predictability](./sa/2_3.html)
+[2.3. Predictability](./sa/2_3.html)
 
-[2.4 Doob-Meyer Decomposition](./sa/2_4.html)
+[2.4. Doob-Meyer Decomposition](./sa/2_4.html)
 
 &nbsp;&nbsp;
 
 ### 3. Comparison of $k$ Populations
 
-[3.1. ](./sa/3_1.html)
+[3.1. General Framework for k-Sample Tests](./sa/3_1.html)
+
+[3.2. A Martingale Approach to Generating Tests](./sa/3_2.html)
 
 &nbsp;&nbsp;
 

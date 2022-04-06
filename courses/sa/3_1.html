@@ -361,7 +361,8 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">3.1. General Framework for <span class="math inline">\(k\)</span>-Sample Tests</h1>
+<h1 class="title toc-ignore">3.1. General Framework for k-Sample
+Tests</h1>
 
 </div>
 
@@ -472,11 +473,12 @@ based on the <strong>pooled sample</strong>, i.e., <span class="math display">\[
 \end{equation}\]</span> where <span class="math display">\[
 N_\cdot (s)= \sum_{h=1}^k N_h(s)\mbox{ }\mbox{ }\mbox{ and }\mbox{
 }\mbox{ } Y_\cdot (s)= \sum_{h=1}^k Y_h(s)
-\]</span> - pooled sample은 결국 모든 샘플들을 한꺼번에 다 합쳐놓은
-것이다.</p>
+\]</span></p>
 <ul>
-<li>여기서부터 ANOVA랑 굉장히 비슷해지는데, <span class="math inline">\(\hat A(t)\)</span>는 ANOVA에서의 <span class="math inline">\(X_{\cdot \cdot}\)</span>(grand mean)과 유사하다고
-생각하면 편하다.</li>
+<li><p>pooled sample은 결국 모든 샘플들을 한꺼번에 다 합쳐놓은
+것이다.</p></li>
+<li><p>여기서부터 ANOVA랑 굉장히 비슷해지는데, <span class="math inline">\(\hat A(t)\)</span>는 ANOVA에서의 <span class="math inline">\(X_{\cdot \cdot}\)</span>(grand mean)과 유사하다고
+생각하면 편하다.</p></li>
 </ul>
 <p><br></p>
 <p>Assume <span class="math inline">\(H_0\)</span> is true. Let <span class="math inline">\(A\)</span> be the common value of the <span class="math inline">\(A_h\)</span>’s. Let <span class="math display">\[
@@ -488,8 +490,9 @@ M_\cdot(t)=N_\cdot(t)-\int_0^tY_\cdot(s)dA(s) \mbox{ }\mbox{ }\mbox{
 martingale, since the sum of martingale is again a martingale. Hence,
 the common value <span class="math inline">\(A\)</span> may be estimated
 by <span class="math inline">\(\hat A(t)= \int_0^t \frac{I(Y_\cdot
-(s)&gt;0)}{Y_\cdot (s)}dN_\cdot (s)\)</span> (처음에 배웠던 Nelson
-Aalen공식으로 바로 구한다).</p>
+(s)&gt;0)}{Y_\cdot (s)}dN_\cdot (s)\)</span> (처음에 배웠던, 양변에
+derivative를 하여 구하는, Nelson Aalen공식 추론 방법으로 바로
+구한다).</p>
 <p>The general approach is to compare <span class="math inline">\(\hat
 A_h\)</span> with <span class="math inline">\(\hat A\)</span> through a
 weight process, then combine the <span class="math inline">\(k\)</span>
@@ -504,7 +507,7 @@ sum)<span class="math inline">\(^2\)</span>가 값이 커서는 안된다는
 앞으로 고려할 것이다: <span class="math display">\[
   \int_0^t W(s)\left(d\hat A(s)-d\hat A_h(s)\right).
   \]</span> 만약 <span class="math inline">\(\hat A\)</span>와 <span class="math inline">\(\hat A_h\)</span>가 모두 martingale이라면, 이
-weight sum 또한 martingale이다.</p></li>
+weight sum 또한 martingale이다 (by Theorem 5).</p></li>
 <li><p>나중에 다루겠지만, weight가 어떤 것이냐에 따라서 test의 종류가
 달라진다. Mantel-Haenszel인지 Gehan인지 등으로 나누어지는데 매우
 중요하다.</p></li>

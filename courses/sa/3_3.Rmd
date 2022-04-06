@@ -1,0 +1,65 @@
+---
+title: '3.3 The case k=2'
+output: html_document
+---
+
+<style type="text/css">
+  body, td {
+    font-size: 13px;
+  }
+  pre {
+  font-size: 13px;
+}
+  .math {
+  font-size: 12px
+}
+</style>
+
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 1px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+
+<br>
+<br>
+<div class="alert alert-info">
+이전 챕터에서 $k$개의 population에 대해 귀무가설 $H_0:A_1=\cdots=A_k=:A$를 어떻게 가설검정 하는지에 대해서 공부했다. 요약하면 $h$번째 그룹의 Nelson-Aalen estimator $\hat A_h(t)$와 pooled sample의 Nelson Aalen estimator $\hat A(t)$의 차이값인 $\hat A_h(t)-\hat A(t)$를 이용하여 마치 ANOVA에서와 유사한 방식으로 weighted quadratic sum을 계산했다. 여기서 우리는 Martingale property를 이용하기 위해 $\hat A(t)$대신 매우 유사한 값인 $\tilde{A}_h(t)$를 이용했고, $\hat A_h(t)-\tilde{A}_h(t)$의 covariance structure를 구해내어 결국 chi-square statistic을 도출해냈다. 이번에는 $k$가 2일때의 케이스에 대해 집중적으로 다루어보고 어떤 직관적인 결과를 얻을 수 있는지에 대해 알아볼 것이다.
+</div>
+
+<br>
+<br>
+
+##### Remark
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+[back](../sa.html)

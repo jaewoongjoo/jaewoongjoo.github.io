@@ -1,5 +1,5 @@
 ---
-title: "3.1. General Framework for $k$-Sample Tests"
+title: "3.1. General Framework for k-Sample Tests"
 output: html_document
 ---
 
@@ -95,6 +95,7 @@ where
 $$
 N_\cdot (s)= \sum_{h=1}^k N_h(s)\mbox{ }\mbox{ }\mbox{ and }\mbox{ }\mbox{ } Y_\cdot (s)= \sum_{h=1}^k Y_h(s)
 $$
+
   - pooled sample은 결국 모든 샘플들을 한꺼번에 다 합쳐놓은 것이다. 
 
   - 여기서부터 ANOVA랑 굉장히 비슷해지는데, $\hat A(t)$는 ANOVA에서의 $X_{\cdot \cdot}$(grand mean)과 유사하다고 생각하면 편하다. 
@@ -110,7 +111,7 @@ and
 $$
 M_\cdot(t)=N_\cdot(t)-\int_0^tY_\cdot(s)dA(s) \mbox{ }\mbox{ }\mbox{ }\mbox{ }\left( =\sum_{h=1}^k M_h(t) \right).
 $$
-Then, $M_\cdot(t)$ is a martingale, since the sum of martingale is again a martingale. Hence, the common value $A$ may be estimated by $\hat A(t)= \int_0^t \frac{I(Y_\cdot (s)>0)}{Y_\cdot (s)}dN_\cdot (s)$ (처음에 배웠던 Nelson Aalen공식으로 바로 구한다).
+Then, $M_\cdot(t)$ is a martingale, since the sum of martingale is again a martingale. Hence, the common value $A$ may be estimated by $\hat A(t)= \int_0^t \frac{I(Y_\cdot (s)>0)}{Y_\cdot (s)}dN_\cdot (s)$ (처음에 배웠던, 양변에 derivative를 하여 구하는, Nelson Aalen공식 추론 방법으로 바로 구한다).
 
 The general approach is to compare $\hat A_h$ with $\hat A$ through a weight process, then combine the $k$ comparisons via quadratic form.
 
@@ -118,7 +119,7 @@ The general approach is to compare $\hat A_h$ with $\hat A$ through a weight pro
   $$
   \int_0^t W(s)\left(d\hat A(s)-d\hat A_h(s)\right).
   $$
-  만약 $\hat A$와 $\hat A_h$가 모두 martingale이라면, 이 weight sum 또한 martingale이다. 
+  만약 $\hat A$와 $\hat A_h$가 모두 martingale이라면, 이 weight sum 또한 martingale이다 (by Theorem 5). 
   
   - 나중에 다루겠지만, weight가 어떤 것이냐에 따라서 test의 종류가 달라진다. Mantel-Haenszel인지 Gehan인지 등으로 나누어지는데 매우 중요하다. 
 
