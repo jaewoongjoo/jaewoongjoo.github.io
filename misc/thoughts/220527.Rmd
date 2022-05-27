@@ -1,0 +1,22 @@
+---
+title: "220527"
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+
+[![Watch the video](https://img.youtube.com/vi/WGpcsYr-mOU/0.jpg)](https://www.youtube.com/watch?v=WGpcsYr-mOU)
+
+
+<br>
+
+[back](./thoughts.html)
