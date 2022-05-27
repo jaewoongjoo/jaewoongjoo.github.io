@@ -11,7 +11,7 @@
 
 
 
-<title>Jaewoong Joo</title>
+<title>3.2 A Martingale Approach to Generating Tests</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,30 +361,278 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Jaewoong Joo</h1>
+<h1 class="title toc-ignore">3.2 A Martingale Approach to Generating
+Tests</h1>
 
 </div>
 
 
 <style type="text/css">
-
-body, td {
-   font-size: 15px;
+  body, td {
+    font-size: 13px;
+  }
+  pre {
+  font-size: 13px;
 }
-pre {
-  font-size: 15px
+  .math {
+  font-size: 12px
 }
 </style>
-<p>Hello and welcome to my website. I am a doctoral student in the
-Department of Statistics at the University of Florida. Now, I am working
-with Dr. Hani Doss and Dr. Bikram Karmakar. My study is mainly focused
-on the meta-analysis.</p>
-<p>  </p>
-<div id="contents" class="section level4">
-<h4>Contents</h4>
-<p><a href="./courses/index.html">1. Course Reviews</a></p>
-<p><a href="./researches/researches.html">2. Researches</a></p>
-<p><a href="./misc/misc.html">3. Miscellaneous</a></p>
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 1px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+<br> <br>
+<div class="alert alert-info">
+<p>이전 챕터에서 우리는 <span class="math inline">\(k\)</span>개의
+population의 Hazard가 모두 같은지에 대해 Hypothesis testing을 하는
+일반적인 이론에 대해서 공부했다. 즉, 각 population들의 counting process
+<span class="math inline">\(N_1, \ldots N_k\)</span>에 대해, pooled
+sample을 통해 구한 hazard <span class="math inline">\(\hat A\)</span>와,
+각 counting processes들에 대한 hazard <span class="math inline">\(\hat
+A_h\)</span>, <span class="math inline">\(h=1,\ldots k\)</span>를
+비교하는 방법을 관찰했다. 이 두 hazard의 차이에 대한 (weight sum)<span class="math inline">\(^2\)</span>를 quadratic form으로 마치 ANOVA와
+비슷하게 test statistic을 construct하여 비교한다고 볼 수 있다. 이번
+챕터에서는 이 두개의 estimate들의 차이가 어떻게 martingale이 되는지를
+보이고, 또한 어떻게 Martingale property를 이용할 수 있는지 살펴볼
+것이다. 나아가, 도출한 test statistic을 이용하여 어떻게 hypothesis
+test를 할 수 있는지까지 다루어 볼 것이다.</p>
+</div>
+<p><br> <br></p>
+<div id="remark" class="section level5">
+<h5>Remark</h5>
+<p>Here, we want to compare <span class="math inline">\(\hat
+A_h\)</span> and <span class="math inline">\(\hat A\)</span> only on the
+set where <span class="math inline">\(Y_h(s)&gt;0\)</span>. So, we
+define <span class="math display">\[
+\tilde{A}_h(t)= \int_0^t J_h(s)d\hat A(s)= \int_0^t
+\frac{J_h(s)J(s)}{Y_\cdot (s)}dN_\cdot (s)= \int_0^t
+\frac{J_h(s)}{Y_\cdot (s)}dN_\cdot (s),
+\]</span> where <span class="math inline">\(J_h(s)=I(Y_h(s)&gt;0)\)</span> and <span class="math inline">\(J(s)=I(Y_\cdot(s)&gt;0)\)</span>.</p>
+<ul>
+<li><p>이 <span class="math inline">\(\tilde{A}_h\)</span>는 <span class="math inline">\(\hat{A}\)</span>에 매우 근접한 값이다(small
+perturbation). 우리는 앞으로 <span class="math inline">\(\hat A\)</span>
+대신에 <span class="math inline">\(\tilde{A}_h\)</span>를 사용하여 <span class="math inline">\(\hat A_h\)</span>와 비교할 것이다.</p></li>
+<li><p>두 번째 equality는 <span class="math inline">\(d\hat A(s)=
+\frac{J_\cdot(s)}{Y_\cdot(s)}dN_\cdot(s)\)</span>를 이용하여 구할 수
+있다.</p></li>
+</ul>
+<p><br></p>
+<p>Suppose that the null hypothesis is true.</p>
+<ul>
+<li>귀무가설은 <span class="math inline">\(H_0:A_1=\cdots=A_k=A\)</span>이다. 이를 통해 <span class="math inline">\(M_h(t)=N_h(t)-\int_0^t Y_h(s)dA(s)\)</span>가
+martingale임을 알 수 있다. 즉 귀무가설은 <span class="math inline">\(M_\cdot(t)= \sum_{h=1}^k
+M_h(t)=N_\cdot(t)-\int_0^tY_\cdot(s)dA(s)\)</span>가 martingale임을
+의미하는 것이다.</li>
+</ul>
+<p>Consider <span class="math inline">\(\hat
+A_h(t)-\tilde{A}_h(t)\)</span>. Let <span class="math inline">\(A_h^*(t)= \int_0^t J_h(s)dA(s)\)</span>. We have
+<span class="math display">\[\begin{align*}
+\hat A_h(t)-\tilde{A}_h(t)&amp;=\left(\hat A_h(t)-
+A_h^*(t)\right)-\left(\tilde{A}_h(t)- A_h^*(t)\right)\\
+&amp;=\left(\hat A_h(t)- \int_0^t \frac{J_h(s)Y_h(s)}{Y_h (s)}dA
+(s)\right)-\left(\tilde{A}_h(t)- \int_0^t
+\frac{J_h(s)Y_\cdot(s)}{Y_\cdot (s)}dA (s)\right)\\
+&amp;=\int_0^t \frac{J_h(s)}{Y_h (s)}dM_h (s)- \int_0^t
+\frac{J_h(s)}{Y_\cdot (s)}dM_\cdot (s).
+\end{align*}\]</span> Thus (if the null hypothesis is true), <span class="math inline">\(\hat A_h(t)-\tilde{A}_h(t)\)</span> is the
+difference between two martingales, and therefore is also a
+martingale.</p>
+<ul>
+<li><p>마지막 equation은 아래와 같이 유도할 수 있다: <span class="math display">\[\begin{align*}
+\hat{A}_h(t)-A_h^*(t)
+&amp;=\int_0^t\frac{J_h(s)}{Y_h(s)}dN_h(s)-\int_0^t\frac{J_h(s)Y_h(s)}{Y_h(s)}dA(s)\\
+&amp;=\int_0^t\frac{J_h(s)}{Y_h(s)}(dN_h(s)-Y_h(s)dA(s))=\int_0^t\frac{J_h(s)}{Y_h(s)}M_h(s),\\
+\tilde{A}_h(t)-A_h^*(t)
+&amp;=\int_0^t\frac{J_h(s)}{Y_\cdot(s)}dN_\cdot(s)-\int_0^t\frac{J_h(s)Y_\cdot(s)}{Y_\cdot(s)}dA(s)\\
+&amp;=\int_0^t\frac{J_h(s)}{Y_\cdot(s)}(dN_\cdot(s)-Y_\cdot(s)dA(s))=\int_0^t\frac{J_h(s)}{Y_\cdot(s)}M_\cdot(s).
+\end{align*}\]</span></p></li>
+<li><p>즉 <span class="math inline">\(\hat{A}_h(t)-\tilde{A}_h(t)\)</span>는
+martingale이다.</p></li>
+</ul>
+<p><br></p>
+<p>If <span class="math inline">\(K_h\)</span> is a function, then <span class="math display">\[
+Z_h(t)= \int_0^t K_h(s) d(\hat{A}_h-\tilde{A}_h)(s)
+\]</span> provides a reasonable measure of the difference between <span class="math inline">\(\hat{A}_h\)</span> and <span class="math inline">\(\tilde{A}\)</span>. If <span class="math inline">\(K_h\)</span> is predictable, then <span class="math inline">\(Z_h\)</span> is a martingale.</p>
+<ul>
+<li>즉 <span class="math inline">\(K_h\)</span>가 어떠한 predictable
+weight process일 때, 위의 <span class="math inline">\(Z_h\)</span>는
+<span class="math inline">\(\hat{A}_h(t)\)</span>와 <span class="math inline">\(\tilde{A}_h\)</span>의 차이에 대한 quadratic
+sum이고, 또한 martingale이다. 앞으로 우리는 벡터 <span class="math inline">\((Z_1(t),\ldots,Z_h(t))&#39;\)</span>가 어떠한
+분포로 수렴하는지를 다룰 것이고, 그를 통해 <span class="math inline">\((Z_1(t),\ldots,Z_h(t))&#39;\)</span>의 variance,
+denoted as <span class="math inline">\(\Sigma\)</span>를 구할 것이다.
+마지막 Goal은 이 vector와 그의 variance를 통해 chi-square test
+statistic을 만드는 것이다.</li>
+</ul>
+<p><br></p>
+<p>Most of the tests that have been proposed are based on such
+stochastic integrals, where <span class="math inline">\(K_h\)</span> has
+the particular form <span class="math display">\[
+K_h(s)=Y_h(s)K(s),
+\]</span> where</p>
+<ul>
+<li><p><span class="math inline">\(K(s)\)</span> is bounded,</p></li>
+<li><p><span class="math inline">\(K(s)\)</span> depends only on <span class="math inline">\(\{(N_\cdot(u), Y_\cdot (u)), u\le s\}\)</span></p>
+<ul>
+<li>앞으로 <span class="math inline">\(K_h(s)\)</span>를 predictable and
+bounded function <span class="math inline">\(K\)</span>와 <span class="math inline">\(Y_h\)</span>의 곱 형태로서 다룰 것이다.</li>
+</ul></li>
+</ul>
+<p><br> <br></p>
+<p>여기서부터 위에서 언급했던 vector <span class="math inline">\((Z_1(t),\ldots,Z_h(t))&#39;\)</span>의 covariance
+를 구하는 과정을 보일 것이다.</p>
+</div>
+<div id="remarkcalculation-of-the-variance-covariance-structure-of-the-martingales-z_h-under-h_0" class="section level5">
+<h5>Remark(Calculation of the Variance-Covariance Structure of the
+Martingales <span class="math inline">\(Z_h\)</span> under <span class="math inline">\(H_0\)</span>)</h5>
+<p>Observe that we have <span class="math display">\[\begin{align*}
+Z_h(t) &amp;= \int_0^t K_h(s) d(\hat{A}_h-\tilde{A}_h)(s)\\
+&amp;=\int_0^t K(s)Y_h(s) (d\hat{A}_h(s)-d\tilde{A}_h(s))\\
+&amp;=\int_0^t K(s)Y_h(s)
+\left(\frac{J_h(s)}{Y_h(s)}dN_h(s)-J_h(s)d\hat{A}(s)  \right)\mbox{
+}\mbox{ }\mbox{ }\left(\because \tilde{A}_h(t)=\int_0^t
+J_h(s)d\hat{A}(s)\right)\\
+&amp;=\int_0^t K(s)Y_h(s)
+\left(\frac{J_h(s)}{Y_h(s)}dN_h(s)-J_h(s)\frac{J_\cdot(s)}{Y_\cdot(s)}dN_\cdot(s)\right)\\
+&amp;=\int_0^t K(s)J_h(s)dN_h(s)-\int_0^t
+K(s)J_h(s)J_\cdot(s)\frac{Y_h(s)}{Y_\cdot(s)}dN_\cdot(s)\\
+&amp;=\int_0^t K(s)J_h(s)dN_h(s)-\int_0^t
+K(s)J_h(s)\frac{Y_h(s)}{Y_\cdot(s)}dN_\cdot(s) \mbox{ }\mbox{ }\mbox{
+}\left(\because J_h(s)J_\cdot(s)= J_h(s)\right)\\
+&amp;=\left(\int_0^t K(s)J_h(s)dN_h(s)-\int_0^tK(s)J_h(s)Y_h(s)dA(s)
+\right)-\left(\int_0^tK(s)J_h(s)\frac{Y_h(s)}{Y_\cdot(s)}dN_\cdot(s)-\int_0^tK(s)J_h(s)Y_h(s)dA(s)\right)\\
+&amp;=\int_0^t K(s)J_h(s)(dN_h(s)-
+Y_h(s)dA(s))-\left(\int_0^tK(s)J_h(s)\frac{Y_h(s)}{Y_\cdot(s)}dN_\cdot(s)-\int_0^tK(s)J_h(s)Y_h(s)\frac{Y_\cdot(s)}{Y_\cdot(s)}dA(s)\right)\\
+&amp;=\int_0^t K(s)J_h(s)(dN_h(s)-
+Y_h(s)dA(s))-\left(\int_0^tK(s)J_h(s)\frac{Y_h(s)}{Y_\cdot(s)}\left(dN_\cdot(s)-
+Y_\cdot(s)dA(s)\right)\right)\\
+&amp;=\int_0^t
+K(s)J_h(s)dM_h(s)-\int_0^tK(s)J_h(s)\frac{Y_h(s)}{Y_\cdot(s)}dM_\cdot(s).
+\end{align*}\]</span> Keep in mind that <span class="math inline">\(N_\cdot= \sum_{h=1}^k N_h\)</span>, <span class="math inline">\(M_\cdot= \sum_{h=1}^k M_h\)</span>, <span class="math inline">\(Y_\cdot= \sum_{h=1}^k Y_h\)</span>. Let <span class="math display">\[\delta_{hl}=\begin{cases}1 &amp; \mbox{ if }h=l,
+\\0 &amp; \mbox{ otherwise. }\end{cases}\]</span> Then, we have</p>
+<p><span class="math display">\[\begin{align*}
+Z_h(t) &amp;= \int_0^t
+K(s)J_h(s)dM_h(s)-\int_0^tK(s)J_h(s)\frac{Y_h(s)}{Y_\cdot(s)}dM_\cdot(s)\\
+&amp;= \int_0^t K(s)J_h(s)dM_h(s)-\sum_{l=1}^k \int_0^t
+K(s)J_h(s)\frac{Y_h(s)}{Y_\cdot(s)} dM_l(s)\\
+&amp;= \sum_{l=1}^k \int_0^t K(s)J_h(s)\delta_{hl} dM_l(s)-\sum_{l=1}^k
+\int_0^t K(s)J_h(s)\frac{Y_h(s)}{Y_\cdot(s)}dM_l(s)\\
+&amp;= \sum_{l=1}^k \int_0^t K(s)J_h(s)\left(\delta_{hl}
+-\frac{Y_h(s)}{Y_\cdot(s)} \right) dM_l(s).
+\end{align*}\]</span></p>
+<ul>
+<li>여기서 한가지 복습하자면 martingale <span class="math inline">\(Z_1(t)\)</span>에 대한 <span class="math inline">\(\text{Var}(Z_1(t))\)</span>는 <span class="math inline">\(Z_1^2(t)-\left&lt;Z_1\right&gt;(t)\)</span>가
+martingale임을 통해 보였었다. 즉, 만약 <span class="math inline">\(M(t):=Z_1^2(t)-\left&lt;Z_1\right&gt;(t)\)</span>일
+때, <span class="math inline">\(M(0)=0\)</span>이라면, <span class="math inline">\(E(M(t)|t-)=E(Z_1^2(t)-\left&lt;Z_1\right&gt;(t)|t-)=0\)</span>이다.
+때문에 <span class="math inline">\(\text{Var}(Z_1(t)|t-)=E(Z_1^2(t)|t-)=E(\left&lt;Z_1\right&gt;(t)|t-)\)</span>를
+얻는다. 결국 <span class="math display">\[
+E(\left&lt;Z_1\right&gt;(t))=E(\left&lt;Z_1\right&gt;(t)|t=0)=
+\text{Var}(Z_1(t)|t=0)=\text{Var}(Z_1(t))
+\]</span> 이다. 이와 똑같이 <span class="math display">\[
+E(\left&lt;Z_1,Z_2\right&gt;(t))=\text{Cov}(Z_1(t),Z_2(t))
+\]</span> 를 구할 수 있고 즉, <span class="math inline">\(\left&lt;Z_h,Z_j\right&gt;(t)\)</span>는
+Covariance structure의 unbiased estimator이다 <span class="math inline">\((h\ne j)\)</span>.</li>
+</ul>
+<p><br></p>
+<p>By orthogonality of the martingales <span class="math inline">\(M_1,\ldots,M_k\)</span> (it means <span class="math inline">\(\left&lt;M_h,M_j\right&gt;(t)=0\)</span> implying
+<span class="math inline">\(M_h(t) M_j(t)\)</span> is a martingale,
+i.e., <span class="math inline">\(E(M_h(t)
+M_j(t)|t-)=M_h(0)M_j(0)=0\)</span> with <span class="math inline">\(M(0)=0\)</span> for all <span class="math inline">\(t)\)</span>, we have <span class="math display">\[\begin{align*}
+\left&lt;Z_h, Z_j\right&gt;(t)&amp;=  \sum_{l_1=1}^k
+\sum_{l_2=1}^k\left&lt;\int_0^t K(s)J_{l_1}(s)\left(\delta_{hl_1}
+-\frac{Y_h(s)}{Y_\cdot(s)} \right)dM_{l_1}(s), \int_0^t
+K(s)J_{l_2}(s)\left(\delta_{hl_2} -\frac{Y_h(s)}{Y_\cdot(s)}
+\right)dM_{l_2}(s)\right&gt;\\ \\
+&amp;=  \sum_{l=1}^k \int_0^t K^2(s) \left(\delta_{hl}
+-\frac{Y_h(s)}{Y_\cdot(s)} \right)\left(\delta_{jl}
+-\frac{Y_j(s)}{Y_\cdot(s)} \right)   J_h(s)J_j(s) d\left&lt;M_l,
+M_l\right&gt;(s)\\
+&amp;=  \sum_{l=1}^k \int_0^t K^2(s) \left(\delta_{hl}
+-\frac{Y_h(s)}{Y_\cdot(s)} \right)\left(\delta_{jl}
+-\frac{Y_j(s)}{Y_\cdot(s)} \right)   J_h(s)J_j(s) Y_l(s)dA(s) \mbox{
+}\mbox{ }\mbox{ by Theorem 3}\\
+&amp;=  \int_0^t
+[K^2(s)J_h(s)J_j(s)]\sum_{l=1}^k  \left(\delta_{hj}Y_l(s)
+-\delta_{hl}Y_l(s)\frac{Y_j(s)}{Y_\cdot(s)}-\delta_{jl}Y_l(s)\frac{Y_h(s)}{Y_\cdot(s)}
++\frac{Y_j(s)Y_h(s)Y_l(s)}{Y_\cdot(s)^2} \right)    dA(s) \\
+&amp;=  \int_0^t [K^2(s)J_h(s)J_j(s)] \left(\delta_{hj}Y_h(s)
+-Y_h(s)\frac{Y_j(s)}{Y_\cdot(s)}-Y_j(s)\frac{Y_h(s)}{Y_\cdot(s)}
++\frac{Y_j(s)Y_h(s)}{Y_\cdot(s)} \right)    dA(s) \\
+&amp;=  \int_0^t [K^2(s)J_h(s)J_j(s)] \left(\delta_{hj}Y_h(s)
+-\frac{Y_h(s)Y_j(s)}{Y_\cdot(s)}\right)    dA(s) \\
+&amp;=  \int_0^t [K^2(s)J_h(s)J_j(s)]
+\frac{Y_h(s)}{Y_\cdot(s)}\left(\delta_{hj}Y_h(s)
+-\frac{Y_j(s)}{Y_\cdot(s)}\right)   Y_\cdot(s) dA(s) \\
+\end{align*}\]</span> The covariance of <span class="math inline">\(Z_h\)</span> and <span class="math inline">\(Z_j\)</span> is the expectation of <span class="math inline">\(\left&lt;Z_h,Z_j\right&gt;(t)\)</span>, and may be
+unbiasedly estimated by <span class="math display">\[
+\hat\sigma_{hj}(t)=\int_0^t [K^2(s)J_h(s)J_j(s)]
+\frac{Y_h(s)}{Y_\cdot(s)}\left(\delta_{hj}Y_h(s)
+-\frac{Y_j(s)}{Y_\cdot(s)}\right)   dN_\cdot(s)  
+\]</span></p>
+<ul>
+<li><p>바로 위의 식에서 이전의 결과를 빼면 <span class="math inline">\(\int_0^t \mbox{(predictable
+function)}(dN_\cdot(s)-Y_\cdot(s)dA(s))=:U(t)\)</span>이기 때문에
+Theorem 5에 의해 martingale이다. 즉 <span class="math inline">\(E(U(t))=0\)</span>이라서 <span class="math inline">\(\int_0^t \mbox{(predictable
+function)}Y_\cdot(s)dA(s)\)</span>와 <span class="math inline">\(\int_0^t \mbox{(predictable
+function)}dN_\cdot(s)\)</span>의 expectation은 같다. 때문에 <span class="math inline">\(\int_0^t \mbox{(predictable
+function)}(N_\cdot(s)\)</span>도 covariance의 unbiased
+estimator이다.</p></li>
+<li><p>Orthogonality of martingales가 무슨 의미냐면, Orthogonality of
+<span class="math inline">\(M_h, M_j\)</span>에 의해서 즉 <span class="math inline">\(\text{Cov}(dM_h(t),
+dM_j(t))=d\left&lt;M_h,M_j\right&gt;(t)=0\)</span>이 된다. 그 의미는 즉
+<span class="math inline">\(\left&lt;Z_h,Z_j\right&gt;(t)\)</span>는
+Cov의 estimator이고 이것의 cross product term들은 결국 expectation을
+취하면 0이 될 것이기 때문에, 고려하지 않는다는 의미이다.</p></li>
+</ul>
+<p><br></p>
+<p>Let <span class="math inline">\(\hat\Sigma(t)\)</span> be the matrix
+formed from the <span class="math inline">\(\hat\sigma_{hj}(t)\)</span>’s. THe matrix <span class="math inline">\(\hat\Sigma(t)\)</span> is singular: it is fairly
+clear that the <span class="math inline">\(Z\)</span>’s satisfy one
+constraint (namely that they sum to 0), and so we expect that <span class="math inline">\(\hat\Sigma(t)\)</span> will have rank <span class="math inline">\(k-1\)</span>.</p>
+<p>Recall that if <span class="math inline">\(A\)</span> is a matrix,
+then a <em>generalized inverse</em> of <span class="math inline">\(A\)</span> is any matrix <span class="math inline">\(A^-\)</span> which satisfies <span class="math inline">\(AA^-A=A\)</span>. A particular choice of
+generalized inverse is the <em>Moore-Penrose inverse</em>, which
+satisfies in addition the conditions, <span class="math inline">\(A^-AA^-=A^-\)</span>, and <span class="math inline">\(A^-A\)</span> and <span class="math inline">\(AA^-\)</span> are symmetric. It is usually denoted
+<span class="math inline">\(A^\dagger\)</span>.</p>
+<p>A reasonable test statistic is <span class="math display">\[
+X^2(t)= \mathbf{Z}(t)&#39;\hat\Sigma(t)^-\mathbf{Z}(t),
+\]</span> where <span class="math inline">\(\hat\Sigma(t)^-\)</span> is
+some generalized inverse of <span class="math inline">\(\hat\Sigma(t)\)</span>.</p>
+<ul>
+<li><p>이전의 도출한 <span class="math inline">\(Z_h(t) = \sum_{l=1}^k
+\int_0^t K(s)J_h(s)\left(\delta_{hl} -\frac{Y_h(s)}{Y_\cdot(s)} \right)
+dM_l(s)\)</span>에서 <span class="math inline">\(h\)</span>에 대해 sum을
+하게되면 <span class="math inline">\(\left(\delta_{hl}
+-\frac{Y_h(s)}{Y_\cdot(s)} \right)\)</span> 부분이 0가 된다. 때문에
+constraint 한개를 갖고 있다고 볼 수 있다. 이는 ANOVA에서의 <span class="math inline">\(X_{i\cdot}-X_{\cdot\cdot}\)</span>과 같은
+상황이다. 즉 이 constraint때문에 <span class="math inline">\(\hat\Sigma(t)\)</span>가 full rank를 가질 수
+없어서 invertible하지 않다. 이에 chi-square test statistic을 구하기 위해
+generalized inverse를 사용한다.</p></li>
+<li><p>하지만 이는 <span class="math inline">\(\mathbf{Z}(t)\)</span>가
+asymptotic normality의 특성을 가질 때 이용할 수 있는 property이다.
+때문에 엄밀히 하기 위해서는 <span class="math inline">\(\mathbf{Z}(t)\)</span>의 asymptotic distribution을
+derive해보아야 한다. 이는 <span class="math inline">\(n\)</span> times
+the integral in <span class="math inline">\(\left&lt;Z_h,Z_j\right&gt;(t)= \int_0^t
+[K^2(s)J_h(s)J_j(s)] \frac{Y_h(s)}{Y_\cdot(s)}\left(\delta_{hj}Y_h(s)
+-\frac{Y_j(s)}{Y_\cdot(s)}\right) Y_\cdot(s) dA(s)\)</span>이 converges
+to “an integral in which the random quantities <span class="math inline">\(K, Y_h, Y_j, Y_\cdot\)</span> have been replaced
+by deterministic functions”라고 가정할 때, martingale CLT를 이용하여
+보일 수 있다. 그 다음 Cramer-Wold device를 이용하여 asymptotic
+normality를 최종적으로 보일 수 있다 (복잡해서 생략).</p></li>
+</ul>
+<p><br></p>
+<p>The general conclusion is that if <span class="math inline">\(H_0\)</span> is true, then <span class="math display">\[
+n^{1/2}\mathbf{Z}(t)\stackrel{d}\rightarrow \mathcal{N}(0,\Sigma(t)),
+\]</span> where <span class="math inline">\(\Sigma(t)=(\sigma_{hj})\)</span> where <span class="math inline">\(\sigma_{hj}\)</span>’s are the quantities to which
+the <span class="math inline">\(\hat\sigma_{hj}\)</span>’s converge in
+probability. <br></p>
+<p><a href="../sa.html">back</a></p>
 </div>
 
 
