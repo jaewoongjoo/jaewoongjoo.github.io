@@ -1,0 +1,46 @@
+---
+title: "2.5. Consistency of GMM"
+mathjax: true
+output: 
+  bookdown::html_document2:
+        number_sections: false
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Theorem
+Suppose that $z_1\ldots,z_n$ are i.i.d random variables, and $\hat W\stackrel{P}\rightarrow W$. Suppose that $g(z,\theta)$ is **a moment function**. Suppose that
+
+  1. (identification) : $W$ is positive semi-definite, and $W E(g(Z,\theta))=0$ only if $\theta=\theta_0$,
+  2. (compactness) :  $\theta_0\in\Theta$, where $\Theta$ is compact,
+  3. (continuity) : $g(z,\theta)$ is continuous
+  4. (uniform convergence) : $E[\sup_{\theta\in\Theta}| g(Z;\theta)|]<\infty$.
+
+Define 
+$$
+\hat Q_n(\theta) = - (n^{-1}\sum_{i=1}^n g(z_i,\theta))' \hat W  (n^{-1}\sum_{i=1}^n g(z_i,\theta)),
+$$
+and let $\hat\theta = \arg\max_{\theta\in\Theta}\hat Q_n(\theta)$. Define $Q_0(\theta) = - g_0(\theta)'  W   g_0(\theta)$, where $g_0(\theta)= E(g(Z,\theta))$, and $g_0(\theta_0)=E(g(Z;\theta_0))=0$.
+
+Then, $\hat\theta\stackrel{P}\rightarrow \theta_0$.
+
+<br>
+
+
+ - 증명은 MLE와 같기 때문에 생략한다.
+
+ 
+<br>
+<br>
+
+[back](../lse.html)

@@ -1,0 +1,54 @@
+---
+title: "2.4. Consistency of MLE"
+mathjax: true
+output: 
+  bookdown::html_document2:
+        number_sections: false
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Theorem
+Suppose that $z_1\ldots,z_n$ are i.i.d random variables with p.d.f. $f(z_i;\theta_0)$ and 
+  
+  1. (identification) :  if $\theta\ne \theta_0$ then $f(z_i;\theta)\ne f(z_i;\theta_0)$,
+  2. (compactness) : $\theta_0\in\Theta$, where $\Theta$ is compact,
+  3. (continuity) :  $\log f(z_i;\theta)$ is continuous at each $\theta\in\Theta$ w.p.1,
+  4. (uniform convergence) : $E[\sup_{\theta\in\Theta}|\log f(Z;\theta)|]<\infty$.
+  
+Define $\hat Q_n(\theta) =n^{-1}\sum_{i=1}^n \log f(z_i;\theta)$, and let $\hat\theta = \arg\max_{\theta\in\Theta}\hat Q_n(\theta)$ (definition of MLE).
+
+Then, $\hat\theta\stackrel{P}\rightarrow \theta_0$.
+
+<br>
+
+- 1번 조건과 4번 조건에 의해 $Q_0(\theta)=E(\log(f(Z;\theta)))$ has a unique maximum at $\theta_0$ (chapter 2.2, example of MLE 참고).
+
+
+- 4번 조건: Let $a(z,\theta)=\log f(z;\theta)$, and let $d(z)=\sup_{\theta\in\Theta}|\log f(z;\theta)|$. Chapter 2.3으로 인해 우리는 아래 2가지를 얻는다:
+    1. $E(\log f(Z;\theta))=:Q_0(\theta)$ is continuous,
+    2. $\sup_{\theta\in\Theta} ||n^{-1} \sum_{i=1}^n \log f(z_i;\theta)-E(\log f(Z;\theta))||\stackrel{P}\rightarrow 0$, i.e., 
+    $$\sup_{\theta\in\Theta} ||\hat Q_n(\theta) - Q_0(\theta)||\stackrel{P}\rightarrow 0.$$
+    
+- 때문에 2.1. Basic Consistency Theorem 에서 요구하는 4가지의 조건을 모두 갖추게 된다. Q.E.D.
+
+    
+
+
+
+
+
+<br>
+<br>
+
+[back](../lse.html)

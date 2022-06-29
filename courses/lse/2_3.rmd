@@ -1,0 +1,44 @@
+---
+title: "2.3. Uniform Convergence and Continuity"
+mathjax: true
+output: 
+  bookdown::html_document2:
+        number_sections: false
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Lemma
+Suppose that $z_1\ldots,z_n$ are i.i.d random variables, $\theta_0\in\Theta$, where $\Theta$ is compact. 
+
+Suppose also that $a(z_i,\theta)$ is continuous at each $\theta\in \Theta$ w.p.1, 
+
+and there is $d(z)$ with $||a(z,\theta)||\le d(z)$ for all $\theta\in \Theta$ where $E(d(z))<\infty$. 
+
+Then, 
+
+  1. $E(a(Z,\theta))$ is continuous,
+  2. $\sup_{\theta\in\Theta} ||n^{-1} \sum_{i=1}^n a(z_i,\theta)-E(a(Z,\theta))||\stackrel{P}\rightarrow 0$.
+
+<br>
+
+  - 즉, $a(z_i,\theta)$에 대해 continuity condition과  moment existence condition이 주어진다면 $n^{-1}\sum_{i=1}^n a(z_i,\theta)$의 uniform convergence를 얻어낼 수 있다는 뜻이다.
+  
+  - 이 두개의 condition은 매우 primitive한 조건이기 때문에 이 lemma는 매우 유용하다.
+  
+  - 증명은 생략한다.
+
+<br>
+<br>
+
+[back](../lse.html)

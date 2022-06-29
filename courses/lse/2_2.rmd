@@ -31,7 +31,7 @@ $\theta_0$ is identified if $\theta\ne \theta_0$ and $\theta\in \Theta$ implies 
 MLE 예제
 
 #### Lemma (Information Inequality)
-If $\theta_0$ is identified  and $E(|\log f(z;\theta)|)<\infty$ for all $\theta$, then $Q_0(\theta)=E(\log f(z;\theta))$ has a unique maximum at $\theta_0$. 
+If $\theta_0$ is identified  and $E(|\log f(z;\theta)|)<\infty$ for all $\theta$, then $Q_0(\theta):=E(\log f(Z;\theta))$ has a unique maximum at $\theta_0$. 
 
 <br>
 
@@ -50,7 +50,7 @@ If $\theta_0$ is identified  and $E(|\log f(z;\theta)|)<\infty$ for all $\theta$
 GMM (Generalized Method of Moments) 예제
 
 #### Lemma (GMM Identification)
-Suppose that there is a **moment function** vector $g(z,\theta)$ such that $E(g(Z,\theta_0))=0$ for some $\theta_0$. Let $W$ be positive semi definite, and $\hat W \stackrel{P}\rightarrow W$. Note that by the law of large numbers, we know for independent random variables $z_1,\ldots,z_n$, $n^{-1}\sum_{i=1}^n g(z_i,\theta) \stackrel{P}\rightarrow g_0(\theta)$, where $g_0(\theta) =E(g(Z,\theta))$. Assume that $g_0(\theta_0)=E(g(Z;\theta_0))$. Now, let 
+Suppose that there is a **moment function** vector $g(z,\theta)$ such that $E(g(Z,\theta_0))=0$ for some $\theta_0$. Let $W$ be positive semi definite, and $\hat W \stackrel{P}\rightarrow W$. Note that by the law of large numbers, we know for independent random variables $z_1,\ldots,z_n$, $n^{-1}\sum_{i=1}^n g(z_i,\theta) \stackrel{P}\rightarrow g_0(\theta)$, where $g_0(\theta) =E(g(Z,\theta))$. Assume that $g_0(\theta_0)=E(g(Z;\theta_0))=0$. Now, let 
 $$
 \hat Q_n(\theta) = - (n^{-1}\sum_{i=1}^n g(z_i,\theta))' \hat W  (n^{-1}\sum_{i=1}^n g(z_i,\theta)). 
 $$
@@ -76,7 +76,7 @@ If $W (h(\theta)-h(\theta_0))\ne 0$ for $\theta\ne \theta_0$, then $Q_0(\theta)=
 
 <br>
 
-  - We have $\hat Q_n(\theta)\stackrel{P}\rightarrow Q_0(\theta)= - (\pi_0-h(\theta))' W  (\pi_0-h(\theta))$ by continuity of multiplication, and $Q_0(\theta_0)=0$ by the definition $\pi_0:=h(\theta)$
+  - We have $\hat Q_n(\theta)\stackrel{P}\rightarrow Q_0(\theta)= - (\pi_0-h(\theta))' W  (\pi_0-h(\theta))$ by continuity of multiplication, and $Q_0(\theta_0)=0$ by the definition $\pi_0:=h(\theta_0)$
 
   - 나머지는 GMM에서의 증명과 같으므로 생략. 
   

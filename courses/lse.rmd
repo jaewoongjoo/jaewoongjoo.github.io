@@ -18,7 +18,7 @@ This page is for a brief description of Chapter 36 of the book "Large Sample Est
 
 [2.2. Identification](./lse/2_2.html)
 
-[2.3. Uniform Convergency and Continuity](./lse/2_3.html)
+[2.3. Uniform Convergence and Continuity](./lse/2_3.html)
 
 [2.4. Consistency of Maximum Likelihood](./lse/2_4.html)
 
