@@ -1,0 +1,84 @@
+---
+title: "1.1. Introduction"
+mathjax: true
+output: 
+  bookdown::html_document2:
+        number_sections: false
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+### Definition (Extreme Estimator)
+An estimator $\theta$ is an **extremum estimator** if there is an objective function $\hat Q_n(\theta)$ such that
+
+$$
+\hat\theta \mbox{ maximizes } \hat Q_n(\theta) \mbox{ subject to } \theta \in \Theta, (\#eq:def1)
+$$
+
+where $\Theta$ is the set of possible parameter values. In the notation, dependence of $\hat\theta$ on $n$ and of $\hat\theta$ and $\hat Q_n(\theta)$ on the data is suppressed for convenience.
+
+<br>
+
+  - 즉, 어떠한 objective function $\hat Q_n(\theta)$가 존재하고 그를 maximize하는 $\hat\theta$를 extreme estimator라고 부른다. 
+
+<br>
+<br>
+
+
+앞으로 우리는 아래의 네 가지의 예제를 주로 살펴보고 이 예제 안에서의 extreme estimator들의 점근 분포에 대해 보일 것이다.
+
+##### Example (MLE)
+
+Let the data $z_1,\ldots,z_n$ be i.i.d with p.d.f $f(z;\theta_0)$ equal to some number of a family of p.d.f's $f(z;\theta)$.The MLE satisfies eq. (1) with
+$$
+\hat Q_n(\theta)=n^{-1} \sum_{i=1}^n \log f(z_i;\theta). (\#eq:ex1)
+$$
+Here, $\hat Q_n(\theta)$ is the normalized log-likelihood. 
+
+<br>
+<br>
+
+##### Example (Nonlinear Least Squares)
+Assume that we have the data $z_i=(y_i,x_i)\in \mathbb{R}^2$ for $i=1,\ldots,n$, with $E(Y_i|X_i)=h(x_i;\theta_0)$. The estimator solves eq (1) with 
+$$
+\hat Q_n(\theta) = -n^{-1} \sum_{i=1}^n (y_i-h(x_i,\theta))^2. (\#eq:ex2)
+$$
+
+
+<br>
+<br>
+
+매우 중요하다
+
+##### Example (General Method of Moments - GMM)
+Suppose that there is a "moment function" vector $g(z,\theta)$ such that the population moments satisfy $E(g(Z,\theta_0))=0$. A GMM estimator is one that minimizes a squared Euclidean distance of sample moments. Let $\hat W$ be a positive semi-definite matrix. A GMM estimator is one that solves eq (1) with
+$$
+\hat Q_n(\theta) = - (n^{-1}\sum_{i=1}^n g(z_i,\theta))' \hat W  (n^{-1}\sum_{i=1}^n g(z_i,\theta)). (\#eq:ex3)
+$$
+
+
+<br>
+<br>
+
+##### Example (Classical Minimum Distance Estimation - CMD)
+Suppose that there is a vector of estimators $\hat\pi \stackrel{P}{\rightarrow} \pi_0$, and a vector of functions $h(\theta)$ with $\pi_0=h(\theta_0)$. An estimator of $\theta$ can be constructed by solving eq (1) with 
+$$
+\hat Q_n(\theta) = - (\hat\pi-h(\theta))' \hat W  (\hat\pi-h(\theta)). (\#eq:ex4)
+$$
+<br>
+
+   -  즉, $\pi$가 reduced form parameter, $\theta$가 structural parameter라고 생각하고, $h$를 어떠한 linear mapping s.t $h:\theta\rightarrow\pi$라고 생각해보자. 그리고 우리는 $\hat\pi$를 data로 갖고 있고 이를 maximizing하는 $\theta$를 찾는 것이다. 바꿔 말하면 $\hat\pi$와 가장 가까운 $h(\theta)$를 만족시키는 $\theta$를 찾는 것이다.
+   
+<br>
+<br>
+[back](../lse.html)

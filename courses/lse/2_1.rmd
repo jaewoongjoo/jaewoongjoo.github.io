@@ -1,0 +1,86 @@
+---
+title: "2.1. The Basic Consistency Theorem"
+mathjax: true
+output: 
+  bookdown::html_document2:
+        number_sections: false
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Remark 
+The basic idea of the consistency is that if $\hat Q_n (\theta)$ converges in probability to $Q_0(\theta)$ for every $\theta$ and $Q_0(\theta)$ is maximized at the true parameter $\theta_0$, then the limit of the maximum $\hat\theta$ should be the maximum of $\theta_0$ of the limit under conditions for interchanging the maximization and limiting operations.
+
+
+<br>
+
+  - 바꿔 말하면 $\hat Q_n(\theta)$가 $Q_0(\theta)$로 uniformly 수렴하고 $Q_0(\theta)$가 $\theta_0$에서 maximized된다면 $\hat\theta$가 $\theta_0$로 수렴한다는 것을 의미한다. 즉, 우리가 이를 만족하는 $Q_0(\theta)$를 찾을 수 있다면, 자연스럽게 $\hat\theta \stackrel{P}\rightarrow \theta_0$를 얻는다.이번 챕터는 이를 detail하게 수학적으로 보일 것이다.
+  
+<br>
+<br>
+
+
+
+#### Definition (Uniform Convergence in Probability)
+$\hat Q_n(\theta)$ converges uniformly in probability to $Q_0(\theta)$ means $\sup_{\theta\in\Theta} |\hat Q_n(\theta)-Q_0(\theta)|\stackrel{p}\rightarrow 0$. 
+
+
+<br>
+<br>
+
+이 정리에서 아래의 4가지 조건이 특히 중요하다
+
+#### Theorem 
+If there is a function $Q_0(\theta)$ such that
+
+  1. $Q_0(\theta)$ is uniquely maximized at $\theta_0$,
+  
+  2. $\Theta$ is compact,
+  
+  3. $Q_0(\theta)$ is continuous,
+  
+  4. $\hat Q_n(\theta)$ converges uniformly in probability to $Q_0(\theta)$,
+  
+then $\hat\theta \stackrel{P}\rightarrow \theta_0$.
+
+<br>
+
+* (증명) : For any $\epsilon>0$, we have with probability approaching 1 (w.p.a.1),
+  1. $\hat Q_n(\hat\theta) > \hat Q_n(\theta_0)-\epsilon/3$, since $\hat\theta$ maximizes $\hat Q_n(\theta)$,
+  2. $Q_0(\hat\theta) > \hat Q_n(\hat\theta)-\epsilon/3$, since $\hat Q_n(\theta)$ converges uniformly in probability to $Q_0(\theta)$,
+  3. $\hat Q_n(\theta_0) > Q_0(\theta_0)-\epsilon/3$, since $\hat Q_n(\theta)$ converges uniformly in probability to $Q_0(\theta)$. 
+  
+  즉 이 3개를 조합하면, w.p.a.1, $Q_0(\hat\theta)\stackrel{2.}>\hat Q_n(\hat\theta)-\epsilon/3 \stackrel{1.}>\hat Q_n(\theta_0)-2\epsilon/3\stackrel{3.}> Q_0(\theta_0)-\epsilon$ 이고, 즉 $Q_0(\hat\theta)> Q_0(\theta_0)-\epsilon$. 
+  
+  Let $\mathcal{N}$ be any open subset of $\Theta$ including $\theta_0$. Then, $\Theta\cap \mathcal{N}^c$ is compact, and then $\sup_{\theta\in\Theta\cap \mathcal{N}^c} Q_0(\theta)=Q_0(\theta^*)<Q_0(\theta_0)$ for some $\theta^* \in \Theta\cap \mathcal{N}^c$ by continuity. 
+  
+  Choose $\epsilon=Q_0(\theta_0)- Q_0(\theta^*)$. It follows that $Q_0(\hat\theta)>Q_0(\theta^*)=\sup_{\theta\in\Theta\cap \mathcal{N}^c} Q_0(\theta)$. Hence, $\hat\theta \in\mathcal{N}$ (즉, $\mathcal{N}=\{\theta_0\}$라고 생각해보자). Q.E.D.
+
+<br>
+
+
+   - 결론은 만약 objective function $\hat Q_n(\theta)$가 어떠한 continuous한 $Q_0(\theta)$로 uniformly converge 하고, $Q_0(\theta)$가 unique maximum $\theta_0$를 가질 때, extremum estimator $\hat\theta$는 $\theta_0$로 수렴한다는 것이다. 아주 중요하다. 
+   
+   - 즉 우리가 objective function의 uniform convergence $Q_0(\theta)$만 계산해낼 수 있다면 consistency를 아주 쉽게 얻을 수 있다.
+
+
+<br>
+<br>
+
+#### Remark
+Extremum estimator의 consistency를 얻기 위해서는 $Q_0(\theta)$를 찾아야 한다. 보통 $Q_0(\theta)$를 계산해내는 것은 매우 straightforward하다. $Q_0(\theta)$는  $\hat Q_n(\theta)$의 probability limit for any $\theta$이고 이는 the law of large numbers (WLLN - independent variable cases, SLLN - i.i.d variable cases) 에 의해 쉽게 계산된다. 예를 들어, MLE의 경우 (1번예제) the law of large numbers implies that for MLE, the limit of $\hat Q_n(\theta)$ is $Q_0(\theta)=E[\log f(Z;\theta)]$, and nonlinear least squares 의 경우 (2번예제), $Q_0(\theta)=-E(y-h(X,\theta))$이다. 3,4번 예제 (GMM, CMD)에 대해서는 앞으로 다룰 것이다.
+
+<br>
+<br>
+
+[back](../lse.html)

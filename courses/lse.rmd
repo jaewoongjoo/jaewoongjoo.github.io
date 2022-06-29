@@ -1,0 +1,40 @@
+---
+title: "Large Sample Estimation"
+output: html_document
+---
+
+This page is for a brief description of Chapter 36 of the book "Large Sample Estimation and Hypothesis Testing" by Whitney K. Newey and Daniel McFadden's book.
+
+## Index
+
+### 1. Introduction
+
+[1.1. Introduction](./lse/1_1.html)
+
+<br>
+
+### 2. Consistency
+
+[2.1. The Basic Consistency Theorem](./lse/2_1.html)
+
+[2.2. Identification](./lse/2_2.html)
+
+[2.3. Uniform Convergency and Continuity](./lse/2_3.html)
+
+[2.4. Consistency of Maximum Likelihood](./lse/2_4.html)
+
+[2.5. Consistency of GMM](./lse/2_5.html)
+
+<br>
+
+### 3. Asymptotic Normality
+
+[3.1. The Basic Results](./decision/3_1.html)
+
+[3.2. Asymptotic Normality for MLE](./decision/3_2.html)
+
+[3.3. Asymptotic Normality for GMM](./decision/3_3.html)
+
+<br>
+
+[back](./)

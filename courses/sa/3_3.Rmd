@@ -40,9 +40,9 @@ font-style: italic;
 ##### Remark (The case $k=2$)
 For the case $k=2$, we can use $Z_1(t)$ instead of a quadratic from in $(Z_1(t), Z_2(t))$. We can then do one-sided tests. 
 
-  - 무슨 말이냐면 $k$가 3 이상이면 $H_0:A_1=A_2=\cdot=A_k$, $H_1:$ one of them are not equal$이 되지만, $k$가 2라면
+  - 무슨 말이냐면 $k$가 3 이상이면 $H_0:A_1=A_2=\cdots=A_k$, vs  $H_1:$ one of them are not equal이 되지만, $k$가 2라면
 $$
-H:0 A_1\le A_2 \mbox{ }\mbox{ }\mbox{ vs }\mbox{ }\mbox{ } H_1:A_1>A_2
+H_0: A_1\le A_2 \mbox{ }\mbox{ }\mbox{ vs }\mbox{ }\mbox{ } H_1:A_1>A_2
 $$
 처럼 one-sided test를 할 수 있다. 즉, 위의 가설에서 $Z_1=\hat{A}_1(t)-\hat{A}(t)$이 만약 값이 엄청 크다면, $H_0$을 기각할 수 있다. 때문에 quadratic form을 고려하지 않고 $Z_1$에 대한 normal 분포만 이용해서 검정을 할 수 있다. 때문에 $k=2$인 경우 계산이 매우 간단하다.
 
@@ -126,4 +126,5 @@ The $dN_1$ has a hypergeometric distribution *if the null hypothesis is true*
 
 <br>
 <br>
+
 [back](../sa.html)

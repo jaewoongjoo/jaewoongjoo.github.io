@@ -26,6 +26,8 @@ pre {
 
 [Survival Analysis](./sa.html)
 
+[Large Sample Estimation](./lse.html)
+
 &nbsp;
 
 [back](../index.html)

@@ -1,0 +1,91 @@
+---
+title: "2.2. Identification"
+mathjax: true
+output: 
+  bookdown::html_document2:
+        number_sections: false
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+#### Definition (Identification)
+$\theta_0$ is identified if $\theta\ne \theta_0$ and $\theta\in \Theta$ implies $f(z;\theta)\ne f(z;\theta_0)$.
+
+<br>
+
+ - Identification of $\theta_0$는 uniqueness of $f(z;\theta_0)$을 의미한다. 
+ 
+<br>
+<br>
+
+MLE 예제
+
+#### Lemma (Information Inequality)
+If $\theta_0$ is identified  and $E(|\log f(z;\theta)|)<\infty$ for all $\theta$, then $Q_0(\theta)=E(\log f(z;\theta))$ has a unique maximum at $\theta_0$. 
+
+<br>
+
+  - (증명) : 젠센 부등식으로 간단히 증명 가능하다. 젠센 부등식에 의해 for any positive random variable $Y$, $-\log E[Y]<E[-\log Y]$를 얻는다. Let $A=f(Z;\theta)/f(Z;\theta_0)$, and $\theta\ne\theta_0$. Then, 
+  $$\begin{align}
+  Q_0(\theta_0)-Q_0(\theta)&= E (-\log (f(Z;\theta)/f(Z;\theta_0))) \\
+  &= E(-\log A) > -\log E(A) = -\log E (f(Z;\theta)/f(Z;\theta_0))=-\log \int f(z;\theta)dz=0.
+  \end{align}$$
+  즉, $Q_0(\theta_0)>Q_0(\theta)$ for any $\theta\ne\theta_0$이다. Q.E.D.
+
+
+<br>
+<br>
+
+
+GMM (Generalized Method of Moments) 예제
+
+#### Lemma (GMM Identification)
+Suppose that there is a **moment function** vector $g(z,\theta)$ such that $E(g(Z,\theta_0))=0$ for some $\theta_0$. Let $W$ be positive semi definite, and $\hat W \stackrel{P}\rightarrow W$. Note that by the law of large numbers, we know for independent random variables $z_1,\ldots,z_n$, $n^{-1}\sum_{i=1}^n g(z_i,\theta) \stackrel{P}\rightarrow g_0(\theta)$, where $g_0(\theta) =E(g(Z,\theta))$. Assume that $g_0(\theta_0)=E(g(Z;\theta_0))$. Now, let 
+$$
+\hat Q_n(\theta) = - (n^{-1}\sum_{i=1}^n g(z_i,\theta))' \hat W  (n^{-1}\sum_{i=1}^n g(z_i,\theta)). 
+$$
+If $W g_0(\theta)\ne 0$ for $\theta\ne \theta_0$, then $Q_0(\theta)=-g_0(\theta)'Wg_0(\theta)$ has a unique maximum at $\theta_0$. 
+
+<br>
+
+  - We have $\hat Q_n(\theta)\stackrel{P}\rightarrow Q_0(\theta)=-g_0(\theta)'Wg_0(\theta)$ by continuity of multiplication (a.k.a continuous mapping theorem). 
+  
+  - 문제에서의 가정에 의해 $g_0(\theta_0)=E(g(Z;\theta_0))=0$이다. 때문에 $Q_0(\theta_0)=-g_0(\theta_0)'Wg_0(\theta_0)=0$.
+  
+  - Let $W=R'R$. If $\theta\ne \theta_0$, then $0\ne Wg_0(\theta)=R'R g_0(\theta)$ implies $R g_0(\theta)\ne 0$. Hence, $Q_0(\theta)=-(R g_0(\theta))'(R g_0(\theta))<Q_0(\theta_0)=0$ for all $\theta\ne\theta_0$. Q.E.D.
+
+<br>
+<br>
+
+#### Lemma (CMD identification)
+Let $W$ be positive semi definite. Let $\hat W \stackrel{P}\rightarrow W$, and $\hat\pi \stackrel{P}\rightarrow \pi_0:=h(\theta_0)$, and
+$$
+\hat Q_n(\theta) = - (\hat\pi-h(\theta))' \hat W  (\hat\pi-h(\theta)).
+$$
+If $W (h(\theta)-h(\theta_0))\ne 0$ for $\theta\ne \theta_0$, then $Q_0(\theta)= - (\pi_0-h(\theta))' W  (\pi_0-h(\theta))$ has a unique maximum (of 0) at $\theta_0$. 
+
+<br>
+
+  - We have $\hat Q_n(\theta)\stackrel{P}\rightarrow Q_0(\theta)= - (\pi_0-h(\theta))' W  (\pi_0-h(\theta))$ by continuity of multiplication, and $Q_0(\theta_0)=0$ by the definition $\pi_0:=h(\theta)$
+
+  - 나머지는 GMM에서의 증명과 같으므로 생략. 
+  
+<br>
+
+   - 즉 $h(\theta)-h(\theta_0)$가 nullspace of $W$에 있지 않다면, $Q_0(\theta)$는 $\theta_0$에서 unique maximum을 갖는다.     
+   
+   - $h(\theta)-h(\theta_0)$가 $W$의 nullspace에 있다는 것은, matrix algebra를 생각했을 때 어떠한 vector들간의 dependency를 의미하고 이는 singularity를 의미한다. 즉 solving equation $Wx=B$를 생각했을 때, unique한 근이 아니라 여러개의 근 $x$가 나온다는 것으로 즉 identifiable하지 않다는 의미이다.
+   
+<br>
+
+[back](../lse.html)
