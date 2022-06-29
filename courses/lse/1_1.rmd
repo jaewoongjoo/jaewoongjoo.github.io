@@ -29,7 +29,7 @@ where $\Theta$ is the set of possible parameter values. In the notation, depende
 
 <br>
 
-  - 즉, 어떠한 objective function $\hat Q_n(\theta)$가 존재하고 그를 maximize하는 $\hat\theta$를 extreme estimator라고 부른다. 
+  - 즉, 어떠한 objective function $\hat Q_n(\theta)$가 존재하고 그를 maximize하는 $\hat\theta$를 extremum estimator라고 부른다. 
 
 <br>
 <br>
