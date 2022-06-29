@@ -3,7 +3,7 @@ title: "Large Sample Estimation"
 output: html_document
 ---
 
-This page is for a brief description of Chapter 36 of the book "Large Sample Estimation and Hypothesis Testing" by Whitney K. Newey and Daniel McFadden's book.
+This page is for a brief description of Chapter 36 of the book "Large Sample Estimation and Hypothesis Testing" by Whitney K. Newey and Daniel McFadden.
 
 ## Index
 
