@@ -15,9 +15,7 @@ pre {
 
 
 
-
-## Index
-
+<br>
 
 
 ### 1. Basics of Generalized Linear Models

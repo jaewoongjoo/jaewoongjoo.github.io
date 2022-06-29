@@ -14,10 +14,7 @@ pre {
 </style>
 
 
-
-
-## Index
-
+<br>
 
 
 ### 1. Basics of Survival Analysis
