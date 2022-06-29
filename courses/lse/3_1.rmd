@@ -1,0 +1,57 @@
+---
+title: "3.1. The Basic Results"
+mathjax: true
+output: 
+  bookdown::html_document2:
+        number_sections: false
+---
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+<br>
+
+MLE 예제: 매우매우 중요하다.
+
+#### Theorem (Asymptotic Normality of MLE)
+Suppose that $z_1,\ldots z_n$ are i.i.d random variables from p.d.f $f(\cdot;\theta_0)$. Let $J=E(\{d\log f(z;\theta)/d\theta\}_{\theta=\theta_0}\{d\log f(z;\theta)/d\theta'\}_{\theta=\theta_0})$ be the information matrix, and let $J=E(\{d^2\log f(z;\theta)/d\theta d\theta'\}_{\theta=\theta_0})$ be the expected hessian matrix. Then, 
+$$
+\sqrt{n}(\hat\theta-\theta_0)\stackrel{d}\rightarrow N(0,J^{-1}).
+$$
+
+
+ - 증명: Let $\hat Q_n(\theta)= n^{-1}\sum_{i=1}^n\log f(z_i;\theta)$. Definition of $\hat\theta$에 의해 당연히 $\hat Q_n(\hat\theta)=0$이다. Thus, first-order Taylor expansion 을 이용해 다음과 같이 정리할 수 있다: Let $\bar\theta$ be a mean value on the line joining $\hat\theta$ and $\theta_0$. We have
+ $$\begin{align}
+ 0&=\hat Q_n(\theta)_{\{\theta=\theta_0\}}+ (\hat\theta-\theta_0) \{d \hat Q_n(\theta) / d\theta\}_{\{\theta=\bar\theta\}}\\
+ \implies 0&={d\hat Q_n(\theta)/d_{\theta}}_{\{\theta=\theta_0\}}+ (\hat\theta-\theta_0) \{d^2 \hat Q_n(\theta) / d\theta d\theta'
+\}_{\{\theta=\bar\theta\}}\\
+ \implies 0&=n^{-1}\sum_{i=1}^n \{\log' f(z_i;\theta_0)\} + (\hat\theta-\theta_0) \{n^{-1}\sum_{i=1}^n \log'' f(z_i;\bar\theta)\}.
+  \end{align}$$
+  Thus, we have
+ $$\begin{align}
+  &-n^{-1}\sum_{i=1}^n \{\log' f(z_i;\theta_0)\} = (\hat\theta-\theta_0) \{n^{-1}\sum_{i=1}^n \log'' f(z_i;\bar\theta)\}\\
+  &\implies -n^{-1/2}\sum_{i=1}^n \{\log' f(z_i;\theta_0)\} = \sqrt{n}(\hat\theta-\theta_0) \{n^{-1}\sum_{i=1}^n \log'' f(z_i;\bar\theta)\}\\ 
+  &\implies \sqrt{n}(\hat\theta-\theta_0) = - [n^{-1}\sum_{i=1}^n \log'' f(z_i;\bar\theta)]^{-1}  n^{-1/2}\sum_{i=1}^n \{\log' f(z_i;\theta_0)\} \\ 
+\end{align}$$
+
+Now, note that $\bar\theta\stackrel{P}\rightarrow \theta_0$, because $\hat\theta\stackrel{P}\rightarrow \theta_0$. Thus $\{n^{-1}\sum_{i=1}^n \log'' f(z_i;\bar\theta)\}^{-1}\stackrel{P}\rightarrow \{E(d^2 logf(Z;\theta_0)/d\theta d\theta')\}^{-1}=H^{-1}$ by continuous mapping theorem. 
+
+Also, note that $n^{-1/2}\sum_{i=1}^n \{\log' f(z_i;\theta_0)\}\stackrel{d}\rightarrow N(0,J)$ by CLT. By Slutsky's theorem, we have
+$$
+\sqrt{n}(\hat\theta-\theta_0)\stackrel{d}\rightarrow -H^{-1}N(0,J)\equiv N(0,(-H^{-1})J(-H^{-1})) \equiv N(0,J^{-1})
+$$
+<br>
+<br>
+
+#### Theorem (The Basic Results)
+
+<br>
+<br>
+[back](../lse.html)
