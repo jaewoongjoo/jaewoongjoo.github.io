@@ -1,0 +1,21 @@
+---
+title: "220527"
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+
+"If you want to take issue with the argument, I would urge you not to use the argument from authority which is somebody has a Ph.D by the name they know what they are talking about."
+
+<br>
+
+[back](./thoughts.html)
