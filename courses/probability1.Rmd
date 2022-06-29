@@ -271,4 +271,5 @@ output: html_document
 <br>
 
 >>>>>>> f6cfdcbedcc4e88257efd340307acee162407b65
-[back](../index.html)
+
+[back](./courses.html)

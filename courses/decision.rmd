@@ -51,4 +51,6 @@ output: html_document
 <br>
 <br>
 
-[back](./)
+
+[back](./courses.html)
+
