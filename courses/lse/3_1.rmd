@@ -51,7 +51,19 @@ $$
 <br>
 
 #### Theorem (The Basic Results)
+Suppose that $\hat\theta$ satisfies eq (1) in 1.1, and $\hat\theta\stackrel{P}\rightarrow \theta_0$. Also, suppose that
 
+  1. $\theta_0\in \text{interior}(\Theta)$,
+  2. $\hat Q_n(\theta)$ is twice coutinuously differentiable in a neighborhood $\mathcal{N}$ of $\theta_0$,
+  3. $\sqrt{n}d\hat Q_n(\theta_0)/d\theta_0 \stackrel{d}\rightarrow N(0,\Sigma)$
+  4. There is $H(\theta)$ that is continuous at $\theta_0$ and $\sup_{\theta\in \mathcal{N}}||d^2\hat Q_n(\theta)/d\theta d\theta' -H(\theta)||\stackrel{P}\rightarrow 0$,
+  5. $H=H(\theta_0)$ is nonsingular. 
+  
+Then $\sqrt{n}(\hat\theta-\theta_0)\stackrel{d}\rightarrow N(0,H^{-1}\Sigma H^{-1}).$
+
+<br>
+
+ - 증명은 복잡해서 생략한다.
 <br>
 <br>
 [back](../lse.html)
