@@ -34,7 +34,7 @@ Hello and welcome to my website. I am a Ph.D student in the Department of Statis
 
 #### Calender
 
-```{r, message=FALSE, echo=FALSE}
-knitr::include_url("https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=amFld29vbmdqb29AZ21haWwuY29t&color=%23039BE5")
+```{r, message=FALSE, echo=FALSE, out.width="500px"}
+knitr::include_url("https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=amFld29vbmdqb29AZ21haWwuY29t&color=%23039BE5", height="400px")
 ```
 
