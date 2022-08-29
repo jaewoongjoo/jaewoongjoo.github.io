@@ -18,7 +18,7 @@ pre {
 <br>
 <br>
 
-### Definition (Extreme Estimator)
+### Definition (Extremum Estimator)
 An estimator $\theta$ is an **extremum estimator** if there is an objective function $\hat Q_n(\theta)$ such that
 
 $$

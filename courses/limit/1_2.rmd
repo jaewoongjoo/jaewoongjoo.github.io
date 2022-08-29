@@ -1,0 +1,49 @@
+---
+title: 1.1. Central Limit Theorem for $m$-Dependent Random Variables
+output: html_document
+---
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+
+
+
+##### Definition ($m$-Dependent Random Variables)
+
+Let the sequence of random variables $X_1,X_2,X_3,\ldots$ be $m$-dependent if for some $i$, $\{X_{i},X_{i+1},\ldots,X_{i+r}\}\perp  \{X_{i+s},X_{i+s+1},\ldots,\}$ whenever $s-r>m$.
+
+<br>
+
+  - 즉 minimum distance of indices between the two sequences가 $m$보다 크다면 우리는 $m$-dependent하다고 한다. 즉, 최소거리가 $m+1$보다 크다면 independent하다.
+
+<br>
+<br>
+
+##### Example
+Consider that the sequence $\{X_1,X_2,X_3,X_4,X_5,X_6\}$ is $1$-dependent. Then, $X_1, X_3$ are independent, $X_4,X_5$ are dependent, $X_5, X_6$ are dependent. 
+  
+Consider that the sequence $\{X_1,X_2,X_3,X_4,X_5,X_6\}$ is $2$-dependent. Then, $X_1, X_3$ are dependent, $X_3,X_6$ are independent.
+
+Let $Y_1,Y_2,Y_3,\ldots$ be iid random variables. Let
+$$\begin{align*}
+X_1   &= \frac{1}{m+1}\sum_{i=1}^{m+1} Y_i\\
+X_2   &= \frac{1}{m+1}\sum_{i=2}^{m+2} Y_i\\
+X_3   &= \frac{1}{m+1}\sum_{i=3}^{m+3} Y_i\\
+&\mbox{ }\mbox{ }\mbox{ }\mbox{ }\vdots\\
+X_{m+2} &= \frac{1}{m+1}\sum_{i=m+2}^{2m+2} Y_i.
+\end{align*}$$
+Then, the sequence $\{X_1,X_2,X_3,\ldots \}$ are $m$-dependent, because $X_1\perp X_{m+2}$.
+
+<br>
+<br>
+[back](../limit.html)

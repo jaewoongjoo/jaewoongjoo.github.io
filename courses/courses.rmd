@@ -28,6 +28,8 @@ pre {
 
 [Large Sample Estimation](./lse.html)
 
+[Limit Theory](./limit.html)
+
 &nbsp;
 
 [back](../index.html)
