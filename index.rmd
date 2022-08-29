@@ -14,7 +14,7 @@ pre {
 </style>
 
 
-Hello and welcome to my website. I am a doctoral student in the Department of Statistics at the University of Florida. Now, I am working with Dr. Hani Doss and Dr. Bikram Karmakar. My study is mainly focused on the meta-analysis.
+Hello and welcome to my website. I am a Ph.D student in the Department of Statistics at the University of Florida.
 
 &nbsp;&nbsp;
 
@@ -28,5 +28,13 @@ Hello and welcome to my website. I am a doctoral student in the Department of St
 
 [2. Researches](./researches/researches.html)
 
-[3. Miscellaneous](./misc/misc.html)
+
+
+<br><br>
+
+#### Calendar
+
+```{r, message=FALSE, echo=FALSE, out.width="500px", out.height="400px"}
+knitr::include_url("https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=amFld29vbmdqb29AZ21haWwuY29t&color=%23039BE5")
+```
 
