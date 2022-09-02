@@ -16,7 +16,7 @@ pre {
 
 Hello and welcome to my website. I am a Ph.D student in the Department of Statistics at the University of Florida.
 
-<br><br>
+<br>
 
 
 
