@@ -1,6 +1,6 @@
 ---
 title: "Jaewoong Joo"
-output: html_document
+fontsize: 15pt
 ---
 
 <style type="text/css">
@@ -16,25 +16,27 @@ pre {
 
 Hello and welcome to my website. I am a Ph.D student in the Department of Statistics at the University of Florida.
 
-&nbsp;&nbsp;
+<br><br>
 
 
 
-#### Contents
+
+[Courses](./courses/index.html)
+
+[Research](./researches/researches.html)
 
 
 
-[1. Courses](./courses/index.html)
-
-[2. Researches](./researches/researches.html)
-
-
+```{r, echo=FALSE}
+htmltools::includeHTML("./tagmanager.html")
+```
 
 <br><br>
 
 #### Calendar
 
-```{r, message=FALSE, echo=FALSE, out.width="500px", out.height="400px"}
+```{r, echo=FALSE, out.width="500px", out.height="400px"}
 knitr::include_url("https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=amFld29vbmdqb29AZ21haWwuY29t&color=%23039BE5")
 ```
+
 
