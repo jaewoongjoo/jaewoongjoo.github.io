@@ -28,7 +28,7 @@ Hello and welcome to my website. I am a Ph.D student in the Department of Statis
 
 
 ```{r, echo=FALSE}
-htmltools::includeHTML("./tagmanager.html")
+htmltools::includeHTML("tagmanager.html")
 ```
 
 <br><br>
