@@ -379,31 +379,24 @@ pre {
 <em>Latex</em> compiler. But, I am an <em>Emacs</em> user, and I would
 like to share my experience while installing Latex. When you start, you
 may first install <em>texlive</em> by typing in terminal as below:</p>
-<p><span class="math inline">\(\texttt{sudo apt-get install
-texlive-latex-base}\)</span></p>
-<p><span class="math inline">\(\texttt{sudo apt-get install
-texlive-fonts-recommended}\)</span></p>
-<p><span class="math inline">\(\texttt{sudo apt-get install
-texlive-fonts-extra}\)</span></p>
-<p><span class="math inline">\(\texttt{sudo apt-get install
-texlive-latex-extra}\)</span></p>
+<pre><code>$ sudo apt-get install texlive-latex-base 
+$ sudo apt-get install texlive-fonts-recommended 
+$ sudo apt-get install texlive-fonts-extra 
+$ sudo apt-get install texlive-latex-extra </code></pre>
 <p><br></p>
 <p>Then, I discovered that <em>auctex</em> was not working in Emacs and
 that Emacs couldn’t find the location of texlive. If so, you may include
 the following commands in your <em>.bashrc</em> file:</p>
-<p><span class="math inline">\(\texttt{if ! [[ &quot;\$PATH&quot; =~
-&quot;\$HOME/.local/bin:\$HOME/bin:&quot; ]]}\)</span></p>
-<p><span class="math inline">\(\texttt{then}\)</span></p>
-<p><span class="math inline">\(\texttt{
-PATH=&quot;\$HOME/.local/bin:\$HOME/bin:\$PATH&quot;}\)</span></p>
-<p><span class="math inline">\(\texttt{fi}\)</span></p>
-<p><span class="math inline">\(\texttt{export PATH}\)</span></p>
-<p><span class="math inline">\(\texttt{export
-PATH=\$PATH:/usr/share/texlive/2021/bin/x86_64-linux}\)</span></p>
-<p><span class="math inline">\(\texttt{export
-MANPATH=\$MANPATH:/usr/share/texlive/texmf-dist/doc/man}\)</span></p>
-<p><span class="math inline">\(\texttt{export
-INFOPATH=\$INFOPATH:/usr/share/texlive/texmf-dist/doc/info}\)</span></p>
+<pre><code> if ! [[ &quot;\$PATH&quot; =~ &quot;\$HOME/.local/bin:\$HOME/bin:&quot; ]] 
+ then 
+     PATH=&quot;\$HOME/.local/bin:\$HOME/bin:\$PATH&quot; 
+ fi 
+
+ export PATH 
+ 
+ export PATH=\$PATH:/usr/share/texlive/2021/bin/x86_64-linux 
+ export MANPATH=\$MANPATH:/usr/share/texlive/texmf-dist/doc/man 
+ export INFOPATH=\$INFOPATH:/usr/share/texlive/texmf-dist/doc/info </code></pre>
 <p><br></p>
 <p>(This may only be working for the 2021 version of texlive.)</p>
 <p><br> <br></p>

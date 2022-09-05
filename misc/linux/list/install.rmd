@@ -22,29 +22,28 @@ Because I was a window OS user for more than 20 years, one of the strangest thin
 <br>
 
 When using terminal, many softwares may be installed with the package *apt-get*, such as 
+```
+$ sudo apt-get install texlive-latex-base
 
-$\texttt{sudo apt-get install texlive-latex-base}$
+```
 
 <br>
 
 When you get *.deb* files, you may use the *gdebi* packages to install, such as
-
-$\texttt{sudo gdebi rstudio.deb}$
-
+```
+$ sudo gdebi rstudio.deb
+```
 <br>
 
 When you get *.tar.gz* files (ex. named by *rstudio.tar.gz*), you may type in terminal as below:
 
-$\texttt{tar -xvzf rstudio.tar.gz}$
-
-$\texttt{cd rstudio}$
-
-$\texttt{./configure}$
-
-$\texttt{make}$
-
-$\texttt{sudo make install}$
-
+```
+$ tar -xvzf rstudio.tar.gz
+$ cd rstudio
+$ ./configure
+$ make
+$ sudo make install
+```
 <br>
 <br>    
 
