@@ -1,5 +1,5 @@
 ---
-title: "Miscellaneous"
+title: "Blog"
 output: html_document
 ---
 
@@ -15,9 +15,9 @@ pre {
 
 [Thoughts](./thoughts/thoughts.html)
 
-[Linux Commands Memo](./linux/linux.html)
+[My Trials and Errors in using Linux](./linux/linux.html)
 
-[Noah & Runi](./pic.html)
+[Pics of Noah and Runi](./pic.html)
 
 
 &nbsp;&nbsp;

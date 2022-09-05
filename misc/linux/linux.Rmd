@@ -1,5 +1,5 @@
 ---
-title: "Linux Commands Memo"
+title: "My Trials and Errors in using Linux"
 ---
 
 <style type="text/css">
@@ -12,19 +12,10 @@ pre {
 }
 </style>
 
-#### Frequently Used Terminal Commands
 
-1. open folder in terminal : $\texttt{nautilus}$
 
-2. join into server : $\texttt{ssh -X [username@servername]}$
+[When You Install Softwares](./list/install.html)
 
-3. logout from server: $\texttt{Ctrl+D}$
-
-4. nice jobs: $\texttt{bash; nice -n 19 bash}$
-
-5. mount folders of ssh servers to local directories: $\texttt{sudo apt install sshfs} ;$ 
-
-    $\texttt{sshfs [username@servername] server-directory local-directory}$
 
 <br>
 <br>    
