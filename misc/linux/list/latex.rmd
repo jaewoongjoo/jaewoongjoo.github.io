@@ -30,7 +30,6 @@ Then, I discovered that *auctex* was not working in Emacs and that Emacs couldn'
  then 
      PATH="\$HOME/.local/bin:\$HOME/bin:\$PATH" 
  fi 
-
  export PATH 
  
  export PATH=\$PATH:/usr/share/texlive/2021/bin/x86_64-linux 
