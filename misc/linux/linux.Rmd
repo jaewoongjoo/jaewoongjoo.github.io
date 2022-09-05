@@ -12,7 +12,7 @@ pre {
 }
 </style>
 
-These blogs might just cover topics like using latex in Linux and how to utilize linux effectively as a statistician. I am still a newbie, and I'd just like to share my experiences on this blog page.
+These blogs might just cover topics like using *Latex* in *Linux* and how to utilize Linux effectively as a statistician. I am still a newbie, and I'd just like to share my experiences on this blog page.
 
 [220905. How to install Softwares](./list/install.html)
 

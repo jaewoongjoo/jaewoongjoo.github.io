@@ -377,9 +377,8 @@ pre {
 </style>
 <p>This blog has nothing to do with someone using <em>Overleaf</em> as a
 <em>Latex</em> compiler. But, I am an <em>Emacs</em> user, and I would
-like to share my experience while installing <em>Latex</em>. When you
-start, you may first install <em>texlive</em> by typing in terminal as
-below:</p>
+like to share my experience while installing Latex. When you start, you
+may first install <em>texlive</em> by typing in terminal as below:</p>
 <p><span class="math inline">\(\texttt{sudo apt-get install
 texlive-latex-base}\)</span></p>
 <p><span class="math inline">\(\texttt{sudo apt-get install
@@ -389,10 +388,9 @@ texlive-fonts-extra}\)</span></p>
 <p><span class="math inline">\(\texttt{sudo apt-get install
 texlive-latex-extra}\)</span></p>
 <p><br></p>
-<p>Then, I discovered that <em>auctex</em> was not working in
-<em>Emacs</em> and that <em>Emacs</em> couldn’t find the location of
-<em>texlive</em>. If so, you may include the following commands in your
-<em>.bashrc</em> file:</p>
+<p>Then, I discovered that <em>auctex</em> was not working in Emacs and
+that Emacs couldn’t find the location of texlive. If so, you may include
+the following commands in your <em>.bashrc</em> file:</p>
 <p><span class="math inline">\(\texttt{if ! [[ &quot;\$PATH&quot; =~
 &quot;\$HOME/.local/bin:\$HOME/bin:&quot; ]]}\)</span></p>
 <p><span class="math inline">\(\texttt{then}\)</span></p>
@@ -407,8 +405,7 @@ MANPATH=\$MANPATH:/usr/share/texlive/texmf-dist/doc/man}\)</span></p>
 <p><span class="math inline">\(\texttt{export
 INFOPATH=\$INFOPATH:/usr/share/texlive/texmf-dist/doc/info}\)</span></p>
 <p><br></p>
-<p>(This may only be working for the 2021 version of
-<em>texlive</em>.)</p>
+<p>(This may only be working for the 2021 version of texlive.)</p>
 <p><br> <br></p>
 <p><a href="../linux.html">back</a></p>
 
