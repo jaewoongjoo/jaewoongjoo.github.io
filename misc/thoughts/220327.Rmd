@@ -12,7 +12,6 @@ pre {
 }
 </style>
 
-<br>
 
 I really really need to change my lifestyle from being a night owl to an earlybird.
 

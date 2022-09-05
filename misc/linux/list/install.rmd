@@ -16,7 +16,7 @@ pre {
 Because I was an window OS user for more than 20 years, one of the strangest things as a beginner was about how to install programs. When you try to install in Linux,
 
 - you can directly install in *terminal*,
-- you are gonna be given files of the form *.deb* in the web,
+- you are gonna be given files of the form *.deb* in the web (if you are a debian based Linux OS user),
 - you are gonna be given files of the form *.tar.gz* in the web. 
 
 <br>
