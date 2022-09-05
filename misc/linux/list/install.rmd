@@ -13,7 +13,7 @@ pre {
 </style>
 
 
-Because I was an window OS user for more than 20 years, one of the strangest things as a beginner was about how to install programs. When you try to install in Linux,
+Because I was a window OS user for more than 20 years, one of the strangest things as a beginner was about how to install programs. When you try to install in Linux,
 
 - you can directly install in *terminal*,
 - you are gonna be given files of the form *.deb* in the web (if you are a debian based Linux OS user),
@@ -21,13 +21,13 @@ Because I was an window OS user for more than 20 years, one of the strangest thi
 
 <br>
 
-When using terminal, many softwares are gonna be installed with a package *apt-get*, such as 
+When using terminal, many softwares may be installed with the package *apt-get*, such as 
 
 $\texttt{sudo apt-get install texlive-latex-base}$
 
 <br>
 
-When you get *.deb* files, you may use *gdebi* packages to install, such as
+When you get *.deb* files, you may use the *gdebi* packages to install, such as
 
 $\texttt{sudo gdebi rstudio.deb}$
 
