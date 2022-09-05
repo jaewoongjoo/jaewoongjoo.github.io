@@ -35,8 +35,6 @@ $\texttt{sudo gdebi rstudio.deb}$
 
 When you get *.tar.gz* files (ex. named by *rstudio.tar.gz*), you may type in terminal as below:
 
-<br>
-
 $\texttt{tar -xvzf rstudio.tar.gz}$
 
 $\texttt{cd rstudio}$
