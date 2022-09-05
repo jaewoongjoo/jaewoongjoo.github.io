@@ -11,7 +11,7 @@
 
 
 
-<title>My Journey to Linux</title>
+<title>When you install Latex</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,7 +361,7 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">My Journey to Linux</h1>
+<h1 class="title toc-ignore">When you install Latex</h1>
 
 </div>
 
@@ -375,15 +375,42 @@ pre {
   font-size: 15px
 }
 </style>
-<p>These blogs might just cover topics like using latex in Linux and how
-to utilize linux effectively as a statistician. I am still a newbie, and
-I’d just like to share my experiences on this blog page.</p>
-<p><a href="./list/install.html">220905. How to install
-Softwares</a></p>
-<p><a href="./list/latex.html">220905. When you install Latex</a></p>
-<p><a href="./list/emacs.html">220905. Emacs shortkeys</a></p>
+<p>This blog has nothing to do with someone using <em>Overleaf</em> as a
+<em>Latex</em> compiler. But, I am an <em>Emacs</em> user, and I would
+like to share my experience while installing <em>Latex</em>. When you
+start, you may first install <em>texlive</em> by typing in terminal as
+below:</p>
+<p><span class="math inline">\(\texttt{sudo apt-get install
+texlive-latex-base}\)</span></p>
+<p><span class="math inline">\(\texttt{sudo apt-get install
+texlive-fonts-recommended}\)</span></p>
+<p><span class="math inline">\(\texttt{sudo apt-get install
+texlive-fonts-extra}\)</span></p>
+<p><span class="math inline">\(\texttt{sudo apt-get install
+texlive-latex-extra}\)</span></p>
+<p><br></p>
+<p>Then, I discovered that <em>auctex</em> was not working in
+<em>Emacs</em> and that <em>Emacs</em> couldn’t find the location of
+<em>texlive</em>. If so, you may include the following commands in your
+<em>.bashrc</em> file:</p>
+<p><span class="math inline">\(\texttt{if ! [[ &quot;\$PATH&quot; =~
+&quot;\$HOME/.local/bin:\$HOME/bin:&quot; ]]}\)</span></p>
+<p><span class="math inline">\(\texttt{then}\)</span></p>
+<p><span class="math inline">\(\texttt{
+PATH=&quot;\$HOME/.local/bin:\$HOME/bin:\$PATH&quot;}\)</span></p>
+<p><span class="math inline">\(\texttt{fi}\)</span></p>
+<p><span class="math inline">\(\texttt{export PATH}\)</span></p>
+<p><span class="math inline">\(\texttt{export
+PATH=\$PATH:/usr/share/texlive/2021/bin/x86_64-linux}\)</span></p>
+<p><span class="math inline">\(\texttt{export
+MANPATH=\$MANPATH:/usr/share/texlive/texmf-dist/doc/man}\)</span></p>
+<p><span class="math inline">\(\texttt{export
+INFOPATH=\$INFOPATH:/usr/share/texlive/texmf-dist/doc/info}\)</span></p>
+<p><br></p>
+<p>(This may only be working for the 2021 version of
+<em>texlive</em>.)</p>
 <p><br> <br></p>
-<p><a href="../misc.html">back</a></p>
+<p><a href="../linux.html">back</a></p>
 
 
 

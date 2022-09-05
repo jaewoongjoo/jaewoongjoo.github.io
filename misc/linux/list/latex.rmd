@@ -1,0 +1,54 @@
+---
+title: "When you install Latex"
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+This blog has nothing to do with someone using *Overleaf* as a *Latex* compiler. But, I am an *Emacs* user, and I would like to share my experience while installing *Latex*. When you start, you may first install *texlive* by typing in terminal as below:
+
+$\texttt{sudo apt-get install texlive-latex-base}$
+
+$\texttt{sudo apt-get install texlive-fonts-recommended}$
+
+$\texttt{sudo apt-get install texlive-fonts-extra}$
+
+$\texttt{sudo apt-get install texlive-latex-extra}$
+
+<br>
+
+Then, I discovered that *auctex* was not working in *Emacs* and that *Emacs* couldn't find the location of *texlive*. If so, you may include the following commands in your *.bashrc* file:
+
+$\texttt{if ! [[ "\$PATH" =~ "\$HOME/.local/bin:\$HOME/bin:" ]]}$
+
+$\texttt{then}$
+
+$\texttt{    PATH="\$HOME/.local/bin:\$HOME/bin:\$PATH"}$
+
+$\texttt{fi}$
+
+$\texttt{export PATH}$
+
+$\texttt{export PATH=\$PATH:/usr/share/texlive/2021/bin/x86_64-linux}$
+
+$\texttt{export MANPATH=\$MANPATH:/usr/share/texlive/texmf-dist/doc/man}$
+
+$\texttt{export INFOPATH=\$INFOPATH:/usr/share/texlive/texmf-dist/doc/info}$
+
+<br>
+
+(This may only be working for the 2021 version of *texlive*.)
+
+
+<br>
+<br>    
+
+[back](../linux.html)

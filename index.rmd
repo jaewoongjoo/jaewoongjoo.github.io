@@ -25,7 +25,7 @@ Hello and welcome to my website. I am a Ph.D student in the Department of Statis
 
 [Research](./researches/researches.html)
 
-
+[Blog](./misc/misc.html)
 
 ```{r, echo=FALSE}
 htmltools::includeHTML("tagmanager.html")

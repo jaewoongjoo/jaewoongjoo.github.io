@@ -1,0 +1,39 @@
+---
+title: "Emacs shortkeys"
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+I'd say I'm still a *Emacs* newbie. A year ago, my advisor recommended that I use *Emacs*. While using it, and I realized how good it is. It is actually more than just a *Latex* compiler, and you can even edit and run rcodes in it, for example. However, it was difficult to get used to it at first, because of a variety of shortkeys. So, I want to provide some *Emacs* shortkeys below (these are only a few parts of them):
+
+- $\texttt{C}$: Ctrl, $\texttt{M}$: Alt
+- $\texttt{M-x package-install-RET}$: install packages.
+- $\texttt{M-x M-f}$: find files
+- $\texttt{M-x 2}$: Split your window horizontally in half,
+  
+  $\texttt{M-x 3}$: Split your window vertically in half,
+  
+  $\texttt{M-x 1}$: Delete other windows
+- $\texttt{M-w}$: copy, $\texttt{C-y}$: cut, $\texttt{M-y}$: paste
+
+
+- $\texttt{C-x h}$: select all
+- $\texttt{C-x C-b}$: show all buffers
+- $\texttt{C-g}$: Quit
+- $\texttt{C-c C-b}$: invoke *Latex* if you type latex or RET, and invoke *bibtex* if you type bibtex
+
+I will keep adding whenever I come up with a new one.
+
+<br>
+<br>    
+
+[back](../linux.html)

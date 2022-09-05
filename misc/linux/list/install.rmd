@@ -1,5 +1,5 @@
 ---
-title: "When You Install Softwares"
+title: "How to install Softwares"
 ---
 
 <style type="text/css">

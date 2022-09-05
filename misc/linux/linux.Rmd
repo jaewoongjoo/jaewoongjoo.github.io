@@ -1,5 +1,5 @@
 ---
-title: "My Trials and Errors in using Linux"
+title: "My Journey to Linux"
 ---
 
 <style type="text/css">
@@ -12,10 +12,13 @@ pre {
 }
 </style>
 
+These blogs might just cover topics like using latex in Linux and how to utilize linux effectively as a statistician. I am still a newbie, and I'd just like to share my experiences on this blog page.
 
+[220905. How to install Softwares](./list/install.html)
 
-[When You Install Softwares](./list/install.html)
+[220905. When you install Latex](./list/latex.html)
 
+[220905. Emacs shortkeys](./list/emacs.html)
 
 <br>
 <br>    
