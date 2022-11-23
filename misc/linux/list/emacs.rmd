@@ -29,8 +29,13 @@ I'd say I'm still an *Emacs* newbie. A year ago, my advisor recommended that I u
 
 - $\texttt{C-x h}$: select all
 - $\texttt{C-x C-b}$: show all buffers
-- $\texttt{C-g}$: Quit
+
 - $\texttt{C-c C-b}$: invoke *Latex* if you type latex or RET, and invoke *bibtex* if you type bibtex
+- $\texttt{C-c C-p C-b}$: Latex Preview on
+
+- $\texttt{C-s}$: find words
+
+- $\texttt{C-g}$: quit
 
 I will keep adding whenever I come up with a new one.
 

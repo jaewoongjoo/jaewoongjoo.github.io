@@ -1,79 +1,54 @@
-\documentclass[margin]{res}  
-\usepackage{helvet}
-
-\textheight=700pt
-
+% Created 2022-10-11 Tue 17:44
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[margin=0.5in]{geometry}
+\author{Oct, 2022}
+\date{}
+\title{JAEWOONG JOO}
+\hypersetup{
+ pdfauthor={Oct, 2022},
+ pdftitle={JAEWOONG JOO},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.2 (Org mode 9.5.5)}, 
+ pdflang={English}}
 \begin{document}
 
-\name{JAEWOONG JOO} 
+\maketitle
 
 
-\begin{resume}
+\section*{EDUCATION}
+\label{sec:orgedca931}
+\begin{itemize}
+\item Ph.D. in Statistics, University of Florida, Aug 2019 -
+\item M.S. in Statistics, Sungkyunkwan University, Feb 2019.
+\item B.E. in Statistics, Sungkyunkwan University, South Korea, Feb 2014.
+\item B.A. in Fashion, Sungkyunkwan University, South Korea, Feb 2014.
+\end{itemize}
 
-\section{EMAIL}
-Jaewoongjoo@ufl.edu
-\section{EDUCATION}
-B.E. in Statistics, Sungkyunkwan University, Feb  2014.\\
-M.S. in Statistics, Sungkyunkwan University, Feb 2019.\\
-Ph.D. in Statistics, University of Florida, Aug 2019 - present.
-%-------------------------------------------------------------------------------
-%\section{ACADEMIC \\ EXPERIENCE}
-%{\bf Research Assistant} \\
-%{\em University of Florida} \hfill{May 2022 - Present}\\
-%{\em Sungkyunkwan University} 
-%\hfill{Dec 2017 - Feb 2019}\\
-%{\bf Teaching Assistant}\\
-%{\em University of Florida}\hfill{Aug 2019 - May 2022}\\
-%{\em Sungkyunkwan University}\hfill{Mar 2017 - Feb 2019} \\ 
-%{\bf Department Secretary} \\
-%{\em Department of Statistics, Sungkyunkwan University}\hfill{Jan 2017 - Feb 2019}
+\section*{PROFESSIONAL EXPERIENCE}
+\label{sec:orgb5a13dc}
+\begin{itemize}
+\item Business Consultant, Eland Retail, South Korea, Jan 2014 - Apr 2016.
+\item Department Secretary, Dept of Statistics, Sungkyunkwan University, South Korea, Jan 2017 - Feb 2019.
+\end{itemize}
 
-%-------------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------------
-%	EXPERIENCE SECTION
-%-------------------------------------------------------------------------------
-% Modify the format of each position
-\begin{format}
-\title{l}\employer{r}\\
-\dates{l}\location{r}\\
-\body\\
-\end{format}
-%-------------------------------------------------------------------------------
-
-\section{WORK \\ EXPERIENCE}
-{\bf Business Analyst} \hfill Jan 2014 - Apr 2016\\
-ELAND RETAIL, South Korea\\
-%-------------------------------------------------------------------------------
-%	Interests
-
-%\section{AWARDS}
-%\par
-%\textbf{Graduate Student Paper Award}\hfill Nov 2018\\
-%The Korean Data and Information Science Society (KDISS). \\
-
-\section{PRESENTATION}
-\par
-The Korean Data and Information Science Society, Seoul (KDISS) \hfill Nov 2018\\
-\hspace*{3mm} $-$ Joint model of longitudinal binary and survival data with heteroscedastic \\ \hspace*{6mm}random effects covariance matrix.\\
-
-
-
-
-%\section{PUBLICATIONRe}
-%Joint model of longitudinal and survival data with general random effects covariance matrix (with Dr. Keunbaik Lee). 
-%-------------------------------------------------------------------------------
-
-
-
-%-------------------------------------------------------------------------------
-
-\section{SERVICE \\ WORK}
-
-{Honorably discharged as sergeant ROK ARMY} \hfill{Apr 2009 - Feb 2011}
-
-
-
-
-\end{resume}
+\section*{Technical Skills}
+\label{sec:orga934f79}
+\begin{itemize}
+\item \textbf{Languages}:  Java, Python, C/C++,
+\item \textbf{Frameworks}: React, Node.js, Flask
+\end{itemize}
+Emacs 28.2 (Org mode 9.5.5)
 \end{document}
