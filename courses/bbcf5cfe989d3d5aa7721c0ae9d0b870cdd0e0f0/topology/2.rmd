@@ -1,0 +1,122 @@
+---
+title: 2. Open and Closed Sets
+output: html_document
+---
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+
+
+
+##### Definition ($r$-Neighborhood)
+
+Let $(X,d)$ denote a metric space, $p\in X$ and $r>0$. The $r$**-neighborgood** of $p$ is the set of all $q\in X$ at distance $<r$ from $p$ such that 
+$$
+N_r(p):=\left\{q \in X: d(p,q)<r\right\}.
+$$
+<br>
+
+   - We also have the equivalent term: *open ball of radius $r$ about $p$*, denoted by $B_r(p)$. 
+   
+
+<br>
+<br>
+
+##### Example
+Let $d(\cdot,\cdot)$ denote a discrete metric defined on the set $X$, i.e., for any $x,y\in X$, 
+    
+  1. $d(x,x)=0$,
+  2. $d(x,y)=1$ if $x\ne y$.
+  
+This follows that the $r$-neighborhood (open ball of radius $r>0$) centered at $x_0$, 
+$$
+N_r(x_0)=\{x\in X:g(x_0,x)<r\}
+$$
+can be written as
+$$
+\begin{cases}
+\{x_0\}\mbox{ }\mbox{ }\mbox{ if }\mbox{ } r\le 1,\\
+X \mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ }\mbox{ otherwise.}
+\end{cases}
+$$
+
+
+  
+
+<br>
+<br>
+
+##### Definition (Interior Point, Open Set)
+Let $E$ be a subset of $X$. The **interior points** of $E$ are those $p\in X$ such that some neighborhood of which is contained in $E$, i.e., those $p\in X$ for which there exists $r>0$ such that $N_r(p)\subset E$. 
+
+<br>
+
+The subset $E\subset X$ is **open** if and only if every point of $E$ is an interior point of $E$.
+
+
+<br>
+<br>
+
+##### Remark
+Unlike the notion of boundess, openness of $E$ depends not only on $E$, but also on the *ambient space* $X$. 
+
+For example, every metric space is open as a subset of itself, but a one-point subset of $\mathbb{R}$ cannot be open as a subset of $\mathbb{R}$.
+
+<br>
+<br>
+
+
+##### Theorem
+Every neighborhood is an open set.
+
+<br>
+
+   - Proof: The theorem says, for any metric space $(X,d)$, $p\in X$ and $r>0$, the set $N_r(p)$ is open as a subset of $X$. Then, we must show that for any $q\in N_r(p)$, there exists an $h>0$ such that $N_h(q)\subset N_r(p)$ (every point $q\in N_r(p)$ is an interior point of $N_r(p)$). Define $h=r-d(p,q)>0$. For any $s\in N_h(q)$, we have $s\in N_r(p)$ because
+$$
+   d(p,s)\le d(p,q)+d(q,s)<(r-h)+h=r.
+$$
+Thus, $N_h(q)\subset N_r(p)$.
+
+
+
+
+<br>
+<br> 
+
+
+
+##### Theorem
+1. If $G_\alpha$ is an open subset of $X$ for each $\alpha \in I$, so is $\cup_{\alpha\in I} G_\alpha$ (countable union).
+
+2. If each of $G_1,\ldots, G_n$ is an open subset of $X$, so is $\cap_{i=1}^n G_i$ (finite intersection). 
+
+<br>
+<br>
+
+
+##### Theorem
+
+
+
+<br>
+<br>
+
+
+##### Theorem
+
+
+
+
+<br>
+<br>
+[back](../limit.html)

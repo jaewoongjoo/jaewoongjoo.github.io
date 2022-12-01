@@ -36,6 +36,5 @@ This page is for a brief description of Chapter 36 of the book "Large Sample Est
 
 <br>
 
-
-[back](./courses.html)
+[back](./index.html)
 

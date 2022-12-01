@@ -21,10 +21,10 @@ pre {
 
 [1.1 Classical Central Limit Theorem](./limit/1_1.html)
 
-[1.2 Central LImit Theorem for $m$-Dependent Random Variables](./limit/1_2.html)
+[1.2 Central Limit Theorem for $m$-Dependent Random Variables](./limit/1_2.html)
 
 &nbsp;&nbsp;
 
-[back](./courses.html)
+[back](./index.html)
 
 

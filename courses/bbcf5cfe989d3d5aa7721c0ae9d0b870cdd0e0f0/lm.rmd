@@ -38,6 +38,6 @@ output: html_document
 <br>
 <br>
 
-[back](./courses.html)
+[back](./index.html)
 
 

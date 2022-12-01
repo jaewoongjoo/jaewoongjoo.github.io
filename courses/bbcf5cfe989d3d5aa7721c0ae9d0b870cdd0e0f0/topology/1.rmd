@@ -1,0 +1,107 @@
+---
+title: 1. Basic Definitions and Examples
+output: html_document
+---
+
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+
+
+
+##### Definition (Metric Space)
+
+**A metric space** is an ordered pair $(X, d)$ where $X$ is a set and $d$ is a metric on $X$, i.e., a function
+$$
+d:X\times X \rightarrow \mathbb{R}
+$$
+satisfying the following axioms for all $p,q,r\in X$:
+
+  1. **(Nonnegativity)**: $d(p,q)\ge 0$. Moreover, $d(p,p)=0$ for all $p$, and $d(p,q)>0$ if $p\ne q$.
+  
+  2. **(Symmetry)**: $d(p,q)=d(q,p)$ for all $p,q$.  
+  
+  3. **(Triangle inequality)**: $d(p,q)\le d(p,r)+d(r,q)$.
+
+
+
+<br>
+
+  - We call any function $d:X\times X\rightarrow \mathbb{R}$ satisfying the three properties **a distance function, or metric** on $X$.    
+
+<br>
+<br>
+
+
+##### Definition (Boundness)
+A metric space $(X,d)$ is **bounded** if there exists a real number $B$ such that $d(p,q)<B$ for all $p,q\in X$. 
+
+
+<br>
+<br>
+
+##### Proposition
+Let $(X,d)$ be a metric space, and let $E$ be a nonempty subset of $X$. The following are equivalent:
+  
+  1. $(E,d)$, considered as a sub-metric space of $X$, is bounded;
+  
+  2. There exists $p\in E$ and a real number $M$ such that $d(p,q)<M$ for all $q\in E$;
+  
+  3. There exists $p\in X$ and a real number $M$ such that $d(p,q)<M$ for all $q\in E$.
+
+<br>
+
+   - Proof: We will show $(1)\implies (2)\implies (3)\implies (1)$.
+   
+   - $(1)\implies (2)$ is clear.
+   
+   - $(2)\implies (3)$ can be showed by choosing the same $M, p$ (you may look at the word *exist*).
+
+   - $(3)\implies (1)$: Let $B=2M$. For $q,q'\in E$, we have $d(q,q')\le d(p,q)+d(p,q')<M+M=2M=B$. 
+   
+<br>
+<br>
+
+##### Example (Need to verify all of these)
+
+1. Finite metric space is bounded.
+
+2. If $(X,d)$ is bounded, then so is any subspace.
+
+3. If $(X,d_X)$, $(Y,d_Y)$ are bounded, so is $(X\times Y, d_{X\times Y})$, where for any $x,x'\in X$ and $y,y'\in Y$,
+$$
+d_{X\times Y}((x,y),(x',y')):=(d_X(x,x'), d_Y(y,y'))
+$$
+4. The metric space $(\mathbb{R},d)$ is not bounded.
+
+<br>
+<br>
+
+
+Compare(cf.)
+
+##### Definition (Inner Product Space)
+An **inner product space** is a vector space $V$ over $\mathbb{R}$ together with an *inner product*, that is a map
+$$\left<\cdot,\cdot\right>:V\times V\rightarrow \mathbb{R}$$
+which satisfies the following three properties for all $\mathbf{x,y,z}\in V$ and $a,b\in\mathbb{R}$ :
+
+1. **(Symmetry)**: $\left<\mathbf{x},\mathbf{y}\right>=\left<\mathbf{y},\mathbf{x}\right>$;
+
+2. **(Linearity)**: $\left<a\mathbf{x}+b\mathbf{y},\mathbf{z}\right>=a\left<\mathbf{x},\mathbf{z}\right>+b\left<\mathbf{y},\mathbf{z}\right>$;
+
+3. **(Positive-definiteness)**: If $\mathbf{x}\ne \mathbf{0}$, then $\left<\mathbf{x},\mathbf{x}\right>>0$.
+
+
+<br>
+<br>
+
+[back](../limit.html)
