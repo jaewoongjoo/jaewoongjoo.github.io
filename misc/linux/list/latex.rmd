@@ -26,15 +26,15 @@ $ sudo apt-get install texlive-latex-extra
 Then, I discovered that *auctex* was not working in Emacs and that Emacs couldn't find the location of texlive. If so, you may include the following commands in your *.bashrc* file:
 
 ```
- if ! [[ "\$PATH" =~ "\$HOME/.local/bin:\$HOME/bin:" ]] 
+ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]] 
  then 
-     PATH="\$HOME/.local/bin:\$HOME/bin:\$PATH" 
+     PATH="$HOME/.local/bin:$HOME/bin:$PATH" 
  fi 
  export PATH 
  
- export PATH=\$PATH:/usr/share/texlive/2021/bin/x86_64-linux 
- export MANPATH=\$MANPATH:/usr/share/texlive/texmf-dist/doc/man 
- export INFOPATH=\$INFOPATH:/usr/share/texlive/texmf-dist/doc/info 
+ export PATH=$PATH:/usr/share/texlive/2021/bin/x86_64-linux 
+ export MANPATH=$MANPATH:/usr/share/texlive/texmf-dist/doc/man 
+ export INFOPATH=$INFOPATH:/usr/share/texlive/texmf-dist/doc/info 
 ```
 
 <br>

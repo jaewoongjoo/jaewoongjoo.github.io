@@ -1,0 +1,145 @@
+---
+title: 0. Some Useful Mathematical Definitions and Theorems
+output: html_document
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+<br>
+
+  
+<div class="alert alert-info">
+이번 챕터에서는 미분방정식 공부 전의 준비 운동으로서 주로 리만 적분의 정의와 Fundamental Theorem of Calculus(FToC)을 포함한 수학 이론들에 대해 주로 다뤄볼 것이다. 이 내용들은 다른 곳에도 매우 많이 사용되니 눈여겨 볼 필요가 있다.
+
+</div>
+
+
+
+##### Definition (Step Functions)
+A function $f:[a,b]\rightarrow \mathbb{R}$ is called a step function if it is piecewise constant, i.e., if we have a partition $P=(x_0,x_1,\ldots,x_n)$ of $[a,b]$ such that  
+$$
+a=x_0<x_1<\cdots <x_n=b.
+$$
+and $f$ is constant on each half open interval $[x_{i-1}, x_i)$ with $1\le i\le n$. For the step function $f$, we define the integral to be
+$$
+\int_a^b f(x)dx =\sum_{i=1}^n f(x_i)(x_i-x_{i-1}),
+$$
+
+
+<br>
+<br>
+
+##### Lemma
+
+If $f$ and $g$ are step functions on the interval $[a,b]$ with $f(x)\le g(x)$ for all $x\in [a,b]$, then 
+$$
+\int_a^b f(x)dx \le \int_a^b g(x)dx.
+$$
+
+- A sketch of proof: let $A_i=[x_{i-1},x_i)$. Because $f(x)\le g(x)$ for all $x\in[a,b]$, 
+$$
+\int_{A_i}f(x)dx \le \int_{A_i}g(x)dx.
+$$
+This implies the lemma.
+
+<br>
+<br>
+
+##### Definition (Upper and Lower Integrals)
+The lower integral of a function $f$ on the interval $[a,b]$ is defined by
+$$
+L(f,a,b)=\sup\Big\{\int_a^b s(x)dx : s \mbox{ is a step function with }s\le f  \Big\}.
+$$
+Similarly, the upper integral of $f$ is defined to be
+$$
+U(f,a,b)=\inf\Big\{ \int_a^b t(x)dx : t \mbox{ is a step function with } t\ge f\Big\}.
+$$
+<br>
+
+ - 즉, Greatest Lower Bound, Least Upper Bound의 개념이다.
+
+
+
+<br>
+<br>
+
+##### Lemma
+For any bounded function $f:[a,b]\rightarrow \mathbb{R}$, we have $L(f,a,b)\le U(f,a,b)$.
+
+
+- proof : Define $t(x)$ as a step function on $[a,b]$ with $t(x)\ge f(x)$ for all $x\in[a,b]$. If $s$ is any step function with $s(x)\le f(x)$ for all $x\in[a,b]$, then $s(x)\le t(x)$ for all $x\in[a,b]$, and hence by the lemma above,
+$$
+\int_a^b s(x)dx\le \int_a^b t(x)dx.
+$$
+This implies that the integral of $t(x)$ is an upper bound for the integrals of any $s\le f$. Hence 
+$$
+∫^b_a t(x)dx \ge \sup\Big\{\int^b_a s(x): s \mbox{ is a step function with } s\le f\Big\}=L(f,a,b).
+$$
+Thus, the integral of any step function $t$ with $t\ge f$ is bounded from below by $L(f,a,b)$. It follows that the greatest lower bound for $∫^b_a t(x)dx$ with $t\ge f$ satisfies $L(f,a,b) \le\inf\Big\{\int^b_a t(x)dx :t \mbox{ is a step function with } t\ge f\Big\}=U(f,a,b)$.
+
+<br>
+<br>
+
+##### Definition
+The function $f$ is said to be Riemann integrable if its lower and upper integral are the same, i.e.,
+$$
+\int^b_a f(x)dx=L(f,a,b)=U(f,a,b)
+$$
+
+- If we define $A_i=[x_i-x_{i-1})$ and $\delta=\sup_{1\le i\le n}A_i$ where $P=(x_0,x_1\ldots,x_n)$ is a partition of $[a,b]$, then the Riemann integrability is meant to say, similarly,
+$$
+\liminf_{\delta\rightarrow 0\\ n\rightarrow \infty} \sum_{i=1}^n f(x_i)=\lim_{\delta\rightarrow 0\\ n\rightarrow \infty}  \sum_{i=1}^n f(x_i)=\limsup_{\delta\rightarrow 0\\ n\rightarrow \infty} \sum_{i=1}^n f(x_i).
+$$
+<br>
+
+  - 즉, 바꿔 말하면 파티션을 무한히 잘게 쪼개었을 때, integral값의 liminf와 limsup이 하나로 수렴할 때 우리는 Riemann integrable하다고 말할 수 있다.
+  
+<br>
+<br>
+
+##### Proposition 
+A function $f:[a,b]→\mathbb{R}$ is Riemann integrable if for every $\epsilon>0$ there exist step functions $s,t:[a,b]→\mathbb{R}$ such that for all $x\in[a,b]$, $s(x)\le f(x)\le t(x)$ and
+$$
+∫^b_at(x)dx−∫^b_a s(x)dx<ϵ.
+$$
+
+
+<br>
+<br>
+
+##### Theorem (The Fundamental Theorem of Calculus)
+Let $f:[a,b]\rightarrow \mathbb{R}$ be a continuous and real-valued function. Then, 
+$$
+\frac{d}{dx}\int^x_a f (s)ds = f(x).
+$$
+<br>
+
+ - Proof: By the definition of differentiation, we have
+$$
+\begin{align*}
+\frac{d}{dx}\int^x_a f (s)ds &= \lim_{h \rightarrow 0} \frac{ \int_a^{x+h}f (s)ds −\int_a^{x}f (s)ds}{h}\\
+&= \lim_{h \rightarrow 0} \frac{ \int_x^{x+h}f (s)ds}{h}\\
+&= \lim_{h \rightarrow 0} \frac{ hf (x)}{h}\\
+&= f(x) \mbox{ }\mbox{ }\mbox{ by the L'Hôpital's rule.}
+\end{align*}
+$$
+
+<br>
+<br>
+
+##### Corollary
+Let $f:[a,b]\rightarrow \mathbb{R}$ be a continuous and real-valued function, and let $F$ denote an anti-derivative of $f$ in $[a,b]$. Then,
+$$
+\int_{a}^{b}f(t) dt=F(b)-F(a).
+$$
+<br>
+<br>
+[back](../index.html)

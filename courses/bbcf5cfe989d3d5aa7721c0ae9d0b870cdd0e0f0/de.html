@@ -11,7 +11,7 @@
 
 
 
-<title>When you install Latex</title>
+<title>Differential Equations</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -348,7 +348,7 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">When you install Latex</h1>
+<h1 class="title toc-ignore">Differential Equations</h1>
 
 </div>
 
@@ -361,31 +361,13 @@ pre {
 font-size: 15px
 }
 </style>
-<p>This blog has nothing to do with someone using <em>Overleaf</em> as a
-<em>Latex</em> compiler. But, I am an <em>Emacs</em> user, and I would
-like to share my experience while installing Latex. When you start, you
-may first install <em>texlive</em> by typing in terminal as below:</p>
-<pre><code>$ sudo apt-get install texlive-latex-base 
-$ sudo apt-get install texlive-fonts-recommended 
-$ sudo apt-get install texlive-fonts-extra 
-$ sudo apt-get install texlive-latex-extra </code></pre>
 <p><br></p>
-<p>Then, I discovered that <em>auctex</em> was not working in Emacs and
-that Emacs couldn’t find the location of texlive. If so, you may include
-the following commands in your <em>.bashrc</em> file:</p>
-<pre><code> if ! [[ &quot;$PATH&quot; =~ &quot;$HOME/.local/bin:$HOME/bin:&quot; ]] 
- then 
-     PATH=&quot;$HOME/.local/bin:$HOME/bin:$PATH&quot; 
- fi 
- export PATH 
- 
- export PATH=$PATH:/usr/share/texlive/2021/bin/x86_64-linux 
- export MANPATH=$MANPATH:/usr/share/texlive/texmf-dist/doc/man 
- export INFOPATH=$INFOPATH:/usr/share/texlive/texmf-dist/doc/info </code></pre>
-<p><br></p>
-<p>(This may only be working for the 2021 version of texlive.)</p>
+<p><a href="./de/0.html">0. Some Useful Mathematical Definitions and
+Theorems</a></p>
+<p><a href="./de/1.html">1. Introduction to the Ordinary Differential
+Equation</a></p>
 <p><br> <br></p>
-<p><a href="../linux.html">back</a></p>
+<p><a href="./index.html">back</a></p>
 
 
 

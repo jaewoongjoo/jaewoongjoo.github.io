@@ -11,7 +11,7 @@
 
 
 
-<title>When you install Latex</title>
+<title>0. Some Useful Mathematical Definitions and Theorems</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -348,7 +348,8 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">When you install Latex</h1>
+<h1 class="title toc-ignore">0. Some Useful Mathematical Definitions and
+Theorems</h1>
 
 </div>
 
@@ -361,31 +362,140 @@ pre {
 font-size: 15px
 }
 </style>
-<p>This blog has nothing to do with someone using <em>Overleaf</em> as a
-<em>Latex</em> compiler. But, I am an <em>Emacs</em> user, and I would
-like to share my experience while installing Latex. When you start, you
-may first install <em>texlive</em> by typing in terminal as below:</p>
-<pre><code>$ sudo apt-get install texlive-latex-base 
-$ sudo apt-get install texlive-fonts-recommended 
-$ sudo apt-get install texlive-fonts-extra 
-$ sudo apt-get install texlive-latex-extra </code></pre>
 <p><br></p>
-<p>Then, I discovered that <em>auctex</em> was not working in Emacs and
-that Emacs couldn’t find the location of texlive. If so, you may include
-the following commands in your <em>.bashrc</em> file:</p>
-<pre><code> if ! [[ &quot;$PATH&quot; =~ &quot;$HOME/.local/bin:$HOME/bin:&quot; ]] 
- then 
-     PATH=&quot;$HOME/.local/bin:$HOME/bin:$PATH&quot; 
- fi 
- export PATH 
- 
- export PATH=$PATH:/usr/share/texlive/2021/bin/x86_64-linux 
- export MANPATH=$MANPATH:/usr/share/texlive/texmf-dist/doc/man 
- export INFOPATH=$INFOPATH:/usr/share/texlive/texmf-dist/doc/info </code></pre>
-<p><br></p>
-<p>(This may only be working for the 2021 version of texlive.)</p>
+<div class="alert alert-info">
+<p>이번 챕터에서는 미분방정식 공부 전의 준비 운동으로서 주로 리만 적분의
+정의와 Fundamental Theorem of Calculus(FToC)을 포함한 수학 이론들에 대해
+주로 다뤄볼 것이다. 이 내용들은 다른 곳에도 매우 많이 사용되니 눈여겨 볼
+필요가 있다.</p>
+</div>
+<div id="definition-step-functions" class="section level5">
+<h5>Definition (Step Functions)</h5>
+<p>A function <span class="math inline">\(f:[a,b]\rightarrow
+\mathbb{R}\)</span> is called a step function if it is piecewise
+constant, i.e., if we have a partition <span class="math inline">\(P=(x_0,x_1,\ldots,x_n)\)</span> of <span class="math inline">\([a,b]\)</span> such that<br />
+<span class="math display">\[
+a=x_0&lt;x_1&lt;\cdots &lt;x_n=b.
+\]</span> and <span class="math inline">\(f\)</span> is constant on each
+half open interval <span class="math inline">\([x_{i-1}, x_i)\)</span>
+with <span class="math inline">\(1\le i\le n\)</span>. For the step
+function <span class="math inline">\(f\)</span>, we define the integral
+to be <span class="math display">\[
+\int_a^b f(x)dx =\sum_{i=1}^n f(x_i)(x_i-x_{i-1}),
+\]</span></p>
 <p><br> <br></p>
-<p><a href="../linux.html">back</a></p>
+</div>
+<div id="lemma" class="section level5">
+<h5>Lemma</h5>
+<p>If <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are step functions on the interval
+<span class="math inline">\([a,b]\)</span> with <span class="math inline">\(f(x)\le g(x)\)</span> for all <span class="math inline">\(x\in [a,b]\)</span>, then <span class="math display">\[
+\int_a^b f(x)dx \le \int_a^b g(x)dx.
+\]</span></p>
+<ul>
+<li>A sketch of proof: let <span class="math inline">\(A_i=[x_{i-1},x_i)\)</span>. Because <span class="math inline">\(f(x)\le g(x)\)</span> for all <span class="math inline">\(x\in[a,b]\)</span>, <span class="math display">\[
+\int_{A_i}f(x)dx \le \int_{A_i}g(x)dx.
+\]</span> This implies the lemma.</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="definition-upper-and-lower-integrals" class="section level5">
+<h5>Definition (Upper and Lower Integrals)</h5>
+<p>The lower integral of a function <span class="math inline">\(f\)</span> on the interval <span class="math inline">\([a,b]\)</span> is defined by <span class="math display">\[
+L(f,a,b)=\sup\Big\{\int_a^b s(x)dx : s \mbox{ is a step function with
+}s\le f  \Big\}.
+\]</span> Similarly, the upper integral of <span class="math inline">\(f\)</span> is defined to be <span class="math display">\[
+U(f,a,b)=\inf\Big\{ \int_a^b t(x)dx : t \mbox{ is a step function with }
+t\ge f\Big\}.
+\]</span> <br></p>
+<ul>
+<li>즉, Greatest Lower Bound, Least Upper Bound의 개념이다.</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="lemma-1" class="section level5">
+<h5>Lemma</h5>
+<p>For any bounded function <span class="math inline">\(f:[a,b]\rightarrow \mathbb{R}\)</span>, we have
+<span class="math inline">\(L(f,a,b)\le U(f,a,b)\)</span>.</p>
+<ul>
+<li>proof : Define <span class="math inline">\(t(x)\)</span> as a step
+function on <span class="math inline">\([a,b]\)</span> with <span class="math inline">\(t(x)\ge f(x)\)</span> for all <span class="math inline">\(x\in[a,b]\)</span>. If <span class="math inline">\(s\)</span> is any step function with <span class="math inline">\(s(x)\le f(x)\)</span> for all <span class="math inline">\(x\in[a,b]\)</span>, then <span class="math inline">\(s(x)\le t(x)\)</span> for all <span class="math inline">\(x\in[a,b]\)</span>, and hence by the lemma above,
+<span class="math display">\[
+\int_a^b s(x)dx\le \int_a^b t(x)dx.
+\]</span> This implies that the integral of <span class="math inline">\(t(x)\)</span> is an upper bound for the integrals
+of any <span class="math inline">\(s\le f\)</span>. Hence <span class="math display">\[
+∫^b_a t(x)dx \ge \sup\Big\{\int^b_a s(x): s \mbox{ is a step function
+with } s\le f\Big\}=L(f,a,b).
+\]</span> Thus, the integral of any step function <span class="math inline">\(t\)</span> with <span class="math inline">\(t\ge
+f\)</span> is bounded from below by <span class="math inline">\(L(f,a,b)\)</span>. It follows that the greatest
+lower bound for <span class="math inline">\(∫^b_a t(x)dx\)</span> with
+<span class="math inline">\(t\ge f\)</span> satisfies <span class="math inline">\(L(f,a,b) \le\inf\Big\{\int^b_a t(x)dx :t \mbox{ is
+a step function with } t\ge f\Big\}=U(f,a,b)\)</span>.</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="definition" class="section level5">
+<h5>Definition</h5>
+<p>The function <span class="math inline">\(f\)</span> is said to be
+Riemann integrable if its lower and upper integral are the same, i.e.,
+<span class="math display">\[
+\int^b_a f(x)dx=L(f,a,b)=U(f,a,b)
+\]</span></p>
+<ul>
+<li><p>If we define <span class="math inline">\(A_i=[x_i-x_{i-1})\)</span> and <span class="math inline">\(\delta=\sup_{1\le i\le n}A_i\)</span> where <span class="math inline">\(P=(x_0,x_1\ldots,x_n)\)</span> is a partition of
+<span class="math inline">\([a,b]\)</span>, then the Riemann
+integrability is meant to say, similarly, <span class="math display">\[
+\liminf_{\delta\rightarrow 0\\ n\rightarrow \infty} \sum_{i=1}^n
+f(x_i)=\lim_{\delta\rightarrow 0\\ n\rightarrow \infty}  \sum_{i=1}^n
+f(x_i)=\limsup_{\delta\rightarrow 0\\ n\rightarrow \infty} \sum_{i=1}^n
+f(x_i).
+\]</span> <br></p>
+<ul>
+<li>즉, 바꿔 말하면 파티션을 무한히 잘게 쪼개었을 때, integral값의
+liminf와 limsup이 하나로 수렴할 때 우리는 Riemann integrable하다고 말할
+수 있다.</li>
+</ul></li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="proposition" class="section level5">
+<h5>Proposition</h5>
+<p>A function <span class="math inline">\(f:[a,b]→\mathbb{R}\)</span> is
+Riemann integrable if for every <span class="math inline">\(\epsilon&gt;0\)</span> there exist step functions
+<span class="math inline">\(s,t:[a,b]→\mathbb{R}\)</span> such that for
+all <span class="math inline">\(x\in[a,b]\)</span>, <span class="math inline">\(s(x)\le f(x)\le t(x)\)</span> and <span class="math display">\[
+∫^b_at(x)dx−∫^b_a s(x)dx&lt;ϵ.
+\]</span></p>
+<p><br> <br></p>
+</div>
+<div id="theorem-the-fundamental-theorem-of-calculus" class="section level5">
+<h5>Theorem (The Fundamental Theorem of Calculus)</h5>
+<p>Let <span class="math inline">\(f:[a,b]\rightarrow
+\mathbb{R}\)</span> be a continuous and real-valued function. Then,
+<span class="math display">\[
+\frac{d}{dx}\int^x_a f (s)ds = f(x).
+\]</span> <br></p>
+<ul>
+<li>Proof: By the definition of differentiation, we have <span class="math display">\[
+\begin{align*}
+\frac{d}{dx}\int^x_a f (s)ds &amp;= \lim_{h \rightarrow 0} \frac{
+\int_a^{x+h}f (s)ds −\int_a^{x}f (s)ds}{h}\\
+&amp;= \lim_{h \rightarrow 0} \frac{ \int_x^{x+h}f (s)ds}{h}\\
+&amp;= \lim_{h \rightarrow 0} \frac{ hf (x)}{h}\\
+&amp;= f(x) \mbox{ }\mbox{ }\mbox{ by the L&#39;Hôpital&#39;s rule.}
+\end{align*}
+\]</span></li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="corollary" class="section level5">
+<h5>Corollary</h5>
+<p>Let <span class="math inline">\(f:[a,b]\rightarrow
+\mathbb{R}\)</span> be a continuous and real-valued function, and let
+<span class="math inline">\(F\)</span> denote an anti-derivative of
+<span class="math inline">\(f\)</span> in <span class="math inline">\([a,b]\)</span>. Then, <span class="math display">\[
+\int_{a}^{b}f(t) dt=F(b)-F(a).
+\]</span> <br> <br> <a href="../index.html">back</a></p>
+</div>
 
 
 
