@@ -11,7 +11,7 @@
 
 
 
-<title>Emacs shortkeys</title>
+<title>1. First-order Differential Equations</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -348,7 +348,7 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Emacs shortkeys</h1>
+<h1 class="title toc-ignore">1. First-order Differential Equations</h1>
 
 </div>
 
@@ -361,62 +361,71 @@ pre {
 font-size: 15px
 }
 </style>
-<p>I’d say I’m still an <em>Emacs</em> newbie. A year ago, my advisor
-recommended that I use Emacs. While using it, I realized how good it is.
-It is actually more than just a <em>Latex</em> compiler, and you can
-even edit and run rcodes in it, for example. However, it was difficult
-to get used to it at first, because of a variety of shortkeys. So, I
-want to provide some Emacs shortkeys below (these are only a few parts
-of them):</p>
+<p><br></p>
+<div class="alert alert-info">
+<p>이번 챕터에서는 미분방정식 공부 전의 준비 운동으로서 주로 리만 적분의
+정의와 Fundamental Theorem of Calculus(FToC)을 포함한 수학 이론들에 대해
+주로 다뤄볼 것이다. 이 내용들은 다른 곳에도 매우 많이 사용되니 눈여겨 볼
+필요가 있다.</p>
+</div>
+<div id="definition-first-order-differential-equation" class="section level5">
+<h5>Definition (First-order Differential Equation)</h5>
+<p>The general first-order differential equation for the function <span class="math inline">\(y = y( x )\)</span> is defined by <span class="math display">\[
+\begin{equation}
+\frac{dy}{dx}=f(x, y)   \tag{$*$}
+\end{equation}
+\]</span> where <span class="math inline">\(f(x,y)\)</span> can be a
+function of the independent variable <span class="math inline">\(x\)</span> and the dependent variable <span class="math inline">\(y\)</span>.</p>
+<p><br></p>
+</div>
+<div id="remark" class="section level5">
+<h5>Remark</h5>
 <ul>
-<li><p><span class="math inline">\(\texttt{C}\)</span>: Ctrl, <span class="math inline">\(\texttt{M}\)</span>: Alt</p></li>
-<li><p><span class="math inline">\(\texttt{M-x
-package-install-RET}\)</span>: install packages.</p></li>
-<li><p><span class="math inline">\(\texttt{M-x 2}\)</span>: Split your
-window horizontally in half,</p>
-<p><span class="math inline">\(\texttt{M-x 3}\)</span>: Split your
-window vertically in half,</p>
-<p><span class="math inline">\(\texttt{M-x 1}\)</span>: Delete other
-windows</p></li>
-<li><p><span class="math inline">\(\texttt{M-w}\)</span>: copy, <span class="math inline">\(\texttt{C-y}\)</span>: cut, <span class="math inline">\(\texttt{M-y}\)</span>: paste</p></li>
-<li><p><span class="math inline">\(\texttt{C-x C-f}\)</span>: find
-files</p></li>
-<li><p><span class="math inline">\(\texttt{C-x h}\)</span>: select
-all</p></li>
-<li><p><span class="math inline">\(\texttt{C-x C-b}\)</span>: show all
-buffers</p></li>
-<li><p><span class="math inline">\(\texttt{C-c C-b}\)</span>: invoke
-<em>Latex</em> if you type latex or RET, and invoke <em>bibtex</em> if
-you type bibtex</p></li>
-<li><p><span class="math inline">\(\texttt{C-c C-p C-b}\)</span>: Latex
-Preview on</p></li>
-<li><p><span class="math inline">\(\texttt{C-s}\)</span>: find
-words</p></li>
-<li><p><span class="math inline">\(\texttt{C-g}\)</span>: quit</p></li>
+<li><p>Although it is not always possible to find an analytical solution
+of <span class="math inline">\((*)\)</span> for <span class="math inline">\(y =y(x)\)</span>, it is always possible to
+determine a unique <strong>numerical</strong> solution given an initial
+value <span class="math inline">\(y( x_0 ) = y_0\)</span>.</p></li>
+<li><p>Note that <span class="math inline">\((*)\)</span> means the
+slope <span class="math inline">\(f(x_0, y_0)\)</span> of the tangent
+line at the point <span class="math inline">\((x_0, y_0)\)</span>.
+Define the step size <span class="math inline">\(\Delta x = x_1 −
+x_0\)</span>. Using the initial value <span class="math inline">\((x_0 ,
+y_0)\)</span>, we can get <span class="math inline">\((x_1 ,
+y_1)\)</span> by the Euler’s method: <span class="math display">\[
+y_1 = y_0 + \Delta x \cdot f ( x_0 , y_0 ).
+\]</span> (이 식은 <span class="math inline">\((*)\)</span>에 <span class="math inline">\(dx\)</span>를 양변에 곱함으로서 얻는 <span class="math inline">\(dy=dx\cdot f(x,y)\)</span>를 통해 얻을 수
+있다)</p></li>
+<li><p>The point <span class="math inline">\((x_1 , y_1)\)</span> then
+becomes the new initial value, and we get the <span class="math inline">\((x_2 , y_2)\)</span> by the Euler’s method again,
+along a newly determined tangent line with slope given by <span class="math inline">\(f(x_1, y_1)\)</span>. For small enough <span class="math inline">\(\Delta x\)</span>, the numerical solution
+converges to the exact solution.</p></li>
 </ul>
-<p>In tool-bar view mode</p>
+<p><br></p>
 <ul>
-<li><span class="math inline">\(\texttt{w}\)</span> : set the zoom level
-of your document to 170%</li>
-<li><span class="math inline">\(\texttt{a}\)</span> : set the zoom level
-of your document to 100%<br />
-</li>
-<li><span class="math inline">\(\texttt{f}\)</span> : set the zoom level
-of your document to 66%</li>
-<li><span class="math inline">\(\texttt{d}\)</span> : set/unset the
-slide show view</li>
-<li><span class="math inline">\(\texttt{c}\)</span> : enable/disable
-scrolling</li>
-<li><span class="math inline">\(\texttt{n}\)</span> : page-down</li>
-<li><span class="math inline">\(\texttt{h}\)</span> : page-up</li>
-<li><span class="math inline">\(\texttt{k}\)</span> : move up</li>
-<li><span class="math inline">\(\texttt{j}\)</span> : move down</li>
-<li><span class="math inline">\(\texttt{o}\)</span> : change the
-orientation of slides of your documents</li>
+<li><p>즉, 만약 1차 미분방정식<span class="math inline">\((dy/dx)\)</span>을 안다면 그를 통해 <span class="math inline">\(y=y(x)\)</span>를 오일러의 방법을 이용하여
+점진적으로 (numerically) approximate해낼 수 있다.</p></li>
+<li><p>추가로 여기서 <span class="math inline">\(y\)</span>는 response
+variable이고 <span class="math inline">\(x\)</span>는 explanatory
+variable이므로 linear regression의 상황과 일치한다. 그러므로, 우리가
+regression에서의 coefficient를 추정하며 model을 approximate할 때,
+model에 대한 score function과 어떤 initial value를 알고 있다면, 오일러의
+방법을 이용하여 model을 approximate할 수 있다.</p></li>
 </ul>
-<p>I will keep adding whenever I come up with a new one.</p>
+<p><br></p>
+</div>
+<div id="definition-separable-differential-equation" class="section level5">
+<h5>Definition (Separable Differential Equation)</h5>
+<p>A first-order differential equation is separable if it can be written
+by <span class="math display">\[
+g(y)\frac{dy}{dx}=f(x) \iff
+\frac{dy}{dx}=\frac{f(x)}{g(y)},   \tag{$**$}
+\]</span> where the function <span class="math inline">\(g(y)\)</span>
+is independent of <span class="math inline">\(x\)</span>, and the
+function <span class="math inline">\(f(x)\)</span> is independent of
+<span class="math inline">\(y\)</span>.</p>
 <p><br> <br></p>
-<p><a href="../linux.html">back</a></p>
+<p><a href="../index.html">back</a></p>
+</div>
 
 
 

@@ -1,5 +1,5 @@
 ---
-title: 0. Some Useful Mathematical Definitions and Theorems
+title: 1. First-order Differential Equations
 output: html_document
 ---
 
@@ -23,123 +23,56 @@ pre {
 
 
 
-##### Definition (Step Functions)
-A function $f:[a,b]\rightarrow \mathbb{R}$ is called a step function if it is piecewise constant, i.e., if we have a partition $P=(x_0,x_1,\ldots,x_n)$ of $[a,b]$ such that  
+##### Definition (First-order Differential Equation)
+The general first-order differential equation for the function $y = y( x )$ is defined by
 $$
-a=x_0<x_1<\cdots <x_n=b.
+\begin{equation}
+\frac{dy}{dx}=f(x, y)   \tag{$*$}
+\end{equation}
 $$
-and $f$ is constant on each half open interval $[x_{i-1}, x_i)$ with $1\le i\le n$. For the step function $f$, we define the integral to be
-$$
-\int_a^b f(x)dx =\sum_{i=1}^n f(x_i)(x_i-x_{i-1}),
-$$
-
-
-<br>
-<br>
-
-##### Lemma
-
-If $f$ and $g$ are step functions on the interval $[a,b]$ with $f(x)\le g(x)$ for all $x\in [a,b]$, then 
-$$
-\int_a^b f(x)dx \le \int_a^b g(x)dx.
-$$
-
-- A sketch of proof: let $A_i=[x_{i-1},x_i)$. Because $f(x)\le g(x)$ for all $x\in[a,b]$, 
-$$
-\int_{A_i}f(x)dx \le \int_{A_i}g(x)dx.
-$$
-This implies the lemma.
+where $f(x,y)$ can be a function of the independent variable $x$ and the dependent
+variable $y$.  
 
 <br>
-<br>
-
-##### Definition (Upper and Lower Integrals)
-The lower integral of a function $f$ on the interval $[a,b]$ is defined by
-$$
-L(f,a,b)=\sup\Big\{\int_a^b s(x)dx : s \mbox{ is a step function with }s\le f  \Big\}.
-$$
-Similarly, the upper integral of $f$ is defined to be
-$$
-U(f,a,b)=\inf\Big\{ \int_a^b t(x)dx : t \mbox{ is a step function with } t\ge f\Big\}.
-$$
-<br>
-
- - 즉, Greatest Lower Bound, Least Upper Bound의 개념이다.
 
 
+##### Remark 
+- Although it is not always possible to find an analytical solution of $(*)$ for $y =y(x)$, it is always possible to determine a unique **numerical** solution given an initial
+value $y( x_0 ) = y_0$.
 
-<br>
-<br>
+- Note that $(*)$ means the slope $f(x_0, y_0)$ of the tangent line at the point $(x_0, y_0)$. Define the step size $\Delta x = x_1 − x_0$. Using the initial value $(x_0 , y_0)$, we can get $(x_1 , y_1)$ by the Euler’s method:
+$$
+y_1 = y_0 + \Delta x \cdot f ( x_0 , y_0 ).
+$$
+   (이 식은 $(*)$에 $dx$를 양변에 곱함으로서 얻는 $dy=dx\cdot f(x,y)$를 통해 얻을 수 있다)
 
-##### Lemma
-For any bounded function $f:[a,b]\rightarrow \mathbb{R}$, we have $L(f,a,b)\le U(f,a,b)$.
-
-
-- proof : Define $t(x)$ as a step function on $[a,b]$ with $t(x)\ge f(x)$ for all $x\in[a,b]$. If $s$ is any step function with $s(x)\le f(x)$ for all $x\in[a,b]$, then $s(x)\le t(x)$ for all $x\in[a,b]$, and hence by the lemma above,
-$$
-\int_a^b s(x)dx\le \int_a^b t(x)dx.
-$$
-This implies that the integral of $t(x)$ is an upper bound for the integrals of any $s\le f$. Hence 
-$$
-∫^b_a t(x)dx \ge \sup\Big\{\int^b_a s(x): s \mbox{ is a step function with } s\le f\Big\}=L(f,a,b).
-$$
-Thus, the integral of any step function $t$ with $t\ge f$ is bounded from below by $L(f,a,b)$. It follows that the greatest lower bound for $∫^b_a t(x)dx$ with $t\ge f$ satisfies $L(f,a,b) \le\inf\Big\{\int^b_a t(x)dx :t \mbox{ is a step function with } t\ge f\Big\}=U(f,a,b)$.
-
-<br>
-<br>
-
-##### Definition
-The function $f$ is said to be Riemann integrable if its lower and upper integral are the same, i.e.,
-$$
-\int^b_a f(x)dx=L(f,a,b)=U(f,a,b)
-$$
-
-- If we define $A_i=[x_i-x_{i-1})$ and $\delta=\sup_{1\le i\le n}A_i$ where $P=(x_0,x_1\ldots,x_n)$ is a partition of $[a,b]$, then the Riemann integrability is meant to say, similarly,
-$$
-\liminf_{\delta\rightarrow 0\\ n\rightarrow \infty} \sum_{i=1}^n f(x_i)=\lim_{\delta\rightarrow 0\\ n\rightarrow \infty}  \sum_{i=1}^n f(x_i)=\limsup_{\delta\rightarrow 0\\ n\rightarrow \infty} \sum_{i=1}^n f(x_i).
-$$
-<br>
-
-  - 즉, 바꿔 말하면 파티션을 무한히 잘게 쪼개었을 때, integral값의 liminf와 limsup이 하나로 수렴할 때 우리는 Riemann integrable하다고 말할 수 있다.
+- The point $(x_1 , y_1)$ then becomes the new initial value, and we get the $(x_2 , y_2)$ by the Euler's method again, along a newly determined tangent line with slope given by $f(x_1, y_1)$. For small enough $\Delta x$, the numerical solution converges to the exact solution.
   
-<br>
-<br>
-
-##### Proposition 
-A function $f:[a,b]→\mathbb{R}$ is Riemann integrable if for every $\epsilon>0$ there exist step functions $s,t:[a,b]→\mathbb{R}$ such that for all $x\in[a,b]$, $s(x)\le f(x)\le t(x)$ and
-$$
-∫^b_at(x)dx−∫^b_a s(x)dx<ϵ.
-$$
 
 
 <br>
-<br>
 
-##### Theorem (The Fundamental Theorem of Calculus)
-Let $f:[a,b]\rightarrow \mathbb{R}$ be a continuous and real-valued function. Then, 
-$$
-\frac{d}{dx}\int^x_a f (s)ds = f(x).
-$$
-<br>
-
- - Proof: By the definition of differentiation, we have
-$$
-\begin{align*}
-\frac{d}{dx}\int^x_a f (s)ds &= \lim_{h \rightarrow 0} \frac{ \int_a^{x+h}f (s)ds −\int_a^{x}f (s)ds}{h}\\
-&= \lim_{h \rightarrow 0} \frac{ \int_x^{x+h}f (s)ds}{h}\\
-&= \lim_{h \rightarrow 0} \frac{ hf (x)}{h}\\
-&= f(x) \mbox{ }\mbox{ }\mbox{ by the L'Hôpital's rule.}
-\end{align*}
-$$
+  - 즉, 만약 1차 미분방정식$(dy/dx)$을 안다면 그를 통해 $y=y(x)$를 오일러의 방법을 이용하여 점진적으로 (numerically) approximate해낼 수 있다. 
+  
+  - 추가로 여기서 $y$는 response variable이고 $x$는 explanatory variable이므로 linear regression의 상황과 일치한다. 그러므로, 우리가 regression에서의 coefficient를 추정하며 model을 approximate할 때, model에 대한 score function과 어떤 initial value를 알고 있다면, 오일러의 방법을 이용하여 model을 approximate할 수 있다. 
 
 <br>
+
+
+##### Definition (Separable Differential Equation)
+A first-order differential equation is separable if it can be written by
+$$
+g(y)\frac{dy}{dx}=f(x) \iff \frac{dy}{dx}=\frac{f(x)}{g(y)},   \tag{$**$}
+$$
+where the function $g(y)$ is independent of $x$, and the function $f(x)$ is independent of $y$.
+
+<br> 
+
+ -  Note: $(**)$에서 양변에 $dx$를 곱하고, $x_0$부터 $x$까지 적분을 양쪽에 취하면 다음과 같다:
+ $$
+ 
+ $$
+<br>
 <br>
 
-##### Corollary
-Let $f:[a,b]\rightarrow \mathbb{R}$ be a continuous and real-valued function, and let $F$ denote an anti-derivative of $f$ in $[a,b]$. Then,
-$$
-\int_{a}^{b}f(t) dt=F(b)-F(a).
-$$
-<br>
-<br>
 [back](../index.html)

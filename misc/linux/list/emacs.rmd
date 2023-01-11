@@ -37,6 +37,21 @@ I'd say I'm still an *Emacs* newbie. A year ago, my advisor recommended that I u
 
 - $\texttt{C-g}$: quit
 
+\vspace{1cm}
+
+In tool-bar view mode 
+
+ - $\texttt{w}$ : set the zoom level of your document to 170%
+ - $\texttt{a}$ : set the zoom level of your document to 100%  
+ - $\texttt{f}$ : set the zoom level of your document to 66% 
+ - $\texttt{d}$ : set/unset the slide show view
+ - $\texttt{c}$ : enable/disable scrolling 
+ - $\texttt{n}$ : page-down
+ - $\texttt{h}$ : page-up
+ - $\texttt{k}$ : move up 
+ - $\texttt{j}$ : move down
+ - $\texttt{o}$ : change the orientation of slides of your documents
+ 
 I will keep adding whenever I come up with a new one.
 
 <br>

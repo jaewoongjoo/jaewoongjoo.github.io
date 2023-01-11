@@ -50,7 +50,7 @@ A metric space $(X,d)$ is **bounded** if there exists a real number $B$ such tha
 <br>
 
 ##### Proposition
-Let $(X,d)$ be a metric space, and let $E$ be a nonempty subset of $X$. The following are equivalent:
+Let $(X,d)$ be a metric space, and let $E$ be a nonempty subset of $X$. The followings are equivalent:
   
   1. $(E,d)$, considered as a sub-metric space of $X$, is bounded;
   
