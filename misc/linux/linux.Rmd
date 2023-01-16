@@ -1,5 +1,5 @@
 ---
-title: "My Journey to Linux"
+title: "Journey to Linux"
 ---
 
 <style type="text/css">
@@ -19,6 +19,10 @@ These blogs might just cover topics like using *Latex* in *Linux* and how to uti
 [220905. When you install Latex](./list/latex.html)
 
 [220905. Emacs shortkeys](./list/emacs.html)
+
+[230116. Basic Linux commands](./list/commands.html)
+
+[230116. Clamshell mode](./list/clamshell.html)
 
 <br>
 <br>    

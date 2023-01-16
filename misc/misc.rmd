@@ -15,7 +15,7 @@ pre {
 
 [Thoughts](./thoughts/thoughts.html)
 
-[My Journey to Linux](./linux/linux.html)
+[Journey to Linux](./linux/linux.html)
 
 [Pics of Noah and Runi](./pic.html)
 

@@ -1,0 +1,62 @@
+---
+title: "Clamshell mode"
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+
+https://dontdiethere.tistory.com/27
+
+I'd say I'm still an *Emacs* newbie. A year ago, my advisor recommended that I use Emacs. While using it, I realized how good it is. It is actually more than just a *Latex* compiler, and you can even edit and run rcodes in it, for example. However, it was difficult to get used to it at first, because of a variety of shortkeys. So, I want to provide some Emacs shortkeys below (these are only a few parts of them):
+
+- $\texttt{C}$: Ctrl, $\texttt{M}$: Alt
+- $\texttt{M-x package-install-RET}$: install packages.
+- $\texttt{M-x 2}$: Split your window horizontally in half,
+
+  $\texttt{M-x 3}$: Split your window vertically in half,
+
+  $\texttt{M-x 1}$: Delete other windows
+  
+- $\texttt{M-w}$: copy, $\texttt{C-y}$: cut, $\texttt{M-y}$: paste
+
+- $\texttt{C-x C-f}$: find files
+
+- $\texttt{C-x h}$: select all
+- $\texttt{C-x C-b}$: show all buffers
+
+- $\texttt{C-c C-b}$: invoke *Latex* if you type latex or RET, and invoke *bibtex* if you type bibtex
+- $\texttt{C-c C-p C-b}$: Latex Preview on
+
+- $\texttt{C-s}$: find words
+
+- $\texttt{C-g}$: quit
+
+\vspace{1cm}
+
+In tool-bar view mode 
+
+ - $\texttt{w}$ : set the zoom level of your document to 170%
+ - $\texttt{a}$ : set the zoom level of your document to 100%  
+ - $\texttt{f}$ : set the zoom level of your document to 66% 
+ - $\texttt{d}$ : set/unset the slide show view
+ - $\texttt{c}$ : enable/disable scrolling 
+ - $\texttt{n}$ : page-down
+ - $\texttt{h}$ : page-up
+ - $\texttt{k}$ : move up 
+ - $\texttt{j}$ : move down
+ - $\texttt{o}$ : change the orientation of slides of your documents
+ 
+I will keep adding whenever I come up with a new one.
+
+<br>
+<br>    
+
+[back](../linux.html)

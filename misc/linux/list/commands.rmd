@@ -1,0 +1,117 @@
+---
+title: "Basic Linux Commands"
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+https://ss-o.tistory.com/131
+
+#### List contents
+ 
+$\texttt{ls}$: list directory contents 
+ 
+  - $\texttt{ls -l}$: list one file per line including *file or directory permission, owner and group name, file size, created/modified date and time, file/folder name*.
+ 
+  - $\texttt{ls -a}$: list contents including hidden files
+
+
+#### Permissions
+
+$\texttt{chmod}$: change permission
+
+
+#### Directory options
+
+1. $\texttt{mkdir}$:
+
+2. $\texttt{cd}$:
+
+3. $\texttt{rm}$:
+
+4. $\texttt{}$:
+
+5. $\texttt{}$:
+
+
+#### File options
+
+1. $\texttt{}$:
+
+2. $\texttt{}$:
+
+3. $\texttt{}$:
+
+4. $\texttt{}$:
+
+5. $\texttt{}$:
+
+
+
+#### Shell options
+
+1. $\texttt{}$:
+
+2. $\texttt{}$:
+
+3. $\texttt{}$:
+
+4. $\texttt{}$:
+
+5. $\texttt{}$:
+
+
+
+#### D
+
+1. $\texttt{}$:
+
+2. $\texttt{}$:
+
+3. $\texttt{}$:
+
+4. $\texttt{}$:
+
+5. $\texttt{}$:
+
+
+
+#### D
+
+1. $\texttt{}$:
+
+2. $\texttt{}$:
+
+3. $\texttt{}$:
+
+4. $\texttt{}$:
+
+5. $\texttt{}$:
+
+
+
+#### D
+
+1. $\texttt{}$:
+
+2. $\texttt{}$:
+
+3. $\texttt{}$:
+
+4. $\texttt{}$:
+
+5. $\texttt{}$:
+
+I will keep adding whenever I come up with a new one.
+
+<br>
+<br>    
+
+[back](../linux.html)
