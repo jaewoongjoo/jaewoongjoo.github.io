@@ -417,9 +417,8 @@ cannot be open as a subset of <span class="math inline">\(\mathbb{R}\)</span>.</
 <p>Every neighborhood is an open set.</p>
 <p><br></p>
 <ul>
-<li>Proof: The theorem says, for any metric space <span class="math inline">\((X,d)\)</span>, <span class="math inline">\(p\in
-X\)</span> and <span class="math inline">\(r&gt;0\)</span>, the set
-<span class="math inline">\(N_r(p)\)</span> is open as a subset of <span class="math inline">\(X\)</span>. Then, we must show that for any <span class="math inline">\(q\in N_r(p)\)</span>, there exists an <span class="math inline">\(h&gt;0\)</span> such that <span class="math inline">\(N_h(q)\subset N_r(p)\)</span> (every point <span class="math inline">\(q\in N_r(p)\)</span> is an interior point of <span class="math inline">\(N_r(p)\)</span>). Define <span class="math inline">\(h=r-d(p,q)&gt;0\)</span>. For any <span class="math inline">\(s\in N_h(q)\)</span>, we have <span class="math inline">\(s\in N_r(p)\)</span> because <span class="math display">\[
+<li>Proof: Define a metric space <span class="math inline">\((X,d)\)</span>. Let <span class="math inline">\(p\in X\)</span> and let <span class="math inline">\(r&gt;0\)</span>. Then, we must show that for any
+<span class="math inline">\(q\in N_r(p)\)</span>, there exists an <span class="math inline">\(h&gt;0\)</span> such that <span class="math inline">\(N_h(q)\subset N_r(p)\)</span> (every point <span class="math inline">\(q\in N_r(p)\)</span> is an interior point of <span class="math inline">\(N_r(p)\)</span>). Define <span class="math inline">\(h=r-d(p,q)&gt;0\)</span>. For any <span class="math inline">\(s\in N_h(q)\)</span>, we have <span class="math inline">\(s\in N_r(p)\)</span> because <span class="math display">\[
    d(p,s)\le d(p,q)+d(q,s)&lt;(r-h)+h=r.
 \]</span> Thus, <span class="math inline">\(N_h(q)\subset
 N_r(p)\)</span>.</li>
@@ -436,15 +435,156 @@ union).</p></li>
 is an open subset of <span class="math inline">\(X\)</span>, so is <span class="math inline">\(\cap_{i=1}^n G_i\)</span> (finite
 intersection).</p></li>
 </ol>
+<p><br></p>
+<ul>
+<li><p>Proof of 1: Let <span class="math inline">\(p\in
+G:=\cup_{\alpha\in I} G_\alpha\)</span>. Then, <span class="math inline">\(p\in G_\alpha\)</span> for some <span class="math inline">\(\alpha\in I\)</span>. Since <span class="math inline">\(G_\alpha\)</span> is an open set, <span class="math inline">\(p \in G_\alpha\)</span> is an interior point,
+i.e., for every <span class="math inline">\(p\in G_\alpha\)</span>,
+there exists <span class="math inline">\(r&gt;0\)</span> s.t. <span class="math inline">\(N_r(p)\subset G_\alpha\)</span>. Since <span class="math inline">\(G_\alpha\subset G\)</span>, <span class="math inline">\(N_r(p)\subset G\)</span>. Because <span class="math inline">\(p\in G\)</span> is an arbitrary we proved the
+theorem.</p></li>
+<li><p>Proof of 2: Let <span class="math inline">\(p\in H:=\cap_{i=1}^n
+G_i\)</span>. Then, <span class="math inline">\(p\in G_i\)</span> for
+all <span class="math inline">\(i\)</span>. Since <span class="math inline">\(G_i\)</span> is an open set, <span class="math inline">\(p\in G_i\)</span> is an interior point, i.e., for
+every <span class="math inline">\(p\in G_i\)</span>, there exists <span class="math inline">\(r_i&gt;0\)</span> s.t. <span class="math inline">\(N_{r_i}(p)\subset G_i\)</span>. Let <span class="math inline">\(r=\min\{r_1,\ldots, r_n\}\)</span>. Then, <span class="math inline">\(r&gt;0\)</span> and <span class="math inline">\(r\le r_i\)</span> for all <span class="math inline">\(i\)</span>, i.e., which implies <span class="math inline">\(N_{r}(p)\subset N_{r_i}(p)\)</span> for each <span class="math inline">\(i\)</span>. So, <span class="math inline">\(N_{r}(p)\subset G_i\)</span> for all <span class="math inline">\(i\)</span>, which implies <span class="math inline">\(N_{r}(p)\subset H\)</span>.</p></li>
+<li><p>Counter-example: Someone might wonder why, in the second theorem,
+we just take into account finite intersection and ignore the case of
+countable intersection. I will provide a counterexample. Let <span class="math inline">\(X=\mathbb{R}\)</span> and for all <span class="math inline">\(n\ge 1\)</span>, let <span class="math inline">\(G_n=(-1/n, 1/n)\)</span>. Then, <span class="math inline">\(\cap_{n=1}^\infty G_{n}=\{0\}\)</span> which is
+not open.</p></li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="definition-closed-sets-limit-points" class="section level5">
+<h5>Definition (Closed Sets, Limit Points)</h5>
+<p>A <strong>closed</strong> subset of a metric space <span class="math inline">\(X\)</span> is defined as the complement of an open
+subset.</p>
+<p>A point <span class="math inline">\(p\in X\)</span> is said to be a
+<strong>limit point</strong> of <span class="math inline">\(E\subset
+X\)</span> if <em>every</em> neighborhood of <span class="math inline">\(p\)</span> contains a point of <span class="math inline">\(E\)</span> other than <span class="math inline">\(p\)</span> itself, i.e., every neighborhood of
+<span class="math inline">\(p\)</span> contains <span class="math inline">\(q\in E\)</span>, <span class="math inline">\(q\ne
+p\)</span>, i.e., for every <span class="math inline">\(r&gt;0\)</span>,
+there exists <span class="math inline">\(q\in E\)</span> such that <span class="math inline">\(0&lt;d(p,q)&lt;r\)</span>.</p>
+<ul>
+<li>Note that limit points and boundary points are not the same.
+Consider the set <span class="math inline">\(S=\{0\}\)</span> in <span class="math inline">\(\mathbb{R}\)</span> with the usual topology. <span class="math inline">\(0\)</span> is a boundary point but NOT a limit
+point of <span class="math inline">\(S\)</span>. Consider the set <span class="math inline">\(S&#39;=[0,1]\)</span> in <span class="math inline">\(\mathbb{R}\)</span> with the usual topology. <span class="math inline">\(0.5\)</span> is a limit point but NOT a boundary
+point of <span class="math inline">\(S\)</span>.</li>
+</ul>
 <p><br> <br></p>
 </div>
 <div id="theorem-2" class="section level5">
 <h5>Theorem</h5>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(G_\alpha\)</span> is a closed
+subset of <span class="math inline">\(X\)</span> for each <span class="math inline">\(\alpha \in I\)</span>, so is <span class="math inline">\(\cap_{\alpha\in I} G_\alpha\)</span> (countable
+union).</p></li>
+<li><p>If each of <span class="math inline">\(G_1,\ldots, G_n\)</span>
+is a closed subset of <span class="math inline">\(X\)</span>, so is
+<span class="math inline">\(\cup_{i=1}^n G_i\)</span> (finite
+intersection).</p></li>
+</ol>
+<p><br></p>
+<ul>
+<li>Proof : Apply de Morgan’s Law to the previous theorem.</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="remark-1" class="section level5">
+<h5>Remark</h5>
+<p>A subset of a metric space may be both open and closed (clopen)
+(e.g. in metric space <span class="math inline">\((X,d)\)</span>, <span class="math inline">\(X\)</span> is open and closed, so <span class="math inline">\(\phi\)</span> is open and closed). Moreover, there
+exists a subset which is neither open or closed (e.g. half-open interval
+<span class="math inline">\([a,b)\subset \mathbb{R}\)</span>, <span class="math inline">\(\mathbb{Q}\subset \mathbb{R}\)</span>).</p>
 <p><br> <br></p>
 </div>
 <div id="theorem-3" class="section level5">
 <h5>Theorem</h5>
-<p><br> <br> <a href="../limit.html">back</a></p>
+<p><span class="math inline">\(E\subset X\)</span> is closed if and only
+if every limit point of <span class="math inline">\(E\)</span> is
+contained in <span class="math inline">\(E\)</span>.</p>
+<p><br></p>
+<ul>
+<li><p>(<span class="math inline">\(\implies\)</span>): Suppose that
+<span class="math inline">\(E\)</span> is closed. Let <span class="math inline">\(x\)</span> be a limit point of <span class="math inline">\(E\)</span>. Assume that <span class="math inline">\(x\notin E\)</span>, so <span class="math inline">\(x\in E^c\)</span>. Since <span class="math inline">\(E^c\)</span> is open, <span class="math inline">\(x\)</span> is an interior point of <span class="math inline">\(E^c\)</span>, i.e., there exists <span class="math inline">\(r&gt;0\)</span> such that <span class="math inline">\(N_r(x)\subset E^c\)</span>. But, because of the
+definition of the limit point <span class="math inline">\(x\)</span>,
+every neighborhood of <span class="math inline">\(x\)</span> should
+contain at least one point in <span class="math inline">\(E\)</span>,
+which is contradiction, so <span class="math inline">\(x\in E\)</span>.
+Because <span class="math inline">\(x\)</span> is arbitrary, we
+proved.</p></li>
+<li><p>(<span class="math inline">\(\Longleftarrow\)</span>): Suppose
+that <span class="math inline">\(E\)</span> contains all its limit
+points. Then every <span class="math inline">\(x\notin E\)</span> is not
+a limit point of <span class="math inline">\(E\)</span>. So, there
+exists <span class="math inline">\(r&gt;0\)</span> such that <span class="math inline">\(N_r(x)\subset E^c\)</span> contains no point of
+<span class="math inline">\(E\)</span>, i.e., every point <span class="math inline">\(x\notin E\)</span> is an interior point of <span class="math inline">\(E^c\)</span>. So, <span class="math inline">\(E^c\)</span> is open, i.e., <span class="math inline">\(E\)</span> is closed.</p></li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="theorem-4" class="section level5">
+<h5>Theorem</h5>
+<p>A finite set has no limit points.</p>
+<p><br></p>
+<ul>
+<li>Proof: Let <span class="math inline">\((X,d)\)</span> denote a
+metric space. For a finite subset <span class="math inline">\(E\subset
+X\)</span>, let <span class="math inline">\(p\in E\)</span> denote a
+limit point of <span class="math inline">\(E\)</span>. Then, by
+definition, every neighborhood of <span class="math inline">\(p\)</span>
+should contain a point <span class="math inline">\(q\in E\)</span>,
+<span class="math inline">\(q\ne p\)</span>. Because <span class="math inline">\(E\)</span> is finite, there exist only finite
+number of <span class="math inline">\(s \in E\)</span>, <span class="math inline">\(s\ne p\)</span>. So, there exist only finite
+distances <span class="math inline">\(d(p,s)\)</span>. If we choose
+<span class="math inline">\(r&gt;0\)</span> smaller than the mininum of
+the values <span class="math inline">\(s\ne p\)</span>, then the
+neighborhood of <span class="math inline">\(p\)</span> with radius <span class="math inline">\(r&gt;0\)</span> does not contain any point except
+<span class="math inline">\(p\)</span>.</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="definition-clouse" class="section level5">
+<h5>Definition (Clouse)</h5>
+<p>Let <span class="math inline">\(E\)</span> denote a subset of a
+metric space <span class="math inline">\(X\)</span>. The
+<strong>closure</strong> <span class="math inline">\(\bar E\)</span> of
+<span class="math inline">\(E\)</span> is defined to be <span class="math inline">\(\bar E= E\cup E&#39;\)</span> where <span class="math inline">\(E&#39;\)</span> is the set of all limit points of
+<span class="math inline">\(E\)</span> in <span class="math inline">\(X\)</span></p>
+<p><br> <br></p>
+</div>
+<div id="theorem-5" class="section level5">
+<h5>Theorem</h5>
+<p>Let <span class="math inline">\(A,B\)</span> be subsets of a metric
+space <span class="math inline">\(X\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(A\subset \bar A\)</span>,</p></li>
+<li><p>If <span class="math inline">\(A\subset B\)</span>, then <span class="math inline">\(\bar A\subset \bar B\)</span>,</p></li>
+<li><p><span class="math inline">\(\bar A\)</span> is closed,</p></li>
+<li><p>The set <span class="math inline">\(A\)</span> is closed if and
+only if <span class="math inline">\(A=\bar A\)</span>,</p></li>
+<li><p>The closure of <span class="math inline">\(\bar A\)</span> is
+itself, i.e., <span class="math inline">\(\bar{\bar{A}}= \bar
+A\)</span>.</p></li>
+</ol>
+<p><br></p>
+<ul>
+<li><p>Proof of 1: It is clear by the definition of <span class="math inline">\(\bar A\)</span>.</p></li>
+<li><p>Proof of 2: Note that <span class="math inline">\(A\subset
+B\)</span>. Also, <span class="math inline">\(A&#39;\subset
+B&#39;\)</span> (<span class="math inline">\(\because\)</span> let <span class="math inline">\(p\)</span> denote a limit point in <span class="math inline">\(A\)</span>. Then every neighborhood of <span class="math inline">\(p\)</span> should contain at least one point <span class="math inline">\(q \in A\)</span>, <span class="math inline">\(q\ne
+p\)</span>. However, this point <span class="math inline">\(q\)</span>
+is also in <span class="math inline">\(B\)</span> because <span class="math inline">\(A\subset B\)</span>, so <span class="math inline">\(A&#39;\subset B&#39;\)</span>).</p></li>
+<li><p>Proof of 3: Let <span class="math inline">\(p\in X\)</span>,
+<span class="math inline">\(p\notin \bar A\)</span>. Since <span class="math inline">\(p\)</span> is not a limit point of <span class="math inline">\(A\)</span>, there exists <span class="math inline">\(r&gt;0\)</span> such that the neighborhood <span class="math inline">\(N_r(p)\subset A\)</span> contains no point <span class="math inline">\(q\in A\)</span> (we get by negation. note that
+<span class="math inline">\(q\)</span> is already not equal to <span class="math inline">\(p\)</span> because <span class="math inline">\(p\notin \bar A\)</span>). So, <span class="math inline">\(N_r(p)\)</span> is disjoint from <span class="math inline">\(A\)</span>. We claim that it is also disjoint from
+<span class="math inline">\(A&#39;\)</span>. Suppose <span class="math inline">\(q\in N_r(p)\)</span>. Since <span class="math inline">\(N_r(p)\)</span> is open, there exists <span class="math inline">\(h&gt;0\)</span> s.t. <span class="math inline">\(N_h(q)\subset N_r(p)\)</span>. Thus, <span class="math inline">\(N_h(q)\)</span> is disjoint from <span class="math inline">\(A\)</span>, and <span class="math inline">\(q\)</span> is not a limit point of <span class="math inline">\(A\)</span>, as claimed. We conclude that <span class="math inline">\(N_r(p)\)</span> is disjoint from <span class="math inline">\(A\cup A&#39;=\bar A\)</span> as desired.</p></li>
+<li><p>Proof of 4: (<span class="math inline">\(\implies\)</span>)
+Recall the theorem which says “<span class="math inline">\(A\)</span> is
+closed if and only if every limit point of <span class="math inline">\(A\)</span> is contained in <span class="math inline">\(A\)</span>”. Thus, <span class="math inline">\(A&#39;\subset A\)</span>, so <span class="math inline">\(\bar A= A\cup A&#39; = A\)</span>.</p>
+<p>(<span class="math inline">\(\Longleftarrow\)</span>) If <span class="math inline">\(A=\bar A\)</span>, then <span class="math inline">\(A\)</span> is closed by 3.</p></li>
+<li><p>Proof of 5: 4 is a direct consequence of 3. Since <span class="math inline">\(A\)</span> is a closed set by definition, it must
+be equal to its own closure.</p></li>
+</ul>
+<p><br> <br></p>
+<p><a href="../limit.html">back</a></p>
 </div>
 
 

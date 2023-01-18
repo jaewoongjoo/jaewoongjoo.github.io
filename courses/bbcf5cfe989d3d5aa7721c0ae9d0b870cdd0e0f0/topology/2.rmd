@@ -81,13 +81,11 @@ Every neighborhood is an open set.
 
 <br>
 
-   - Proof: The theorem says, for any metric space $(X,d)$, $p\in X$ and $r>0$, the set $N_r(p)$ is open as a subset of $X$. Then, we must show that for any $q\in N_r(p)$, there exists an $h>0$ such that $N_h(q)\subset N_r(p)$ (every point $q\in N_r(p)$ is an interior point of $N_r(p)$). Define $h=r-d(p,q)>0$. For any $s\in N_h(q)$, we have $s\in N_r(p)$ because
+   - Proof: Define a metric space $(X,d)$. Let $p\in X$ and let $r>0$. Then, we must show that for any $q\in N_r(p)$, there exists an $h>0$ such that $N_h(q)\subset N_r(p)$ (every point $q\in N_r(p)$ is an interior point of $N_r(p)$). Define $h=r-d(p,q)>0$. For any $s\in N_h(q)$, we have $s\in N_r(p)$ because
 $$
    d(p,s)\le d(p,q)+d(q,s)<(r-h)+h=r.
 $$
 Thus, $N_h(q)\subset N_r(p)$.
-
-
 
 
 <br>
@@ -100,23 +98,110 @@ Thus, $N_h(q)\subset N_r(p)$.
 
 2. If each of $G_1,\ldots, G_n$ is an open subset of $X$, so is $\cap_{i=1}^n G_i$ (finite intersection). 
 
+
+<br>
+
+   - Proof of 1:  Let $p\in G:=\cup_{\alpha\in I} G_\alpha$. Then, $p\in G_\alpha$ for some $\alpha\in I$. Since $G_\alpha$ is an open set, $p \in G_\alpha$ is an interior point, i.e., for every $p\in G_\alpha$, there exists $r>0$ s.t. $N_r(p)\subset G_\alpha$. Since $G_\alpha\subset G$,  $N_r(p)\subset G$. Because $p\in G$ is an arbitrary we proved the theorem.
+   
+   - Proof of 2:  Let $p\in H:=\cap_{i=1}^n G_i$. Then, $p\in G_i$ for all $i$. Since $G_i$ is an open set, $p\in G_i$ is an interior point, i.e., for every $p\in G_i$, there exists $r_i>0$ s.t. $N_{r_i}(p)\subset G_i$. Let $r=\min\{r_1,\ldots, r_n\}$. Then, $r>0$ and $r\le r_i$ for all $i$, i.e., which implies $N_{r}(p)\subset N_{r_i}(p)$ for each $i$. So, $N_{r}(p)\subset G_i$ for all $i$, which implies $N_{r}(p)\subset H$.
+
+   - Counter-example: Someone might wonder why, in the second theorem, we just take into account finite intersection and ignore the case of countable intersection. I will provide a counterexample. Let $X=\mathbb{R}$ and for all $n\ge 1$, let $G_n=(-1/n, 1/n)$. Then, $\cap_{n=1}^\infty G_{n}=\{0\}$ which is not open. 
+
+   
+<br>
+<br>
+
+
+##### Definition (Closed Sets, Limit Points)
+
+A **closed** subset of a metric space $X$ is defined as the complement of an open subset. 
+
+A point $p\in X$ is said to be a **limit point** of $E\subset X$ if *every* neighborhood of $p$ contains a point of $E$ other than $p$   itself, i.e., every neighborhood of $p$ contains $q\in E$, $q\ne p$, i.e., for every $r>0$, there exists $q\in E$ such that $0<d(p,q)<r$. 
+
+   - Note that limit points and boundary points are not the same. Consider the set $S=\{0\}$ in $\mathbb{R}$ with the usual topology. $0$ is a boundary point but NOT a limit point of $S$. Consider the set $S'=[0,1]$ in $\mathbb{R}$ with the usual topology. $0.5$ is a limit point but NOT a boundary point of $S$. 
+
+
+<br>
+<br>
+
+##### Theorem
+1. If $G_\alpha$ is a closed subset of $X$ for each $\alpha \in I$, so is $\cap_{\alpha\in I} G_\alpha$ (countable union).
+
+2. If each of $G_1,\ldots, G_n$ is a closed subset of $X$, so is $\cup_{i=1}^n G_i$ (finite intersection). 
+
+<br>
+
+  - Proof : Apply de Morgan's Law to the previous theorem.
+
+<br>
+<br>
+
+##### Remark
+
+A subset of a metric space may be both open and closed (clopen) (e.g. in metric space $(X,d)$, $X$ is open and closed, so $\phi$ is open and closed). Moreover, there exists a subset which is neither open or closed (e.g. half-open interval $[a,b)\subset \mathbb{R}$, $\mathbb{Q}\subset \mathbb{R}$).
+
+<br>
+<br>
+
+##### Theorem
+
+$E\subset X$ is closed if and only if every limit point of $E$ is contained in $E$.
+
+<br>
+
+  - ($\implies$): Suppose that $E$ is closed. Let $x$ be a limit point of $E$. Assume that $x\notin E$, so $x\in E^c$. Since $E^c$ is open, $x$ is an interior point of $E^c$, i.e., there exists $r>0$ such that $N_r(x)\subset E^c$.  But, because of the definition of the limit point $x$, every neighborhood of $x$ should contain at least one point in $E$, which is contradiction, so $x\in E$. Because $x$ is arbitrary, we proved.
+
+  - ($\Longleftarrow$):  Suppose that $E$ contains all its limit points. Then every $x\notin E$ is not a limit point of $E$. So, there exists $r>0$ such that $N_r(x)\subset E^c$ contains no point of $E$, i.e., every point $x\notin E$ is an interior point of $E^c$. So, $E^c$ is open, i.e., $E$ is closed. 
+  
 <br>
 <br>
 
 
 ##### Theorem
 
+A finite set has no limit points.
 
+<br>
 
+  - Proof: Let $(X,d)$ denote a metric space. For a finite subset $E\subset X$, let $p\in E$ denote a limit point of $E$. Then, by definition, every neighborhood of $p$ should contain a point $q\in E$, $q\ne p$. Because $E$ is finite, there exist only finite number of $s \in E$, $s\ne p$. So, there exist only finite distances $d(p,s)$. If we choose $r>0$ smaller than the mininum of the values $s\ne p$, then the neighborhood of $p$ with radius $r>0$ does not contain any point except $p$.    
+  
 <br>
 <br>
 
+##### Definition (Clouse)
+Let $E$ denote a subset of a metric space $X$. The **closure** $\bar E$ of $E$ is defined to be $\bar E= E\cup E'$ where $E'$ is the set of all limit points of $E$ in $X$ 
+
+<br>
+<br>
 
 ##### Theorem
+Let $A,B$ be subsets of a metric space $X$
 
+1. $A\subset \bar A$,
 
+2. If $A\subset B$, then $\bar A\subset \bar B$,
 
+3. $\bar A$ is closed,
+
+4. The set $A$ is closed if and only if $A=\bar A$,
+
+5. The closure of $\bar A$ is itself, i.e., $\bar{\bar{A}}= \bar A$.
+
+<br>
+
+  - Proof of 1: It is clear by the definition of $\bar A$.
+  
+  - Proof of 2: Note that $A\subset B$. Also, $A'\subset B'$ ($\because$ let $p$ denote a limit point in $A$. Then every neighborhood of $p$ should contain at least one point $q \in A$, $q\ne p$. However, this point $q$ is also in $B$ because $A\subset B$, so $A'\subset B'$). 
+
+  - Proof of 3: Let $p\in X$, $p\notin \bar A$. Since $p$ is not a limit point of $A$, there exists $r>0$ such that the neighborhood $N_r(p)\subset A$ contains no point $q\in A$ (we get by negation. note that $q$ is already not equal to $p$ because $p\notin \bar A$). So, $N_r(p)$ is disjoint from $A$. We claim that it is also disjoint from $A'$. Suppose $q\in N_r(p)$. Since $N_r(p)$ is open, there exists $h>0$ s.t. $N_h(q)\subset N_r(p)$. Thus, $N_h(q)$ is disjoint from $A$, and $q$ is not a limit point of $A$, as claimed. We conclude that $N_r(p)$ is disjoint from $A\cup A'=\bar A$ as desired.
+
+  - Proof of 4: ($\implies$) Recall the theorem which says "$A$ is closed if and only if every limit point of $A$ is contained in $A$". Thus, $A'\subset A$, so $\bar A= A\cup A' = A$. 
+  
+     ($\Longleftarrow$) If $A=\bar A$, then $A$ is closed by 3.
+  
+  - Proof of 5: 4 is a direct consequence of 3. Since $A$ is a closed set by definition, it must be equal to its own closure.
 
 <br>
 <br>
+
 [back](../limit.html)
