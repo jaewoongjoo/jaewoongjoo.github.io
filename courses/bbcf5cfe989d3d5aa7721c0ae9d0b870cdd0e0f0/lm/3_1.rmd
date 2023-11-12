@@ -1,6 +1,6 @@
 ---
-title: "3.1. Setup for General Linear Hypothesis"
-fontsize: 15pt
+title: "3.1. $L^p$-Spaces and Inequalities"
+output: html_document
 ---
 
 <style type="text/css">
@@ -16,112 +16,216 @@ pre {
 <br>
 <br>
 
-##### Remark
-Model : $Y\sim N(X\beta, \sigma^2I)$.
 
-We are going to test 
-  $$
-  H_0: L\beta=0 \mbox{ }\mbox{ } \mbox{ vs. } H_1: L\beta\ne 0.
-  $$
-  where $L$ is $r\times p$, $r\le p$. 
 
-&nbsp;
-
-##### Example
-
-1. Consider one-way ANOVA model:
+#### Definition
+For $0<p<\infty$, $L^p(\Omega, \mathcal{F}, \mu)$ is defined to be the space of all measurable, extended real-valued functions $f$ for which $|f|^p$ is integrable, i.e.,
 $$
-Y_{ij}=\beta_i+\epsilon_{ij}, \mbox{ }\mbox{ } \mbox{ } j=1,2,\ldots,n_i, \mbox{ } i=1,\ldots,k.
+L^p(\Omega,\mathcal{F},\mu)= \left\{f:\int |f|^p\mbox{ } d\mu<\infty,\mbox{ }f\mbox{ measurable} \right\}.
 $$
-Test $H_0:\beta_1=\beta_2$. 
+When the measure space is understood, $L^p(\Omega, \mathcal{F}, \mu)$ is often abbreviated to $L^p$. For $1\le p<\infty$, the **$p-$norm** of $f\in L^p$ is given by
+$$
+||f||_p=\left[ \int |f|^p\mbox{ } d\mu     \right]^{1/p}.
+$$
+For $p=\infty$, the infinity norm of $f$ is defined as 
+$$
+||f||_\infty=\inf\left\{\alpha:\mu(\{\omega:|f(\omega)|>\alpha\})=0\right\},
+$$
+where $\inf\phi:=\infty$. If $||f||_\infty<\infty$, then $f$ is said to be *essentially bounded* and $L^\infty=L^\infty(\Omega, \mathcal{F},\mu)$ is defined to be the space of all essentially bounded functions $f$.
+
+<br>
+
+   * $L^p$ space는 $|f|^p$ 가 integrable한 measurable function $f$들의 집합체이다.  
+
+   * $p$-norm은 유한한 $|f|^p$의 적분값에 $1/p$ power를 한 것이다(Standardized와 비슷한 개념이다).
    
-  * Use $L=(1,-1,0,\ldots,0)$.
-  
-  
-2. Test equality of slopes in simple linear regression s.t.
-    $$
-    Y_i=\beta_0+\beta_1x_i+e_i, \mbox{ }\mbox{ }\mbox{ } i=1,2,\ldots,n,\\
-    Y_i^*=\beta_0^*+\beta_1^*x_i^*+e_i^*, \mbox{ }\mbox{ }\mbox{ } i=1,2,\ldots,m,
-    $$
-   where the $m+n$ $\epsilon$'s are independent.
+   * Infinity norm은 $\mu(\{\omega:|f(\omega)|>\alpha\})=0$에 대한 $\alpha$의 infimum 으로 이는 $|f|<||f||_\infty$을 의미한다. 만약 이 infinity norm이 finite하다면, $|f|<||f||_\infty<\infty$ a.e.이고 $f$가 essentially bounded 되어 있다고 한다. 또한 만약 이를 만족하는 $\alpha$가 없다면 $\inf\phi=\infty$가 되기 때문에, 만약 이 infinity norm이 존재한다면 이는 finite하고 the space는 essentially bounded이다.
+   
+   
 
-   Test $H_0:\beta_1=\beta_1^* \mbox{ } \mbox{ }  \mbox{vs. }H_1:\beta_1\ne\beta_1^*$. 
-  
-  * X를 한 intercept, column of $(x', 0')'$, column of $(0', x^*)$로 3개의 열로 구성된 design matrix로 놓고,  $\beta=(\beta_0,\beta_1,\beta_1^*)$로 놓는다. 그 후에 $L=(0,1,-1)$로 놓으면 된다. 
-  
-&nbsp;
+<br>
+<br>
 
-##### Remark
+#### Lemma
+If $0\le a,b<\infty$ and $0\le \lambda\le 1$, then $a^\lambda b^{1-\lambda}\le \lambda a + (1-\lambda)b$, where we take $0^0=1$.
 
-Model : $Y\sim N(\mu, \sigma^2I)$, $\mu\in V_{\text{full}}$. We are often interested in testing
+   * 우선 $-\log$는 convex function임을 기억하자. 
+   
+   * 양변에 $-\log$를 씌우면 증명된다. 
+   
+   
+<br>
+<br>
+
+#### Lemma
+If $c,d\ge 0$, $1\le p,q<\infty$, and $\frac{1}{p}+\frac{1}{q}=1$, then
 $$
-H_0: \mu\in V_{\text{red}} \mbox{ }\mbox{ } \mbox{ vs. } H_1: \mu\notin V_{\text{red}}
+cd\le \frac{c^p}{p}+\frac{d^q}{q}.
 $$
-where $V_{\text{red}}$ and $V_{\text{full}}$ are subspaces satisfying
+
+   * 위 lemma에 $\lambda=\frac{1}{p}$, $1-\lambda=\frac{1}{q}$, $a=c^p$, $b=d^q$ 대입.
+
+
+<br>
+<br>
+
+
+#### Theorem(Holder's Inequality)
+If $f\in L^p$ and $g\in L^q$, where $1\le p,q\le \infty$ and $\frac{1}{p}+\frac{1}{q}=1$, then $fg\in L^1$ and
 $$
-V_{\text{red}}\subset V_{\text{full}}\subset\mathbb{R}^n.
+||fg||_1\le ||f||_p||g||_q
 $$
-Note that for $\beta=\begin{pmatrix}\beta_{1 (p_1\times 1)}\\ --- \\\beta_{2 (p_2\times 1)}\end{pmatrix},$
+
+   * $p=1$ and $q=\infty$일 때:
+   $$
+   |fg|=|f||g|\le|f|||g||_{\infty}\implies  ||fg||_1 = \int|fg|\mbox{ }d\mu \le ||g||_q\int|f|\mbox{ }d\mu=||f||_1||g||_\infty.
+   $$
+   (Similarly, $p=\infty$ and $q=1$도 성립한다.)
+
+
+   *  $1<p,g<\infty$일 때: 만약 $||f||_p=0$이라면, $f=0$ a.e.이다. 때문에 $fg=0$ a.e.이다($||g||_p=0$일 때도 마찬가지). 때문에 $||f||_p,||g||_p>0$으로 가정한다. 바로 위의 lemma에서 $c=|f(\omega)|/||f||_p$ and $d=|g(\omega)|/||g||_q$를 대입하면
+
 $$\begin{eqnarray*}
-V_{\text{full}}&=&\{ \mu \in \mathbb{R}^n: \mu=X\beta \mbox{ for } \beta\in \mathbb{R}^p \}= \text{range}(X),\\
-V_{\text{red}}&=&\{ \mu \in \mathbb{R}^n: \mu=X\beta \mbox{ for } \beta \mbox{ with }\beta_2=0\}\\
-&=&\{ \mu \in \mathbb{R}^n: \mu=X_1\beta_1 \mbox{ for some } \beta_1\in \mathbb{R}^{p_1}\}= \text{range}(X_1).
-\end{eqnarray*}$$
+cd\le \frac{c^p}{p}+\frac{d^q}{q} &\implies& \frac{|f(\omega)g(\omega)| }{||f||_p ||g||_q}\le \frac{|f(\omega)|^p}{p||f||_p^p} +\frac{|g(\omega)|^q}{q||g||_q^q}\mbox{ }\mbox{ }\mbox{ }\forall \omega\in \Omega\\
+&\stackrel{\text{Monotonicity}}\implies& \int \frac{|f(\omega)g(\omega)| }{||f||_p ||g||_q}d\mu\le\int\frac{|f(\omega)|^p}{p||f||_p^p}d\mu +\int\frac{|g(\omega)|^q}{q||g||_q^q}d\mu\\
+&\implies& \frac{||fg||_1}{||f||_p ||g||_q}\le \frac{1}{p}+\frac{1}{q} =1 \\
+&\implies& ||fg||_1\le ||f||_p ||g||_q.  
+\end{eqnarray*}$$ 
+   
 
+<br>
+<br>
+
+#### Corollary (Cauchy-Schwarz Inequality)
+If $f,g\in L^2$, then $fg\in L^1$ and $||fg||_1\le ||f||_2||g||_2$.
+
+
+<br>
+<br>
+
+
+#### Lemma
+For any $a,b\ge 0$ and $0<p<\infty$,
+$$
+(a+b)^p\le 2^p(a^p+b^p).
+$$
+
+<br>
+<br>
+
+
+#### Theorem
+If $f,g\in L^p$, $0<p\le\infty$, then $f+g\in L^p$.
+
+   * $p=\infty$일 때: $|f|<||f||_\infty$ a.e. and $|g|<||g||_\infty$ a.e.이다. 때문에
+   $$
+   |f(\omega)+g(\omega)|\stackrel{\Delta}{\le} |f(\omega)|+|g(\omega)|\le ||f||_\infty+||g||_\infty \mbox{ for }\mu\mbox{-almost all }\omega.
+   $$
+   즉 모든 $\omega$에 대해서 $|f+g|$의 값이 bounded from $||f||_\infty+||g||_\infty$되어있다. 때문에 $||f+g||_\infty\le||f||_\infty+||g||_\infty$가 존재한다.
+
+   * $0<p<\infty$일 때: 위의 lemma에 따르면
+   $$
+   |f+g|^p\stackrel{\Delta}{\le}(|f|+|g|)^p\le 2^p(|f|^p+|g|^p)\implies \int|f+g|^pd\mu\le 2^p(\int|f|^pd\mu+\int|g|^pd\mu) <\infty.
+   $$
+
+<br>
+
+   * 결론:  $L^p$ space는 **closed under addition**이다.
+   
+<br>
+<br>
+
+
+#### Theorem(Minkowski's Inequality)
+If $f,g\in L^p$, $1\le p\le \infty$, then
+$$
+||f+g||_p\le ||f||_p+||g||_p.
+$$
+
+   * $L^p$ space에서 Triangle inequality라고 생각하자.
+
+
+<br>
+<br>
+
+
+#### Proposition
+If $c\in\mathbb{R}$ and $f\in L^p$ for some $1\le p\le \infty$, then $cf\in L^p$ and
+$$
+||cf||_p=|c|||f||_p.
+$$
+
+   * $L^p$ space에서 $p$-norm안에 있는 상수는 절대값으로 빠져나올 수 있다.
+
+
+<br>
+<br>
+
+Theorem도 증명도 매우 중요하다. 
+
+#### Theorem (Markov's Inequality)
+For any $\alpha>0$
+$$
+\mu(\{\omega:|f(\omega)|\ge \alpha \})\le \frac{1}{\alpha}\int|f|\mbox{ }d\mu.
+$$
+
+   * 증명:
+$$
+   \int |f|\mbox{ }d\mu=\int_{[|f|\ge \alpha]} |f|\mbox{ }d\mu+ \int_{[|f|< \alpha]} |f|\mbox{ }d\mu\ge \int_{[|f|\ge \alpha]} |f|\mbox{ }d\mu\ge \int_{[|f|\ge \alpha]} \alpha\mbox{ }d\mu= \alpha\mu(|f|\ge \alpha)\\
+   \implies   \frac{1}{\alpha} \int |f|\mbox{ }d\mu\ge \mu(|f|\ge \alpha).
+$$
+   
+   * 증명으로부터 아래와 같은 finer Inequality를 얻을 수 있다.
+$$
+  \int_{[|f|\ge \alpha]} |f|\mbox{ }d\mu\ge \int_{[|f|\ge \alpha]} \alpha\mbox{ }d\mu= \alpha\mu(|f|\ge \alpha)\\
+   \implies  \mu(|f|\ge \alpha) \le  \frac{1}{\alpha} \int_{[|f|\ge \alpha]} |f|\mbox{ }d\mu.
+$$
+   
+   나중에 증명에 사용되니 참고하자.
+   
+   * 우리는 이를 지금까지 elementary course에서 $P(|X|\ge \alpha)\le \frac{1}{\alpha}E[|X|]$로 배웠다. 이를 변형하여 아래와 같이 얻을 수 있다. 
+   $$
+  P(|X|\ge \alpha)= P(|X|^k\ge \alpha^k)\le \frac{1}{\alpha^k}E[|X|^k].
+   $$   
   
-&nbsp;
+<br>
+<br>
 
-##### Theorem
-Let $V_r$, $V_f$ be two subspaces with $V_r \subset V_f$. Let $P_r$, $P_f$ be the orthogonal projection onto $V_r$ and $V_f$, respectively. Then,
-$$
-  I=P_r+ (P_f-P_r)+(I-P_f)
-$$
-gives an orthogonal decomposition.
+#### Theorem (Lyapounov's Inequality)
+If $0<\alpha\le\beta$ and $X\in L^{\beta}$, then $X\in L^\alpha$ and $\left\{E(|X|^\alpha) \right\}^{1/\alpha}\le \left\{E(|X|^\beta) \right\}^{1/\beta}$.
 
-   * 각 $P_r$, $(P_f-P_r)$, $(I-P_f)$는 idempotent하다($P_fP_r$은 projection onto $V_r$이고 projection은 unique하기 때문에 $P_fP_r=P_r$이다).
-     또한 symmetric하기 때문에 모두 projection이다. 
-   
-   * 또한 세 projection의 합도 idempotent and symmetric 하다.
-   
-   * 마지막으로 pairwise product도 모두 0이다. 
-
-&nbsp;
-
-##### Remark
-We wish to test 
-$$
-H_0: \mu \in V_r \mbox{ }\mbox{ }\mbox{ vs. } \mbox{ }\mbox{ }H_0: \mu \notin V_r. 
-$$
-
-Note that
-$$\begin{eqnarray*}
-&&Y=P_rY+(P_f-P_r)Y+(I-P_f)Y\\
-&&\implies ||Y||^2=||P_rY||^2+||(P_f-P_r)Y||^2+||(I-P_f)Y||^2 \mbox{ (orthogonal decomposition)}\\
-&&\implies \frac{||Y||^2}{\sigma^2}=\frac{||P_rY||^2}{\sigma^2}+\frac{||(P_f-P_r)Y||^2}{\sigma^2}+\frac{||(I-P_f)Y||^2}{\sigma^2}.
-\end{eqnarray*}$$
-   
-   * 또는 pitagorian theorem이라고 생각할 수도 있다. 
-
-&nbsp;
-
-Note that the terms on the right are independent. 
-
-   * 각각 functions of $P_rY$, $(P_f-P_r)Y$, $(I-P_f)Y$ 이기 때문.
-   
-&nbsp;
-
-Also note that
-
-1. $\frac{||P_rY||^2}{\sigma^2}\sim \chi^2_{\nu_r}(\frac{1}{2\sigma^2}\mu'P_r\mu)$
- 
-2. $\frac{||(P_f-P_r)Y||^2}{\sigma^2}\sim \chi^2_{\nu_f-\nu_r}(\frac{1}{2\sigma^2}\mu'(P_f-P_r)\mu)$
- 
-3. $\frac{||(I-P_f)Y||^2}{\sigma^2}\sim \chi^2_{n-\nu_f}(\frac{1}{2\sigma^2}\mu'(I-P_f)\mu)$
-
-
-  * If $Y\sim N(\mu,I)$, then $Y'PY\sim \chi^2_k(\frac{1}{2}\mu'P\mu)$ (2.3에서 다루었다).
+  * $\alpha=\beta$일 때 : trivial
   
-&nbsp;
+  * $0<\alpha<\beta$일 때 : Take $p=\beta/\alpha$, $q=1/(1-1/p)=\beta/(\beta-\alpha)$, $f=|X|^\alpha$, and $g=Y\equiv 1$.
+    
+    여기서 $f=|X|^\alpha \in L^p$이다. 왜냐하면 $\int (|X|^\alpha)^p\mbox{ }d\mu=\int (|X|^\alpha)^\frac{\beta}{\alpha}\mbox{ }d\mu=\int |X|^{\beta}\mbox{ }d\mu<\infty$이기 때문이다. $g\equiv 1 \in L^q$는 trivial하다. 또한 $p,q \ge 1$, $1/p+1/q=1$이다.
+    
+    그러므로, Holder's Inequality에 의해
+  $$
+  E(|X|^\alpha)= \int|X|^\alpha d\mu= \int |fg| \mbox{ }d\mu= ||fg||_1 \le ||f||_p||g||_q=({E\left\{|X|^\alpha\right\}^p})^{1/p}= \left\{E(|X|^\beta )\right\}^{\alpha/\beta}\\
+  \implies
+  \left\{E(|X|^\alpha) \right\}^{1/\alpha}\le \left\{E(|X|^\beta) \right\}^{1/\beta}.
+  $$
 
-[back](../lm.html)
+<br>
+<br>
+
+매우 자주 쓰인다.
+
+#### Theorem (Jensen's Inequality)
+If $f$ is convex on an interval $I\subset \mathbb{R}$ containing the range of the random variable $X$, and if $X$ is integrable, then
+$$
+f(E(X))\le E(f(X)).
+$$
+
+   * 2차 함수를 생각하면 쉽다. 
+
+
+
+
+<br>
+<br>
+
+
+[back](../probability1.html)
 
