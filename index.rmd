@@ -14,18 +14,16 @@ pre {
 </style>
 
 
-Hello and welcome to my website. I am a Ph.D student in the Department of Statistics at the University of Florida.
+Hello and welcome to my website. I am a Ph.D student in the Department of Statistics at the University of Florida. I am currently working with Dr. Hani Doss and Dr. Bikram Karmakar.
 
+<br>
 <br>
 
 
-
-
-[Courses](./courses/index.html)
-
 [Research](./researches/researches.html)
 
-[Blog](./misc/misc.html)
+[Materials](./courses/index.html)
+
 
 ```{r, echo=FALSE}
 htmltools::includeHTML("tagmanager.html")
@@ -33,10 +31,5 @@ htmltools::includeHTML("tagmanager.html")
 
 <br><br>
 
-#### Calendar
-
-```{r, echo=FALSE, out.width="500px", out.height="400px"}
-knitr::include_url("https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=amFld29vbmdqb29AZ21haWwuY29t&color=%23039BE5")
-```
 
 
