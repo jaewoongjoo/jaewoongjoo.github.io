@@ -22,8 +22,11 @@ Hello and welcome to my website. I am a Ph.D student in the Department of Statis
 
 [Research](./researches/researches.html)
 
+<<<<<<< HEAD
 [Materials](./courses/index.html)
 
+=======
+>>>>>>> a89dd413a5dd0f0532e0dacf6f4c515864b91df1
 
 ```{r, echo=FALSE}
 htmltools::includeHTML("tagmanager.html")
