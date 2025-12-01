@@ -1,20 +1,44 @@
 ---
 title: "Jaewoong Joo"
-fontsize: 15pt
+fontsize: 13pt
 ---
 
 <style type="text/css">
 
 body, td {
-   font-size: 15px;
+   font-size: 14px;
 }
 pre {
-  font-size: 15px
+  font-size: 14px
 }
 </style>
 
+jaewoongjoo "at" ufl "dot" edu
 
-Hello and welcome to my website. I am a Ph.D student in the Department of Statistics at the University of Florida. I am currently working with Dr. Hani Doss and Dr. Bikram Karmakar.
+<br>
+
+### Education
+University of Florida, Gainesville, FL
+
+- Ph.D., Statistics, 2025.
+
+Sungkyunkwan University, Seoul, KR
+
+- M.S., Statistics, 2019.
+<br>
+<br>
+
+
+
+### Interests
+
+- Numerical Optimization Methods 
+
+- Analysis of Incomplete Data in Observational Studies
+
+- Meta-analysis and Data Integration
+
+- Bayesian Methods
 
 <br>
 <br>
