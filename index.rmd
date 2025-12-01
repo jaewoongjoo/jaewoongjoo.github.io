@@ -13,26 +13,32 @@ pre {
 }
 </style>
 
-jaewoongjoo "at" ufl "dot" edu
+
+<br>
+
+### Employment
+
+Biostatistics Branch, National Cancer Institute, Shady Grove, MD
+
+- Postdoctoral Researcher, December 2025 – Present
 
 <br>
 
 ### Education
+
 University of Florida, Gainesville, FL
 
-- Ph.D., Statistics, 2025.
+- Ph.D. in Statistics, 2025
 
-Sungkyunkwan University, Seoul, KR
+Sungkyunkwan University, Seoul, South Korea
 
-- M.S., Statistics, 2019.
+- M.S. in Statistics, 2019
+
 <br>
-<br>
 
+### Research Interests
 
-
-### Interests
-
-- Numerical Optimization Methods 
+- Numerical Optimization Methods
 
 - Analysis of Incomplete Data in Observational Studies
 
