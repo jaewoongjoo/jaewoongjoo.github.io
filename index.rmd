@@ -13,6 +13,9 @@ pre {
 }
 </style>
 
+I am a Postdoctoral Fellow in the Biostatistics Branch at the National Cancer Institute. You may contact me via email at jaewoong.joo@nih.gov, or jaewoongjoo@ufl.edu.
+
+<br>
 
 ### Education
 
@@ -23,6 +26,8 @@ University of Florida, Gainesville, FL
 Sungkyunkwan University, Seoul, South Korea
 
 - M.S. in Statistics, 2019
+- B.E. in Statistics, 2014
+- B.A. in Fashion Design, Clothing and Textiles, 2014
 
 <br>
 
