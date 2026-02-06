@@ -13,7 +13,7 @@ pre {
 }
 </style>
 
-I am a Postdoctoral Fellow in the Biostatistics Branch at the National Cancer Institute. You may contact me via email at jaewoong.joo@nih.gov, or jaewoongjoo@ufl.edu.
+I am a Postdoctoral Fellow in the Biostatistics Branch at the National Cancer Institute.
 
 <br>
 
